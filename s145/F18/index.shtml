@@ -1,0 +1,145 @@
+
+<html><head><title> Math 145 Class Page </title>
+<link rel="stylesheet" type="text/css"
+href="/~scofield/styles/newClasspage.css">
+
+<STYLE TYPE="text/css">
+<!--
+.indented
+{
+padding-left: 20pt;
+}
+-->
+body {
+    line-height: 1.1;
+}
+</STYLE>
+
+</head>
+<body>
+
+<!--#include file="./classheader.shtml" -->
+<p>
+
+<h4>Main</h4>
+<ul class="none">
+  <li><a href="cal/">Calendar</a>
+  <li>Course software: <a href="http://rstudio.calvin.edu:8787">RStudio
+    online</a>,
+    <a href="http://www.lock5stat.com/StatKey/">StatKey</a>,
+    <a href="http://moodle.calvin.edu">Moodle</a>
+    (not used much)
+  <li><a href="handouts/index.shtml">Class handouts</a>
+  <li>Solutions to <a href="secure/1.pdf">Exam 1</a>;
+    <a href="secure/2.pdf">Exam 2</a>;
+    <a href="secure/3.pdf">Exam 3</a>
+  <li><a href="syl/syllabus.shtml">Course Syllabus</a>:
+    <a href="syl/slos.shtml">SLOs</a>,
+    <a href="syl/syllabus.shtml#expectations">expectations</a>,
+    <a href="syl/syllabus.shtml#hw">hw policies</a>,
+    <a href="syl/syllabus.shtml#grading">grade calculation</a>,
+    <a href="syl/syllabus.shtml#integrity">accommodations & miscellaneous<a>
+  <li><a href="/~scofield/courses/m143/materials/gradingCodes.shtml">Grading
+	  codes</a>
+  <li><a href="/~scofield">Professor Scofield's homepage</a> (see for office
+      hours, for instance)
+</ul>
+
+<p>
+<font size="+2"><b>Texts/References</b></font><br>
+<ul class="none">
+ <li>Our main text is &#147;Statistics: Unlocking the Power of Data&#148;,
+  by Lock, Lock, Lock Morgan, Lock, and Lock.  (I will refer to this
+  book on the calendar as Lock, or Lock5.)  We will cover material from
+  all chapters, with the possible exception of Chapter 10 (depending on
+  time).
+ <li>Possible references, ones you can download:
+ <ul class="disc">
+  <li>An <a href="./Lock5withR.pdf">RStudio companion to Lock5</a>
+  <li>&#147;<a href=
+   "http://link.springer.com/book/10.1007/978-1-4614-1302-8">Biostatistics
+   with R</a>,&#148; by Babak Shahbaba
+  <li>&#147;<a href=
+   "http://link.springer.com/book/10.1007/978-3-319-02532-2">Introduction
+   to Data Analysis and Graphical Presentation in Biostatistics with
+   R</a>,&#148; by Thomas W. MacFarland
+  <li>&#147;<a href=
+   "http://link.springer.com/book/10.1007/978-0-387-79054-1">Introductory
+   Statistics with R</a>,&#148; by Peter Dalgaard
+  <li>&#147;<a href=
+   "http://link.springer.com/book/10.1007/978-0-387-93837-0">A Beginner's
+   Guide to R</a>,&#148; by Zuur, Ieno and Meesters
+  <li>&#147;<a href=
+   "http://link.springer.com/book/10.1007/978-1-4614-1365-3">R by
+   Example</a>,&#148; by Albert and Rizzo
+ </ul>
+</ul>
+
+<p>
+<font size="+2"><b>R resources</b></font><br>
+<ul class="none">
+  <li>A <a href=
+	"http://www.calvin.edu/~scofield/courses/m143/materials/Short-refcard.pdf">
+	command reference card</a> designed by Tom Short
+  <li><a href="http://www.r-tutor.com/elementary-statistics">Elementary
+    Statistics with R</a>, a website with many examples of R code
+  <li>You have the option to download and install to your own computer
+    copies of R from <a href="http://cran.r-project.org/">here</a>
+	and/or RStudio from <a href="http://www.rstudio.org/">here</a>.
+  <li><a href="http://cran.r-project.org/doc/contrib/Verzani-SimpleR.pdf">
+	Simple R</a>, notes by John Verzani
+  <li>Another <a href="http://www.statmethods.net/index.html">good website
+    with R examples</a>
+  <li><a href="http://dist.stat.tamu.edu/pub/rvideos/">R videos</a>
+</ul>
+
+<p>
+<font size="+2"><b>Apps (most written using Shiny)</b></font><br>
+<ul class="none">
+ <li>One for comparing the <a href=
+   "https://istats.shinyapps.io/MeanvsMedian/">mean and median</a>
+ <li>Discovering <a href="https://istats.shinyapps.io/Association_Categorical/">
+    associations between categorical variables</a>
+ <li>The <a href="https://istats.shinyapps.io/guesscorr/">correlation game</a>
+ <li><a href="http://davidmlane.com/hyperstat/z_table.html">Standard
+  normal probability calculator</a> (view other statistical links by David
+  M. Lane <a href="http://davidmlane.com/hyperstat/">here</a>)
+ <li>Central limit theorem demos for
+  <a href="http://rstudio.calvin.edu:3838/scofield/cltProportions/">
+    proportions</a> and for
+  <a href="http://rstudio.calvin.edu:3838/scofield/cltMeans/">
+    means</a>
+ <li>Randomization distributions for
+  <a href="http://rstudio.calvin.edu:3838/scofield/chisqRandomizationDist/">
+    goodness-of-fit</a> tests
+ <li><a href=
+  "http://rstudio.calvin.edu:3838/scofield/fstatRandomizationDist/">
+    1-way ANOVA</a>
+ <li><a href=
+  "http://rstudio.calvin.edu:3838/scofield/simpleLinearRegression/">
+    Simple Linear Regression</a>
+</ul>
+
+<!--
+<p>
+<font size="+2"><b>Class Handouts</b></font><br>
+<ul class="none">
+ <li>Chapter 6 <a href=
+	"http://www.calvin.edu/~scofield/courses/m145/S15/ch6Exercises.pdf">
+    exercises</a> and their <a href=
+	"http://www.calvin.edu/~scofield/courses/m145/S15/ch6ExercisesSolns.pdf">
+	solutions</a>
+</ul>
+-->
+
+<p>
+<hr>
+
+<!--#include virtual="/~scofield/byline.shtml" -->
+
+Last Modified:
+<!--#echo var="Last_Modified" -->
+
+</body>
+</html>
+
