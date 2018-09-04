@@ -1,0 +1,237 @@
+
+<html><head><title> Math 271 Class Page </title>
+<link rel="stylesheet" type="text/css"
+href="/~scofield/styles/mystandard.css">
+
+<STYLE TYPE="text/css">
+<!--
+.indented
+{
+padding-left: 20pt;
+}
+-->
+</STYLE>
+
+</head>
+<body>
+
+<a href="https://calvin.edu/academic/math/">MATH</a> 271 A/B<br>
+<a href="http://scofield.site/courses/m271/">Multivariable Calculus</a><br>
+Fall, 2018
+<p>
+
+<font size="+2"><b>Course Information</b></font><br>
+
+<div class="indented">
+  <a href="https://calvin.edu/~scofield/courses/m271/cal/">Calendar</a><br>
+  <a href="https://www.webassign.net/login.html">WebAssign</a><br>
+  <a href="http://moodle.calvin.edu">Moodle</a> (not used much)<br>
+  <a href="/~scofield/courses/materials/calcGradingCodes.shtml">
+	Grading codes</a> (see the
+	<a href="/~scofield/courses/materials/tae/tae.pdf">TAE document</a>
+	for many algebra helps) <br>
+  <a href=
+    "https://calvin.edu/~scofield/courses/m271/syl/syllabus.shtml">Course
+    Syllabus</a>:
+   <a href="https://calvin.edu/~scofield/courses/m271/syl/syllabus.shtml#slos">
+    SLOs</a>,
+   <a href="https://calvin.edu/~scofield/courses/m271/syl/syllabus.shtml#expectations">expectations</a>,
+   <a href="https://calvin.edu/~scofield/courses/m271/syl/syllabus.shtml#grading">grade calculation</a>,
+   <a href="https://calvin.edu/~scofield/courses/m271/syl/syllabus.shtml#accommodations">accommodations & miscellany</a><br>
+<!--
+  Exam Solutions (password required): Test 1
+   <a href="https://calvin.edu/~scofield/courses/m271/secure/1a.pdf">Form A</a>,
+   <a href="https://calvin.edu/~scofield/courses/m271/secure/1b.pdf">Form B</a> | Test 2
+<a href="finalResources.shtml">Final exam resources</a><br>
+ -->
+</div>
+
+<p>
+<font size="+2"><b>Visualization</b></font><br>
+<div class="indented">
+  Curves <b>r</b><i>(t)</i>:
+  <div class="indented">
+    planar:
+      <a href="http://calvin.edu/~scofield/courses/m271/materials/sageDemos/simplePlanarCurve.html">basic curve (collection of points)</a>,
+      <a href="http://calvin.edu/~scofield/courses/m271/materials/sageDemos/planarCurveWithTangent.html">animated with velocity vector</a>,
+      <a href="http://calvin.edu/~scofield/courses/m271/materials/sageDemos/wheelTracingCycloid.html">animation of cycloid</a><br>
+    space-curves:
+      <a href="http://calvin.edu/~scofield/courses/m271/materials/sageDemos/simplePlanarCurve.html">basic curve plots</a>,
+      <a href="http://calvin.edu/~scofield/courses/m271/materials/sageDemos/spaceCurveWithTangent.html">animated with velocity vector</a>,
+      <a href="http://calvin.edu/~scofield/courses/m271/materials/sageDemos/spaceCurveFullTNBFrame.html">animated with full TNB-frame</a>
+  </div>
+  Surfaces <i>z = f(x,y)</i>:
+    <a href="https://sagecell.sagemath.org/?q=tvmtab">plane</a>,
+    <a href="https://sagecell.sagemath.org/?q=lzimju">discontinuous
+        at (0,0)</a><br>
+  A differentiable <a href=
+    "http://calvin.edu/~scofield/demos/calculus/tangentPlane.shtml">surface
+    <i>z = f(x,y)</i> with tangent plane</a><br>
+  Planes (in 3 dimensions):
+    <a href="https://sagecell.sagemath.org/?q=tvmtab">from a point and
+    2 parallel vectors</a><br>
+  Plots of parametric
+    <a href= "https://sagecell.sagemath.org/?q=ovyljl">planar curves</a>
+    (a similar curve <a href="https://sagecell.sagemath.org/?q=kitxvd">
+    animated</a>), or
+    <a href= "https://sagecell.sagemath.org/?q=ueuxpz">space curves</a><br>
+  Parametric surfaces:
+    <a href="https://sagecell.sagemath.org/?q=qdjvdc">sphere</a>,
+    <a href="https://sagecell.sagemath.org/?q=nbrsvw">torus</a><br>
+  Vector fields in
+    <a href= "https://sagecell.sagemath.org/?q=resrga">2 dimensions</a>, or in
+    <a href= "https://sagecell.sagemath.org/?q=xavslt">3 dimensions</a> <br>
+<!--
+  Flash applets for plotting parametric curves in the plane: <a href=
+	"http://www.flashandmath.com/mathlets/calc/param2d/param_advanced.html">
+    Applet 1</a>, <a href=
+    "http://www.flashandmath.com/appletsbook/GraphParam.html">Applet 2</a> <br>
+-->
+  <a href= "http://mathinsight.org/line_parametrization">
+	Parametrization of a line in space</a> <br>
+  <a href=
+  <a href=
+ "http://www.livephysics.com/tools/mathematical-tools/online-3-d-function-grapher/">Graphs
+	of functions of two variables</a> (surfaces)<br>
+</div>
+
+<!--
+<p>
+<font size="+2"><b>Class handouts</b></font><br>
+<div class="indented">
+  Some answers (with details) to the <a href=
+	"http://www.calvin.edu/~scofield/courses/m172/F13/integralRevAns.pdf">
+	integral practice sheet</a> of Sept. 18<br>
+  A <a href=
+	"http://www.calvin.edu/~scofield/courses/m172/F13/besselJ0Series.pdf">
+	series solution of differential equation</a> (lecture of Oct. 18)<br>
+</div>
+-->
+
+<!--
+<p>
+<font size="+2"><b>Additional Calculus textbooks</b></font><br>
+<div class="indented">
+ <a href= "http://scholarworks.gvsu.edu/books/10/">Active
+  Calculus</a>, by Boelkins, Austin and Schlicker<br>
+ <a href= "http://link.springer.com.lib-proxy.calvin.edu/book/10.2991/978-94-91216-86-2">Single
+  Variable Differential and Integral Calculus</a> by Elimhan Mahmudov<br>
+ <a href= "http://link.springer.com.lib-proxy.calvin.edu/book/10.1007/978-1-4842-0304-0">MATLAB
+  Differential and Integral Calculus</a>, by Cesar Perez Lopez <font size="-2">
+  (single- and multi-variable Calculus from a computational perspective)</font><br>
+ <a href= "http://link.springer.com.lib-proxy.calvin.edu/book/10.1007/978-0-8176-8289-7">From
+  Calculus to Analysis</a>, by Rinaldo B. Schinazi (for advanced
+  understanding)<br>
+ <a href= "http://link.springer.com.lib-proxy.calvin.edu/book/10.1007/978-1-4419-9488-2">Introduction
+  to Calculus and Classical Analysis</a> by Omar Hijab (for advanced
+  understanding)<br>
+</div>
+-->
+
+<p>
+<font size="+2"><b>Calculus instructional video links</b></font><br>
+<div class="indented">
+ <a href="http://www.mathispower4u.com/calculus.php">Differential calculus
+     video library</a><br>
+ <a href="http://www.mathispower4u.com/calc-ii.php">Integral calculus
+     video library</a><br>
+ <a href= "https://www.youtube.com/playlist?list=PLeLZMYj6ATvx3Df559tRUTS-0IWal88XT">Calc
+  II Video lectures by Ellie Blair Kennedy</a> <font size="-2">(not officially
+  connected to our course or text, but you may find a desired topic)</font><br>
+ A nice video lecture on <a href= "http://www.youtube.com/watch?v=CMbvq16z0gA">
+  an integral problem that requires completing the square</a> <br>
+ <a href="https://www.khanacademy.org/math/integral-calculus">Integral
+  calculus at Khan Academy</a><br>
+</div>
+
+<p>
+<font size="+2"><b>Additional resources</b></font><br>
+<div class="indented">
+ A page with <a href="https://www.math.ucdavis.edu/~kouba/ProblemsList.html">
+   problem statements and worked solutions</a> from D.A. Kouba at UC-Davis<br>
+ Integration techniques drills:
+ <a href="http://archives.math.utk.edu/visual.calculus/4/substitutions.1/index.html">substitution</a>,
+ <a href="http://archives.math.utk.edu/visual.calculus/4/substitutions.2/index.html">trigonometric substitution</a>,
+ <a href="http://archives.math.utk.edu/visual.calculus/4/int_by_parts.1/index.html">by parts</a>,
+  <a href="http://archives.math.utk.edu/visual.calculus/4/partial_fractions.1/index.html">partial fractions</a>,
+  <a href="http://archives.math.utk.edu/visual.calculus/4/recursion.1/index.html">trig integrands and reduction formulas</a><br>
+<!--
+ Numerical integration online:
+  <a href="http://www.emathhelp.net/calculators/calculus-2/trapezoidal-rule-calculator/">trapezoid rule</a>,
+  <a href="http://www.zweigmedia.com/RealWorld/integral/integral.html">Simpson's
+  rule</a><br>
+  -->
+ Practice in
+ <a href="http://archives.math.utk.edu/visual.calculus/4/improper.1/index.html">
+		 improper integrals</a><br>
+ <a href= "http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/">
+  Some Calculus notes from 2007</a>, <font size="-2">arranged by topic (don't trust
+  section or page numbers!) written by your instructor</font><br>
+</div>
+
+<p>
+<font size="+2"><b>Technology</b></font><br>
+<div class="indented">
+  Sage: A <a href="https://cloud.sagemath.com/">SageMathCloud</a> server,
+    or open a <a href="https://sagecell.sagemath.org">SageMathCell</a>
+    | the book <a href=
+     "http://dl.lateralis.org/public/sagebook/sagebook-ba6596d.pdf">
+    Computational Mathematics with SageMath<a><br>
+  <a href="http://www.wolframalpha.com/">Wolfram Alpha</a><br>
+  TI graphing calculators:
+  <div class="indented">
+   <a href="https://www.youtube.com/watch?v=4CWKi9J-ZlU">Enter a matrix
+     and calculate a determinant using a TI-83/84</a><br>
+   Calculator guidebooks:
+    <a href=
+ "http://education.ti.com/downloads/guidebooks/graphing/83/83gb.pdf">
+    83</a> | <a href=
+ "http://education.ti.com/downloads/guidebooks/graphing/83p/83m$book-eng.pdf">
+    83-Plus/Silver Ed.</a> | <a href=
+ "http://education.ti.com/downloads/guidebooks/graphing/85/85book-eng.pdf">
+    85</a> | <a href=
+ "http://education.ti.com/downloads/guidebooks/graphing/86/86bookeng.pdf">
+    86</a> | <a href=
+ "http://education.ti.com/downloads/guidebooks/graphing/8992p/8992bookeng.pdf">
+    89/92-Plus</a> | <a href=
+ "http://education.ti.com/downloads/guidebooks/graphing/89ti/TI89TitaniumGuidebook_Part2_EN.pdf">
+    89-Titanium</a>
+  </div>
+ </div>
+<!--
+  <a href="">
+    </a><br>
+-->
+</div>
+
+
+<!--
+<p>
+<img src="/~scofield/images/ball_blue.gif" alt="*"><b>
+	Other software links</b>
+<div class="indented">
+  <a href= "http://www.mozilla.org">Mozilla homepage</a>, for its
+	latest <a href="http://en.www.mozilla.com/en/">
+	Firefox web browser </a><br>
+  Get the latest version of
+	<a href="http://www.adobe.com/products/acrobat/readstep2.html">
+	Adobe's Acrobat Reader</a><br>
+</div>
+-->
+
+<hr>
+<p>
+This page maintained by:
+<a href="http://scofield.site/">
+Thomas L. Scofield</a><br>
+Department of Mathematics and Statistics,
+Calvin College
+</p>
+
+<!--#include virtual="/~scofield/byline.shtml" -->
+
+Last Modified: Sept. 4, 2018
+
+</body>
+</html>
+
