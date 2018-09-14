@@ -1,0 +1,121 @@
+---
+title: "Some Early Chapter 2-Related Material"
+author: ""
+date: ""
+output: 
+  html_document:
+    fig_height: 3
+    fig_width: 5
+  pdf_document:
+    fig_height: 3
+    fig_width: 5
+  word_document:
+    fig_height: 3
+    fig_width: 5
+---
+
+```{r, setup, include=FALSE}
+require(mosaic)    # Load additional packages here 
+require(ggformula) # formula interface to ggplot2
+
+# Some customization.  You can alter or delete as desired (if you know what you are doing).
+
+theme_set(theme_bw()) # change theme for ggplot2
+trellis.par.set(theme=theme.mosaic()) # change default color scheme for lattice
+
+knitr::opts_chunk$set(
+  tidy=FALSE,     # display code as typed
+  size="small")   # slightly smaller font for code
+```
+### Dotplots
+This is an alternate type of plot the Locks use frequently to visualize the distribution of a single quantitative variable.  Dotplots are easy to understand, though to produce them in RStudio requires a command that isn't like other plotting commands you have seen.  Here, I load a dataset about the reigns of English monarchs, and show is how you can get a dotplot of the "years" of their reigns.  If you choose not to use dotplots in the future, that will not cost you.
+```{r}
+monarchs <- read.csv("http://calvin.edu/~scofield/data/csv/monarchReigns.csv")
+head(monarchs)
+stripchart(monarchs$years, method="stack", pch=19, cex=.7)
+```
+
+Dot plots are easily understood.  And, with a smallish dataset like the one above, it is fairly easy to count dots and tell how many English monarchs reigned for 13 years. That is more difficult with large datasets, as I demonstrate below, using survey data from 280 on how many cds they owned.
+```{r}
+ss <- read.csv("http://calvin.edu/~scofield/data/csv/ssurv.csv")
+stripchart(ss$cds, method="stack", pch=19, cex=.7)
+```
+
+Could you count the number of people who own 50 cds?
+
+Let's plot this same variable using a histogram.
+```{r}
+gf_histogram(~ cds, data=ss, color="black", bins=30)
+```
+
+The distribution of "cds" is perhaps more easily understood as a histogram, though we should be aware of the consequences that whole intervals of responses are "binned" together to produce one bar.
+
+### Why visualize data?
+The various univariate plots and tables of Sections 2.1-2.2 all serve one purpose: to view the **distribution** of a variable---what values it takes, and how often.  When our variable is *quantitative*, we are interested in shape as it develops from left to right.  The histogram above for "cds" displays a distribution that is *right-skewed*.  That seems somewhat natural, when you stop to consider that it is impossible to own a negative number of cds, but there is no upper limit, so naturally a few cd enthusiasts will gravitate to numbers much higher than is usual.
+
+Let's look at the distributions of some other quantitative variables. The next dataset loaded gives the qualifying long jump for long-jumpers at the 2012 London Summer Olympics.
+```{r}
+jumps <- read.csv("http://calvin.edu/~scofield/data/csv/longJumpQualifiers2012olympics.csv")
+head(jumps)
+gf_histogram(~distance, data=jumps, color="black", bins=10)
+```
+
+This data appears to be left-skewed.  Can you explain why it seems reasonable that it should be?
+
+The dataset called "faithful" is supplied by the R package "datasets" (preloaded), so we do not need to import it.  It has variables "waiting" and "eruptions".  The former variable records wait times in minutes between eruptions of the geyser [Old Faithful] (https://www.youtube.com/watch?v=4mZY7uxb7Gc) in Yellowstone National Park.  Here is an histogram.
+```{r}
+gf_histogram(~waiting, data=faithful, color="black")
+```
+
+More interesting, perhaps, than the lack of symmetry in this histogram, is the two-peaked nature.  Would this change for different numbers of bins?  The answer is that it, indeed, might, but a kernel density, which is sort of like a blurred/smoothed-out version of a histogram, is helpful for declaring that there really are two peaks (or **modes**).
+```{r}
+gf_density(~waiting, data=faithful)
+```
+
+## Summary Statistics
+
+### Measures of center and spread
+Even though these three---the **mean**, the **mode**, and the **median** are all referred to as "measures of center", it is probably more accurate to say that each one, in the proper setting, could be used as a response to the question ``What is the typical value for this *quantitative* variable?"
+
+The **mode**, strictly speaking, is the most frequently-occurring value.  Looking back at the histograms we produced earlier, this would be 13 "years" when considering the lengths of reigns of English monarchs, around 20 or 25 for "cds" owned, and around 80 minutes for "waiting" times between Old Faithful eruptions.  A slightly less strict interpretation allows for calling the "eruption" times **bimodal** (two-peaked), even though one peak is notably taller than the other in the kernel density plot.  There is at least one of these scenarios---the English monarch reigns---where it seems a little unfair to call the mode of 13 years a "typical" period of reign.
+
+The word **mean** is a synonym for **average**.  For the reigns of English monarchs, this entails adding up the number of years and dividing by the number of rulers. RStudio, it should not come as a surprise, has a command to do this.
+```{r}
+mean(~years, data=monarchs)
+```
+
+The command for calculating the median is very similar as, too, are the commands "min()" (for calculating the minimum value), "max()", "sd()" (for calculating the *standard deviation*), "iqr()"} (for calculating the *interquartile range*), and "range()"}.
+```{r}
+median(~years, data=monarchs)
+```
+
+You can obtain several of these summary statistics simultaneously using the "favstats()" command, one supplied by the "mosaic" package.
+```{r}
+favstats(~years, data=monarchs)
+```
+
+This command not only tells us the mean, median and standard deviation (a "measure of spread"), it also gives us numbers we can subtract to find two more (competing) measures of spread:
+$$ \mbox{range} = \mbox{max} - \mbox{min} = 63 - 0 = 63, $$
+and
+$$ \mbox{IQR} = \mbox{Q3} - \mbox{Q1} = 33.5 - 9.75 = 23.75. $$
+
+Note that, among these three measures of center (mode, mean, median) and three measures of spread (standard deviation ("sd" in the output of "favstats()"), range, IQR), only one of them makes any semblance of sense for categorical variables. Just try, for instance, to calculate the mean "race" of a sample of college students, or the IQR for the "profession" of survey participants.  (Both "race" and "profession" are categorical variables.) One could give the most frequently-occurring value for these variables---i.e., the mode---but the other five measures of center and spread require numeric values.
+
+### Resistance to outliers vs. sensitivity to them
+One can select a subset of rows from a data frame using the "subset()" command. For instance, we might select out the monarchs whose names begin with "Ed"
+```{r}
+subset(monarchs, substr(monarch, 1, 2)=="Ed")
+```
+or produce a histogram of "number of cds owned" for only those cd owners who have 500 or less
+```{r}
+gf_histogram(~cds, data=subset(ss, cds <= 500), color="black")
+```
+In the latter, we notice that the owner of 600 cds has been omitted. If we carry out "favstats" on this same subset, we see revised numbers, some altered much more drastically than others:
+```{r}
+favstats(~cds, data=ss)      # original data
+favstats(~cds, data=subset(ss, cds <= 500))     # data with one case removed
+```
+
+The mean is 2 higher, from 50.53 instead of 48.53, when the one outlying cd owner is included; the median, however, remains unchanged at 35.  Similarly, the standard deviation increased by more than 11 (54.64 vs. 43.43) when the outlier is included, whereas the IQR remains $60-20=40$ in both cases.  The median and IQR are said to be *resistant* to outliers, whereas the mean and standard deviation are *sensitive* to them. It seems a natural conclusion, then, to want to choose the median and IQR as the "best" measures of center and spread. While this prescription is often followed, the mean and standard deviation have important uses, and will not go away anytime soon.
+
+One final thing of note. For right-skewed distributions, the mean will be larger than the median. In the distribution of "cds" above, the comparison of mean to median is 50.53 to 35 when the outlying student is included, and 48.53 to 35 when that student is omitted; either way, the mean is larger, reflecting the positive skew of both distributions. For left-skewed (or negatively skewed) distributions, the mean is smaller than the median.
