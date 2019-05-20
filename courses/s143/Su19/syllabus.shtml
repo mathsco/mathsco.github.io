@@ -1,0 +1,288 @@
+
+<html><head><title> Math 143 Syllabus </title>
+<style>
+#alignright {text-align:right}
+sup {font-size="-1"}
+sub {font-size="-1"}
+#overline {text-decoration:overline}
+#nounderline {text-decoration:none}
+
+#bluetype {color:blue}
+#bluetypebold {color:blue; font-weight:bold}
+#bluetypeitalic {color:blue; font-style:italic}
+#greentype {color:green}
+#greentypebold {color:green; font-weight:bold}
+#greentypeitalic {color:green; font-style:italic}
+#orangetype {color:orange}
+#orangetypebold {color:orange; font-weight:bold}
+#orangetypeitalic {color:orange; font-style:italic}
+#redtype {color:red}
+#redtypebold {color:red; font-weight:bold}
+#redtypeitalic {color:red; font-style:italic}
+
+#arial {font-family:Arial}
+#border {border-width:thin; border-style:solid}
+#doubleborder {border-width:thin; border-style:double}
+
+body {background:#ffffff}
+
+table th, td {vertical-align:top}
+span {text-indent:60px}
+
+h2 {color:#483d8b}
+h3 {color:blue}
+h4 {color:#483d8b; font-size:25px}
+h5 {color:#483d8b; font-size:19px; font-weight:bold}
+h6 {color:red; font-size:19px; font-weight:bold}
+
+a:link {color:red; text-decoration:none}
+a:visited {color:#aa0000}
+</style>
+</head>
+<body>
+
+<a href="http:/www.calvin.edu/academic/math/">Stat</a> 143<br>
+<a href="http://scofield.site/courses/s143/Su19/">Introduction to Probability and Statistics</a><br>
+Summer, 2019
+
+<p>
+<b><font size="+2">Syllabus</font></b>
+<p>
+
+<ul>
+<li><a href="#topics">Overview</a></li>
+<li><a href="#slos">Student learning goals</a></li>
+<li><a href="#expectations">Expectations</a></li>
+<li><a href="#hw">Homework policies</a></li>
+<li><a href="#grading">How grades are determined</a></li>
+<li><a href="#integrity">Academic integrity</a></li>
+<li><a href="#professor">Contacting the professor</a></li>
+<li><a href="#accomodations">Accomodations for disabilities</a></li>
+<li><a href="#exceptions">Exceptions</a></li>
+</ul>
+<p>
+<hr>
+
+<a name="topics"><b><font size="+1">Course overview</font></b>.&nbsp;
+Statistics is 
+&#147;the science and art of obtaining, analyzing and interpreting
+data for the purpose of reaching conclusions&#148; (Urquhart, 1971).
+In this course we will learn explore, at the elementary level, just
+what this means.  Along the way, we will learn
+<ul>
+<li>to ask questions which can be addressed
+by means of statistical studies,
+<li>appropriate methods for acquiring, organizing and viewing
+data to answer these questions,
+<li>what it means to make inferences about the population
+at large from sample information,
+<li>the use of some methods for making inferences in various
+univariate and bivariate settings
+</ul>
+
+<p>
+Our text is &#147;Statistics: Unlocking the Power of Data&#148;,
+also known as <b>Lock5</b> because its authors are 5 members of
+the Lock family.  We will cover Units A-C (Chapters 1-6), and
+parts of Units D (likely Chapters 7, 8, and 9).
+
+<p>
+<a name="slos"><b><font size="+1">Student learning goals</font></b>.&nbsp;
+Students will be able to
+<ul>
+<li>identify situations appropriate to various kinds of studies
+  (controlled randomized experiments, observational studies, or
+  surveys), and describe features inherent to well-designed
+  studies of these types.
+<li>organize, display, and summarize categorical and quantitative data.
+<li>construct confidence intervals and carry out hypothesis tests from
+  samples drawn from a population, giving accurate interpretations of
+  the results.
+<li>understand the role of statistics in the pursuit of truth,
+  and be able to identify misuses which, either accidentally or
+  intentionally, can hide that truth.
+<li>use technology, as appropriate, for the outcomes listed above.
+</ul>
+
+    Lectures, class activities, homework exercises, and readings from the
+text will all be used to develop these abilities in students.  Written
+homework exercises (ones submitted in hard copy for grading) and tests
+will be used to assess student achievement.
+
+<p>
+<a name="expectations"><b><font size="+1">My expectations of students</font></b>.&nbsp;
+As a student in this course, you are expected to
+<ul>
+<li><b>come to class</b> each day.  Be seated and ready to begin
+  at class start time.</li>
+<li><b>turn off and put away cell phones</b>.</li>
+<li><b>use electronic devices only to enhance learning</b>.
+  Ipods, smart phones, tablets, or laptops can be valuable for accessing the
+  textbook or viewing an online homework problem, but undisciplined use
+  is quite distracting.</li>
+<li><b>come equipped for class</b>, bringing your textbook (at least
+  have access to it), computing device (likely a laptop computer),
+  pencil and paper.</li>
+<li><b>read assigned passages</b>, often (but not always) from the text,
+  and preferably <i> before</i> the session in which the material is to be
+  discussed.  Continually remind yourself that reading statistics is not like
+  reading a novel.  You should read to understand every sentence in its given
+  sequence.</li>
+<li><b>submit your work by due dates/times</b>.  WebWork assignments have
+  clearly-marked due times&#151;if ever the WebWork system indicates a different
+  date than the one on the course calendar, contact me to alert
+  me to that fact.  But know that the WebWork time is the one in effect;
+  Answers will not be accepted after it is reached.  Write-ups of answers to
+  hand-checked problems should be submitted to me at the start of class on the
+  due date; reasons for not doing so should be compelling.</li>
+<li><b>submit only your own work</b>.
+  You are encouraged, generally speaking, to consult with other students in
+  order to better understand problems and their solutions.  When it comes to
+  the answers you submit, however, the final product must be your own, not a
+  transcription of someone else's responses.  The consequences of plagiarizing
+  work will be a zero on the assignment/test of the first instance, and will
+  become markedly more severe if another instance occurs.</li>
+<li><b>participate fully in classroom activities</b>.</li>
+<li><b>block out a significant chunk of your day for statistics.</b>
+  In four weeks, you are learning material that is spread out over nearly
+  four months during Fall and Spring semesters.  So, along with longer
+  daily class sessions, expect daily homework sets which are on a par with
+  a full semester load of courses.  I suggest that, if possible, you spend
+  afternoons in our classroom working on assigned exercises in the company
+  of classmates.</li>
+<li><b>take ownership for discerning the relative importance of
+  various concepts</b>.  This is part of what it means to become a good
+  learner.  Your professor will indicate sections of material/chapters to
+  be covered on tests, but generally not the specific things within those
+  sections to study.</li>
+<li><b>check your (Calvin) email regularly</b>, at least once in the
+  evening each day.</li>
+<li><b>take exams at the scheduled times</b>, contacting
+  me at the earliest possible time if extreme circumstances arise.  Cheap
+  airfares, early departures for vacations and the like are not
+  considered valid excuses!</li>
+<li><b>seek help over problems</b> you are having in the course.  Do not
+  set your sights on being able to do homework only.  Your goal and mine
+  should be that you are able to speak and write intelligently about the
+  topics we discuss and the questions surrounding them.  When you know you
+  are falling short of this goal, be proactive.</li>
+</ul>
+	
+<p>
+<a name="hw"><b><font size="+1">Homework</font></b>.&nbsp;
+Homework is assigned regularly in this course, with due dates displayed
+on the course calendar.  Homework assignments come in two varieties:
+<ul>
+<li><b>WebWork assignments</b>: These are submitted electronically and graded
+  electronically, as well.  For most problems, you may submit answers
+  multiple times.  This pairing of &#147;immediate feedback&#148; and
+  having unlimited &#147;do-overs&#148; should be used  <i>cautiously</i>.
+  It is intended to encourage mastery.  But, occasionally, a person's
+  answers devolve into a series of guesses rather than refinements on
+  an initial answer.  If you find yourself in such a state, you should
+  set a limit for yourself on either time spent or number of guesses
+  submitted.</li>
+<li><b>Hand-checked assignments</b>: The problems will not be quite as
+  numerous as those you do in WebWork nor, on average, will they be quite
+  as routine, sometimes requiring you to synthesize multiple ideas to find
+  a solution.  Each problem offers the opportunity for exercise in writing
+  a &#147;report&#148, so to speak.  Along with working out a valid solution,
+  you are expected to present the details neatly and clearly, in hardcopy
+  (paper form)&#151;I will not accept electronic versions.  Neatness means
+  all of the obvious things, but two things I particularly highlight are that
+  multiple pages should be stapled, and your paper should not have any fringes,
+  as if recently torn from a binder.  While you are welcome to discuss these
+  exercises with other students, <b>your write-up must be your own</b>.
+</ul>
+	
+<p>
+<a name="grading"><b><font size="+1">Grade Calculations</font></b>.&nbsp;
+<p>
+Homework, counting for 20% of your grade, will be assigned and collected
+daily.  You may submit these assignments to me in class on the due date, or
+place them in the <i>MATH 143 New Homework</i> folder in the box outside
+my office door at any time up until it is picked up by the grader, who
+will not pick it up before 3 pm on the due date.  Homework submitted
+after the set has been taken will be considered late and <b>not accepted</b>.
+Homework will be graded for correctness, and returned to the <i>Graded
+Homework</i> folder outside my office, where you may pick it up at your
+leisure.
+
+<p>
+Tests (3 of them) will come at about 1-week intervals; consult the
+<a href="../calendar">class calendar</a> for specific dates.  These
+tests will last for roughly half a class period, not the full 3 hours
+allotted to the day.  In addition, a final exam (in-class portion?)
+will take place on June 19, the final day of this Summer term.  The
+final will account for at least 26% of your overall grade, with the
+remainder reflecting your test grades.
+You are expected to <b>take tests on the days they are given</b>.
+If extraordinary circumstances arise (health problems, for
+example), speak to me beforehand.
+
+<p>
+<a name="integrity"></a><b><font size="+1">Academic integrity</font></b>.&nbsp;
+Webwork assignments are tailored individually, but vary only in minor
+details.  You are welcome to work with others as you solve Webwork
+problems.  Share ideas with others when working hand-checked assignments,
+too.  Encourage the use of statistics terms between classmates,
+try to understand overarching principles that apply to numerous
+problems, and when two different approaches seem to lead to the
+correct answer, explore why that is the case.  Just be sure to make
+all write-ups yourself, using your own words, not simply using a
+reworded version of someone else's answer.
+
+<p>If an instance of academic dishonesty arises, this will result, in
+the first instance, in a score of zero for all parties involved.  Should
+there be another instance, this will result in failure of the course.
+
+<p>
+<a name="professor"><b><font size="+1">Contacting me</font></b>. &nbsp;
+My office is NH 281.  I have a regular office appointment to keep
+for the approximate time period 1-2 pm each weekday, but am otherwise
+generally available in my office after class up until about 3:30 pm.
+Most evenings Monday-Thursday I keep track of my email inbox.
+If you do not understand something important or have some special
+circumstance that impedes your performance &#151; talk with me about it
+<i>right away</i>!  <b>Do not put things off.</b>
+
+<p>
+I may be reached by phone at x66856, but a better way
+to reach me for a non-technical question is by email.
+If you require my approval for something, do
+<b>not</b> consider having left a message for me
+as equivalent to having obtained that approval.
+
+<p>
+<a name="accommodations"><b><font size="+1">Accommodations</font></b>. &nbsp;
+Reasonable academic accomodations will be made for individuals with
+documented disabilities.  Any student who this concerns should notify
+one of the coordinators for services for students with disabilities
+in the Center for Student Success, Spoelhof College Center 360.
+That student should also meet with me during the first two days of
+the term to discuss academic accomodations.
+
+<p>
+<a name="exceptions"><b><font size="+1">Exceptions</font></b>. &nbsp;
+I reserve the right to make changes or exceptions to course policies &#151;
+including those described in this document &#151; either for the entire
+class or for specific individuals.  The ultimate goal in this course is
+<b>learning</b>, and formal requirements should not unnecessarily stand in
+the way of that.  Thus, if you think that any of the conditions of the
+course are interfering with learning, please speak with me about this,
+and we will see what can be done.
+
+<p>
+<hr>
+
+This page maintained by:
+<a href="http://www.calvin.edu/~scofield" target="_top">
+Thomas L. Scofield</a><br>
+Department of Mathematics and Statistics,
+Calvin College
+</p>
+
+Modified: May 20, 2019
+
+</body>
+</html>

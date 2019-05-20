@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>
+Make a Course Calendar
+</title>
+<style>
+#alignright {text-align:right}
+sup {font-size="-1"}
+sub {font-size="-1"}
+#overline {text-decoration:overline}
+#nounderline {text-decoration:none}
+
+#bluetype {color:blue}
+#bluetypebold {color:blue; font-weight:bold}
+#bluetypeitalic {color:blue; font-style:italic}
+#greentype {color:green}
+#greentypebold {color:green; font-weight:bold}
+#greentypeitalic {color:green; font-style:italic}
+#orangetype {color:orange}
+#orangetypebold {color:orange; font-weight:bold}
+#orangetypeitalic {color:orange; font-style:italic}
+#redtype {color:red}
+#redtypebold {color:red; font-weight:bold}
+#redtypeitalic {color:red; font-style:italic}
+
+#arial {font-family:Arial}
+#border {border-width:thin; border-style:solid}
+#doubleborder {border-width:thin; border-style:double}
+
+body {background:#ffffff}
+
+table th, td {vertical-align:top}
+span {text-indent:60px}
+
+h2 {color:#483d8b; line-height: 10px}
+h3 {color:blue}
+h4 {color:black; font-size:25px; font-weight:bold; margin-bottom: 5px;}
+h5 {color:black; font-size:19px; font-weight:bold}
+h6 {color:red; font-size:19px; font-weight:bold}
+body {line-height: 150%;}
+
+ol {margin-top: 0em; padding-left: 2em;}
+ol li {margin-top: 3px; padding-left: 0em;}
+ul {margin-top: 0em; padding-left: 1em;}
+ul li {margin-top: 3px; padding-left: 0em;}
+
+ol.none  {list-style-type: none; list-style-position: outside;}
+ol.arabic  {list-style-type: decimal; list-style-position: outside;}
+ol.lowerroman  {list-style-type: lower-roman; list-style-position: outside;}
+ol.upperroman  {list-style-type: upper-roman; list-style-position: outside;}
+ol.loweralpha  {list-style-type: lower-alpha; list-style-position: outside;}
+ol.upperalpha  {list-style-type: upper-alpha; list-style-position: outside;}
+ul.none  {list-style-type: none; list-style-position: outside;}
+ul.circle  {list-style-type: circle; list-style-position: outside; padding-left: 2em;}
+ul.disc  {list-style-type: disc; list-style-position: outside; padding-left: 2em;}
+ul.square  {list-style-type: square; list-style-position: outside; padding-left: 2em;}
+ol ol li,
+ol ol ol li		{list-style-type:none}
+ol ul li,
+ol ol ul li,
+ol ol ol ul li,
+ol ol ol ol ul li,
+ol ol ol ol ol ul li		{list-style-type:disc}
+ol ul ul li,
+ol ol ul ul li,
+ol ol ol ul ul li,
+ol ol ol ol ul ul li,
+ol ol ol ol ol ul ul li		{list-style-type:circle}
+
+
+#a:link {color:red; text-decoration:none}
+a:link {color:red}
+a:visited {color:#aa0000}
+</style>
+</head>
+ 
+<body>
+
+<!--#include virtual="../classheader.shtml" -->
+
+<h4>Make a Course Calendar</h4>
+
+
+Use this form to generate a course calendar for Math 143.
+<p>
+
+<form method="post" action=
+	"http://www.calvin.edu/academic/math/cgi-bin/calendar/d2h.php">
+
+<input type="hidden" name ="topFile" value=
+"http://www.calvin.edu/~scofield/courses/m143/Su18/cal/caltop.shtml">
+
+<input type="hidden" name ="bottomFile" value= 
+"http://www.calvin.edu/~scofield/courses/m143/Su18/cal/calbottom.shtml">
+
+<input type="hidden" name ="dailyFile" value=
+"http://www.calvin.edu/~scofield/courses/m143/Su18/cal/daily.txt">
+
+<input type="hidden" name ="displayItem[]" value="Exam">
+<input type="hidden" name ="displayItem[]" value="Due">
+<input type="hidden" name ="displayItem[]" value="HW">
+<input type="hidden" name ="displayItem[]" value="Read">
+<input type="hidden" name ="daysToShow" value="MTWRF">
+<input type="hidden" name ="startDate" value="05/21/2018">
+<input type="hidden" name ="weeksToShow" value="5">
+<input type="hidden" name ="debug">
+
+
+Items to display:
+<menu>
+<input type="checkbox" name="displayItem[]" value="Topic" checked>
+Topic
+<input type="checkbox" name="displayItem[]" value="Lab" checked>
+Lab
+<input type="checkbox" name="displayItem[]" value="Note" checked>
+Notes
+</menu>
+<br>
+
+<p>
+<input type="submit" value="Get Calendar">
+</form>
+
+<hr>
+
+<p>
+<a href="http://scofield.site/courses/s143/Su19/">
+Back to STAT 143 Home Page</a>
+</p>
+
+<hr>
+<p>
+<hr>
+
+This page maintained by:
+<a href="http://www.calvin.edu/~scofield" target="_top">
+Thomas L. Scofield</a><br>
+Department of Mathematics and Statistics,
+Calvin College
+</p>
+
+
+Modified: May 20, 2019
+
+</body>
