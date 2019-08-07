@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Parametric Equations</title>
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>
+$(function () {
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+    						template:       sagecell.templates.minimal,
+                           evalButtonText: 'Launch the Interactive Applet Now'});
+});
+    </script>
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Parametric Curve Plotter</h1>
+
+<p>An Interactive Applet powered by Sage and MathJax.</p>
+<p>(By Kelsey Norman with HTML code from Prof. Gregory V. Bard)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+Use this app to view a parametric curve in 2 or 3 dimensions.
+
+<hr>
+
+<div class="compute">
+<script type="text/x-sage">
+var('t')
+@interact( layout=[['x_func','y_func','z_func'], ['lower','upper','in3D'], ['tPts']])
+def parametric_al( x_func = input_box(default=cos(t),label="x(t) = ",width=20), 
+        y_func = input_box( default = sin(t), label = "y(t) = ", width = 20 ),
+        z_func = input_box( default = t/10, label = "z(t) = ", width = 20 ),
+        lower = input_box( default = 0, label = "t min", width = 5),
+        upper = input_box( default = 2*pi, label = "t max", width = 5 ),
+        tPts = input_box( default = "None", width=20, label="commaSeparatedTimesForAddedPoints"),
+        auto_update=False, in3D = False ):
+  # Set up the functions
+  x = x_func.function(t)
+  y = y_func.function(t)
+  z = z_func.function(t)
+  if str(tPts) == "None":
+    addPts = False
+  else:
+    addPts = True
+    ptsToAdd = eval(str(tPts))
+    if isinstance(ptsToAdd, float) or isinstance(ptsToAdd, int):
+      # If it is not already, make a tuple of the initial y-values
+      ts = (ptsToAdd, ptsToAdd)
+    else:
+      ts = ptsToAdd
+    
+  # Graph the actual function, combine, and show together
+  if in3D:
+    graph = parametric_plot3d( ( x, y, z ), (lower, upper), color = 'blue')
+    graph += point((x(lower),y(lower),z(lower)), color="green", size=15)
+    graph += point((x(upper),y(upper),z(upper)), color="red", size=15)
+    if addPts:
+      nHues = len(ts)+1
+      for jj in range(len(ts)):
+        rHue = (jj+1)/nHues
+        graph += points((x(ts[jj]),y(ts[jj]),z(ts[jj])), rgbcolor=(rHue,1-rHue,0), size=15)
+  else:
+    graph = parametric_plot( ( x, y ), (lower, upper), color = 'blue')
+    graph += point((x(lower),y(lower)), color="green", size=30)
+    graph += point((x(upper),y(upper)), rgbcolor="red", size=30)
+    if addPts:
+      nHues = len(ts)+1
+      for jj in range(len(ts)):
+        rHue = (jj+1)/nHues
+        graph += points((x(ts[jj]),y(ts[jj])),rgbcolor=(rHue,1-rHue,0),size=15)
+  graph.show()
+    
+</script>
+</div>
+
+<hr>
+Last modified on July 28th, 2017.
+</body>
+</html>
