@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>SageMathCell</title>
+    <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+    <script>$(function () {
+    // Make the div with id 'mycell' a Sage cell
+    sagecell.makeSagecell({inputLocation:  '#mycell',
+                           template:       sagecell.templates.minimal,
+                           evalButtonText: 'Activate'});
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+                           evalButtonText: 'Evaluate'});
+    });
+    </script>
+  </head>
+  <body>
+  <h1>A function and its <i>n</i><sup>th</sup> degree Taylor polynomial</h1>
+
+  Click the &#147;Activate&#148; button below to see a plot of a function
+  along with its <i>n</i><sup>th</sup> degree Taylor polynomial centered
+  at <i>a</i>.
+    <div id="mycell"><script type="text/x-sage">
+@interact( layout=[['g', 'a', 'enn'], ['xstart', 'ystart'], ['xend', 'yend']])
+def tangent_line(g=('$f(x) =$',sin(x)), xstart=('xmin',-5), xend=('xmax',5), ystart=('ymin',-3), yend=('ymax',3), a=('center $a$',0), enn=('degree $n$',2), auto_update=False):
+    var('x')
+    f = g.function(x)
+    g = f.taylor(x, a, enn)
+    pretty_print(html('$T_{%s}(x) = %s$'%(latex(enn),latex(g(x)))))
+    p = plot(f,xmin=xstart,xmax=xend,ymin=ystart,ymax=yend)
+    p += plot(g,xmin=xstart,xmax=xend,ymin=ystart,ymax=yend,color='red')
+    show(p)
+ </script>
+</div>
+
+<!--
+def _(h=(0, 5)):
+    print factorial(a)
+-->
+  </body>
+</html>
