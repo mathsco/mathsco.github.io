@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Centroid</title>
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>
+$(function () {
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+    						template:       sagecell.templates.minimal,
+                           evalButtonText: 'Launch the Interactive Applet Now'});
+});
+    </script>
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Centroid</h1>
+
+<p>An Interactive Applet powered by Sage and MathJax.</p>
+<p>(By Kelsey Norman with HTML code from Prof. Gregory V. Bard)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+ \textrm{Given two functions } f, g \textrm{ and end points } a, b, \textrm{ this demo computes and displays} \\
+ \textrm{the centroid, whose coordinates are given by}
+    \\
+    \bar x = \frac{1}{A} \int_a^bx[f(x)-g(x)] \, dx, \qquad
+    \bar y = \frac{1}{A} \int_a^b \frac{1}{2} ([ f(x) ]^2 - [g(x)]^2) \, dx
+    \\
+    \textrm{where } A = \int_a^b[f(x)-g(x)] \, dx.
+</div>
+
+<hr>
+
+<div class="compute">
+<script type="text/x-sage">
+@interact( layout = [ ['f', 'g'], ['lower', 'upper'], ['x_min', 'x_max'], ['y_min', 'y_max'] ])
+def centroid( f = input_box( default = cos(x), label = "f(x) = ", width = 20), 
+        g = input_box( default = 0, label = "g(x) = ", width = 20),
+        lower = input_box( default = 0, label = "a", width = 5), 
+        upper = input_box( default = pi/2, label = "b", width = 5), 
+        x_min = input_box( default = -.5, label = "x min", width = 5), 
+        x_max = input_box( default = 2, label = "x max", width = 5), 
+        y_min = input_box( default = -0.5, label = "y min", width = 5), 
+        y_max = input_box( default = 1.5, label = "y max", width = 5) ):
+    
+    # Plot the original function and a shaded portion  
+    graph_f = plot( f, x_min, x_max, ymin = y_min, ymax = y_max )      
+    graph_shaded = plot( f, lower, upper, ymin = y_min, ymax = y_max, fill = g, fillcolor = '#ebccff')
+    graph_g = plot( g, x_min, x_max, ymin = y_min, ymax = y_max )
+    # Calculate A and use the formula to find c_x and c_y
+    (A, precision) = numerical_integral( f-g, lower, upper )
+    c_x = (1 / A) * numerical_integral( x*(f-g), lower, upper)[0]
+    c_y = (1 / A) * numerical_integral( 1/2 *(f^2 - g^2), lower, upper)[0]
+    # Set c_x and c_y as a point and set up the label
+    cent = point( (c_x, c_y), size = 25)
+    label = text( "(" + str(c_x) + ", " + str(c_y) + ")" , (c_x, c_y + (y_max - y_min)/20) )
+    # Compile the things to be graphed and show it
+    graph = graph_f + graph_shaded + graph_g + cent + label
+    graph.show()
+</script>
+</div>
+
+<hr>
+Last modified on July 27th, 2017.
+</body>
+</html>

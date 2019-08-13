@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>SageMathCell</title>
+    <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+    <script>$(function () {
+    // Make the div with id 'mycell' a Sage cell
+    sagecell.makeSagecell({inputLocation:  '#mycell',
+                           template:       sagecell.templates.minimal,
+                           evalButtonText: 'Activate'});
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+                           evalButtonText: 'Evaluate'});
+    });
+    </script>
+  </head>
+  <body>
+  <h1>A function and its <i>n</i><sup>th</sup> degree Taylor polynomial</h1>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+\textrm{Based on the following MacLaurin polynomial approximations} \\
+  \\
+  \mbox{}\qquad \ln(1 + x) \approx x - \frac{1}{2}x^2 + \frac{1}{3} x^3
+   - \frac{1}{4}x^4 + \frac{1}{5}x^5 - \cdots + (-1)^{n-1}\frac{1}{n}x^n, \\
+  \mbox{}\qquad \ln(1 - x) \approx -x - \frac{1}{2}x^2 - \frac{1}{3} x^3
+   - \frac{1}{4}x^4 - \frac{1}{5}x^5 - \cdots - \frac{1}{n}x^n, \\ \\
+\textrm{we subtract to obtain the approximation} \\ \\
+  \mbox{}\qquad\ln\left(\frac{1+x}{1-x}\right) \approx 2\left(x + \frac{1}{3}x^3
+ + \frac{1}{5}x^5 + \cdots + \frac{1}{2k+1}x^{2k+1}\right) = T(x), \\ \\
+\textrm{the } (2k+1)-\textrm{degree MacLaurin polynomial of } \ln((1+x)/(1-x)). \\
+</div>
+
+<P>
+  Click the &#147;Activate&#148; button below, then enter values to
+  see the result of this approximation.
+  <p>
+    <div id="mycell"><script type="text/x-sage">
+@interact( layout=[['inVal', 'k']])
+def logApprox(inVal=input_box( default="3", label="input_value_to_$\ln$_function", width=6), k=input_box( default=5, label="no._of_terms_in_$T(x)$", width=6)):
+    var('x')
+    logInput = float(inVal)
+    def T(x, enn):
+        y = x
+        for j in range(1, enn):
+            y += x^(2*j+1) / (2*j+1)
+        return 2*y
+
+    myX = solve((1+x)/(1-x) == logInput, x)[0].rhs()
+
+    myStr1 = LatexExpr(r"\mbox{The solution of }\;\; \frac{1+x}{1-x} = %6.3f"% n(logInput)) + LatexExpr(r"\;\;\mbox{ is }\;\; x = %6.3f"% n(myX))
+    pretty_print(myStr1)
+    myStr2 = LatexExpr(r"\mbox{and }\;\; T(%6.3f"% n(myX)) + LatexExpr(r") \doteq  %12.10f"% T(myX,k)) + LatexExpr(r"\;\;\mbox{ while } \;\; \ln(%6.2f"% n(logInput)) + LatexExpr(r") = %12.10f"% log(logInput))
+    pretty_print(myStr2)
+ </script>
+</div>
+
+<!--
+def _(h=(0, 5)):
+    print factorial(a)
+-->
+  </body>
+</html>

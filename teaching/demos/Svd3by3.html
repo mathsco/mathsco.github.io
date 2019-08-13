@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>SVD for 3x3 Matrices</title>
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>
+$(function () {
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+    						template:       sagecell.templates.minimal,
+                           evalButtonText: 'Launch the Interactive Applet Now'});
+});
+    </script>
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>SVD for 3x3 Matrices</h1>
+
+<p>An Interactive Applet powered by Sage and MathJax.</p>
+<p>(By Kelsey Norman with HTML code from Prof. Gregory V. Bard)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+    \textrm{This demo shows the Singular Value Decomposition (SVD) for a 3x3 matrix } A.
+    \\
+    \textrm{The equation } A v_j = \sigma_j u_j \textrm{ shows the linear transformation being demonstrated. }
+</div>
+
+<hr>
+
+<div class="compute">
+<script type="text/x-sage">
+# Import tools and set create variables
+from sage.plot.plot3d.shapes import *
+var('theta phi')
+@interact(layout = [ ['a11', 'a12', 'a13'], ['a21', 'a22', 'a23'], ['a31', 'a32', 'a33'] ])
+def SVD_viewer( a11 = input_box( default = 1, label = "matrix A", width = 5), 
+        a12 = input_box( default = 2, label = "", width = 5), 
+        a13 = input_box( default = 3, label = "", width = 5), 
+        a21 = input_box( default = 2, label = "       ", width = 5), 
+        a22 = input_box( default = 3, label = "", width = 5), 
+        a23 = input_box( default = 1, label = "", width = 5), 
+        a31 = input_box( default = 3, label = "       ", width = 5), 
+        a32 = input_box( default = 1, label = "", width = 5), 
+        a33 = input_box( default = 2, label = "", width = 5) ):
+            
+    # Set up A, calculated the SVD, and assign U, D, and V
+    A = matrix(RDF, [[a11, a12, a13], [a21, a22, a23], [a31, a32, a33]])
+    svd = A.SVD()
+    U = svd[0]
+    D = svd[1]
+    V = svd[2]
+    # Set up the unit sphere and the transformed figure
+    S = Sphere(1, opacity=.5, color = "#99ccff")
+    T = parametric_plot3d(A*vector((sin(theta)*cos(phi),sin(theta)*sin(phi),cos(theta))),
+        (theta,0,2*pi),(phi,0,pi),opacity=.3,color = "#ccffcc")
+        
+    # Add vectors to the plots of S and T
+    arrowCols = ['red','green','blue']
+    for j in range(3):
+        S += arrow3d((0,0,0), V.H[j], color=arrowCols[j])
+        T += arrow3d((0,0,0), D[j,j]*U.H[j], color=arrowCols[j])
+    
+    # Show together to avoid the glitch (?)
+    if True:
+        graph = S + T
+        graph.show(figsize = 8)
+    
+</script>
+</div>
+
+<hr>
+Last modified on July 21st, 2017.
+</body>
+</html>

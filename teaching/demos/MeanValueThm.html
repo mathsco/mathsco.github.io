@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Mean Value Theorem</title>
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>
+$(function () {
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+    						template:       sagecell.templates.minimal,
+                           evalButtonText: 'Launch the Interactive Applet Now'});
+});
+    </script>
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Mean Value Theorem</h1>
+
+<p>An Interactive Applet powered by Sage and MathJax.</p>
+<p>(By Kelsey Norman with HTML code from Prof. Gregory V. Bard)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+ \textrm{The Mean Value Theorem: If } f \textrm{ is a continuous function on the interval } [a, b], \textrm{ and is} \\
+ \textrm{differentiable on }
+    (a, b), \textrm{ then there is at least one number } c \textrm{ in the interval } (a, b) 
+    \\
+    \textrm{(that is, } a < c < b \textrm{) such that } f'(c) = \frac{f(b)-f(a)}{b-a}.
+</div>
+
+<hr>
+
+<div class="compute">
+<script type="text/x-sage">
+@interact( layout = [ ['func'], ['a', 'b'], ['x_min', 'x_max'] ])
+def mean_value( func = input_box( default = -1 * (x + 2)^3 + 6*x + 15, label = "f(x) = ", width = 20), 
+        a = input_box( default = -5, label = "a", width = 5), 
+        b = input_box( default = 0, label = "b", width = 5), 
+        x_min = input_box( default = -6, label = "x min", width = 5), 
+        x_max = input_box( default = 2, label = "x max", width = 5) ):
+            
+    # Avoid the deprecation warning
+    f = func.function(x)
+    
+    # Prep the function graph, points for a and b, the line from a to b, and calculate the slope
+    graph_f = plot( f, x_min, x_max, color = "#ccd9ff" )
+    graph_f += plot( f, a, b, color = "#0033cc" )
+    pts = point( (a, f(a)), color = "red", size = 20 )
+    pts += point( (a, 0), color = "red", size = 30 )
+    pts += point( (b, f(b)), color = "red", size = 20 )
+    pts += point( (b, 0), color = "red", size = 30 )
+    lines = line([ (a, f(a)), (b, f(b)) ], color = "red")
+    slope = ( f(b) - f(a) ) / (b - a)
+    # Loop through until you find a point that matches the slope
+    min = a
+    max = a + 0.5
+    zeroes = []
+    while max <= b:
+        try:
+            c = find_root( diff(f,x) - slope, min, max)
+            if c not in zeroes:
+                zeroes.append(c)
+            min = max + 10^-12
+            max += 0.5
+        except:
+            max += 0.5
+            
+    # Define the point c and the tangent line at c
+    for j in range(len(zeroes)):
+        c = zeroes[j]
+        pts += point( (c, f(c)), color = "green", size = 20 )
+        pts += point( (c, 0), color = "green", size = 30 )
+        lines += line([ (c, 0), (c, f(c))], color = "green", linestyle = '--' )
+        lines += plot( diff(f,x)(c) * (x - c) + f(c), x, x_min, x_max, color = "green")
+     
+    # Combine all of the items to be graphed and show them                                                                            
+    graph = graph_f + pts + lines
+    graph.show()
+    
+    # Print all of the values for which the tangent line is parallel
+    text1 = ""
+    for j in range(len(zeroes)):
+        if j == len(zeroes) - 1 :
+            text1 += str( zeroes[j] )
+        else:
+            text1 += str( zeroes[j] ) + ", "
+    pretty_print( "The value(s) of c for which the tangent line is parallel \nto the line between points a and b are " + text1 )
+    
+</script>
+</div>
+
+<hr>
+Last modified on July 28th, 2017.
+</body>
+</html>

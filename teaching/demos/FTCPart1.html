@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>FTC, Part 1 - Small Changes</title>
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>
+$(function () {
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+    						template:       sagecell.templates.minimal,
+                           evalButtonText: 'Launch the Interactive Applet Now'});
+});
+    </script>
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>FTC, Part 1 - Small Changes</h1>
+
+<p>An Interactive Applet powered by Sage and MathJax.</p>
+<p>(By Kelsey Norman with HTML code from Prof. Gregory V. Bard)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+    \textrm{This demo shows the Fundamental Theorem of Calculus, Part 1. Here, we see that }
+    \\
+    \lim_{h \rightarrow 0} \int_{x_0}^{x_0 + h} f(x) \, dx = \lim_{h \rightarrow 0} \, [F(x_0 + h) - F(x_0)] = f(x_0), \textrm{ where } F(x) = \int_a^x f(t) \, dt.
+</div>
+
+<hr>
+
+<div class="compute">
+<script type="text/x-sage">
+@interact( layout = [ ['func', 'x_0'], ['x_min', 'x_max'], ['h'] ])
+def deltaH( func = input_box( default = sin(x)/x, label = "function", width = 20 ),
+        x_min = input_box( default = 0, label = "x min", width = 5),
+        x_max = input_box( default = 8, label = "x max", width = 5),
+        x_0 = input_box( default = 2, label = "point to evaluate (x_0)", width = 5),
+        h = slider( -0.2, 0.2, default = 0.05, step_size = 0.001, label = "h") ):
+    
+    # Set up function and original plot        
+    f = func.function(x)          
+    p = plot(f, x_min, x_0 + h, fill=True, fillcolor = '#ccccff') + plot(f, x_min, x_max)
+    
+    # Color h-region appropriately
+    if h >= 0:
+        p += plot(f, x_0, x_0 + h, fill=True, fillcolor = '#e60000')
+    else: 
+        p += plot(f, x_0 + h, x_0, fill = True, fillcolor = '#ff9966')
+    
+    # Find and print average value    
+    area = N(integrate(f, x, x_0, x_0 + h))
+    average = area / h
+    pretty_print( "F(x_0 + h) - F(x_0) = colored area = " + str(area) + "\nAverage value of f on [x_0, x_0+h] = [F(x_0+h) - F(x_0)] / h  = " + str( average ) + "\nf(x0) = " + str(f(x_0)) + " = " + str(n(f(x_0))) )
+    show(p)
+</script>
+</div>
+
+<hr>
+Last modified on July 25th, 2017.
+</body>
+</html>

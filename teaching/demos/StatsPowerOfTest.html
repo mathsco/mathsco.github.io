@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Normal Distributions and Power</title>
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>
+$(function () {
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+    						template:       sagecell.templates.minimal,
+                           evalButtonText: 'Launch the Interactive Applet Now'});
+});
+    </script>
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Normal Distributions and Power</h1>
+
+<p>An Interactive Applet powered by Sage and MathJax.</p>
+<p>(By Kelsey Norman with HTML code from Prof. Gregory V. Bard)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+    \textrm{This demo provides a visual aid for the power of a hypothesis test, which is the likelihood of correctly rejecting an incorrect null hypothesis.}
+    \\
+    \textrm{Here, the hypothesized normal distribution is shown in blue, the actual normal distribution is shown in red, and the shaded area represents the power.}
+</div>
+
+<hr>
+
+<div class="compute">
+<script type="text/x-sage">
+@interact( layout=[ ['hyp_mu', 'act_mu', 'std_dev'], ['sample', 'threshold', 'type'], ['x_min', 'x_max'] ])
+def calc_power( hyp_mu = input_box( default = 142, label = "hypothesized mean", width = 5), 
+        act_mu = input_box( default = 150, label = "actual mean", width = 5), 
+        std_dev = input_box( default = 17, label = "standard deviation", width = 5), 
+        sample = input_box( default = 30, label = "sample size", width = 5), 
+        threshold = input_box( default = 0.05, label = "threshold probability", width = 5),
+        x_min = input_box( default = 120, label = "x min", width = 5),
+        x_max = input_box( default = 165, label = "x max", width = 5),
+        type = selector(['one-sided', 'two-sided'], label = "type of test") ) :
+    
+    # Set up for graphing Normal Distributions and calculating their probabilities        
+    normalDensity(x, mu, sig) = 1/(sqrt(2*pi)*sig)*exp(-(x-mu)^2/(2*sig^2))
+    normalCDF(x, mu, sig) = (1+erf((x-mu)/(sig*sqrt(2))))/2
+    if type == "one-sided" :
+        # Set the threshold on the appropriate side of the graph - ex 0.05 on the top or bottom
+        if hyp_mu < act_mu :
+            threshold = 1 - threshold
+        # Find the value at the threshold, future use for graphing
+        value = find_root( normalCDF(x, hyp_mu, std_dev/sqrt(sample) ) - threshold, x_min, x_max )
+        # Set up and graph the hypothesized distribution
+        hyp_dist = normalDensity(x, hyp_mu, std_dev/sqrt(sample))
+        graph = plot(hyp_dist, x_min, x_max, color = "blue")
+  
+        # Set up and graph the actual distribution - plot with correct filled area
+        act_dist = normalDensity(x, act_mu, std_dev/sqrt(sample))
+        if hyp_mu > act_mu :
+            graph += plot(act_dist, x_min, value, color = "red", fill = True, fillcolor = "#ff9999") + plot(act_dist, value, x_max, color = "red")
+        else:
+            graph += plot(act_dist, x_min, value, color = "red") + plot(act_dist, value, x_max, color = "red", fill = True, fillcolor = "#ff9999" )
+            
+        # Calculate and print the power
+        power = 1 - normalCDF( value, act_mu, std_dev/sqrt(sample) )
+        
+    elif type == "two-sided" :
+        # Set the threshold on both sides of the graph
+        threshold1 = 0.5 * threshold
+        threshold2 = 1 - threshold1
+            
+        # Find the values at each threshold for future graphing use
+        value1 = find_root( normalCDF(x, hyp_mu, std_dev/sqrt(sample) ) - threshold1, x_min, x_max )
+        value2 = find_root( normalCDF(x, hyp_mu, std_dev/sqrt(sample) ) - threshold2, x_min, x_max )
+        
+        # Set up and graph the hypothesized distribution
+        hyp_dist = normalDensity(x, hyp_mu, std_dev/sqrt(sample))
+        graph = plot(hyp_dist, x_min, x_max, color = "blue")
+        graph += line([(x_min, 0.01), (value1, 0.01)], marker = "|") 
+        graph += line([(value2, 0.01), (x_max, 0.01)], marker = "|")          
+            
+        # Set up and graph the actual distribution - plot with correct filled area
+        act_dist = normalDensity(x, act_mu, std_dev/sqrt(sample))
+        if hyp_mu > act_mu :
+            graph += plot( act_dist, x_min, value1, color = "red", fill = True, fillcolor = "#ff9999" )
+            graph += plot( act_dist, x_min, x_max, color = "red" )
+            graph += plot( act_dist, value2, x_max, color = "red", fill = True, fillcolor = "#ff9999" )
+        else:
+            graph += plot( act_dist, value2, x_max, color = "red", fill = True, fillcolor = "#ff9999" )
+            graph += plot( act_dist, x_min, x_max, color = "red" )
+            graph += plot( act_dist, x_min, value1, color = "red", fill = True, fillcolor = "#ff9999" )
+        
+        # Calculate and print the power
+        if hyp_mu < act_mu :
+            power = 1 - normalCDF( value2, act_mu, std_dev/sqrt(sample) ) + normalCDF( value1, hyp_mu, std_dev/sqrt(sample) )
+        else:
+            power = normalCDF( value1, act_mu, std_dev/sqrt(sample) ) + (1 - normalCDF( value2, hyp_mu, std_dev/sqrt(sample) ))
+            
+    pretty_print( "The power is " + str(power.n()) + "." )
+    # Show the graph
+    graph.show()
+</script>
+</div>
+
+<hr>
+Last modified on July 25th, 2017.
+</body>
+</html>

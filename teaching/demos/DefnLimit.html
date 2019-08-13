@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Delta-Epsilon Limits</title>
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>
+$(function () {
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+    						template:       sagecell.templates.minimal,
+                           evalButtonText: 'Launch the Interactive Applet Now'});
+});
+    </script>
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Epsilon-Delta Limits</h1>
+
+<p>An Interactive Applet powered by Sage and MathJax.</p>
+<p>(By Kelsey Norman with HTML code from Prof. Gregory V. Bard)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+\textrm{Definition of a limit: Let } f \textrm{ be a function defined at all points of an open}
+    \\
+    \textrm{interval } I \textrm{ containing } c \textrm{ except perhaps at } c \textrm{ itself. We say } \lim_{x \rightarrow c} f(x) = L \textrm{ for} \\
+    \textrm{some real number } L \textrm{ if for every } \epsilon > 0
+ \textrm{ there exists a } \delta > 0 \textrm{ such that} \\
+ |f(x) - L| < \epsilon \textrm{ whenever } x \textrm{ is in } I \textrm{ and satisfies } 0 < |x-c| < \delta.
+</div>
+
+<hr>
+
+<div class="compute">
+<script type="text/x-sage">
+@interact( layout =[ ['func', 'a', 'L'], ['delta', 'epsilon'], ['x_min', 'x_max', 'y_min', 'y_max'] ])
+def limits( func = input_box( default = x^2-1, label = "f(x) = ", width = 20), 
+        a = input_box( default = 1, label = "a", width = 5), 
+        L = input_box( default = 0, label = "L", width = 5), 
+        delta = slider(0, 1, default = 0.4, step_size = 0.01),
+        epsilon = slider(0, 1, default = 1, step_size = 0.01), 
+        x_min = input_box( default = -1, label = "x min", width = 5), 
+        x_max = input_box( default = 4, label = "x max", width = 5), 
+        y_min = input_box( default = -5, label = "y min", width = 5), 
+        y_max = input_box( default = 15, label = "y max", width = 5) ):
+    
+    # Set basics, to be adjusted when this becomes better
+    f = func.function(x)
+    
+    # Set epsilon region
+    lower_y = L - epsilon
+    upper_y = L + epsilon
+        
+    # Reset these to regions that coordinate with delta
+    lower_x = a - delta
+    upper_x = a + delta
+    
+    # Graph everything: function, delta region, epsilon region    
+    graph_f = plot( f, x_min, x_max, ymin = y_min, ymax = y_max, color = 'green' )
+    height1 = plot( lower_y, x_min, x_max, linestyle = '--' )
+    height2 = plot( upper_y, x_min, x_max, linestyle = '--', fill = lower_y, fillcolor = '#ccccff' )
+    width_fill = polygon([ (lower_x, y_min), (lower_x, y_max), (upper_x, y_max), (upper_x, y_min)],
+        color = '#ffcccc', alpha = 0.3, aspect_ratio = 'automatic' )
+    width1 = line( [(lower_x, y_min), (lower_x, y_max)], linestyle = '--', color = 'red' )
+    width2 = line( [(upper_x, y_min), (upper_x, y_max)], linestyle = '--', color = 'red' )
+    a_marker = point( (a, 0), size = 20, color = 'red')
+    
+    # Check if the delta and epsilon regions line up
+    (min_height, prec) = find_local_minimum( f, lower_x, upper_x )
+    (max_height, prec) = find_local_maximum( f, lower_x, upper_x )        
+    try:
+        lim = f.limit(x=a)
+        if lim == L:
+            if lower_y <= min_height and min_height <= upper_y:
+                if lower_y <= max_height and max_height <= upper_y:
+                    pretty_print( "This combination of delta, epsilon, and L work!" )
+                else: 
+                    pretty_print( "The values of f(x) corresponding to this delta region (red band) do not lie completely \ninside the epsilon region (blue band). Try making delta smaller for this epsilon." )
+            else:
+                pretty_print( "The values of f(x) corresponding to this delta region (red band) do not lie completely \ninside the epsilon region (blue band). Try making delta smaller for this epsilon." )
+        else: 
+            pretty_print( "Your choice of L is not correct!" )
+    except:
+        pretty_print( "The limit of f does not exist at a." )
+        
+    
+    # Combine everything to one graph and show it
+    graph = graph_f + height1 + height2 + width_fill + width1 + width2 + a_marker
+    graph.show()
+    
+</script>
+</div>
+
+<hr>
+Last modified on July 24th, 2017.
+</body>
+</html>

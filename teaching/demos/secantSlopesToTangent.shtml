@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>SageMathCell</title>
+    <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+    <script>$(function () {
+    // Make the div with id 'mycell' a Sage cell
+    sagecell.makeSagecell({inputLocation:  '#mycell',
+                           template:       sagecell.templates.minimal,
+                           evalButtonText: 'Activate'});
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+                           evalButtonText: 'Evaluate'});
+    });
+    </script>
+  </head>
+  <body>
+  <h1>Secant slopes to tangent one</h1>
+
+  Click the &#147;Activate&#148; button below to draw secant lines
+  proceeding to the tangent line.
+    <div id="mycell"><script type="text/x-sage">
+pretty_print(html('<h2>Limit of Secant lines is Tangent line</h2>'))
+@interact
+def tangent_line(g=('$f(x) =$',(x-2)^2+1), xstart=('xmin',0), xend=('xmax',5), ystart=('ymin',-1), yend=('ymax',10), a=('$a$',2.5), fromLeft=checkbox(False, "From the left?"), auto_update=False):
+    maxh = min(abs(a-xstart),abs(xend-a))*0.9
+    if fromLeft: maxh = (-1)*maxh
+    enn=15
+    myRan = range(4,enn+1)
+    plots=[]
+    f = g.function(x)
+    for ii in myRan:
+        p = plot(f,xmin=xstart,xmax=xend,ymin=ystart,ymax=yend)
+        emm = diff(f,x)(a)
+        tanLine(x) = f(a) + emm*(x-a)
+        p += line(((xstart, tanLine(xstart)),(xend,tanLine(xend))),color="orange")
+        h = maxh/(ii/4)^3
+        secLine(x) = f(a) + (f(a+h)-f(a))/h * (x-a)
+        p += line(((xstart, secLine(xstart)),(xend,secLine(xend))),color="red")
+        p += point((a,f(a)),color="red")
+        p += point((a+h,f(a+h)),color="green")
+        plots.append(p)
+    aMine = animate(plots)
+    show(aMine)
+ </script>
+</div>
+
+<!--
+def _(h=(0, 5)):
+    print factorial(a)
+-->
+  </body>
+</html>

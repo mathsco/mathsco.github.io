@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Arc Length</title>
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>
+$(function () {
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+    						template:       sagecell.templates.minimal,
+                           evalButtonText: 'Launch the Interactive Applet Now'});
+});
+    </script>
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Arc Length</h1>
+
+<p>An Interactive Applet powered by Sage and MathJax.</p>
+<p>(By Kelsey Norman with HTML code from Prof. Gregory V. Bard)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+    \textrm{This demo approximates the length of an arc using segments. Then the actual length is calculated, using the formula }
+    \\
+    L = \int_a^b \sqrt{ 1 + ( \frac{dy}{dx})^2 } \, dx \textrm{ where } y = f(x).
+</div>
+
+<hr>
+
+<div class="compute">
+<script type="text/x-sage">
+@interact(layout = [ ['func', 'num'], ['lower', 'upper'] ])
+def arc_length( func = input_box( default = x^2, label = "f(x) = ", width = 20), 
+        lower = input_box( default = 0, label = "a", width = 5), 
+        upper = input_box( default = 2, label = "b", width = 5), 
+        num = input_box( default = 4, label = "number of segments", width = 20) ):
+    f = func.function(x)
+    # Define a distance function inside the main function
+    def distance2d( (x1, y1), (x2, y2) ):
+        return N(sqrt( (x2 - x1)^2 + (y2 - y1)^2 ))
+    
+    # Set width of intervals and define segments object
+    width = (upper - lower)/ num
+    segments = line([ (lower, f(lower)), (lower, f(lower)) ])
+    seg_length = 0
+    
+    # Iterate through smaller intervals
+    for i in range(num):
+        min = lower + i * width
+        max = lower + (i + 1) * width
+        segments += line([ (min, f(min)), (max, f(max)) ])
+        seg_length += distance2d( (min, f(min)), (max, f(max)) )
+        
+    graph_f = plot( (f(x)), (x, lower, upper), legend_label = "Original curve", color = 'red')
+    graph = graph_f + segments
+    graph.show()
+    
+    (length, precision) = numerical_integral( sqrt( 1 + diff(f,x)^2 ), lower, upper)
+    j=0
+    while precision <= 10^-j:
+        j += 1
+    
+    pretty_print( "The approximate length of the arc based on the segments is " + str(seg_length) + "\nThe actual length of the arc, accurate to " + str(j) + " decimal places, is " + str(length) )
+</script>
+</div>
+
+<hr>
+Last modified on July 24th, 2017.
+</body>
+</html>

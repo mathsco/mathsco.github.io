@@ -1,0 +1,217 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Rotational Solids</title>
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>
+$(function () {
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+    						template:       sagecell.templates.minimal,
+                           evalButtonText: 'Launch the Interactive Applet Now'});
+});
+    </script>
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Rotational Solids</h1>
+
+<p>An Interactive Applet powered by Sage and MathJax.</p>
+<p>(By Kelsey Norman with HTML code from Prof. Gregory V. Bard)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+    \textrm{This demo shows the solids created by rotating curves or rectangles around an axis parallel to the x-axis.}
+    \\
+    \textrm{The actual area is calculated by } V = \pi \int_a^bf(x)^2 \, dx
+    \\
+    \textrm{Here, the x-axis is yellow, the y-axis is green, and the z-axis is red.}
+    \\
+    \textrm{The original (non-rotated) curve is shown in pink.}
+</div>
+
+<hr>
+
+<div class="compute">
+<script type="text/x-sage">
+var('t', 'y', 'z', 'r')
+@interact( layout = [ ['func', 'sum_type', 'rotational_axis'], ['n', 'volume'], ['x_min', 'x_max', 'y_min', 'y_max'] ] )
+def riemann_revolution ( func = input_box( default = e^x + 2, label = "f(x) = ", width = 15 ), 
+        x_min = input_box( default = 0, label = "x min", width = 5 ), 
+        x_max = input_box( default = 4, label = "x max", width = 5 ), 
+        y_min = input_box( default = -60, label = "y min", width = 5 ),
+        y_max = input_box( default = 60, label = "y max", width = 5 ),
+        n = input_box(default = 4, label = "# of intervals", width = 5 ), 
+        sum_type = selector(['Riemann left', 'Riemann right', 'Riemann midpoint', 'Riemann minimum',
+            'Riemann maximum', 'Actual solid'], label = "type of solid"),
+        rotational_axis = input_box( default = 0, label = "axis of rotation", width = 5 ),
+        volume = False, auto_update=False ) :
+            
+    # Define the function f(x)
+    f(x) = func.function(x)
+    z_min = y_min
+    z_max = y_max
+    
+    # Set up for graphing axes, original function, and rotational solid
+    x_axis = parametric_plot( (x, 0, 0), (x_min, x_max), color = 'yellow', thickness = 3, 
+        aspect_ratio = 'automatic' )
+    y_axis = parametric_plot( (0, y, 0), (y_min, y_max), color = 'green', thickness = 3, 
+        aspect_ratio = 'automatic' )
+    z_axis = parametric_plot( (0, 0, z), (y_min, y_max), color = 'red', thickness = 3, 
+        aspect_ratio = 'automatic' )
+    rot_axis = parametric_plot( (x, rotational_axis, 0), (x_min, x_max), color = '#cc33ff', 
+        thickness = 3, aspect_ratio = 'automatic' )
+        
+    graph2d = parametric_plot( (x, f(x) ), (x, x_min, x_max), color = 'fuchsia', thickness = 3, 
+        aspect_ratio = "automatic" )
+    graph3d = revolution_plot3d( (x, f(x), 0), (x, x_min, x_max), parallel_axis = 'x', 
+        axis = (rotational_axis, 0), aspect_ratio = 'automatic' )
+    disk_cap3d = parametric_plot3d( ( x_max, r*(f(x_max) - rotational_axis)*cos(t) + rotational_axis, 
+        r*(f(x_max) - rotational_axis)*sin(t)), (r, 0, 1), (t, 0, 2*pi), 
+        ymin = y_min, ymax = y_max, zmin = y_min, zmax = y_max, aspect_ratio = "automatic" )
+    disk_cap3d += parametric_plot3d( (x_min, 
+        -1*r*(f(x_min) - rotational_axis)*cos(t) + rotational_axis, 
+        r*(f(x_min) - rotational_axis)*sin(t)), (r, 0, 1), (t, 0, 2*pi), ymin = y_min, ymax = y_max, 
+        zmin = y_min, zmax = y_max, aspect_ratio = "automatic" ) 
+           
+    # Set up for Riemann rectangles
+    width = (x_max - x_min) / n
+    half_width = width / 2
+    min = x_min
+    midpoint = x_min + half_width
+    max = x_min + width
+    cylinders = polygon([ (0,0), (1,0), (2,0) ])
+    disk_caps = polygon([ (0,0), (1,0), (2,0) ])
+    sum = 0
+    
+    # Left sum
+    if sum_type == 'Riemann left' :  
+        for i in (0..n-1) :
+            int_min = min + i * width
+            int_max = max + i * width
+            height = f(int_min)
+            
+            cylinders += revolution_plot3d( (x, height, 0), (x, int_min, int_max), color = '#14eb2a', parallel_axis = 'x', axis = (rotational_axis, 0), aspect_ratio = "automatic" )
+            
+            disk_caps += parametric_plot3d( (int_min, r*(height-rotational_axis)*cos(t) + rotational_axis, r*(height-rotational_axis)*sin(t) ), (t, 0, 2*pi), (r, 0, 1), color = '#14eb2a', aspect_ratio = "automatic" )
+            disk_caps += parametric_plot3d( (int_max, r*(height-rotational_axis)*cos(t) + rotational_axis, r*(height-rotational_axis)*sin(t) ), (t, 0, 2*pi), (r, 0, 1), color = '#14eb2a', aspect_ratio = "automatic" )
+    
+            sum += width * pi * f(int_min)^2
+        
+    # Right sum 
+    elif sum_type == 'Riemann right' :
+        for i in (0..n-1) :
+            int_min = min + i * width
+            int_max = max + i * width
+            height = f(int_max)
+            cylinders += revolution_plot3d( (x, height, 0), (x, int_min, int_max), color = "#14eb2a", 
+                parallel_axis = 'x', axis = (rotational_axis, 0), aspect_ratio = "automatic" )
+            disk_caps += parametric_plot3d( (int_min, 
+                r*(height-rotational_axis)*cos(t) + rotational_axis, 
+                r*(height-rotational_axis)*sin(t) ), (t, 0, 2*pi), (r, 0, 1), color = '#14eb2a', 
+                aspect_ratio = "automatic" )
+            disk_caps += parametric_plot3d( (int_max, 
+                r*(height-rotational_axis)*cos(t) + rotational_axis, 
+                r*(height-rotational_axis)*sin(t) ), (t, 0, 2*pi), (r, 0, 1), color = '#14eb2a',
+                aspect_ratio = "automatic" )
+            sum += width * pi * height^2    
+        
+    # Midpoint sum
+    elif sum_type == 'Riemann midpoint' :
+        for i in (0..n-1) :
+            int_min = min + i * width
+            int_mid = midpoint + i * width
+            int_max = max + i * width
+            height = f(int_mid)
+            cylinders += revolution_plot3d( (x, height, 0), (x, int_min, int_max), color = "#14eb2a", 
+                parallel_axis = 'x', axis = (rotational_axis, 0), aspect_ratio = "automatic" )
+            disk_caps += parametric_plot3d( (int_min, 
+                r*(height-rotational_axis)*cos(t) + rotational_axis, 
+                r*(height-rotational_axis)*sin(t) ), (t, 0, 2*pi), (r, 0, 1), color = '#14eb2a',
+                aspect_ratio = "automatic" )
+            disk_caps += parametric_plot3d( (int_max, 
+                r*(height-rotational_axis)*cos(t) + rotational_axis, 
+                r*(height-rotational_axis)*sin(t) ), (t, 0, 2*pi), (r, 0, 1), color = '#14eb2a',
+                aspect_ratio = "automatic" )
+            sum += width * pi * height^2
+            
+    # Minimum sum
+    elif sum_type == 'Riemann minimum' :
+        for i in (0..n-1) :
+            int_min = min + i * width
+            int_max = max + i * width
+            f_min = f(x).find_local_minimum(int_min, int_max)
+            height = f_min[0]
+            cylinders += revolution_plot3d( (x, height, 0), (x, int_min, int_max), color = "#14eb2a", 
+                parallel_axis = 'x', axis = (rotational_axis, 0), aspect_ratio = "automatic" )
+            disk_caps += parametric_plot3d( (int_min, 
+                r*(height-rotational_axis)*cos(t) + rotational_axis, 
+                r*(height-rotational_axis)*sin(t) ), (t, 0, 2*pi), (r, 0, 1), color = '#14eb2a',
+                aspect_ratio = "automatic" )
+            disk_caps += parametric_plot3d( (int_max, 
+                r*(height-rotational_axis)*cos(t) + rotational_axis, 
+                r*(height-rotational_axis)*sin(t) ), (t, 0, 2*pi), (r, 0, 1), color = '#14eb2a',
+                aspect_ratio = "automatic" )
+            sum += width * pi * height^2
+            
+    # Maximum sum
+    elif sum_type == 'Riemann maximum' :
+        for i in (0..n-1) :
+            int_min = min + i * width
+            int_max = max + i * width
+            f_max = f(x).find_local_maximum(int_min, int_max)
+            height = f_max[0]
+            cylinders += revolution_plot3d( (x, height, 0), (x, int_min, int_max), color = "#14eb2a", 
+                parallel_axis = 'x', axis = (rotational_axis, 0), aspect_ratio = "automatic" )
+            disk_caps += parametric_plot3d( (int_min, 
+                r*(height-rotational_axis)*cos(t) + rotational_axis, 
+                r*(height-rotational_axis)*sin(t) ), (t, 0, 2*pi), (r, 0, 1), color = '#14eb2a',
+                aspect_ratio = "automatic" )
+            disk_caps += parametric_plot3d( (int_max, 
+                r*(height-rotational_axis)*cos(t) + rotational_axis, 
+                r*(height-rotational_axis)*sin(t) ), (t, 0, 2*pi), (r, 0, 1), color = '#14eb2a',
+                aspect_ratio = "automatic" )
+            sum += width * pi * height^2
+    
+    # Actual solid
+    elif sum_type == 'Actual solid' :          
+        actual_curve = x_axis + y_axis + z_axis + graph2d + graph3d + disk_cap3d
+        actual_curve.show()
+    
+    # If not graphing the actual solid, show the cylinders        
+    if not sum_type == 'Actual solid' :    
+        graph = x_axis + y_axis + z_axis + graph2d + cylinders + disk_caps
+        graph.show( )
+    
+    # If chosen to display the volumes, print whichever are appropriate
+    text1 = ""
+    if volume == True :
+        if not sum_type == 'Actual solid' :
+            text1 += "The sum of the volumes of the rotated disks is %f." % sum 
+        (area, prec) = numerical_integral( pi * f^2, x_min, x_max )
+        l=0
+        while prec <= 10^-l:
+            l += 1
+        text1 += "\nThe actual volume is " + str(area) + ", accurate to 10^-" + str(l) + "."
+        pretty_print( text1 )
+</script>
+</div>
+
+
+<hr>
+Last modified on July 24th, 2017.
+</body>
+</html>

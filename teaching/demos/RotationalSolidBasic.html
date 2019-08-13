@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Revolutionary Solids</title>
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>
+$(function () {
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+    						template:       sagecell.templates.minimal,
+                           evalButtonText: 'Launch the Interactive Applet Now'});
+});
+    </script>
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Revolutionary Solids</h1>
+
+<p>An Interactive Applet powered by Sage and MathJax.</p>
+<p>(By Kelsey Norman with HTML code from Prof. Gregory V. Bard)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+    \textrm{This demo shows the solid created by rotating a curve around an axis parallel to the x- or y-axis.}
+    \\
+    \textrm{Here, the x-axis is yellow, the y-axis is green, and the z-axis is red.}
+    \\
+    \textrm{The original (non-rotated) curve is shown in pink. The z-dimensions will be set automatically.}
+</div>
+
+<hr>
+
+<div class="compute">
+<script type="text/x-sage">
+var('t', 'y', 'z', 'r')
+@interact( layout =[ ['func', 'rotational_axis', 'a', 'b'], ['x_min', 'x_max', 'y_min', 
+       'y_max'], ['axis_parallel_to'] ])
+def solid( func = input_box( default = e^x, label = "f(x) = ", width = 20 ), 
+        a = input_box( default = 0, label = "a", width = 5 ),
+        b = input_box( default = 4, label = "b", width = 5 ),
+        x_min = input_box( default = 0, label = "x min", width = 5 ), 
+        x_max = input_box( default = 4, label = "x max", width = 5 ), 
+        y_min = input_box( default = -60, label = "y min", width = 5 ),
+        y_max = input_box( default = 60, label = "y max", width = 5 ),
+        rotational_axis = input_box( default = 0, label = "rotate around axis = ", width = 20 ),
+        axis_parallel_to = selector(['x', 'y'], label = "parallel axis" ),
+        auto_update=False ):
+    
+    f = func.function(x)
+    
+    x_axis = parametric_plot( (x, 0, 0), (x_min, x_max), color = 'yellow', thickness = 3, 
+        aspect_ratio = 'automatic' )
+    y_axis = parametric_plot( (0, y, 0), (y_min, y_max), color = 'green', thickness = 3, 
+        aspect_ratio = "automatic" )
+        
+    if axis_parallel_to == 'x':
+        z_axis = parametric_plot( (0, 0, z), (y_min, y_max), color = "red", thickness = 3, 
+            aspect_ratio = "automatic" ) 
+        rot_axis = parametric_plot( (x, rotational_axis, 0), (x_min, x_max), color = '#cc33ff', 
+            thickness = 3, aspect_ratio = 'automatic' ) 
+        graph2d = parametric_plot( (x, f(x), 0 ), (x, a, b), ymin = y_min, ymax = y_max, 
+            color = 'fuchsia', thickness = 3, aspect_ratio = "automatic" )
+        graph3d = revolution_plot3d( (x, f(x), 0), (x, a, b), parallel_axis = 'x', 
+            axis = (rotational_axis, 0) )
+        disk_cap3d = parametric_plot3d( ( b, r*(f(b) - rotational_axis)*cos(t) + rotational_axis, 
+            r*(f(b) - rotational_axis)*sin(t)), (r, 0, 1), (t, 0, 2*pi), ymin = y_min, ymax = y_max, 
+            aspect_ratio = "automatic" )
+        disk_cap3d += parametric_plot3d( (a, -1*r*(f(a) - rotational_axis)*cos(t) + rotational_axis, 
+            r*(f(a) - rotational_axis)*sin(t)), (r, 0, 1), (t, 0, 2*pi), ymin = y_min, ymax = y_max, 
+            aspect_ratio = "automatic" )
+            
+    if axis_parallel_to == 'y':
+        z_axis = parametric_plot( (0, 0, z), (x_min, x_max), color = "red", thickness = 3, 
+            aspect_ratio = "automatic" ) 
+        rot_axis = parametric_plot( (rotational_axis, y, 0), (y, y_min, y_max), color = '#cc33ff',
+            thickness = 3, aspect_ratio = 'automatic' )
+        graph2d = parametric_plot( (x, f(x), 0 ), (x, a, b), ymin = y_min, ymax = y_max, 
+            color = 'fuchsia', thickness = 3, aspect_ratio = "automatic" )
+        graph3d = revolution_plot3d( (x, f(x), 0), (x, a, b), parallel_axis = 'y',
+            axis = (rotational_axis, 0) )
+        disk_cap3d = parametric_plot3d( (r*(b - rotational_axis)*cos(t)+ rotational_axis, 
+            f(b), r*(b-rotational_axis)*sin(t)), (r, 0, 1), (t, 0, 2*pi), ymin = y_min, ymax = y_max, 
+            aspect_ratio = "automatic" )
+        disk_cap3d += parametric_plot3d( (r*(a-rotational_axis)*cos(t) + rotational_axis, 
+            f(a), r*(a-rotational_axis)*sin(t)), (r, 0, 1), (t, 0, 2*pi), ymin = y_min, ymax = y_max, 
+            aspect_ratio = "automatic" )
+        
+    graph = x_axis + y_axis + z_axis + rot_axis + graph2d + graph3d + disk_cap3d
+    graph.show()
+    
+</script>
+</div>
+
+<hr>
+Last modified on July 13th, 2017.
+</body>
+</html>

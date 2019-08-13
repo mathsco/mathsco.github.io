@@ -1,0 +1,769 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Integral Approximations for Two Curves</title>
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>
+$(function () {
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+    						template:       sagecell.templates.minimal,
+                           evalButtonText: 'Launch the Interactive Applet Now'});
+});
+    </script>
+  </head>
+
+  <body style="width: 1000px;">
+
+  <h1>Integral Approximations for Two Curves</h1>
+
+<h4>An Interactive Applet powered by Sage and MathJax.</h4>
+<h4>(By Kelsey Norman with HTML code from Prof. Gregory V. Bard)</h4>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+    \textrm{Here we visualize the integral } \int_a^b[f(x) - g(x)] \, dx \textrm{ as the area between the curves,} 
+    \\
+    \textrm{ colored green if the area is positive or red if the area is negative.}
+</div>
+
+<hr>
+
+<div class="compute">
+<script type="text/x-sage">
+@interact( layout = [ ['func', 'gunc', 'sum_type'], ['lower', 'upper', 'n'], ['x_min', 'x_max', 'draw_rectangles'] ])
+def riemann2( func = input_box( default = x^3 - 6*x, label = "f(x) = ", width = 20), 
+        gunc = input_box( default = 0, label = "g(x) = ", width = 20), 
+        lower = input_box( default = 1, label = "a = ", width = 5), 
+        upper = input_box( default = 4, label = "b = ", width = 5), 
+        n = input_box( default = 6, label = "# of intervals", width = 5), 
+        x_min = input_box( default = 0, label = "x min", width = 5), 
+        x_max = input_box( default = 5, label = "x max", width = 5),
+        sum_type = selector(['left', 'right', 'midpoint', 'minimum', 'maximum', 'trapezoidal', 'Simpsons Rule'], label = "type of sum"),
+        draw_rectangles = False ):
+    
+    # set up for intervals
+    width = (upper - lower) / n
+    half = width / 2
+    sum_area = 0
+    
+    # Set up for coloring different sections
+    x_start = lower
+    x_end = x_start + 0.25
+    zeroes = []
+    zeroes.append(lower)
+     
+    # Initialize a filled plot so colors can be added later    
+    graph_filled = point( (lower, 0), color = "black", size = 0.5) 
+    
+    # Try to convert input to a function. 
+    # If it doesn't work, run a different version that works for constants.
+    try:
+        # Avoid the deprecation warning, check if it can be made into a function
+        f = func.function(x)
+        
+        # Initialize rectangles
+        rectangles = polygon([ (lower, f(lower)), (lower, f(lower)+10^-12), 
+            (lower, f(lower)-10^-12) ], aspect_ratio = "automatic")
+        
+        # If g is also a function, run this version:
+        try:
+            g = gunc.function(x)
+            
+            if draw_rectangles == True :
+                # Left sum
+                if sum_type == "left" :    
+                    for j in range(n) :
+                        min = lower + j * width
+                        max = lower + (j+1) * width
+                        if f(min) != g(min) :
+                            if f(min) > g(min):
+                                rectangles += polygon([ (min, f(min)), (min, g(min)), (max, g(min)), 
+                                    (max, f(min)) ], color = '#60A70F', edgecolor = '#508810', 
+                                    thickness = 2, aspect_ratio = 'automatic')
+                            else:
+                                rectangles += polygon([ (min, f(min)), (min, g(min)), (max, g(min)), 
+                                    (max, f(min)) ], color = '#ff4d4d', edgecolor = '#ff3300', 
+                                    thickness = 2, aspect_ratio = 'automatic')
+                            sum_area += N(width * (f(min) - g(min)))
+    
+                # Right sum
+                elif sum_type == "right" :    
+                    for j in range(n) :
+                        min = lower + j * width
+                        max = lower + (j+1) * width
+                        if f(max) != g(max) :
+                            if f(max) > g(max):
+                                rectangles += polygon([ (min, f(max)), (min, g(max)), (max, g(max)), 
+                                    (max, f(max)) ], color = '#60A70F', edgecolor = '#508810', 
+                                    thickness = 2, aspect_ratio = 'automatic')
+                            else:
+                                rectangles += polygon([ (min, f(max)), (min, g(max)), (max, g(max)), 
+                                    (max, f(max)) ], color = '#ff4d4d', edgecolor = '#ff3300', 
+                                    thickness = 2, aspect_ratio = 'automatic')
+                            sum_area += N(width * (f(max) - g(max)))
+    
+                # Midpoint sum            
+                elif sum_type == "midpoint" :    
+                     for j in range(n) :
+                         min = lower + j * width
+                         mid = lower + half + j * width
+                         max = lower + (j+1) * width
+                         if f(mid) != g(mid) :
+                             if f(mid) > g(mid):
+                                 rectangles += polygon([ (min, f(mid)), (min, g(mid)), (max, g(mid)), 
+                                     (max, f(mid)) ], color = '#60A70F', edgecolor = '#508810', 
+                                     thickness = 2, aspect_ratio = 'automatic')
+                             else:
+                                 rectangles += polygon([ (min, f(mid)), (min, g(mid)), (max, g(mid)),
+                                     (max, f(mid)) ], color = '#ff4d4d', edgecolor = '#ff3300', 
+                                     thickness = 2, aspect_ratio = 'automatic')
+                             sum_area += N(width * (f(mid) - g(mid)))
+    
+                # Minimum sum            
+                elif sum_type == "minimum" :    
+                    for j in range(n) :
+                        min = lower + j * width
+                        max = lower + (j+1) * width
+                        f_min = f.find_local_minimum(min, max)
+                        g_min = g.find_local_minimum(min, max)
+                        height_f = f_min[0]
+                        height_g = g_min[0]
+                        if height_f != height_g :
+                            if height_f > height_g:
+                                rectangles += polygon([ (min, height_f), (min, height_g), 
+                                    (max, height_g), (max, height_f) ], color = '#60A70F', 
+                                    edgecolor = '#508810', thickness = 2, aspect_ratio = 'automatic') 
+                            else:
+                                rectangles += polygon([ (min, height_f), (min, height_g), 
+                                    (max, height_g), (max, height_f) ], color = '#ff4d4d', 
+                                    edgecolor = '#ff3300', thickness = 2, aspect_ratio = 'automatic') 
+                            sum_area += N(width * (height_f - height_g))
+    
+                # Maximum sum            
+                elif sum_type == "maximum" :    
+                    for j in range(n) :
+                        min = lower + j * width
+                        max = lower + (j+1) * width
+                        f_max = f.find_local_maximum(min, max)
+                        g_max = g.find_local_maximum(min, max)
+                        height_f = f_max[0]
+                        height_g = g_max[0]
+                        if f(height_f) != g(height_g) :
+                            if height_f > height_g:
+                                rectangles += polygon([ (min, height_f), (min, height_g), 
+                                    (max, height_g), (max, height_f) ], color = '#60A70F', 
+                                    edgecolor = '#508810', thickness = 2, aspect_ratio = 'automatic') 
+                            else:
+                                rectangles += polygon([ (min, height_f), (min, height_g), 
+                                    (max, height_g), (max, height_f) ], color = '#ff4d4d', 
+                                    edgecolor = '#ff3300', thickness = 2, aspect_ratio = 'automatic') 
+                            sum_area += N(width * (height_f - height_g))  
+                
+                # Trapezoidal sum
+                elif sum_type == "trapezoidal" :
+                    for j in range(n) :
+                        min = lower + j * width
+                        max = lower + (j+1) * width
+                        if ((f(max) - g(max)) + (f(min) - g(min)))/2 * width > 0 :
+                            if f(min) == g(min):
+                                rectangles += polygon([ (min, g(min)), (max, g(max)), (max, f(max)) ], color = '#60A70F', edgecolor = '#508810', thickness = 2, aspect_ratio = 'automatic')
+                            elif f(max) == g(max):
+                                rectangles += polygon([ (min, f(min)), (min, g(min)), (max, g(max)) ], color = '#60A70F', edgecolor = '#508810', thickness = 2, aspect_ratio = 'automatic')
+                            else:    
+                                rectangles += polygon([ (min, f(min)), (min, g(min)), (max, g(max)), (max, f(max)) ], color = '#60A70F', edgecolor = '#508810', thickness = 2, aspect_ratio = 'automatic')
+                        else :
+                            if f(min) == g(min):
+                                rectangles += polygon([ (min, g(min)), (max, g(max)), (max, f(max)) ], color = '#ff4d4d', edgecolor = '#ff3300', thickness = 2, aspect_ratio = 'automatic')
+                            elif f(max) == g(max):
+                                rectangles += polygon([ (min, f(min)), (min, g(min)), (max, g(max)) ], color = '#ff4d4d', edgecolor = '#ff3300', thickness = 2, aspect_ratio = 'automatic')
+                            else:    
+                                rectangles += polygon([ (min, f(min)), (min, g(min)), (max, g(max)), (max, f(max)) ], color = '#ff4d4d', edgecolor = '#ff3300', thickness = 2, aspect_ratio = 'automatic')
+                        sum_area += N( ((f(max) - g(max)) + (f(min) - g(min)))/2 * width )
+                 
+                # Simpson's Rule
+                elif sum_type == "Simpsons Rule" :
+                    
+                    if not n%2 == 0 :
+                        print "n must be even to run Simpson's Rule"
+                        
+                    else :
+                        for j in range(n/2) :
+                            x1 = lower + 2*j*width
+                            x2 = x1 + width
+                            x3 = x1 + 2*width
+                            y1 = f(x1)
+                            y2 = f(x2)
+                            y3 = f(x3) 
+                            
+                            g1 = g(x1)
+                            g2 = g(x2)
+                            g3 = g(x3)
+                            
+                            sum_area += (width / 3) * ( y1 + 4*y2 + y3 ) - (width / 3) * (g1 + 4*g2 + g3 )
+                            
+                            # Visually mark the intervals - add things to "rectangles" even though the subdivision is different here
+                            rectangles += point( (x1, g1), color = "blue", size = 20 )
+                            rectangles += point( (x2, g2), color = "#8080ff", size = 20 )
+                            rectangles += point( (x3, g3), color = "blue", size = 20 )
+                            rectangles += point( (x1, y1), color = "blue", size = 20 ) + point( (x2, y2), color = "#8080ff", size = 20 ) 
+                            rectangles += point( (x3, y3), color = "blue", size = 20 ) + line([ (x1, g1), (x1, y1)], color = "blue", linestyle = '--' )
+                            rectangles += line([ (x2, g2), (x2, y2)], color = "#8080ff", linestyle = '--' ) + line([ (x3, g3), (x3, y3)], color = "blue", linestyle = '--' )
+                            
+                            # Solve for a, b, and c - function f
+                            quad = matrix([ [x1^2, x1, 1, y1], [x2^2, x2, 1, y2], [x3^2, x3, 1, y3] ])
+                            solutions = quad.rref()
+                            a = solutions[0][3]
+                            b = solutions[1][3]
+                            c = solutions[2][3]
+                            
+                            # Plot the f parabola approximation
+                            quad_eq = a*x^2 + b*x + c
+                            x1_height = quad_eq(x=x1)
+                            x3_height = quad_eq(x=x3)
+                            rectangles += plot( quad_eq, x_min, x_max, color = '#99e699' )                            
+                            rectangles += plot( quad_eq, x1, x3, color = 'green', thickness = 2 )
+                            rectangles += point( (x1, x1_height ), color = 'green', size = 30 )
+                            rectangles += point( (x3, x3_height ), color = 'green', size = 30 )
+                            
+                            # Then do the same for g
+                            quad = matrix([ [x1^2, x1, 1, g1], [x2^2, x2, 1, g2], [x3^2, x3, 1, g3] ])
+                            solutions = quad.rref()
+                            a = solutions[0][3]
+                            b = solutions[1][3]
+                            c = solutions[2][3]
+                            
+                            # Plot the g parabola approximation
+                            quad_eq = a*x^2 + b*x + c
+                            x1_height = quad_eq(x=x1)
+                            x3_height = quad_eq(x=x3)
+                            rectangles += plot( quad_eq, x_min, x_max, color = ( 0.75, 0.5, 0.5 ) )                            
+                            rectangles += plot( quad_eq, x1, x3, color = 'red', thickness = 2 )
+                            rectangles += point( (x1, x1_height ), color = 'red', size = 30 )
+                            rectangles += point( (x3, x3_height ), color = 'red', size = 30 )                 
+                            
+                # Print the approximated area
+                pretty_print( "The approximated area is " + str(sum_area.n()) + "." )          
+            
+            # While loop to find all the roots of the function
+            while x_end <= upper :
+                try:
+                    zero = find_root(f-g, x_start, x_end)
+                    if (zero not in zeroes):
+                        zeroes.append( zero )
+                    x_start = zero + 10^-12
+                    x_end = x_start + 0.25
+                except:
+                    x_end += 0.25
+            if upper not in zeroes:
+                zeroes.append(upper)
+                            
+            # Color parts of the graph according to positive or negative area             
+            for j in range( len( zeroes ) - 1 ):
+                # Pick a point between two zeroes or between a zero and an endpoint
+                x_mid = (zeroes[j] + zeroes[j+1]) / 2
+         
+                # If the "mid"-point is positive, the interval is positive, color accordingly
+                # Else color the opposite color
+                if f(x_mid) > g(x_mid):
+                    graph_filled += plot( [f,g], (x, zeroes[j], zeroes[j+1]), fill = {0:[1]}, 
+                        fillcolor = '#dbf9b9' )
+                else:
+                    graph_filled += plot( [f,g], (x, zeroes[j], zeroes[j+1]), fill = {0:[1]},
+                        fillcolor = '#ff9999' )
+                                                                    
+        except: 
+            g = gunc
+            
+            # While loop to find all the roots of the function
+            while x_end <= upper :
+                try:
+                    zero = find_root(f-g, x_start, x_end)
+                    if (zero not in zeroes):
+                        zeroes.append( zero )
+                    x_start = zero + 10^-12
+                    x_end = x_start + 0.25
+                except:
+                    x_end += 0.25
+            if upper not in zeroes:
+                zeroes.append(upper)
+            
+            # Color parts of the graph according to positive or negative area             
+            for j in range( len( zeroes ) - 1 ):
+                # Pick a point between two zeroes or between a zero and an endpoint
+                x_mid = (zeroes[j] + zeroes[j+1]) / 2
+    
+                # If the "mid"-point is positive, the interval is positive, color accordingly
+                # Else color the opposite color
+                if f(x_mid) > g:
+                    graph_filled += plot( [f,g], (x, zeroes[j], zeroes[j+1]), fill = {0:[1]}, 
+                        fillcolor = '#dbf9b9' )
+                else:
+                    graph_filled += plot( [f,g], (x, zeroes[j], zeroes[j+1]), fill = {0:[1]},
+                        fillcolor = '#ff9999' )
+            
+            if draw_rectangles == True:
+                # Left sum
+                if sum_type == "left" :    
+                    for j in range(n) :
+                        min = lower + j * width
+                        max = lower + (j+1) * width
+                        if f(min) != g :
+                            if f(min) > g:
+                                rectangles += polygon([ (min, f(min)), (min, g), (max, g), 
+                                    (max, f(min))], color = '#60A70F', edgecolor = '#508810', 
+                                    thickness = 2, aspect_ratio = 'automatic')
+                            else:    
+                                rectangles += polygon([ (min, f(min)), (min, g), (max, g), 
+                                    (max, f(min)) ], color = '#ff4d4d', edgecolor = '#ff3300', 
+                                    thickness = 2, aspect_ratio = 'automatic')
+                            sum_area += N(width * (f(min) - g))
+    
+                # Right sum
+                elif sum_type == "right" :    
+                    for j in range(n) :
+                        min = lower + j * width
+                        max = lower + (j+1) * width
+                        if f(max) != g :
+                            if f(max) > g:
+                                rectangles += polygon([ (min, f(max)), (min, g), (max, g), 
+                                    (max, f(max)) ], color = '#60A70F', edgecolor = '#508810', 
+                                    thickness = 2, aspect_ratio = 'automatic')
+                            else:
+                                rectangles += polygon([ (min, f(max)), (min, g), (max, g), 
+                                    (max, f(max)) ], color = '#ff4d4d', edgecolor = '#ff3300', 
+                                    thickness = 2, aspect_ratio = 'automatic')
+                            sum_area += N(width * (f(max) - g))
+    
+                # Midpoint sum            
+                elif sum_type == "midpoint" :    
+                     for j in range(n) :
+                         min = lower + j * width
+                         mid = lower + half + j * width
+                         max = lower + (j+1) * width
+                         if f(mid) != g :
+                             if f(mid) > g:
+                                 rectangles += polygon([ (min, f(mid)), (min, g), (max, g), 
+                                     (max, f(mid)) ], color = '#60A70F', edgecolor = '#508810', 
+                                     thickness = 2, aspect_ratio = 'automatic')
+                             else:
+                                 rectangles += polygon([ (min, f(mid)), (min, g), (max, g), 
+                                     (max, f(mid)) ], color = '#ff4d4d', edgecolor = '#ff3300', 
+                                     thickness = 2, aspect_ratio = 'automatic')
+                             sum_area += N(width * (f(mid) - g))
+    
+                # Minimum sum            
+                elif sum_type == "minimum" :    
+                    for j in range(n) :
+                        min = lower + j * width
+                        max = lower + (j+1) * width
+                        f_min = f.find_local_minimum(min, max)
+                        height_f = f_min[0]
+                        height_g = g
+                        if height_f != height_g :
+                            if height_f > height_g:
+                                rectangles += polygon([ (min, height_f), (min, height_g), 
+                                    (max, height_g), (max, height_f) ], color = '#60A70F', 
+                                    edgecolor = '#508810', thickness = 2, aspect_ratio = 'automatic') 
+                            else:
+                                rectangles += polygon([ (min, height_f), (min, height_g), 
+                                    (max, height_g), (max, height_f) ], color = '#ff4d4d', 
+                                    edgecolor = '#ff3300', thickness = 2, aspect_ratio = 'automatic') 
+                            sum_area += N(width * (height_f - height_g))
+    
+                # Maximum sum            
+                elif sum_type == "maximum" :    
+                    for j in range(n) :
+                        min = lower + j * width
+                        max = lower + (j+1) * width
+                        f_max = f.find_local_maximum(min, max)
+                        height_f = f_max[0]
+                        height_g = g
+                        if height_f != height_g :
+                            if height_f > height_g:
+                                rectangles += polygon([ (min, height_f), (min, height_g), 
+                                    (max, height_g), (max, height_f) ], color = '#60A70F', 
+                                    edgecolor = '#508810', thickness = 2, aspect_ratio = 'automatic') 
+                            else:
+                                rectangles += polygon([ (min, height_f), (min, height_g), 
+                                    (max, height_g), (max, height_f) ], color = '#ff4d4d', 
+                                    edgecolor = '#ff3300', thickness = 2, aspect_ratio = 'automatic') 
+                            sum_area += N(width * (height_f - height_g)) 
+                
+                # Trapezoidal sum
+                elif sum_type == "trapezoidal" :
+                    for j in range(n) :
+                        min = lower + j * width
+                        max = lower + (j+1) * width
+                        if ((f(max) - g) + (f(min) - g))/2 * width > 0 :
+                            if f(min) == g:
+                                rectangles += polygon([ (min, g), (max, g), (max, f(max)) ], color = '#60A70F', edgecolor = '#508810', thickness = 2, aspect_ratio = 'automatic')
+                            elif f(max) == g:
+                                rectangles += polygon([ (min, f(min)), (min, g), (max, g) ], color = '#60A70F', edgecolor = '#508810', thickness = 2, aspect_ratio = 'automatic')
+                            else:
+                                rectangles += polygon([ (min, f(min)), (min, g), (max, g), (max, f(max)) ], color = '#60A70F', edgecolor = '#508810', thickness = 2, aspect_ratio = 'automatic')
+                        else :
+                            if f(min) == g:
+                                rectangles += polygon([ (min, g), (max, g), (max, f(max)) ], color = '#ff4d4d', edgecolor = '#ff3300', thickness = 2, aspect_ratio = 'automatic')
+                            elif f(max) == g:
+                                rectangles += polygon([ (min, f(min)), (min, g), (max, g) ], color = '#ff4d4d', edgecolor = '#ff3300', thickness = 2, aspect_ratio = 'automatic')
+                            else:
+                                rectangles += polygon([ (min, f(min)), (min, g), (max, g), (max, f(max)) ], color = '#ff4d4d', edgecolor = '#ff3300', thickness = 2, aspect_ratio = 'automatic')
+                        sum_area += N( ((f(max) - g) + (f(min) - g))/2 * width )
+                        
+                # Simpson's Rule
+                elif sum_type == "Simpsons Rule" :
+                    
+                    if not n%2 == 0 :
+                        pretty_print( "n must be even to run Simpson's Rule" )
+                        
+                    else :
+                        for j in range(n/2) :
+                            x1 = lower + 2*j*width
+                            x2 = x1 + width
+                            x3 = x1 + 2*width
+                            y1 = f(x1)
+                            y2 = f(x2)
+                            y3 = f(x3) 
+                            
+                            g1 = g
+                            g2 = g
+                            g3 = g
+                            
+                            sum_area += (width / 3) * ( y1 + 4*y2 + y3 ) - (width / 3) * (g1 + 4*g2 + g3 )
+                            
+                            # Visually mark the intervals - add things to "rectangles" even though the subdivision is different here
+                            rectangles += point( (x1, g1), color = "blue", size = 20 )
+                            rectangles += point( (x2, g2), color = "#8080ff", size = 20 )
+                            rectangles += point( (x3, g3), color = "blue", size = 20 )
+                            rectangles += point( (x1, y1), color = "blue", size = 20 ) + point( (x2, y2), color = "#8080ff", size = 20 ) 
+                            rectangles += point( (x3, y3), color = "blue", size = 20 ) + line([ (x1, g1), (x1, y1)], color = "blue", linestyle = '--' )
+                            rectangles += line([ (x2, g2), (x2, y2)], color = "#8080ff", linestyle = '--' ) + line([ (x3, g3), (x3, y3)], color = "blue", linestyle = '--' )
+                            
+                            # Solve for a, b, and c - function f
+                            quad = matrix([ [x1^2, x1, 1, y1], [x2^2, x2, 1, y2], [x3^2, x3, 1, y3] ])
+                            solutions = quad.rref()
+                            a = solutions[0][3]
+                            b = solutions[1][3]
+                            c = solutions[2][3]
+                            
+                            # Plot the f parabola approximation
+                            quad_eq = a*x^2 + b*x + c
+                            x1_height = quad_eq(x=x1)
+                            x3_height = quad_eq(x=x3)
+                            rectangles += plot( quad_eq, x_min, x_max, color = '#99e699' )                            
+                            rectangles += plot( quad_eq, x1, x3, color = 'green', thickness = 2 )
+                            rectangles += point( (x1, x1_height ), color = 'green', size = 30 )
+                            rectangles += point( (x3, x3_height ), color = 'green', size = 30 )
+                            
+                            # Then do the same for g
+                            quad = matrix([ [x1^2, x1, 1, g1], [x2^2, x2, 1, g2], [x3^2, x3, 1, g3] ])
+                            solutions = quad.rref()
+                            a = solutions[0][3]
+                            b = solutions[1][3]
+                            c = solutions[2][3]
+                            
+                            # Plot the g parabola approximation
+                            quad_eq = a*x^2 + b*x + c
+                            x1_height = quad_eq(x=x1)
+                            x3_height = quad_eq(x=x3)
+                            rectangles += plot( quad_eq, x_min, x_max, color = ( 0.75, 0.5, 0.5 ) )                            
+                            rectangles += plot( quad_eq, x1, x3, color = 'red', thickness = 2 )
+                            rectangles += point( (x1, x1_height ), color = 'red', size = 30 )
+                            rectangles += point( (x3, x3_height ), color = 'red', size = 30 )
+                        
+                # Print the approximated area
+                pretty_print( "The approximated area is " + str(sum_area.n()) + "." )                      
+                                                                
+    except:
+        f = func
+        # Initialize rectangles
+        rectangles = polygon([ (lower, f), (lower, f+10^-12), (lower, f-10^-12) ], aspect_ratio = "automatic")
+        
+        # Check if g is constant or a function
+        try:
+            g = gunc.function(x)
+            
+            if draw_rectangles == True:
+                # Left sum
+                if sum_type == "left" :    
+                    for j in range(n) :
+                        min = lower + j * width
+                        max = lower + (j+1) * width
+                        if f != g(min) :
+                            if f > g(min):
+                                rectangles += polygon([ (min, f), (min, g(min)), (max, g(min)), 
+                                    (max, f) ], color = '#60A70F', edgecolor = '#508810', 
+                                    thickness = 2, aspect_ratio = 'automatic')
+                            else:
+                                rectangles += polygon([ (min, f), (min, g(min)), (max, g(min)), 
+                                    (max, f) ], color = '#ff4d4d', edgecolor = '#ff3300', 
+                                    thickness = 2, aspect_ratio = 'automatic')
+                            sum_area += N(width * (f - g(min)))
+    
+                # Right sum
+                elif sum_type == "right" :    
+                    for j in range(n) :
+                        min = lower + j * width
+                        max = lower + (j+1) * width
+                        if f != g(max) :
+                            if f > g(max):
+                                rectangles += polygon([ (min, f), (min, g(max)), (max, g(max)), 
+                                    (max, f) ], color = '#60A70F', edgecolor = '#508810', 
+                                    thickness = 2, aspect_ratio = 'automatic')
+                            else:
+                                rectangles += polygon([ (min, f), (min, g(max)), (max, g(max)), 
+                                    (max, f) ], color = '#ff4d4d', edgecolor = '#ff3300', 
+                                    thickness = 2, aspect_ratio = 'automatic')
+                            sum_area += N(width * (f - g(max)))
+    
+                # Midpoint sum            
+                elif sum_type == "midpoint" :    
+                     for j in range(n) :
+                         min = lower + j * width
+                         mid = lower + half + j * width
+                         max = lower + (j+1) * width
+                         if f != g(mid) :
+                             if f > g(mid):
+                                 rectangles += polygon([ (min, f), (min, g(mid)), (max, g(mid)), 
+                                     (max, f) ], color = '#60A70F', edgecolor = '#508810', 
+                                     thickness = 2, aspect_ratio = 'automatic')
+                             else:
+                                 rectangles += polygon([ (min, f), (min, g(mid)), (max, g(mid)), 
+                                     (max, f) ], color = '#ff4d4d', edgecolor = '#ff3300', 
+                                     thickness = 2, aspect_ratio = 'automatic')
+                             sum_area += N(width * (f - g(mid)))
+    
+                # Minimum sum            
+                elif sum_type == "minimum" :    
+                    for j in range(n) :
+                        min = lower + j * width
+                        max = lower + (j+1) * width
+                        g_min = g.find_local_minimum(min, max)
+                        height_f = f
+                        height_g = g_min[0]
+                        if height_f != height_g :
+                            if height_f > height_g:
+                                rectangles += polygon([ (min, height_f), (min, height_g), 
+                                    (max, height_g), (max, height_f) ], color = '#60A70F', 
+                                    edgecolor = '#508810', thickness = 2, aspect_ratio = 'automatic') 
+                            else:
+                                rectangles += polygon([ (min, height_f), (min, height_g), 
+                                    (max, height_g), (max, height_f) ], color = '#ff4d4d', 
+                                    edgecolor = '#ff3300', thickness = 2, aspect_ratio = 'automatic') 
+                            sum_area += N(width * (height_f - height_g))
+    
+                # Maximum sum            
+                elif sum_type == "maximum" :    
+                    for j in range(n) :
+                        min = lower + j * width
+                        max = lower + (j+1) * width
+                        g_max = g.find_local_maximum(min, max)
+                        height_f = f
+                        height_g = g_max[0]
+                        if f(height_f) != g(height_g) :
+                            if height_f > height_g:
+                                rectangles += polygon([ (min, height_f), (min, height_g), 
+                                    (max, height_g), (max, height_f) ], color = '#60A70F', 
+                                    edgecolor = '#508810', thickness = 2, aspect_ratio = 'automatic') 
+                            else:
+                                rectangles += polygon([ (min, height_f), (min, height_g), 
+                                    (max, height_g), (max, height_f) ], color = '#ff4d4d', 
+                                    edgecolor = '#ff3300', thickness = 2, aspect_ratio = 'automatic') 
+                            sum_area += N(width * (height_f - height_g)) 
+                
+                # Trapezoidal sum
+                elif sum_type == "trapezoidal" :
+                    for j in range(n) :
+                        min = lower + j * width
+                        mid = lower + j * width + half
+                        max = lower + (j+1) * width
+                        if f > g(mid):
+                            if ((f - g(max)) + (f - g(min)))/2 * width > 0:
+                                rectangles += polygon([ (min, g(min)), (max, g(max)), (max, f) ], color = '#60A70F', edgecolor = '#508810', thickness = 2, aspect_ratio = 'automatic')
+                            elif f == g(max):
+                                rectangles += polygon([ (min, f), (min, g(min)), (max, g(max)) ], color = '#60A70F', edgecolor = '#508810', thickness = 2, aspect_ratio = 'automatic')
+                            else:
+                                rectangles += polygon([ (min, f), (min, g(min)), (max, g(max)), (max, f) ], color = '#60A70F', edgecolor = '#508810', thickness = 2, aspect_ratio = 'automatic')
+                        else:
+                            if f == g(min):
+                                rectangles += polygon([ (min, g(min)), (max, g(max)), (max, f) ], color = '#ff4d4d', edgecolor = '#ff3300', thickness = 2, aspect_ratio = 'automatic')
+                            elif f == g(max):
+                                rectangles += polygon([ (min, f), (min, g(min)), (max, g(max)) ], color = '#ff4d4d', edgecolor = '#ff3300', thickness = 2, aspect_ratio = 'automatic')
+                            else:
+                                rectangles += polygon([ (min, f), (min, g(min)), (max, g(max)), (max, f) ], color = '#ff4d4d', edgecolor = '#ff3300', thickness = 2, aspect_ratio = 'automatic')                            
+                        sum_area += N( ((f - g(max)) + (f - g(min)))/2 * width )
+                
+                # Simpson's Rule
+                elif sum_type == "Simpsons Rule" :
+                    
+                    if not n%2 == 0 :
+                        print "n must be even to run Simpson's Rule"
+                        
+                    else :
+                        for j in range(n/2) :
+                            x1 = lower + 2*j*width
+                            x2 = x1 + width
+                            x3 = x1 + 2*width
+                            y1 = f
+                            y2 = f
+                            y3 = f 
+                            
+                            g1 = g(x1)
+                            g2 = g(x2)
+                            g3 = g(x3)
+                            
+                            sum_area += (width / 3) * ( y1 + 4*y2 + y3 ) - (width / 3) * (g1 + 4*g2 + g3 )
+                            
+                            # Visually mark the intervals - add things to "rectangles" even though the subdivision is different here
+                            rectangles += point( (x1, g1), color = "blue", size = 20 )
+                            rectangles += point( (x2, g2), color = "#8080ff", size = 20 )
+                            rectangles += point( (x3, g3), color = "blue", size = 20 )
+                            rectangles += point( (x1, y1), color = "blue", size = 20 ) + point( (x2, y2), color = "#8080ff", size = 20 ) 
+                            rectangles += point( (x3, y3), color = "blue", size = 20 ) + line([ (x1, g1), (x1, y1)], color = "blue", linestyle = '--' )
+                            rectangles += line([ (x2, g2), (x2, y2)], color = "#8080ff", linestyle = '--' ) + line([ (x3, g3), (x3, y3)], color = "blue", linestyle = '--' )
+                            
+                            # Solve for a, b, and c - function f
+                            quad = matrix([ [x1^2, x1, 1, y1], [x2^2, x2, 1, y2], [x3^2, x3, 1, y3] ])
+                            solutions = quad.rref()
+                            a = solutions[0][3]
+                            b = solutions[1][3]
+                            c = solutions[2][3]
+                            
+                            # Plot the f parabola approximation
+                            quad_eq = a*x^2 + b*x + c
+                            x1_height = quad_eq(x=x1)
+                            x3_height = quad_eq(x=x3)
+                            rectangles += plot( quad_eq, x_min, x_max, color = '#99e699' )                            
+                            rectangles += plot( quad_eq, x1, x3, color = 'green', thickness = 2 )
+                            rectangles += point( (x1, x1_height ), color = 'green', size = 30 )
+                            rectangles += point( (x3, x3_height ), color = 'green', size = 30 )
+                            
+                            # Then do the same for g
+                            quad = matrix([ [x1^2, x1, 1, g1], [x2^2, x2, 1, g2], [x3^2, x3, 1, g3] ])
+                            solutions = quad.rref()
+                            a = solutions[0][3]
+                            b = solutions[1][3]
+                            c = solutions[2][3]
+                            
+                            # Plot the g parabola approximation
+                            quad_eq = a*x^2 + b*x + c
+                            x1_height = quad_eq(x=x1)
+                            x3_height = quad_eq(x=x3)
+                            rectangles += plot( quad_eq, x_min, x_max, color = ( 0.75, 0.5, 0.5 ) )                            
+                            rectangles += plot( quad_eq, x1, x3, color = 'red', thickness = 2 )
+                            rectangles += point( (x1, x1_height ), color = 'red', size = 30 )
+                            rectangles += point( (x3, x3_height ), color = 'red', size = 30 )                 
+                            
+                # Print the approximated area
+                pretty_print( "The approximated area is " + str(sum_area.n()) + "." )
+            
+            # While loop to find all the roots of the function
+            while x_end <= upper :
+                try:
+                    zero = find_root(f-g, x_start, x_end)
+                    if (zero not in zeroes):
+                        zeroes.append( zero )
+                    x_start = zero + 10^-12
+                    x_end = x_start + 0.25
+                except:
+                    x_end += 0.25
+            if upper not in zeroes:
+                zeroes.append(upper)
+                            
+            # Color parts of the graph according to positive or negative area             
+            for j in range( len( zeroes ) - 1 ):
+                # Pick a point between two zeroes or between a zero and an endpoint
+                x_mid = (zeroes[j] + zeroes[j+1]) / 2
+         
+                # If the "mid"-point is positive, the interval is positive, color accordingly
+                # Else color the opposite color
+                if f > g(x_mid):
+                    graph_filled += plot( [f,g], (x, zeroes[j], zeroes[j+1]), fill = {0:[1]}, 
+                        fillcolor = '#dbf9b9' )
+                else:
+                    graph_filled += plot( [f,g], (x, zeroes[j], zeroes[j+1]), fill = {0:[1]},
+                        fillcolor = '#ff9999' )                        
+                                               
+        except:
+            g = gunc 
+            
+            if draw_rectangles == True:
+                for j in range(n) :
+                    min = lower + j * width
+                    max = lower + (j+1) * width
+                    if f != g :
+                        if f > g:
+                            rectangles += polygon([ (min, f), (min, g), (max, g), (max, f) ], 
+                                color = '#60A70F', edgecolor = '#508810', thickness = 2, 
+                                aspect_ratio = 'automatic')
+                        else:
+                            rectangles += polygon([ (min, f), (min, g), (max, g), (max, f) ], 
+                                color = '#ff4d4d', edgecolor = '#ff3300', thickness = 2, 
+                                aspect_ratio = 'automatic')
+                        sum_area += N(width * (f - g))
+                        
+                # Print the approximated area
+                pretty_print( "The approximated area is " + str(sum_area.n()) + "." ) 
+            
+            # While loop to find all the roots of the function
+            while x_end <= upper :
+                try:
+                    zero = find_root(f-g, x_start, x_end)
+                    if (zero not in zeroes):
+                        zeroes.append( zero )
+                    x_start = zero + 10^-12
+                    x_end = x_start + 0.25
+                except:
+                    x_end += 0.25
+            if upper not in zeroes:
+                zeroes.append(upper)
+                       
+            # Color parts of the graph according to positive or negative area             
+            for j in range( len( zeroes ) - 1 ):
+                # Pick a point between two zeroes or between a zero and an endpoint
+                x_mid = (zeroes[j] + zeroes[j+1]) / 2
+         
+                # If the "mid"-point is positive, the interval is positive, color accordingly
+                # Else color the opposite color
+                if f > g:
+                    graph_filled += plot( [f,g], (x, zeroes[j], zeroes[j+1]), fill = {0:[1]}, 
+                        fillcolor = '#dbf9b9' )
+                else:
+                    graph_filled += plot( [f,g], (x, zeroes[j], zeroes[j+1]), fill = {0:[1]}, 
+                        fillcolor = '#ff9999' )                         
+                                                                        
+    # Initial graphs and filled area
+    graph_f = plot( f, x_min, x_max )
+    graph_g = plot( g, x_min, x_max, color = "#33cc33" )
+    
+    # Calculate the actual area and the precision
+    (area, precision) = numerical_integral( f-g, lower, upper )
+    l=0
+    while precision <= 10^-l:
+        l += 1
+    pretty_print( "The actual value of the integral is " + str(area) + ", accurate to 10^-" + str(l) + "." )
+    
+    # Combine the plots and show the graph
+    graph = graph_g + graph_filled + graph_f + rectangles
+    graph.show()
+</script>
+</div>
+
+<hr>
+Last modified on July 24th, 2017.
+</body>
+</html>

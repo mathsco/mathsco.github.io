@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Direction Field Plotter</title>
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>
+$(function () {
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+    						template:       sagecell.templates.minimal,
+                           evalButtonText: 'Launch the Applet Now'});
+});
+    </script>
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Direction Field Plotter</h1>
+
+<p>An Interactive Applet powered by Sage and MathJax.</p>
+<p>(By Thomas Scofield)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+ \textrm{Given a scalar 1st order initial value problem } \; y' = f(t,y),
+ \;\; y(t_0)=y_0 \;\; \textrm{ (} t \textrm{ is independent, }
+ y \textrm{ dependent), this} \newline
+ \textrm{demo plots the corresponding direction field, along}
+ \textrm{ with solution curves through the specified initial conditions.}
+</div>
+
+<hr>
+
+<div class="compute">
+<script type="text/x-sage">
+var('t y')
+@interact( layout=[ ['func','init_t','init_y'],['t_min','y_min','numMethod',''],
+                    ['t_max','y_max','stepsize','numsteps'] ])
+def dir_field( func = input_box( default = -y/t+t, label = "y'=f(t,y)=",
+                                 width = 20 ), 
+        init_t = input_box( default = "-1,-1,-1,-1,1,1,1,1", label = "$t_0$",
+                            width = 20 ),
+        init_y = input_box( default = "-2,0,2,4,-2,0,2,4", label = "$y_0$",
+                            width = 20 ),
+        t_min = input_box( default = -5, label = "t min", width = 5 ), 
+        t_max = input_box( default = 5, label = "t max", width = 5 ), 
+        y_min = input_box( default = -2, label = "y min", width = 5 ), 
+        y_max = input_box( default = 8, label = "y max", width = 5 ),
+        stepsize = input_box( default = "0.1", label = "h", width = 5 ),
+        numsteps = input_box( default = 10, label = "N", width = 5 ),
+        numMethod = selector(['none', 'Euler', 'RK4'], label = "num. method"),
+        auto_update=False):
+  import numpy as np
+  import scipy as sp
+  from scipy.integrate import odeint    # numerical solver
+  y_prime(t,y) = func
+  ff = fast_callable(y_prime, vars=[y,t])
+  def g(y,t):
+    return ff(y,t)     # embedding required fast_callable line above
+
+  h = float(stepsize)
+  graph = plot_slope_field( y_prime, (t, t_min, t_max), (y, y_min, y_max) )
+  startYs = eval(str(init_y))
+  if isinstance(startYs, float) or isinstance(startYs, int):
+    # If it is not already, make a tuple of the initial y-values
+    start_ys = (startYs, startYs)
+  else:
+    start_ys = startYs
+  startTs = eval(str(init_t))
+  if isinstance(startTs, float) or isinstance(startTs, int):
+    start_ts = [startTs for jj in start_ys]
+  else:
+    start_ts = startTs
+
+  if len(start_ts) != len(start_ys):
+    print "Lists of initial t-values and y-values must be of equal length."
+  else:
+    # Check if DE is autonomous, and if so add plots of equilibrium solutions
+    if diff(y_prime, t)==0:
+      equilibriumSolns = solve( y_prime == 0, y)
+      for eqn in equilibriumSolns:
+        graph += plot( eqn.rhs(), t_min, t_max, ymin = y_min, ymax = y_max,
+                       color = "red", thickness = 2 )
+
+    # To help avoid including vertical asymptotes and multiple branches
+    # of solutions, I will monitor how far "off screen" a solution gets.
+    center_y = (y_min + y_max) / 2
+    distToBdry = y_max - center_y
+
+    # Construct numerical solutions corresponding to the ICs
+    firstPass = True;
+    for ii in range(len(start_ys)):
+      t0 = start_ts[ii]
+      y0 = start_ys[ii]
+      if t_max > t0:
+        fts = np.linspace(t0, t_max, 101)
+        solveForward = True
+      else:
+        solveForward = False
+      if t_min < t0:
+        bts = np.linspace(t0, t_min, 101)
+        # Is ~200 pts/curve the right balance?
+        solveBackward = True
+      else:
+        solveBackward = False
+
+      if solveForward:
+        # This numerical soln method employs odeint() from scipy
+        solnVals = list(odeint(g, y0, fts).flatten())
+        pts = []
+        pts.append((t0, y0))
+        jj=1
+        while jj < fts.size and abs(solnVals[jj] - center_y)/10 < distToBdry:
+          pts.append((fts.item(jj), solnVals[jj]))
+          jj += 1
+        graph += list_plot( pts, plotjoined=True, color = "red", thickness = 1 )
+
+      if solveBackward:
+        solnVals = list(odeint(g, y0, bts).flatten())
+        pts = []
+        pts.append((t0, y0))
+        jj=1
+        while jj < bts.size and abs(solnVals[jj] - center_y)/10 < distToBdry:
+          pts.append((bts.item(jj), solnVals[jj]))
+          jj += 1
+        graph += list_plot( pts, plotjoined=True, color = "red", thickness = 1 )
+
+      if firstPass and numMethod != 'none':
+        npts = []
+        curr_t = t0
+        curr_y = y0
+        npts.append((curr_t, curr_y))
+        for ii in range(numsteps):
+          if numMethod == 'Euler':
+            next_y = curr_y + h * y_prime(curr_t, curr_y)
+          else:
+            next_t = curr_t + h
+            k1 = h * y_prime(curr_t, curr_y)
+            k2 = h * y_prime( curr_t + h / 2, curr_y + k1/2 )
+            k3 = h * y_prime( curr_t + h / 2, curr_y + k2/2 )
+            k4 = h * y_prime( curr_t + h, curr_y + k3 )
+            next_y = curr_y + (k1 + 2*(k2+k3) + k4)/6
+          curr_y = next_y
+          curr_t += h
+          npts.append((curr_t, curr_y))
+        graph += list_plot(npts, plotjoined=True, color="blue", thickness=1)
+        graph += list_plot(npts, plotjoined=False, color="blue", size=8)
+      firstPass = False;
+    graph.show(xmin=t_min, xmax=t_max, ymin=y_min, ymax=y_max)
+</script>
+</div>
+
+<hr>
+Last modified on July 29th, 2017.
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Alternating Series</title>
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>
+$(function () {
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+    						template:       sagecell.templates.minimal,
+                           evalButtonText: 'Launch the Interactive Applet Now'});
+});
+    </script>
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Alternating Series</h1>
+
+<p>An Interactive Applet powered by Sage and MathJax.</p>
+<p>(By Kelsey Norman with HTML code from Prof. Gregory V. Bard)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+    \textrm{We approximate the infinite series } \sum_{n=1}^{\infty}a_n \textrm{ by  the  truncated  sum } \sum_{n=1}^N a_n.
+    \\
+    \textrm{Here we demonstrate the alternating series test: A series } \sum a_n \textrm{ with either } 
+    \\ 
+    a_n = (-1)^nb_n \textrm{ or } a_n = (-1)^{n+1}b_n \textrm{ where } b_n \geq 0 \textrm{ for all } n. \textrm{ Then if, }
+    \\ \textrm{    1. } \lim_{n \rightarrow \infty} b_n = 0 \textrm{ and, }
+    \\ \textrm{    2. } (b_n) \textrm{ is a decreasing sequence }
+    \\
+    \textrm{ the series } \sum a_n \textrm{ is convergent. }  
+    \\  \\
+    \textrm{Specifically, we show that the error term } | S(N) - L | \leq |a(N)| \textrm{, where we approximate the limit L by } S(1000).
+</div>
+
+<hr>
+
+<div class="compute">
+<script type="text/x-sage">
+var('k, n')
+@interact( layout = [ ['alt', 'N', 'sums'], ['n_min', 'n_max'], ['y_min', 'y_max'] ])
+def alternating( alt = input_box( default = (-1)^(n-1)/n, label = "a(n) = ", width = 20), 
+        N = input_box( default = 60, label = "N = ", width = 5),
+        n_min = input_box( default = 1, label = "Viewing Window: n min", width = 5),
+        n_max = input_box( default = 60, label = "n max", width = 5),
+        y_min = input_box( default = -0.5, label = "y min", width = 5),
+        y_max = input_box( default = 1, label = "y max", width = 5),
+        sums = False ):
+    
+    # Avoid the deprecation warning
+    a(n) = alt.function(n)
+    # Set up for taking partial sums, plotting the points, and plotting the partial sums
+    s(n) = sum(a(k), k, 1, n)
+    termPts = [(n_min, a(n_min))]
+    myPlot = list_plot( [(n_min, 0), termPts[0]], plotjoined=True, color="blue", ymin = y_min, ymax = y_max )
+    partialSumPts = [(n_min, a(n_min))]
+    l = 0
+    
+    # Print S(N) and S(N-1)
+    pretty_print( "S(N-1) = " + str(s(N-1).n()) + ", S(N) = " + str(s(N).n()) )
+    pretty_print( "|S(N) - S(N-1)| = |a(N)| = " + str( a(N).n() ) + ", |S(N) - S(1000)| = " + str( s(N).n() - s(1000).n() ) )
+    
+    # Loop through terms 2 through n
+    for j in range(n_min + 1, n_max + 1):
+        l += 1
+        termPts.append((j, a(j)))
+        myPlot += list_plot( [(j,0), termPts[l]], plotjoined=True, color="blue", ymin = y_min, ymax = y_max)
+        partialSumPts.append((j, s(j).n()))
+  
+    # Combine all things to be plotted  
+    graph = myPlot + list_plot(termPts, size=15, color="blue", legend_label = "sequence terms", ymin = y_min, ymax = y_max) + list_plot(partialSumPts, size=15, color="red", legend_label = "series terms", ymin = y_min, ymax = y_max)
+    
+    try:
+        total = sum( a, n, 1, oo )
+        pretty_print( "The series is convergent!" )
+        
+        # Graph the limit as a line, append the the plot, and show the graph
+        f = plot( total, n_min, n_max, color = '#b30000', legend_label = "Limit approx.", ymin = y_min, ymax = y_max )
+        graph += f
+            
+        if sums == True:
+            pretty_print( "The infinite sum is " + str(total) + "." )
+    except:
+        pretty_print( "This series does not converge." )
+     
+    graph.show()
+</script>
+</div>
+
+<hr>
+Last modified on July 26th, 2017.
+</body>
+</html>

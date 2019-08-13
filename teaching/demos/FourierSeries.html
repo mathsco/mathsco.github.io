@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Exploring Fourier Series</title>
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>
+$(function () {
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+    						template:       sagecell.templates.minimal,
+                           evalButtonText: 'Launch the Interactive Applet Now'});
+});
+    </script>
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Exploring Fourier Series</h1>
+
+<p>An Interactive Applet powered by Sage and MathJax.</p>
+<p>(By Kelsey Norman with HTML from Prof. Gregory V. Bard)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+    \textrm{This demo shows the Fourier series approximations of the entered function. The following formula calculates the series: }
+    \\
+    F_n(x) = a_0 + \sum_{k=1}^n( \left[a_k \cos\left(\frac{k\pi x}{L}\right) + b_k\sin\left(\frac{k\pi x}{L}\right)\right]).
+</div>
+
+<hr>
+
+<div class="compute">
+<script type="text/x-sage">
+
+@interact( layout = [['f', 'series_type'], ['p', 'n'], ['x_min', 'x_max'], ['y_min', 'y_max'] ] )
+def fourier ( f = input_box( default = x^2, label = "f(x) = ", width = 20 ), 
+        series_type = selector(['full', 'sine', 'cosine'], label = "type of series" ),
+        p = input_box( default = pi, label = "bound", width = 5),
+        n = input_box( default = 11, label = "n", width = 5), 
+        x_min = input_box( default = -5, label = "x min", width = 5),
+        x_max = input_box( default = 5, label = "x max", width = 5),
+        y_min = input_box( default = -2, label = "y min", width = 5),
+        y_max = input_box( default = 25, label = "y max", width = 5) ):  
+    
+    func = f.function(x)
+    
+    # Switch options for type of series
+    if series_type == 'full':
+        # Calculate the coefficients for the type of series 
+        a_0 = (1 / p) * integral( func, x, -p, p)
+        a_n = [(1 / p) * integral( func * cos( j * pi * x / p ), x, -p, p ) for j in range(n) ]
+        b_n = [(1 / p) * integral( func * sin( j * pi * x / p ), x, -p, p ) for j in range(n) ]
+        series = a_0 / 2
+        
+        # Calculate through each iteration of the series (as n increases)
+        for j in range(1, n) :
+            series += a_n[j] * cos( j * pi * x / p ) + b_n[j] * sin( j * pi * x / p )
+        
+    elif series_type == 'sine':
+        # Calculate the coefficients for the type of series
+        b_n = [(1 / p) * integral( 2 * func * sin( j * pi * x / p), x, 0, p ) for j in range(n)]
+        series = 0
+        
+        # Calculate through each iteration of the series as n increases.
+        for j in range(1, n) :
+            series += b_n[j] * sin( j * pi * x / p)
+            
+    elif series_type == 'cosine':
+        # Calculate the coefficients for the type of series
+        a_0 = (1 / p) * integral( 2 * func, x, 0, p)
+        a_n = [(1 / p) * integral( 2 * func * cos( j * pi * x / p), x, 0, p ) for j in range(n)]
+        series = a_0 / 2
+        
+        for j in range(1, n) :
+            series += a_n[j] * cos( j * pi * x / p)
+                
+    # Display the final iteration
+    pretty_print( "Our approximation is: " + str(series) )
+    
+    # Plot the given function and its Fourier series approximation
+    if series.has(x):
+        graph_f = plot( func, (x_min, x_max), ymin = y_min, ymax = y_max, color = 'red', 
+            legend_label = "Original function" )
+        graph_series = plot( series, (x_min, x_max), ymin = y_min, ymax = y_max, 
+            legend_label = "Fourier Series approximation")
+        graph = graph_f + graph_series
+        graph.show()
+    else:
+        pretty_print( "This type of series does not exist for the given function." )
+    
+</script>
+</div>
+
+<hr>
+Last modified on July 26th, 2017.
+</body>
+</html>

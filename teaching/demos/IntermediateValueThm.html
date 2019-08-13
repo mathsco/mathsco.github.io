@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Intermediate Value Theorem</title>
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>
+$(function () {
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+    						template:       sagecell.templates.minimal,
+                           evalButtonText: 'Launch the Interactive Applet Now'});
+});
+    </script>
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Intermediate Value Theorem</h1>
+
+<p>An Interactive Applet powered by Sage and MathJax.</p>
+<p>(By Kelsey Norman with HTML code from Prof. Gregory V. Bard)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+ \textrm{The Intermediate Value Theorem: Suppose } f \textrm{ is a function that is continuous} \\
+ \textrm{on } [a, b], \textrm{ and } N \textrm{ is any real number between } f(a) \textrm{ and } f(b). \textrm{ Then there is at} \\
+ \textrm{least one } c \textrm{ with } a \le c \le b \textrm{ such that} N = f(c).
+</div>
+
+<hr>
+
+<div class="compute">
+<script type="text/x-sage">
+@interact( layout =[ ['func', 'N'], ['a', 'b'], ['x_min', 'x_max'] ])
+def ivt( func = input_box( default = sin(x), label = "f(x) = ", width = 20 ), 
+        a = input_box( default = pi/2, label = "a", width = 5 ), 
+        b = input_box( default = 9, label = "b", width = 5 ), 
+        N = input_box( default = 0.5, label = "N", width = 5 ), 
+        x_min = input_box( default = 0, label = "x min", width = 5 ), 
+        x_max = input_box( default = 3*pi, label = "x max", width = 5) ):
+    
+    # Avoid the deprecation warning        
+    f = func.function(x)
+    
+    # Set the graph of f, assign higher and lower limits
+    graph_f = plot( f, x, x_min, x_max )
+    if f(a) >= f(b):
+        higher = f(a)
+        lower = f(b)
+    else:
+        higher = f(b)
+        lower = f(a)
+    
+    # Plot boundary lines    
+    height1 = plot( higher, x, a, b, color = 'red', fill = lower, fillcolor = '#ffdddd',
+        linestyle = '--' )
+    height2 = plot( lower, x, a, b, color = 'red', linestyle = '--' )
+    heighta = line( [(a,lower), (a, higher)], linestyle = '--')
+    heightb = line( [(b,lower), (b, higher)], linestyle = '--')
+    
+    # Plot the points and a line marking N
+    pts = point( ( a, f(a)), color = 'red', size = 20 )
+    pts += point( (a, 0), color = 'red', size = 30 )
+    pts += point( ( b, f(b)), color = 'red', size = 20 )
+    pts += point( (b, 0), color = 'red', size = 30 )
+    N_line = plot( N, x, x_min, x_max, color = 'green' )
+    # Check if N is between f(a) and f(b)
+    if not ((f(a) <= N) and (N <= f(b)) ) and not ( (f(a) >= N) and (N >= f(b)) ):
+        print "This choice of N is not between f(a) and f(b). Please choose a different value." 
+    else:
+        # Find all places f == N
+        min = a
+        max = min + 0.1
+        options = []
+        while max <= b:
+            try:
+                N_x = find_root( f - N, min, max )
+                options.append(N_x)
+                min = max + 10^-12
+                max += 0.1
+            except:
+                max += 0.1
+        
+        # Plot each point where f == N
+        for j in range(len(options)):
+            pts += point( (options[j], 0), color = 'green', size = 30 )
+            pts += point( (options[j], N), color = '#336600', size = 30 )
+        # Combine graphs and show
+        graph = graph_f + pts + N_line + height1 + height2 + heighta + heightb
+        graph.show()
+        
+        # Make a text string to use for pretty_print
+        text1 = ""
+        for j in range(len(options)) :
+            if not j == len(options)-1 :
+                text1 += str(options[j]) + ", "
+            else :
+                text1 += str( options[j] )
+        pretty_print( "The values of c at which f(c) = N are " + text1 )
+</script>
+</div>
+
+<hr>
+Last modified on July 24th, 2017.
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>FTC, Part 2 - Function and its Antiderivative</title>
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>
+$(function () {
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+    						template:       sagecell.templates.minimal,
+                           evalButtonText: 'Launch the Interactive Applet Now'});
+});
+    </script>
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>FTC, Part 2 - Function and its Antiderivative</h1>
+
+<p>An Interactive Applet powered by Sage and MathJax.</p>
+<p>(By Kelsey Norman with HTML code from Prof. Gregory V. Bard)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+    \textrm{This demo shows how the integral of a function affects the shape of its antiderivative. Here, we show }
+    \\
+    \int_a^b f(x) \, dx = F(b) - F(a).
+</div>
+
+<hr>
+
+<div class="compute">
+<script type="text/x-sage">
+@interact( layout = [ ['func'], ['lower', 'upper'] ])
+def integralTogether(func = input_box( default = sin(x)/x, label = "function", width = 20), 
+        lower = slider( 0, 8, 0.1, default = 2, label = "a"),
+        upper = slider( 0, 8, 0.1, default = 6, label = "b") ):
+   
+    # Dodge the deprecation warning?        
+    f = func.function(x)
+     
+    # Interior method to integrate the function        
+    def F(x):
+        (y,e) = integral_numerical(f,lower,x)
+        return y
+        
+    # Set up graphs for the function and it's antiderivative    
+    f_graph = plot( f, 0, 8, color="blue") 
+    anti_graph = plot( F, lower, 8, color="purple")
+    # If the bounds are the same, don't do anything
+    if lower == upper:
+        print "Please choose different bounds"
+    
+    # Find zeroes for bounds inputted correctly    
+    elif lower < upper:    
+        # Set parameters for following loop
+        x_start = lower
+        x_end = x_start + 0.25
+        zeroes = []
+        zeroes.append(lower)
+        # While loop to find all the roots of the function
+        while x_end <= upper :
+            try:
+                zero = find_root(f, x_start, x_end)
+                if (zero not in zeroes):
+                    zeroes.append( zero )
+                x_start = zero + 10^-12
+                x_end = x_start + 0.25
+            except:
+                x_end += 0.25
+        zeroes.append(upper)
+        
+    # Find zeroes for bounds inputted incorrectly
+    else:
+        # Set parameters for following loop
+        x_start = upper
+        x_end = x_start + 0.25
+        zeroes = []
+        zeroes.append(upper)
+        # While loop to find all the roots of the function
+        while x_end <= lower :
+            try:
+                zero = find_root(f, x_start, x_end)
+                if (zero not in zeroes):
+                    zeroes.append( zero )
+                x_start = zero + 10^-12
+                x_end = x_start + 0.25
+            except:
+                x_end += 0.25     
+        zeroes.append(lower)
+    
+    # Iterate through zeroes and color graph appropriately        
+    for j in range( len( zeroes ) - 1 ):
+        # Pick a point between two zeroes or between a zero and an endpoint
+        x_mid = (zeroes[j] + zeroes[j+1]) / 2
+        
+        # If the "mid"-point is positive, the interval is positive, color accordingly
+        # Else color the opposite color
+        if f(x_mid) > 0:
+            f_graph += plot( f, zeroes[j], zeroes[j+1], color = 'blue', fill = True, 
+                fillcolor = 'green' )
+            anti_graph += plot( F, zeroes[j], zeroes[j+1], color = 'green', thickness = 3)
+        else:
+            f_graph += plot( f, zeroes[j], zeroes[j+1], color = 'blue', fill = True,
+                fillcolor = 'red' )
+            anti_graph += plot( F, zeroes[j], zeroes[j+1], color = 'red', thickness = 3)
+   
+    # Combing graphs, show, and print area          
+    graph = f_graph + anti_graph
+    graph.show()
+    pretty_print( "The value of the shaded area is " + str(integral_numerical(f,lower,upper)[0]) )
+</script>
+</div>
+
+<hr>
+Last modified on July 25th, 2017.
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Picard Iterations Method</title>
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>
+$(function () {
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+    						template:       sagecell.templates.minimal,
+                           evalButtonText: 'Launch the Interactive Applet Now'});
+});
+    </script>
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Picard Iterations: Method of Successive Approximations</h1>
+
+<p>An Interactive Applet powered by Sage and MathJax.</p>
+<p>(By Kelsey Norman with HTML code by Prof. Gregory V. Bard)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+    \textrm{For initial value problems } y' = f(t,y), \, y(t_0) = y_0  \textrm{ where the fundamental theorem }
+    \\
+    \textrm{guarantees a unique solution, the method of successive approximation to the solution via Picard Iterations }
+    \\
+    \phi_0(t) = y_0, \, \phi_{n+1} = y_0 + \int_{t_0}^t f(s, \phi_n(s)) \, ds, \textrm{ for } n = 0, 1, 2, \dots
+    \\
+    \textrm{yields a sequence of functions } \phi_n(t) \textrm{ which converges, at least in the vicinity of } t = t_0, \textrm{ to the true solution.}
+</div>
+
+<hr>
+
+<div class="compute">
+<script type="text/x-sage">
+
+var('s t y')       
+@interact( layout = [['func', 'n'], ['t0', 't_min', 't_max'], ['y0', 'y_min', 'y_max']] )
+def picardIterations( func = input_box( default = y, label = "y'=f(t,y)=", width = 15 ),
+        t0 = input_box( default = 0, label = "$t_0$", width = 5 ),
+        y0 = input_box( default = 1, label = "$y_0$", width = 5 ),
+        n = input_box( default = 6, label = "number of iterations", width = 5),
+        t_min = input_box( default = 0, label = "$t_{\mbox{min}}$", width = 5 ), 
+        t_max = input_box( default = 5, label = "$t_{\mbox{max}}$", width = 5 ), 
+        y_min = input_box( default = 0, label = "$y_{\mbox{min}}$", width = 5 ), 
+        y_max = input_box( default = 200, label = "$y_{\mbox{max}}$", width = 5 ) ):
+            
+    # Define our function for successive approximations
+    def L(f, y, t0, y0) :
+        return y0 + f(s, y(s)).integrate(s, t0, t)
+    
+    # Assign the inputted function to f(t, x)
+    f(t, y) = func.function(t,y)
+    phi(t) = y0
+
+    myExpr = LatexExpr(r"\phi_0(t) = ")
+    show( myExpr + str(phi(t)))
+    # For loop, with chosen number of iterations
+    for j in range(n) :
+        k = j+1
+        phi(t) = L( f, phi, t0, y0)
+        myExpr = LatexExpr(r"\phi_{% d}(t) = "% k)
+        show( myExpr + str(phi(t)) )
+        
+    final_iteration = plot(phi(t), (t0, t_max), ymin = y_min, ymax = y_max, aspect_ratio = 'automatic', legend_label = "Final Iteration" )
+    #final_iteration.show()
+   
+    truey = function('truey')(t)
+    actual = desolve( diff(truey, t) - f(t,truey), truey, [t0,y0])
+    print "The actual solution of the differential equation:\n  y(t) = " + str(actual)
+    slope_field = plot_slope_field( derivative(actual), (t, t_min, t_max), (y, y_min, y_max) )
+    
+    solved = plot(actual, color = 'red', xmin = t_min, xmax = t_max, ymin = y_min, ymax = y_max, legend_label = "Actual solution" )
+    #solved = plot(actual, color = 'red', xmin = t_min, xmax = t_max, legend_label = "Actual solution" )
+    graph2 = solved + slope_field + final_iteration
+    graph2.show()
+
+</script>
+</div>
+
+<hr>
+Last modified on July 26th, 2017.
+</body>
+</html>

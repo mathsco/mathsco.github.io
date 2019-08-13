@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>A Function and Its Derivatives</title>
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>
+$(function () {
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+    						template:       sagecell.templates.minimal,
+                           evalButtonText: 'Launch the Interactive Applet Now'});
+});
+    </script>
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>A Function and Its Derivatives</h1>
+
+<p>An Interactive Applet powered by Sage and MathJax.</p>
+<p>(By Kelsey Norman with HTML code from Prof. Gregory V. Bard)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+    \textrm{This demo shows a function and its derivatives. Adjust the slider c to see the value of each function at that point. }
+</div>
+
+<hr>
+
+<div class="compute">
+<script type="text/x-sage">
+@interact(layout = [ ['func', 'n', 'labels'], ['x_min', 'x_max'], ['y_min', 'y_max'], ['c', 'show_c'] ])
+def graph_deriv( func = input_box( default = x^2, label = "function", width = 20),
+        x_min = input_box( default = -5, label = "x min", width = 5),
+        x_max = input_box( default = 5, label = "x max", width = 5),
+        y_min = input_box( default = -2, label = "y min", width = 5),
+        y_max = input_box( default = 25, label = "y max", width = 5),
+        n = input_box( default = 2, label = "Number of derivatives", width = 20), 
+        c = slider(-10, 10, step_size = 0.05, default = 3, label = "c"), 
+        labels = False, 
+        show_c = False, ): 
+    
+    # Set up function, graph, and points
+    f(x) = func.function(x)         
+    graph = point((0, 0)) 
+    point1 = point( (0, 0) )
+    text1 = ""
+     
+    # Labels version   
+    if labels == True:
+        
+        # Iterate through colors, making sure two in a row aren't the same color
+        old_index = 4
+        for j in range(n+1):
+            index = randrange(0,140)
+            
+            # If colors are different, plot derivative in that color
+            if index != old_index :
+                df = derivative(f, x, j)
+                deriv = plot( df, (x, x_min, x_max), ymin = y_min, ymax = y_max, thickness = 2,
+                    legend_label = "Derivative " + str(j), color = sorted(colors)[index] )
+                
+                # If displaying c, add points and add values to be printed
+                if show_c == True :
+                    if (x_min <= c) and (c <= x_max):
+                        point1 = point( (c, df(c)), size = 30, color = 'green' )
+                    text1 += "f" + "'"*j + "(c) = " + str(df(c)) + "\n"
+                graph += deriv + point1
+                
+            # If the colors aren't different, make n bigger and iterate again.
+            else:
+                n = n+1
+            old_index = index
+     
+    # Non-labels version       
+    else:
+        
+        # Iterate through colors, making sure two in a row aren't the same color
+        old_index = 4
+        for j in range(n+1):
+            index = randrange(0,140)
+            
+            # If colors are different, plot derivative in that color
+            if index != old_index :
+                df = derivative(f, x, j)
+                deriv = plot( df, (x, x_min, x_max), ymin = y_min, ymax = y_max, thickness = 2,
+                    color = sorted(colors)[index] )
+                    
+                # If displaying c, add points and add values to be printed
+                if show_c == True :
+                    if (x_min <= c) and (c <= x_max):
+                        point1 = point( (c, df(c)), size = 30, color = 'green' )
+                    text1 += "f" + "'"*j + "(c) = " + str(df(c)) + "\n"
+                graph += deriv + point1
+                
+            # If the colors aren't different, make n bigger and iterate again
+            else:
+                n = n + 1
+            old_index = index
+     
+    pretty_print( text1 )    
+    graph.show()
+    
+</script>
+</div>
+
+<hr>
+Last modified on July 26th, 2017.
+</body>
+</html>
