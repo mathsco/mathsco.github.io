@@ -1,0 +1,156 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{Absolute and Conditional Convergence}
+\def\lecdate{Fri., Feb.~16}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\def\unsc{\blank{0.07in}}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH 162---Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+\section*{$p$-Series Results Revisited}
+
+\bi
+\item
+  Results we have shown: The series whose terms are all positive
+  \begin{equation}
+	\sum_{n=1}^\infty n^{-p} \;=\; 1 + 2^{-p} + 3^{-p} + 4^{-p} + \cdots
+	\label{p-series}
+  \end{equation}
+  converges for $p > 1$, and diverges for $p \le 1$.  The series with
+  alternating signs
+  \begin{equation}
+	\sum_{n=1}^\infty (-1)^{n-1}n^{-p} \;=\; 1 - 2^{-p} + 3^{-p} - 4^{-p}
+	+ \cdots \label{alternatingP-series}
+  \end{equation}
+  converges for $p > 0$, and diverges for $p \le 0$.
+
+\item
+  The above results apply narrowly---only to series in the forms
+  (\ref{p-series}) and (\ref{alternatingP-series}) respectively.
+  Thus, nothing we have learned tells us whether
+  $$ 1 + \frac{1}{2} - \frac{1}{3} + \frac{1}{4} - \frac{1}{5} - \frac{1}{6}
+	+ \frac{1}{7} + \frac{1}{8} - \frac{1}{9} + \cdots $$
+  converges.
+
+\item
+  The ``borderline'' case of (\ref{p-series}), the one with $p=1$,
+  \begin{equation}
+	\sum_{n=1}^\infty n^{-1} \;=\; 1 + \frac{1}{2} + \frac{1}{3}
+	+ \cdots + \frac{1}{n} + \cdots \label{harmonicSeries}
+  \end{equation}
+  is divergent, and has been named the {\em harmonic series}.
+
+\item
+  When the convergence/divergence of a series $\sum a_n$ is known,
+  then the convergence/divergence of certain modified forms of that
+  series can be known as well.  In particular,
+  \bi
+  \item
+	Any nonzero multiple of a series that converges (resp.~diverges)
+	will also converge (resp.~diverge).  Thus,
+	$$ \frac{1}{3} + \frac{1}{6} + \frac{1}{9} + \frac{1}{12} + \cdots
+	  \;=\; \frac{1}{3}\,\sum_{n=1}^\infty n^{-1}, $$
+	diverges, being a multiple of the harmonic series (\ref{harmonicSeries}).
+  \item
+	Suppose $\sum a_n$ is a series whose convergence/divergence is known.
+	Any series which has the same ``tail'' as that of $\sum a_n$
+	will converge (resp.~diverge) based on what $\sum a_n$ does.  For
+	instance, since we know
+	$$ \sum_{n=1}^\infty (-1)^{n-1} n^{-1/2} \;=\; 1 - \frac{1}{\sqrt 2}
+	  + \frac{1}{\sqrt 3} - \frac{1}{2} + \frac{1}{\sqrt 5}
+	  - \frac{1}{\sqrt 6} + \cdots $$
+	converges, we can conclude
+	$$ \sum_{n=4}^\infty (-1)^{n-1} n^{-1/2} \;=\; - \frac{1}{2}
+	  + \frac{1}{\sqrt 5} - \frac{1}{\sqrt 6} + \cdots $$
+	and
+	$$ b_1 + b_2 + \cdots + b_{50} + \frac{1}{\sqrt 3} - \frac{1}{2}
+	  + \frac{1}{\sqrt 5} - \frac{1}{\sqrt 6} + \cdots $$
+	converge as well.  Here $b_1$, \ldots, $b_{50}$ is any arbitrary
+	list of 50 numbers.  The important thing is not the values of
+	these $b_j$'s, but that there are only finitely many (in this
+	case, 50) of them.
+  \ei
+\ei
+
+\section*{Absolute and Conditional Convergence}
+
+\ni
+{\bf Definition}: \; Let $\sum a_n$ be a convergent series.  If the
+corresponding series $\sum |a_n|$ in which every term has been made
+positive diverges, then the original series $\sum a_n$ is said to be
+{\em conditionally convergent}.
+
+\vspace{0.15in}
+\ni
+{\bf Example}: \; The series
+$\ds{\sum_{n=1}^\infty (-1)^n n^{-1}} = 1 - 1/2 + 1/3 - 1/4 + \cdots$
+is conditionally convergent.
+
+\vspace{0.15in}
+\ni
+{\bf Definition}: Let $\sum a_n$ be a given series (i.e., one for which
+the values of the terms $a_j$ are known).  If the corresponding
+series $\sum |a_n|$ with all positive terms converges, then the original
+series $\sum a_n$ is said to be {\em absolutely convergent}.
+
+\vspace{0.15in}
+\ni
+{\bf Theorem (Absolute Convergence Test)}: All absolutely convergent
+series are convergent.
+
+\vspace{0.15in}
+\ni
+{\bf Example}: \; The series
+$$ \frac{11}{3} + \frac{11}{6} - \frac{11}{12} + \frac{11}{24} - \frac{11}{48}
+  - \frac{11}{96} - \frac{11}{192} + \cdots $$
+is absolutely convergent, since
+$$ \frac{11}{3} + \frac{11}{6} + \frac{11}{12} + \frac{11}{24} + \frac{11}{48}
+  + \cdots \;=\; \sum_{n=0}^\infty \left(\frac{11}{3}\right)
+  \left(\frac{1}{2}\right)^n $$
+converges (being geometric, with $r = 1/2$).  By the absolute convergence
+test, the original series converges as well.
+
+\end{document}
+

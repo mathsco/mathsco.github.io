@@ -1,0 +1,191 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{Differentiation and Integration of Power Series}
+\def\lecdate{Wed., Feb.~21}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\def\unsc{\blank{0.07in}}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH 162---Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+While power series are allowed to have nonzero numbers as centers, for today's
+results we will assume all power series we discuss are centered
+about $x=0$; that is, are of the form
+\begin{equation}
+  \sum_{n=0}^\infty c_n x^n \;=\; c_0 + c_1 x + c_2 x^2
+	+ c_3 x^3 + \cdots. \label{powerSeriesWithCenterZero}
+\end{equation}
+We will also assume each has a positive radius of convergence $R > 0$,
+so that the series converges at least for those $x$ satisfying
+$-R < x < R$.
+
+\section*{Differentiation of Power Series about $x=0$}
+
+{\bf Theorem (Term-by-Term Differentiation}, p.~549{\bf{)}}:
+Let $f(x)$ take the form of the power series in
+(\ref{powerSeriesWithCenterZero}), with radius of
+convergence $R > 0$.  Then the series
+$$ \sum_{n=1}^\infty n c_n x^{n-1} $$
+converges for all $x$ satisfying $-R < x < R$, and
+$$ f'(x) \;=\; \sum_{n=1}^\infty n c_n x^{n-1},
+	\qquad\mbox{for all $x$ satisfying}\; -R < x < R. $$
+
+\vspace{0.3in}
+\ni
+Remarks:
+\bi
+\item
+  Since the hypotheses of this theorem now apply to $f'(x)$, we
+  can continue to differentiate the series to find derivatives of $f$
+  of all orders, convergent at least on the interval $-R < x < R$.
+  For instance,
+  \beqn
+	f''(x) & = & \sum_{n=2}^\infty n(n-1)c_n x^{n-2}
+	  \;\;=\;\; (2\cdot 1) c_2 + (3 \cdot 2) c_3 x + (4 \cdot 3) c_4 x^2
+	  + \cdots \\[10pt]
+	f'''(x) & = & \sum_{n=3}^\infty n(n-1)(n-2)c_n x^{n-3}
+	  \;\;=\;\; (3\cdot 2\cdot 1) c_3 + (4\cdot 3 \cdot 2) c_4 x
+	  + (5\cdot 4 \cdot 3) c_5 x^2 + \cdots
+	  \\[10pt]
+	\vdots\phantom{X} & & \phantom{XXXXXXX}\vdots \\[10pt]
+	f^{(j)}(x) & = & \sum_{n=j}^\infty n(n-1)(n-2)\cdots(n-j+1) c_n x^{n-j} \\
+	& = & j!\,c_j + [(j+1)j\cdots 2]\, c_{j+1}x + [(j+2)(j+1)\cdots 3]\,
+	  c_{j+2}x^2 + \cdots.
+  \eeqn
+
+\item
+  The easiest place to evaluate a power series is at its center.  In
+  particular, if $f$ has the form (\ref{powerSeriesWithCenterZero}),
+  we may evaluate $f$ and all of its derivatives at zero to get:
+  $$ \begin{array}{lcl}
+	  f(0) \;=\; c_0, \\[4pt]
+	  f'(0) \;=\; c_1, \\
+	  f''(0) \;=\; (2\cdot 1)\,c_2
+		& \Rightarrow & c_2 = \ds{\frac{1}{2}} f''(0), \\[12pt]
+	  f'''(0) \;=\; (3\cdot 2\cdot 1)\, c_3
+		& \Rightarrow & c_3 = \ds{\frac{1}{3!}} f'''(0), \\
+	\end{array} $$
+  and so on.  So, we arrive at the following relationship
+  between the coefficients $c_j$ and the derivatives of $f$
+  at the center:
+
+  \bq
+	{\bf Corollary}: Let $f(x)$ be defined by the power series
+	(\ref{powerSeriesWithCenterZero}).  Then
+	$$ c_n \;=\; \frac{f^{(n)}(0)}{n!}, \qquad\mbox{for all}\;
+		n = 0, 1, 2, \ldots. $$
+  \eq
+\ei
+
+\vs{0.2in}
+\ni
+{\bf Example:}
+We know that $f(x) = (1-x)^{-1}$ has the power series representation
+$\sum_{n=0}^\infty x^n$ for $x$ in the interval $(-1,1)$.
+By the term-by-term differentiation theorem, $f'(x) = (1-x)^{-2}$
+has the power series representation
+\beqn
+  \frac{1}{(1 - x)^2} & = & \frac{d}{dx}\left(\sum_{n=0}^\infty
+	x^n\right) \;\;=\;\; \frac{d}{dx}\left(1 + x + x^2 + x^3 + \cdots\right)\\
+  & = & \frac{d}{dx}(1) + \frac{d}{dx}(x) + \frac{d}{dx}(x^2)
+	+ \frac{d}{dx}(x^3) + \cdots
+	\qquad\mbox{(the theorem justifies this step)} \\
+  & = & 0 + 1 + 2x + 3x^2 + 4x^3 + \cdots \\
+  & = & \sum_{n=1}^\infty nx^{n-1},
+\eeqn
+with this series representation holding at least for $-1 < x < 1$.
+
+\section*{Integration of Power Series about $x=0$}
+
+\ni
+If we can differentiate a series expression for $f$ term-by-term
+in order to arrive at a series expression for $f'$, it may not be
+surprising that we may integrate a series term-by-term as well.
+
+\vspace{0.3in}
+\ni
+{\bf Theorem (Term-by-Term Integration}, p.~550{\bf{)}}:
+Suppose that $f(x)$ is defined by the power series
+(\ref{powerSeriesWithCenterZero}) and the radius of convergence
+$R > 0$.  Then
+$$ \int_0^x f(t)\,dt \;=\; \sum_{n=0}^\infty \frac{c_n}{n+1}\,x^{n+1},
+\qquad\mbox{for all $x$ satisfying}\; -R < x < R. $$
+
+\vs{0.2in}
+\ni
+{\bf Example:}
+We know that $f(x) = (1+x)^{-1}$ has the power series representation
+$\sum_{n=0}^\infty (-1)^n x^n$ for $x$ in the interval $(-1,1)$.
+Moreover,
+$$ \int_0^x \frac{dt}{1+t} \;=\; \Big[\ln |1+t|\Big]_0^x
+	\;=\; \ln|1 + x|. $$
+By the term-by-term integration theorem, for $-1 < x < 1$ we also have
+\beqn
+  \int_0^x \frac{dt}{1+t} & = & \int_0^x \left(\sum_{n=0}^\infty
+	(-1)^n t^n\right)\,dt
+	\;\;=\;\; \int_0^x (1 - t + t^2 - t^3 + t^4 - t^5 + \cdots)\,dt
+	\\[8pt]
+  & = & \int_0^x dt - \int_0^x t\,dt + \int_0^x t^2\,dt - \int_0^x t^3\,dt
+	+ \cdots \qquad\mbox{(the theorem justifies this step)} \\[8pt]
+  & = & \sum_{n=0}^\infty (-1)^n\,\left(\int_0^x t^n\,dt\right) \\[8pt]
+  & = & \sum_{n=0}^\infty \frac{(-1)^n}{n+1} \Big[t^{n+1}\Big]_0^x \\[8pt]
+  & = & \sum_{n=0}^\infty \frac{(-1)^n}{n+1} x^{n+1} \\[8pt]
+  & = & x - \frac{1}{2} x^2 + \frac{1}{3} x^3 - \frac{1}{4} x^4 + \cdots.
+\eeqn
+That is,
+$$ \sum_{n=0}^\infty \frac{(-1)^n}{n+1} x^{n+1} \;=\;  \ln (1 + x), $$
+at least for all $x$ in the interval $-1 < x < 1$.  In fact, though the
+theorem does not go so far as to guarantee convergence at the value
+$x=1$, since the series on the left converges at $x=1$ (Why?), one
+might suspect that
+$$ 1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \cdots \;=\; \ln 2. $$
+This, indeed, is the case.
+
+\vs{0.2in}
+\ni
+{\bf Example}: Use the power series representation for $(1+x^2)^{-1}$
+about zero to get a power series representation for $\arctan x$.
+
+\end{document}
+

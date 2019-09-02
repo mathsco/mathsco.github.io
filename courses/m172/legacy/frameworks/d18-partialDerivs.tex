@@ -1,0 +1,135 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{Partial Derivatives}
+\def\lecdate{Thurs., Mar.~1}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\def\unsc{\blank{0.07in}}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+\def\fb#1{\framebox{\parbox[t]{6.5in}{#1}}}
+\def\sfb#1{\framebox{\parbox[t]{6.0in}{#1}}}
+\def\defn#1{\fb{{\bf Definition}: #1}}
+\def\sdefn#1{\sfb{{\bf Definition}: #1}}
+\def\thm#1{\fb{{\bf Theorem}: #1}}
+\def\sthm#1{\sfb{{\bf Theorem}: #1}}
+\def\eg#1{{\bf Example}: #1}
+\def\egs#1{{\bf Examples}: #1}
+\setlength{\fboxsep}{5pt}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH 162---Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+{\bf Today's Goal}: To understand what is meant by a partial derivative.
+
+\vspace{0.2in}
+\ni
+\begin{minipage}[t]{3in}
+In the \href{http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d16-fnsOfMultVarsIntro.pdf}{framework that introduced multivariate functions},
+we indicated that one can always turn a function of $n$ variables (like
+the one depicted at top right) into
+a function of one particular variable by holding the others constant.
+Suppose $(x_0,y_0)$ is an interior point to the $\dom(f)$ (the black
+dot, for example).  Holding $y=y_0$ fixed and letting
+$x$ take on values near $x_0$ traces out a curve on this surface.
+This curve is the intersection of our surface $z = f(x,y)$ and
+the plane $y = y_0$.  (See the bottom figure.)
+
+\vspace{0.2in}
+\ni
+One might ask what the slope of this curve (the one where
+the plane and surface intersect) is above the point $(x_0,y_0)$---that
+is, at the location of the point $(x_0, y_0, f(x_0,y_0))$ (the yellow
+dot).  The answer would be found by taking a derivative of the
+function of $x$ that results by holding $y = y_0$ fixed:
+\end{minipage}\hspace{0.3in}
+\begin{minipage}[t]{3in}
+  \mbox{}
+
+  \vspace{-1.2in}
+  \includegraphics[width=3in]{figs/surface.pdf}
+
+  \vspace{-1.5in}
+  \includegraphics[width=3in]{figs/surfaceConst_ySlice.pdf}
+\end{minipage}
+
+\vspace{-0.75in}
+$$ \frac{\partial f}{\partial x}\Big|_{(x_0,y_0)} \;:=\;
+	\lim_{h\rightarrow 0} \frac{f(x_0+h,y_0) - f(x_0,y_0)}{h}, $$
+called the {\em partial derivative of f with respect to x at} $(x_0,y_0)$.
+This partial derivative has various other notations:
+$$ \frac{\partial f}{\partial x}(x_0, y_0), \quad f_x(x_0, y_0), \quad
+	\frac{\partial z}{\partial x}\Big|_{(x_0,y_0)}. $$
+Of course, the partial derivative is a function of $x$ and $y$ in its
+own right.  When we think of it that way, we write
+$$ \frac{\partial f}{\partial x} \quad\mbox{or}\quad f_x. $$
+
+\np
+\ni
+We can also take partial derivatives with respect to $y$ (or other
+variables, if $f$ is a function of more than 2 variables).  The resulting
+partial derivatives may be differentiated again:
+\bq
+  \begin{tabular}{ll}
+	$\ds{\frac{\partial^2 f}{\partial y^2}}$, \; or \; $f_{yy}$ &
+	  get this by differentiating $f_y$ with respect to $y$. \\[16pt]
+	$\ds{\frac{\partial^2 f}{\partial x \partial y}}$, \; or \; $f_{yx}$ &
+	  get this by differentiating $f_y$ with respect to $x$. \\[16pt]
+	$\ds{\frac{\partial^2 f}{\partial y^2 \partial x}}$, \; or \; $f_{xyy}$
+	  \phantom{XX} & get this by differentiating $f_x$
+	  twice with respect to $y$.
+  \end{tabular}
+\eq
+
+\vspace{0.2in}
+\ni
+The usual theorems that provide shortcuts to taking derivative may
+be applied, keeping in mind which variable(s) is being held constant.\\[8pt]
+\egs{}
+\bi
+%\item[] $\ds{ f(x,y) = x^5 - 6x^2 y + 2xy^3 - x }$
+\item[] $\ds{ \frac{2x^2 - y}{3x - xy^2} }$\\[24pt]
+\item[] $\ds{ \exp(x/y^2) }$\\[24pt]
+\item[] $\ds{ \ln(xy^2) }$
+\ei
+
+\end{document}
+

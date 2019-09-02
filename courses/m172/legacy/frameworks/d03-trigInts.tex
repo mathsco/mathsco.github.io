@@ -1,0 +1,95 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{Trigonometric Integrals}
+\def\lecdate{Wed., Jan.~31}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\def\unsc{\blank{0.07in}}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH 162---Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+Types we handle and relevant trig. identities:
+\bq
+{\small
+$$ \begin{array}{ccc}
+  \mbox{{\ul{integral type}}}
+	& \phantom{XXX} & \mbox{{\ul{trig. identity}}} \\[10pt]
+  \int \sin^m x \cos^n x\,dx, \quad m\;\mbox{or}\; n\; \mbox{odd}
+	& \phantom{XXX} & \sin^2 \theta + \cos^2\theta = 1 \\[8pt]
+  \int \sin^m x \cos^n x\,dx, \quad m, n\; \mbox{even}
+	& & \sin^2\theta = \frac{1}{2}[1 - \cos(2\theta)] \;\mbox{and}\;
+	\cos^2\theta = \frac{1}{2}[1 + \cos(2\theta)] \\[8pt]
+  \int \sqrt{1 + \cos(mx)}\,dx & & 
+	2 \cos^2\theta = 1 + \cos(2\theta) \\[8pt]
+  \int \tan^m x \sec^n x \, dx, \quad m, n > 1
+	& & 1 + \tan^2 \theta = \sec^2 \theta \\[8pt]
+  \int \cot^m x \csc^n x \, dx, \quad m, n > 1
+	& & 1 + \cot^2 \theta = \csc^2 \theta \\[8pt]
+  \int \sin(mx) \sin(nx) \, dx, \quad m \ne n
+	& & \sin(m\theta)\sin(n\theta) = \frac{1}{2}[\cos((m-n)\theta)
+	- \cos((m+n)\theta)] \\[8pt]
+  \int \sin(mx) \cos(nx) \, dx, \quad m \ne n
+	& & \sin(m\theta)\cos(n\theta) = \frac{1}{2}[\sin((m-n)\theta)
+	+ \sin((m+n)\theta)] \\[8pt]
+  \int \cos(mx) \cos(nx) \, dx, \quad m \ne n
+	& & \cos(m\theta)\cos(n\theta) = \frac{1}{2}[\cos((m-n)\theta)
+	+ \cos((m+n)\theta)] \\[8pt]
+  \end{array} $$
+}
+\eq
+
+\ni
+But, frequently the above identities only serve to reduce things to
+a special case you must be able to handle some other way.  Some of
+these special cases:
+\bi
+\item[] $\ds{\int \tan x\,dx},\;$ handled via substitution
+\item[] $\ds{\int \sec^3 x\, dx},\;$ handled by parts (see p.~459)
+\item[] $\ds{\int \tan^m x \sec^2 x \,dx},\;$ handled via substitution
+\item[]
+  $\ds{\int \sec x\,dx},\;$ handled via substitution, after
+  multiplying through by $\ds{\frac{\sec x + \tan x}{\sec x + \tan x}}$
+\item[] $\ds{\int \tan x \sec^n x \,dx},\;$ handled via substitution
+\ei
+
+\end{document}
+

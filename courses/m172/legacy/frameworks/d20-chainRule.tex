@@ -1,0 +1,181 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{Chain Rules}
+\def\lecdate{Thurs., Mar.~8}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\def\unsc{\blank{0.07in}}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+\def\fb#1{\framebox{\parbox[t]{6.5in}{#1}}}
+\def\sfb#1{\framebox{\parbox[t]{6.0in}{#1}}}
+\def\defn#1{\fb{{\bf Definition}: #1}}
+\def\sdefn#1{\sfb{{\bf Definition}: #1}}
+\def\thm#1{\fb{{\bf Theorem}: #1}}
+\def\sthm#1{\sfb{{\bf Theorem}: #1}}
+\def\eg#1{{\bf Example}: #1}
+\def\egs#1{{\bf Examples}: #1}
+\def\newt{\vspace{0.2in}\ni}
+\setlength{\fboxsep}{5pt}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH 162---Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+{\bf Today's Goal}: To extend the chain rule to functions of multiple variables.
+
+\vspace{0.3in}
+\ni
+{\bf\large Chain rule, single (independent) variable case}
+
+\vspace{0.15in}
+\ni
+\begin{minipage}[t]{4in}
+{\bf Setting}: $y$ is a function of $x$, while $x$ is a function of $t$.
+More explicitly, $y = y(x)$, and $x = x(t)$ (so $y = y(x(t))$). \\[16pt]
+{\bf Chain Rule}:
+$\ds{ \quad\frac{dy}{dt} \;=\; \frac{dy}{dx}\frac{dx}{dt}}$\\[20pt]
+Note here that
+\bi
+\item $y$ is the (final) dependent variable.
+\item $t$ is the independent variable.
+\item $x$ is an intermediate variable.
+\ei
+\end{minipage}\hspace{1.0in}
+\setlength{\unitlength}{2mm}
+\begin{minipage}[t]{2in}
+  \mbox{}
+
+  \begin{picture}(10,20)
+	\put(5,0){\circle*{1}}
+	\put(5,10){\circle*{1}}
+	\put(5,20){\circle*{1}}
+	\put(3,0){$t$}
+	\put(7,5){$\ds{\frac{dx}{dt}}$}
+	\put(3,10){$x$}
+	\put(7,15){$\ds{\frac{dy}{dx}}$}
+	\put(3,20){$y$}
+	\thicklines
+	\put(5,0){\vector(0,1){6}}
+	\put(5,6){\vector(0,1){10}}
+	\put(5,16){\line(0,1){4}}
+  \end{picture}
+\end{minipage}
+
+\vspace{0.3in}
+\ni
+{\bf\large Many Multivariate Chain Rules}
+
+\vspace{0.15in}
+\ni
+\begin{minipage}[t]{5in}
+  {\bf Setting 1}: $\; z = f(x,y)$, with $x = x(t)$, $y = y(t)$ \\[16pt]
+  {\bf Chain Rule}:
+  $\ds{ \quad\frac{dz}{dt} \;=\; \frac{\partial z}{\partial x}\frac{dx}{dt}}
+	+ \frac{\partial z}{\partial y}\frac{dy}{dt}$
+
+  \vspace{0.7in}
+  \ni
+  {\bf Setting 2}: $\; w = f(x,y,z)$, with $x = x(t)$, $y = y(t)$ \\[16pt]
+  {\bf Chain Rule}:
+  $\ds{ \quad\frac{dw}{dt} \;=\; \frac{\partial w}{\partial x}\frac{dx}{dt}
+	+ \frac{\partial w}{\partial y}\frac{dy}{dt}
+	+ \frac{\partial w}{\partial z}\frac{dz}{dt}}$
+
+  \vspace{0.6in}
+  \ni
+  {\bf Setting 3}: $\; z = f(x,y)$, with $x = x(u,v)$, $y = y(u,v)$,
+	\\[16pt]
+  {\bf Chain Rules}:
+  $ \quad \ds{
+	\left\{\begin{array}{ll}
+	  \ds{\frac{\partial z}{\partial u} \;=\; \frac{\partial z}{\partial x}
+		\frac{\partial x}{\partial u} + \frac{\partial z}{\partial y}
+		\frac{\partial y}{\partial u}} \\[16pt]
+	  \ds{\frac{\partial z}{\partial v} \;=\; \frac{\partial z}{\partial x}
+		\frac{\partial x}{\partial v} + \frac{\partial z}{\partial y}
+		\frac{\partial y}{\partial v}}
+	\end{array}\right.} $
+\end{minipage}
+\begin{minipage}[t]{1.5in}
+  \mbox{}
+
+  \vspace{-0.3in}
+  \begin{picture}(20,18)
+	\put(0,8){$t$}
+	\put(20,8){$z$}
+	\put(9,17){$y$}
+	\put(3,14){$\ds{\frac{dy}{dt}}$}
+	\put(14,14){$\ds{\frac{\partial z}{\partial y}}$}
+	\put(9,1){$x$}
+	\put(3,3){$\ds{\frac{dx}{dt}}$}
+	\put(14,3){$\ds{\frac{\partial z}{\partial x}}$}
+	\put(2,9){\circle*{1}}
+	\put(10,15){\circle*{1}}
+	\put(10,3){\circle*{1}}
+	\put(18,9){\circle*{1}}
+	\thicklines
+	\put(2,9){\vector(4,3){5}}
+	\put(6,12){\line(4,3){4}}
+	\put(2,9){\vector(4,-3){5}}
+	\put(6,6){\line(4,-3){4}}
+	\put(10,15){\vector(4,-3){5}}
+	\put(14,12){\line(4,-3){4}}
+	\put(10,3){\vector(4,3){5}}
+	\put(14,6){\line(4,3){4}}
+  \end{picture}
+\end{minipage}
+
+\section*{Another Look at Implicit Differentiation}
+
+Many problems from MATH 161 in which implicit differentation was used
+involved equations which could be put in the form $F(x,y) = 0$.
+Assuming that this equation defines $y$ implicitly as a function of
+$x$ (an assumption that is generally true), then by the chain rule
+$$ \frac{dF}{dx} \;=\; \frac{\partial F}{\partial x}\frac{dx}{dx}
+	+ \frac{\partial F}{\partial y}\frac{dy}{dx}
+	\;=\; F_x + F_y\,\frac{dy}{dx}. $$
+This is the $x$-derivative of one side of the equation $F(x,y) = 0$.
+The $x$-derivative of the other side is, naturally, 0.  Thus, we have
+$$ F_x + F_y\,\frac{dy}{dx} \;=\; 0 \qquad\Rarrow\qquad
+	\frac{dy}{dx} \;=\; -\frac{F_x}{F_y}. $$
+
+\end{document}
+

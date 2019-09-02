@@ -1,0 +1,159 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{Vectors}
+\def\lecdate{Fri., Mar.~9}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\def\mbunsc{\blank{0.07in}}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+\def\fb#1{\framebox{\parbox[t]{6.5in}{#1}}}
+\def\sfb#1{\framebox{\parbox[t]{6.0in}{#1}}}
+\def\defn#1{\fb{{\bf Definition}: #1}}
+\def\sdefn#1{\sfb{{\bf Definition}: #1}}
+\def\thm#1{\fb{{\bf Theorem}: #1}}
+\def\sthm#1{\sfb{{\bf Theorem}: #1}}
+\def\eg#1{{\bf Example}: #1}
+\def\egs#1{{\bf Examples}: #1}
+\def\newt{\vspace{0.2in}\ni}
+\setlength{\fboxsep}{5pt}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH 162---Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+{\bf Today's Goal}: To understand vectors and be able to manipulate them.
+
+\subsection*{Vectors in 2 and 3 Dimensions}
+\defn{A {\em vector} is a directed line segment.  If $P$ and $Q$
+are points in $\mathR^2$ or $\mathR^3$, then the directed line
+segment from the {\em initial} point $P$ to the {\em terminal}
+point $Q$ is denoted $\overrightarrow{PQ}$.}
+
+\bi
+\item
+  {\bf Vector names}: bold-faced letters (usually lower-case) $\mbv$,
+  or letters with arrows $\vec{v}$
+\item
+  There are two things that distinguish a vector $\mbv$:
+  its {\em length} and its {\em direction}.
+  Thus, two directed line segments which are parallel, have
+  the same length, and are oriented in the same direction
+  (arrow pointing the same way) are considered to be the
+  same (equal) even if their initial and terminal points are
+  different.
+\item
+  {\bf Component form}: Given what was said above, any vector
+  $\mbv$ may be moved rigidly so as to make its initial point be
+  the origin.  Writing $(v_1,v_2,v_3)$ for the resulting
+  terminal point, we then say that $\mbv = \left<v_1, v_2, v_3\right>$.
+  This is called the {\em component form} of $\mbv$.  The numbers
+  $v_1$, $v_2$ and $v_3$ are the {\em components} of $\mbv$.
+\item
+  {\bf Equality of vectors}: Two vectors are considered equal
+  when they are equal in each component.
+\item
+  If $\mbv = \left<v_1, v_2, v_3\right>$ then the {\em length}
+  (or {\em magnitude}) of $\mbv$, denoted $|\mbv|$, is given by
+  $$ |\mbv| \;:=\; \sqrt{v_1^2 + v_2^2 + v_3^2}. $$
+  The only vector whose length is zero is the one whose
+  components are all zero.  We call this the {\em zero vector},
+  denoting it by $\0$.  The other vectors (the ones with nonzero
+  length) are collectively referred to as {\em nonzero} vectors.
+\ei
+
+\subsection*{Vector Operations}
+
+{\bf Vector Addition}: If $\mbu = \left<u_1, u_2, u_3\right>$
+and $\mbv = \left<v_1, v_2, v_3\right>$, we define
+$$ \mbu + \mbv \;:=\; \left<u_1 + v_1, u_2 + v_2, u_3 + v_3\right>. $$\\
+{\bf Scalar Multiplication}: If $\mbv = \left<v_1, v_2, v_3\right>$
+and $c$ is a real number (a {\em scalar}), then we define
+$$ c\mbv \;:=\; \left<cv_1, cv_2, cv_3\right>. $$
+
+\np
+\ni
+Note that:
+\bi
+\item
+  Our definitions for vector addition and scalar multiplication
+  are enough to give us the notion of {\em vector subtraction} as
+  well, since we may think of $\mbu - \mbv$ as
+  $$ \mbu + (-1)\mbv \;=\; \left<u_1, u_2, u_3\right> +
+	\left<-v_1, -v_2, -v_3\right> \;=\; \left<u_1 - v_1,
+	u_2 - v_2, u_3 - v_3\right>. $$
+\item
+  We make sense of an expression like $\mbv/c$ (i.e., dividing
+  a vector by a scalar) by thinking of it as $(1/c)\mbv$
+  (i.e., the reciprocal of $c$ multiplied by $\mbv$).  For
+  any nonzero vector $\mbv$, $\mbv/|\mbv|$ is a vector whose
+  length is 1, called the {\em direction} of $\mbv$.
+\item
+  No attempt has been made to define any type of multiplication
+  (not yet) nor division (never!) between two vectors.
+\ei
+
+\subsection*{Unit Vectors}
+
+Any vector whose length is 1 is called a {\em unit vector}.
+
+\newt
+\eg{}
+For each $\mbv \ne \0$, the direction $\ds{\frac{\mbv}{|\mbv|}}$
+of $\mbv$ is a unit vector.  Thus, in 2D, the vector
+$\mbv = \left<-2, 5\right>$ has direction
+$$ \mbd \;=\; \frac{\left<-2,5\right>}{\sqrt{(-2)^2 + 5^2}} \;=\;
+	\left<\frac{-2}{\sqrt{29}}, \frac{5}{\sqrt{29}}\right>. $$
+We may then write $\mbv$ as a product of its magnitude times its
+direction
+$$ \mbv \;=\; \sqrt{29} \mbd. $$
+
+\newt
+{\bf Standard unit vectors} (the ones parallel to the
+coordinate axes): $\mbi := \left<1,0,0\right>$,
+$\mbj := \left<0,1,0\right>$, and $\mbk := \left<0,0,1\right>$.
+
+\newt
+Notice that, for $\mbv = \left<v_1, v_2, v_3\right>$, it is the
+case that
+$$ \mbv \;=\; v_1 \mbi + v_2 \mbj + v_3 \mbk. $$
+
+\end{document}
+

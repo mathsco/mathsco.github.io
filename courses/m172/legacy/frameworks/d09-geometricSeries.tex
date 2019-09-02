@@ -1,0 +1,157 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{Geometric Series and Series Introduction}
+\def\lecdate{Thurs., Feb.~15}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\def\unsc{\blank{0.07in}}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH 162---Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+\section*{Geometric Series}
+\bi
+\item Form of series under this classification
+  $$ a + ar + ar^2 + \cdots + ar^n + \cdots \;=\; \sum_{n=0}^\infty ar^n, $$
+  $a$, $r$ nonzero constants
+
+\item Zeno's paradox about crossing a room
+  \bi
+  \item
+	If $L$ is length of room, then he is looking at adding up distances
+	$$ L\cdot \left(\frac{1}{2}\right) + L\cdot \left(\frac{1}{2}\right)^2
+	  L\cdot \left(\frac{1}{2}\right)^3 + \cdots
+	  \;=\; \sum_{n=0}^\infty ar^n, $$
+	with $a = L/2$, $r = 1/2$.
+  \item
+	Evidence that (some) geometric series converge
+  \ei
+
+\item
+  Partial sums $s_n$
+  \bi
+  \item Define in customary way:
+	$$ s_1 = a, \; s_2 = a + ar, \; s_3 = a + ar + ar^2, \quad \mbox{etc.}$$
+
+  \item
+	$n$th partial sum has nice closed-form formula:
+	$$ s_n \;=\; \left\{\begin{array}{ll}
+		\ds{\frac{a(1 - r^n)}{1-r}}, & \mbox{when} \; r \ne 1, \\[10pt]
+		na, & \mbox{when} \; r = 1.
+	  \end{array}\right. $$
+
+  \item
+	{\bf Main Result}: Geometric series $\ds{\sum_{n=0}^\infty ar^n}$
+	converges to $\ds{\frac{a}{1-r}}$ when $|r| < 1$, and diverges otherwise.
+
+  \ei
+
+\item
+  Note the {\em divergence} when $|r| = 1$: \\
+  $r = 1: \;\; \ds{\sum_{n=0}^\infty a} = a + a + \cdots + a + \cdots
+	\qquad$(divergent) \\[8pt]
+  $r = -1: \;\; \ds{\sum_{n=0}^\infty a} = a - a + a - a + a - a + \cdots
+	\qquad$(divergent) \\
+\ei
+
+\np
+\ni
+Remarks concerning infinite series (general, not just geometric ones)
+$\ds{\sum_{n=1}^\infty a_n}$:
+\be
+\item
+  Convergence relies on the partial sums $s_n := a_1 + \cdots + a_n$
+  approaching a limit as $n\rightarrow\infty$
+\item
+  Assessing the limit of partial sums directly requires a nice
+  closed-form expression for $s_n$.  Such an expression exists only
+  in rare cases, such as the following examples we've already done
+  \bi
+  \item[] Geometric series: $\;\ds{\sum_{n=0}^\infty ar^n}$
+  \item[]
+	``Telescoping series'': $\;\ds{\sum_{n=1}^\infty \left(\frac{1}{n}
+	- \frac{1}{n+1}\right)}$
+  \ei
+\item
+  When no closed-form expression for $s_n$ is available, determining
+  if limit exists is usually more difficult. \\[8pt]
+  {\bf Example}: $\ds{\sum_{n=1}^\infty \frac{(-1)^{n-1}}{n^p}}$,
+  $\; p \ge 0$
+\item
+  Systematic tests can help
+  \bi
+  \item Some of the tests that have been developed ('*'
+	indicate ones we will study)
+	\bi
+	\item *{\bf $n$th-term test for divergence} (p.~519)
+	\item
+	  {\bf integral test} (p.~525): formalization of the approach
+	  we used to determine which $p$-series $\ds{\sum_{n=1}^\infty n^{-p}}$
+	  converge/diverge
+	\item
+	  {\bf direct comparison test} (p.~529): practically a restatement
+	  of the one of the same name for improper integrals
+	\item
+	  {\bf limit comparison test} (p.~530): did not do comparable
+	  result for improper integrals
+	\item *{\bf ratio test} (p.~533)
+	\item {\bf root test} (p.~535)
+	\item
+	  {\bf alternating series test} (p.~538): formalization of
+	  the approach we used to show
+	  $\ds{\sum_{n=1}^\infty \frac{(-1)^{n-1}}{n^p}}$ converges
+	  for $p \ge 0$
+	\item *{\bf absolute convergence test} (p.~540)
+	\ei
+  \item Must be cognizant of
+	\bi
+	\item
+	  the situations in which a test may be applied
+	\item
+	  what conclusions may and may not be drawn from such tests
+	\ei
+  \ei
+\ee
+
+\end{document}
+

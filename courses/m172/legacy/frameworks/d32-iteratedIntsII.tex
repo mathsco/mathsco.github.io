@@ -1,0 +1,125 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{Double Integrals, General Regions}
+\def\lecdate{Fri., Apr.~13}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{ascii}
+%\usepackage{wasysym}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\def\mbunsc{\blank{0.07in}}
+\def\pref#1{(\ref{#1})}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+\def\fb#1{\framebox{\parbox[t]{6.5in}{#1}}}
+\def\sfb#1{\framebox{\parbox[t]{6.0in}{#1}}}
+\def\defn#1{\fb{{\bf Definition}: #1}}
+\def\sdefn#1{\sfb{{\bf Definition}: #1}}
+\def\thm#1{\fb{{\bf Theorem}: #1}}
+\def\sthm#1{\sfb{{\bf Theorem}: #1}}
+\def\eg#1{{\bf Example}: #1}
+\def\egs#1{{\bf Examples}: #1}
+\def\newt{\vspace{0.2in}\ni}
+\setlength{\fboxsep}{5pt}
+%\def\vdotprod{{\ascii\BEL}}
+\def\vdotprod{\,\mbox{{\Large $\cdot$}}\,}
+\def\vcrossprod{\times}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+{\bf Today's Goal}:
+To understand the meaning of double integrals over
+more general bounded regions $R$ of the plane, and to be
+able to evaluate such integrals.
+
+\vspace{0.15in}
+\ni
+{\bf Important Note}: In conjunction with this framework,
+you should look over Section 13.2 of your text.
+
+\vspace{0.15in}
+\subsection*{Double Integrals as Iterated Integrals: General Treatment}
+
+{\bf{Q:}} What if we seek $\iint_R f(x,y)\,dA$ when $R$ is not a
+rectangle whose sides are parallel to the coordinate axes?
+\bi
+\item[{\bf{A1:}}]
+  If $R$ is a ``nice enough'' region (and, for our study,
+  it will be), we can, once again, define $\iint_R f(x,y)\,dA$ in
+  terms of Riemann sums.  The twist here is that, for any given
+  partition of $R$, the rectangles will only partially fill up $R$.
+
+  We will not pursue this train of thought further.
+
+\item[{\bf{A2:}}]
+  Use a more general form of Fubini's theorem.  You can see
+  the formal statement on p.~792 of your text.  It deals with
+  2 cases (pictured): \\[16pt]
+  \includegraphics[width=6in]{figs/fubiniGeneralRegions.png}
+  \bi
+  \item[{\bf{Case 1:}}]
+	the upper and lower boundaries of $R$ each are functions
+	of $x$ on a common interval; that is, a region
+	$R:\; a \le x \le b, \; g_1(x) \le y \le g_2(x)$.  Then
+	$$ \iint\limits_R f(x,y)\,dA \;=\; \int_a^b \int_{g_1(x)}^{g_2(x)}
+		f(x,y)\,dy \,dx. $$
+
+	\eg{}
+	Evaluate $\;\iint_R (x + 2y)\,dA\;$ over the region $R$
+	that lies between the parabolas $\;y = 2x^2\;$ and
+	$\;y = 1 + x^2$.
+	\vspace{2.5in}
+
+  \item[{\bf{Case 2:}}]
+	the left and right boundaries of $R$ each are functions
+	of $y$ on a common interval; that is, a region
+	$R:\; c \le y \le d, \; h_1(x) \le x \le h_2(x)$.  Then
+	$$ \iint\limits_R f(x,y)\,dA \;=\; \int_c^d \int_{h_1(y)}^{h_2(y)}
+		f(x,y)\,dx \,dy. $$
+
+	\eg{}
+	Set up an integral for a function $f(x,y)$ over the region
+	bounded by the $y$-axis and the curve $x + y^2 = 1$.
+  \ei
+\ei
+
+\end{document}
+

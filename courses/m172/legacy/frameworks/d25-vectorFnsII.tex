@@ -1,0 +1,155 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{Vector Functions and Integral Calculus}
+\def\lecdate{Fri., Mar.~16}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{ascii}
+%\usepackage{wasysym}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\def\mbunsc{\blank{0.07in}}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+\def\fb#1{\framebox{\parbox[t]{6.5in}{#1}}}
+\def\sfb#1{\framebox{\parbox[t]{6.0in}{#1}}}
+\def\defn#1{\fb{{\bf Definition}: #1}}
+\def\sdefn#1{\sfb{{\bf Definition}: #1}}
+\def\thm#1{\fb{{\bf Theorem}: #1}}
+\def\sthm#1{\sfb{{\bf Theorem}: #1}}
+\def\eg#1{{\bf Example}: #1}
+\def\egs#1{{\bf Examples}: #1}
+\def\newt{\vspace{0.2in}\ni}
+\setlength{\fboxsep}{5pt}
+%\def\vdotprod{{\ascii\BEL}}
+\def\vdotprod{\,\mbox{{\Large $\cdot$}}\,}
+\def\vcrossprod{\times}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH 162---Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+{\bf Today's Goal}: To understand how to integrate vector functions.
+
+\vspace{0.2in}
+\subsection*{Indefinite integrals}
+Recall: For scalar functions $f(t)$,
+\bi
+\item
+  A function $F$ is called an antiderivative of $f$ on the interval
+  $I$ if $F'(t) = f(t)$ at each point $t\in I$.
+\item
+  Given any antiderivative $F$ of $f$ and any constant $C$,
+  $F(t) + C$ is also an antiderivative of $f$.
+\item
+  The indefinite integral
+  $$ \int f(t)\, dt $$
+  stands for the set of all antiderivatives of $f$.
+\ei
+{\bf For a vector function} $\mbr(t) = f(t)\mbi + g(t)\mbj + h(t)\mbk$,
+\bi
+\item
+  An antiderivative of $\mbr(t)$ on an interval $I$ is another
+  vector function $\mbR(t)$ for which $\mbR'(t) = \mbr(t)$
+  at each $t\in I$.
+\item
+  Finding an antiderivative of $\mbr(t)$ comes down to finding
+  antiderivatives for its component functions.  That is, if
+  $F$, $G$ and $H$ are antiderivatives of $f$, $g$ and $h$
+  on the interval $I$, then
+  $$ \mbR(t) \;=\; F(t)\mbi + G(t)\mbj + H(t)\mbk $$
+  is an antiderivative of $\mbr(t)$.
+\item
+  Given any antiderivative $\mbR(t)$ of $\mbr(t)$ and any constant
+  vector $\mbC$, $\mbR(t) + \mbC$ is also an antiderivative of $\mbr(t)$.
+\item
+  The symbol
+  $$ \int \mbR(t)\,dt $$
+  stands for the set of all antiderivatives of $\mbr$.
+\ei
+
+\newt
+\eg{}
+$\ds{\int \left[\left(\frac{1}{1 + t^2}\right)\mbi + (\sin t\cos t)\,\mbj
+  + \left(\frac{t}{\sqrt{1 + 3t^2}}\right)\mbk\right]\,dt}$
+% \;=\; (\arctan t)\,\mbi + \left(\frac{\sin^2 t}{2}\right)\mbj
+% + \left(\frac{2\sqrt{1 + 3t^2}}{3}\right)\mbk + \mbC.} $
+
+\vspace{0.1in}
+\subsection*{Definite Integrals}
+
+\vspace{0.1in}
+\defn{Suppose that the component functions of
+$\mbr(t) = f(t)\mbi + g(t)\mbj + h(t)\mbk$ are all integrable
+over the interval $[a,b]$ (true, say, if each of $f$, $g$ and
+$h$ are continuous over that interval).  Then we say the vector
+function $\mbr(t)$ is {\em integrable over} $[a,b]$, and define
+its integral to be
+$$ \int_a^b \mbr(t)\,dt \;:=\; \left(\int_a^b f(t)\,dt\right)\mbi
+  + \left(\int_a^b g(t)\,dt\right)\mbj + \left(\int_a^b h(t)\,dt\right)\mbk. $$
+}
+
+\newt
+Since the fundamental theorem of calculus holds for the components
+of $\mbr(t)$, it holds for $\mbr(t)$ as well.  Here we state just
+part II.
+
+\newt
+\thm{If $\mbr(t)$ is continuous at each point of the interval
+$[a,b]$ and if $\mbR$ is any antiderivative of $\mbr$ on $[a,b]$, then
+$$ \int_a^b \mbr(t)\, dt \;=\; \mbR(b) - \mbR(a). $$
+}\\[8pt]
+
+\newt
+{\bf Application: Projectile motion}\\[10pt]
+For projectiles near enough to sea level, we think of them as having
+constant acceleration $\mba(t) = -g\mbk$, where $g$ has the value
+9.8 $m/s^2$ or 32 $ft/s^2$.  Since velocity is an antiderivative of
+acceleration, we may write
+$$ \int_0^t \mba \,d\tau \;=\; -gt\mbk \;=\; \mbv(t) - \mbv(0), $$
+or, abbreviating $\mbv(0)$ by $\mbv_0$,
+$$ \mbv(t) \;=\; \mbv_0 - gt\mbk. $$
+The position $\mbr(t)$ is an antiderivative of velocity, so
+$$ \int_0^t \mbv(\tau)\,d\tau \;=\; t\mbv_0 - \frac{1}{2}gt^2\mbk
+  \;=\; \mbr(t) - \mbr(0), $$
+or
+$$ \mbr(t) \;=\; \mbr_0 + t\mbv_0 - \frac{1}{2}gt^2\mbk, $$
+where $\mbr_0 := \mbr(0)$ is the initial position.
+
+\end{document}
+

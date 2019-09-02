@@ -1,0 +1,277 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{The Gradient Vector}
+\def\lecdate{Thurs., Mar.~29--Fri. Mar.~30}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{ascii}
+%\usepackage{wasysym}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\def\mbunsc{\blank{0.07in}}
+\def\pref#1{(\ref{#1})}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+\def\fb#1{\framebox{\parbox[t]{6.5in}{#1}}}
+\def\sfb#1{\framebox{\parbox[t]{6.0in}{#1}}}
+\def\defn#1{\fb{{\bf Definition}: #1}}
+\def\sdefn#1{\sfb{{\bf Definition}: #1}}
+\def\thm#1{\fb{{\bf Theorem}: #1}}
+\def\sthm#1{\sfb{{\bf Theorem}: #1}}
+\def\eg#1{{\bf Example}: #1}
+\def\egs#1{{\bf Examples}: #1}
+\def\newt{\vspace{0.2in}\ni}
+\setlength{\fboxsep}{5pt}
+%\def\vdotprod{{\ascii\BEL}}
+\def\vdotprod{\,\mbox{{\Large $\cdot$}}\,}
+\def\vcrossprod{\times}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH 162---Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+{\bf Today's Goal}:
+To learn about the gradient vector $\vec\nabla f$ and
+its uses, where $f$ is a function of two or three variables.
+
+\vspace{0.1in}
+\subsection*{The Gradient Vector}
+Suppose $f$ is a differentiable function of two variables $x$ and
+$y$ with domain $R$, an open region of the $xy$-plane.  Suppose
+also that
+$$ \mbr(t) = x(t)\mbi + y(t)\mbj, \qquad t\in I, $$
+(where $I$ is some interval) is a differentiable vector function
+(parametrized curve) with $(x(t), y(t))$ being a point in $R$
+for each $t\in I$.  Then by the chain rule,
+\begin{eqnarray}
+  \frac{d}{dt} f(x(t), y(t)) & = & \frac{\partial f}{\partial x}
+	\frac{dx}{dt} + \frac{\partial f}{\partial y}\frac{dy}{dt} \nonumber \\
+  & = & \left[f_x \mbi + f_y \mbj\right]
+	\vdotprod \left[x'(t) \mbi + y'(t) \mbj\right] \nonumber \\
+  & = & \left[f_x \mbi + f_y \mbj\right]
+	\vdotprod \frac{d\mbr}{dt}. \label{totalD}
+\end{eqnarray}
+\defn{For a differentiable function $f(x_1, \ldots, x_n)$ of $n$
+variables, we define the {\em gradient vector of} $f$ to be
+$$ \vec\nabla f \;:=\; \left<\frac{\partial f}{\partial x_1},
+  \frac{\partial f}{\partial x_2}, \ldots,
+  \frac{\partial f}{\partial x_n}\right>. $$}\\[8pt]
+Remarks:
+\bi
+\item
+  Using this definition, the total derivative $df/dt$ calculated
+  in \pref{totalD} above may be written as
+  $$ \frac{df}{dt} \;=\; \vec\nabla f \vdotprod \mbr'. $$
+  In particular, if
+  $\mbr(t) = x(t)\mbi + y(t)\mbj + z(t)\mbk$, $t\in (a,b)$ is a
+  differentiable vector function, and if $f$ is a function of
+  3 variables which is differentiable at the point $(x_0 , y_0, z_0)$,
+  where $x_0 = x(t_0)$, $y_0 = y(t_0)$, and $z_0 = z(t_0)$ for some
+  $t_0 \in (a,b)$, then
+  $$ \left.\frac{df}{dt}\right|_{t=t_0} \;=\;
+	\vec\nabla f(x_0, y_0, z_0) \vdotprod \mbr'(t_0). $$
+
+\item
+  If $f$ is a function of 2 variables, then $\vec\nabla f$ has
+  2 components.  Thus, while the graph of such an $f$ lives in
+  3D, $\vec\nabla f$ should be thought of as a vector in
+  the plane.
+
+  If $f$ is a function of 3 variables, then $\vec\nabla f$ has
+  3 components, and is a vector in 3-space.
+
+  \newpage
+  \begin{minipage}[t]{3.3in}
+	Speaking more generally, we may say that while a function
+	$f(x_1, \ldots, x_n)$ of $n$ variables requires $n$ inputs
+	to produce a single (numeric) output, the corresponding
+	gradient $\vec\nabla f$ produces from those same $n$ inputs
+	a {\em vector} with $n$ components.  Objects which assign
+	to each $n$-tuple input an $n$-vector output are known as
+	{\em vector fields}.  The gradient is an example of a vector
+	field.\\[14pt]
+	\eg{}
+	For $f(x,y) = y^2 - x^2$, we have $\dom(f) = \mathR^2$ and
+	$\vec\nabla f(x,y) = -2x\mbi + 2y\mbj$.  Selecting any point
+	$(x,y)$ in the plane, we may choose to draw $\vec\nabla f(x,y)$
+	not as a vector in standard position, but rather one with
+	initial point $(x,y)$, obtaining the picture at right.
+  \end{minipage}\hspace{0.3in}
+  \begin{minipage}[t]{3.2in}
+	\mbox{}
+
+	\vspace{-0.3in}
+	\includegraphics[width=2.8in]{figs/gradientField.pdf}
+  \end{minipage}
+
+\item
+  {\bf Properties of the gradient operator}:
+  If $f$, $g$ are both differentiable functions of $n$ variables
+  on an open region $R$, and $c$ is any real number (constant), then
+  \be
+  \item
+	$\vec\nabla(cf) = c\vec\nabla f \qquad$ (constant multiple rule)\\
+  \item
+	$\vec\nabla(f \pm g) = \vec\nabla f \pm \vec\nabla g \qquad$
+	(sum/difference rules)\\
+  \item
+	$\vec\nabla(f g) = g(\vec\nabla f) + f(\vec\nabla g) \qquad$
+	(product rule)\\
+  \item
+	$\ds{\vec\nabla\left(\frac{f}{g}\right)
+	  = \frac{g(\vec\nabla f) - f(\vec\nabla g)}{g^2}} \qquad$
+	(quotient rule)
+  \ee
+\ei
+
+\vspace{0.1in}
+\subsection*{Directional Derivatives}
+Let $\mbu = u_1\mbi + u_2\mbj$ be a unit vector (i.e., $|\mbu| = 1$),
+and let $\mbr(t)$ be the vector function
+$$ \mbr(s) = (x_0 + s u_1)\mbi + (y_0 + s u_2)\mbj, $$
+which parametrizes the line through $P = (x_0, y_0)$ parallel to
+$\mbu$ in such a way that the ``speed'' $|d\mbr/dt| = |\mbu| = 1$.
+We make the following definition.\\[8pt]
+\defn{
+For a function $f$ of two variables that is differentiable at
+$(x_0,y_0)$, we define the {\em directional derivative of} $f$
+{\em at} $(x_0, y_0)$ {\em in the direction} $\mbu$ to be
+$$ D_\mbu f(x_0, y_0) \;:=\; \lim_{x\rightarrow 0}
+  \frac{f(x_0 + su_1, y_0 + su_2) - f(x_0, y_0)}{s} \;=\;
+  \left(\frac{df}{ds}\right)_{\mbu, P} =
+  \vec\nabla f(x_0,y_0)\vdotprod \mbu. $$
+} \\[8pt]
+Remarks:
+\bi
+\item
+  {\bf Special cases}: the partial derivatives $f_x$, $f_y$ themselves are
+  derivatives in the directions $\mbi$, $\mbj$ respectively.\\[6pt]
+  \mbox{} $\qquad \ds{D_\mbi f = \vec\nabla f \vdotprod \mbi = f_x},
+  \qquad\mbox{and}\qquad
+  \ds{D_\mbj f = \vec\nabla f \vdotprod \mbj = f_y}$.
+
+\item
+  For $f$ a function of 2 variables, the direction of
+  $\vec\nabla f(x,y)$ (namely $\vec\nabla f(x,y)/|\vec\nabla f(x,y)|$)\\[6pt]
+  is the direction of maximum increase, while
+  $-\vec\nabla f(x,y)/|\vec\nabla f(x,y)|$ is the direction of
+  maximum decrease.\\[8pt]
+  \begin{minipage}[t]{0.5in}
+  Proof:
+  \end{minipage}
+  \begin{minipage}[t]{5.5in}
+  For any unit vector $\mbu$,
+  $$ D_\mbu f(x,y) \;=\; \vec\nabla f(x,y)\vdotprod\mbu
+	\;=\; |\vec\nabla f(x,y)||\mbu|\cos\theta
+	\;=\; |\vec\nabla f(x,y)|\cos\theta, $$
+  where $\theta$ is the angle between $\vec\nabla f(x,y)$ and $\mbu$.
+  This directional derivative is \\[6pt]
+  largest when $\theta = 0$ (i.e., when
+  $\mbu = \vec\nabla f/|\vec\nabla f|$) and smallest when $\theta = \pi$.
+  \end{minipage}
+
+\item
+  The notion of directional derivative extends naturally to
+  functions of 3 or more variables.
+
+\ei
+
+\vspace{0.1in}
+\subsection*{The Gradient and Level Sets}
+
+\begin{minipage}[t]{4in}
+Suppose $f(x,y)$ is differentiable at the point $P = (x_0,y_0)$,
+and let $k = f(x_0,y_0)$.  Then the $k$-level curve of $f$
+contains $(x_0,y_0)$.  Suppose that we have a parametrization
+of a section of this level curve containing the point $(x_0,y_0)$.
+That is, let
+\bi
+\item
+  $x(t)$ and $y(t)$ be differentiable functions of $t$ in an open
+  interval $I$ containing $t=0$,
+\item
+  $x_0 = x(0)$ and $y_0 = x(0)$, and
+\ei
+\end{minipage}
+\begin{minipage}[t]{4in}
+\end{minipage}\\
+\bi
+\item
+  $f(x(t), y(t)) = k$ for $t\in I$ (that is, the parametrization
+  gives at least a small part of the $k$-level curve of $f$---a
+  part that contains the point $P$).
+\ei
+Because we are parametrizing a level curve of $f$, it follows
+that $df/dt = 0$ for $t\in I$.  In particular,
+$$ 0 \;=\; \left.\frac{df}{dt}\right|_{t=t_0} \;=\;
+  \vec\nabla f(x_0, y_0)\vdotprod [x'(t_0)\mbi + y'(t_0)\mbj]. $$
+This shows that the gradient vector at $P$ is orthogonal to
+the level curve of $f$ (or the tangent line to the level curve)
+through $P$.  This is true at all points $P$ where $f$ is
+differentiable.  That this result may be generalized to higher
+dimensions is motivation for the definition of a tangent plane.
+
+\subsection*{Tangent Planes}
+
+\defn{Let $f(x,y,z)$ be differentiable at a point $P = (x_0, y_0, z_0)$
+contained in the level surface $f(x,y,z) = k$.  We define the
+{\em tangent plane to this level surface of f at} $P$ to be the plane
+containing $P$ normal to $\vec\nabla f(x_0, y_0, z_0)$.
+}
+
+\newt
+\eg{}
+Suppose $f(x,y,z)$ is a differentiable function at the point
+$P = (x_0, y_0, z_0)$ lying on the level surface $f(x,y,z) = k$.
+Derive a formula for the equation of the tangent plane to this
+level surface of $f$ at $P$.  Then use it to write the equation
+of the tangent plane to the quadric surface
+$$ f(x,y,z) = x^2 + 3y^2 + 2z^2 \;=\; 6 $$
+at the point $(1,1,1)$.
+
+\vspace{3in}
+\ni
+\eg{}
+Suppose $z = f(x,y)$ is a differentiable function at the point
+$P = (x_0, y_0)$.  Derive a formula for the equation of the tangent
+plane to the surface $z = f(x,y)$ at the point
+$P = (x_0, y_0, f(x_0,y_0))$.  Use it to get the equation of
+the tangent plane to $z = 2x^2 - y^2$ at the point $(1, 3, -7)$.
+
+\end{document}
+

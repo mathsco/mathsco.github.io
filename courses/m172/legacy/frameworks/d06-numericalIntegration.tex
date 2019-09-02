@@ -1,0 +1,135 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{Numerical Integration}
+\def\lecdate{Wed., Feb.~7}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\def\unsc{\blank{0.07in}}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH 162---Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+\section*{Numerical approximations to definite integrals}
+\bi
+\item
+  Riemann (rectangle) sums already give us approximations
+  \bi
+  \item[] Main types: left-hand, right-hand and midpoint rules
+  \ei
+\item
+  Question: Why rectangles?
+  \bi
+  \item
+	trapezoids
+	\bi
+	\item
+	  \begin{minipage}[t]{3.5in}
+	    Area of a trapezoid with bases $b_1$, $b_2$, height $h$
+	  \end{minipage}
+	  \begin{minipage}[t]{2in}
+		\mbox{}
+
+		\vspace{-0.41in}
+		\includegraphics[width=1.5in]{figs/trapezoid.png}
+	  \end{minipage}
+	\item
+	  Approximation to $\ds{\int_a^b f(x)\,dx}$ using $n$
+	  steps all of width $\Delta x = (b-a)/n$ (Trapezoid Rule)
+	\vspace{0.7in}
+	\item
+	  Remarkable fact: Trapezoid rule does not improve over
+	  midpoint rule.
+	\ei
+  \item
+	parabolic arcs
+	\bi
+	\item
+	  \begin{minipage}[t]{3.0in}
+		$\ds{\int_{-h}^h g(x)\,dx}$, when $g(x) = Ax^2 + Bx + C$
+		is chosen to pass through $(-h, y_0)$, $(0,y_1)$ and $(h, y_2)$
+	  \end{minipage}
+	  \begin{minipage}[t]{2.5in}
+		\mbox{}
+
+		\vspace{-0.61in}
+		\includegraphics[width=3.5in]{figs/simpson.png}
+	  \end{minipage}
+	\vspace{0.2in}
+	\item
+	  Approximation to $\ds{\int_a^b f(x)\,dx}$ using $n$ (even)
+	  steps all of width $\Delta x$ (Simpson's Rule)
+	\ei
+  \ei
+\vspace{0.5in}
+\item Error bounds
+  \bi
+  \item No such thing available for a general integrand $f$
+  \item Formulas (available when $f$ is sufficiently differentiable)
+	\bi
+	\item
+	  {\bf Trapezoid Rule}.
+	  Suppose $f''$ is continuous throughout $[a,b]$, and $|f''(x)| \le M$
+	  for all $x\in [a,b]$.  Then the error $E_T$ in using the Trapezoid
+	  rule with $n$ steps to approximate $\ds{\int_a^b f(x)\,dx}$ satisfies
+	  $$ |E_T| \;\le\; \frac{M (b-a)^3}{12n^2}. $$
+	\item
+	  {\bf Simpson's Rule}.
+	  Suppose $f^{(4)}$ is continuous throughout $[a,b]$, and
+	  $|f^{(4)}(x)| \le M$ for all $x\in [a,b]$.  Then the error $E_S$
+	  in using Simpson's rule with $n$ steps to approximate
+	  $\ds{\int_a^b f(x)\,dx}$ satisfies
+	  $$ |E_S| \;\le\; \frac{M (b-a)^5}{180n^4}. $$
+	\ei
+  \item Use
+	\bi
+	\item
+	  For a given $n$, gives an upper bound on your error
+	\item
+	  If a desired upper bound on error is sought, may be used
+	  to determine {\em a priori} how many steps to use
+	\ei
+  \ei
+\ei
+
+\end{document}
+

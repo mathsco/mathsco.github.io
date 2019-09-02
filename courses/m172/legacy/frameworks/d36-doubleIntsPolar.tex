@@ -1,0 +1,144 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{Double Integrals in Polar Coordinates}
+\def\lecdate{Mon., Apr.~23}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{ascii}
+%\usepackage{wasysym}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\def\mbunsc{\blank{0.07in}}
+\def\pref#1{(\ref{#1})}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+\def\fb#1{\framebox{\parbox[t]{6.5in}{#1}}}
+\def\sfb#1{\framebox{\parbox[t]{6.0in}{#1}}}
+\def\defn#1{\fb{{\bf Definition}: #1}}
+\def\sdefn#1{\sfb{{\bf Definition}: #1}}
+\def\thm#1{\fb{{\bf Theorem}: #1}}
+\def\sthm#1{\sfb{{\bf Theorem}: #1}}
+\def\eg#1{{\bf Example}: #1}
+\def\egs#1{{\bf Examples}: #1}
+\def\egsc#1{{\bf Examples #1:}}
+\def\newt{\vspace{0.2in}\ni}
+\setlength{\fboxsep}{5pt}
+%\def\vdotprod{{\ascii\BEL}}
+\def\vdotprod{\,\mbox{{\Large $\cdot$}}\,}
+\def\vcrossprod{\times}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+{\bf Today's Goal}:
+To learn the mechanics of setting up double integrals
+in polar coordinates, and learn to recognize situations
+in double integrals that may be easier in polar form.
+
+\vspace{0.15in}
+\ni
+{\bf Important Note}: In conjunction with this framework,
+you should look over Section 13.4 of your text.
+
+\vspace{0.15in}
+\subsection*{Polar Rectangles}
+While the specific integrand $f(x,y)$ plays a large role in
+how difficult it is to {\em evaluate} a double integral
+$\iint_R f(x,y) \,dA$, it is the region $R$ {\em alone} that
+determines what limits of integration one uses in formulating
+an iterated integral.  When $R$ is the rectangular region
+$R: \; a \le x \le b, \; c \le y \le d$, setting up an
+iterated integral is quite easy (the limits are simply the
+bounding $x$ and $y$-values for the rectangle).
+
+Correspondingly, if our region $R$ is a {\em polar rectangle}
+$$ a \le r \le b, \; \alpha \le \theta \le \beta, $$
+then it will be easy to find limits of integration for an
+iterated integral in polar coordinates.\\[10pt]
+{\bf Some examples of polar rectangles}:
+\bi
+\item $0 \le r \le 1, \; 0 \le \theta \le 2\pi$
+\item $1 \le r \le 2, \; 0 \le \theta \le 2\pi$
+\item $\ds{ 1 \le r \le 2, \; \frac{\pi}{4} \le \theta \le \pi}$
+\ei
+
+\subsection*{Double Integrals in Polar Coordinates over a
+Polar Rectangle $R: \; r_1\le r\le r_2, \; \alpha\le\theta\le\beta$}
+\bi
+\item
+  If the integrand is $f(x,y)$ (i.e., if it is given in terms of
+  rectangular coordinates), one must find the appropriate expression
+  in polar coordinates by substituting $r\cos\theta$ for $x$,
+  $r\sin\theta$ for $y$.
+\item
+  The $dA$ in $\iint_R f(x,y)\, dA$ becomes $dx\,dy$ or $dy\,dx$
+  when written as an iterated integral in rectangular form.
+
+  In polar form, $dA = r \,dr\,d\theta$ because of the need for the
+  \href{http://www.math.umn.edu/~rogness/multivar/polartransformation.html}{{\em area expansion factor}} $r$.
+\ei
+\eg{}
+Compute the volume under the hemisphere $z = \sqrt{1 - x^2 - y^2}$
+above the polar rectangle $R: \; 0 \le r \le 1/2,
+\; 0 \le \theta \le \pi$ in the plane.
+
+\subsection*{Bounded Regions}
+Our regions of integration for double integrals are not always
+rectangles (neither in the usual sense, nor in the polar sense).
+Often the region $R$ of integration for a double integral
+$\iint_R f(x,y)\,dA$ is described as ``the region bounded
+by the curves \ldots.''  In such instances, one step in
+setting up an iterated integral involves finding points
+where the curves intersect.\\[8pt]
+\eg{}
+Find the area of the region outside the circle
+$r = 2$ and inside the circle $r = 4\sin\theta$.
+
+\subsection*{More Examples}
+\be
+\item
+  Find the volume of the region bounded by the paraboloid
+  $z = 10 - 3x^2 - 3y^2$ and the plane $z = 4$.
+\item
+  Evaluate the iterated integral $\ds{\int_0^2
+  \int_{-\sqrt{4-y^2}}^{\sqrt{4-y^2}} x^2 y^2 \,dx\,dy}$.
+\ee
+
+\end{document}
+

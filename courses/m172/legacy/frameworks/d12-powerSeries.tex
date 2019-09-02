@@ -1,0 +1,187 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{Introduction to Power Series}
+\def\lecdate{Tues., Feb.~20}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\def\unsc{\blank{0.07in}}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH 162---Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+{\bf Definition}:
+A function of $x$ which takes the series form
+\begin{equation}
+  \sum_{n=0}^\infty c_n (x-a)^n \;=\; c_0 + c_1 (x-a) + c_2 (x-a)^2
+	+ c_3 (x-a)^3 + \cdots \label{powerSeries}
+\end{equation}
+is called a {\em power series about} $x=a$.  The number $a$ is called
+the {\em center}, and the coefficients $c_0$, $c_1$, $c_2$, \ldots
+are constants.
+
+\vspace{0.3in}
+\ni
+Remarks:
+\bi
+\item
+  As for any function, a power series has a domain.  The acceptable
+  inputs $x$ to a power function are those $x$ for which the series
+  converges.
+
+\item
+  If it were not for the coefficients $c_j$ (if, say, each $c_j = 1$),
+  a power series would look geometric.  Indeed, the geometric series
+  \begin{equation}
+	\sum_{n=0}^\infty x^n \;=\; 1 + x + x^2 + x^3 + \cdots
+	\label{geometricPowerSeries}
+  \end{equation}
+  is a power series about $x=0$, that is known to converge to
+  $(1-x)^{-1}$ when $-1 < x < 1$ and to diverge when $|x| \ge 1$.
+  So, the domain of power series (\ref{geometricPowerSeries}) is
+  $(-1,1)$. \\[8pt]
+  More generally, for a special type of power series about $x=a$
+  with coefficients $c_j = \beta^j$ (i.e., whose coefficients are
+  ascending powers of
+  some fixed number $\beta$)
+  \begin{equation}
+	\sum_{n=0}^\infty \beta^n (x-a)^n \;=\; 1 + \beta(x-a) + \beta^2(x-a)^2
+	  + \beta^3(x-a)^3 + \cdots, \label{modifiedGeometricPowerSeries}
+  \end{equation}
+  we have that this series
+  \bq
+	converges to $\ds{\frac{1}{1 - \beta(x-a)}}$ when
+	$|\beta(x-a)| < 1$, that is, for
+	$\ds{a - \frac{1}{|\beta|} < x < a + \frac{1}{|\beta|}}$, \\[6pt]
+	and diverges when $|(x-a)| \ge \ds{\frac{1}{|\beta|}}$.
+  \eq
+  Thus, the domain of series (\ref{modifiedGeometricPowerSeries}) is
+  $(a - 1/|\beta|, a + 1/|\beta|)$.
+
+\item
+  In the most general case, where the coefficients $c_j$ in
+  (\ref{powerSeries}) do not, in general, equal $\beta^j$ for some
+  number $\beta$, the determination of the domain usually requires
+  \bi
+  \item[1.]
+	the use of the ratio test on the series
+	$\sum_{n=0}^\infty |c_n (x-a)^n|$.  That is, one looks at
+	$$ \lim_{n\rightarrow\infty} \frac{|c_{n+1}| |x - a|^{n+1}}
+	  {|c_n| |x-a|^n} \;=\; \left(\lim_{n\rightarrow\infty} \frac{|c_{n+1}|}
+	  {|c_n|}\right) |x-a|. $$
+	If $\lim_{n\rightarrow\infty} |c_{n+1}|/|c_n|$ exists, and if we let
+	$$ \rho \;=\; \left(\lim_{n\rightarrow\infty} \frac{|c_{n+1}|}
+	  {|c_n|}\right) |x-a|, $$
+	then part (i) of the ratio test imposes constraints on what values
+	$x$ may take.  Specifically, we generally wind up with a number
+	$R \ge 0$, called the {\em radius of convergence}, for which
+	the series (\ref{powerSeries})
+	\bq
+	  converges if $x$ is inside the open interval $(a-R, a+R)$, and \\[6pt]
+	  diverges if $|x - a| > R$ (i.e., if $x$ is outside the closed
+	  interval $[a-R, a+R]$).
+	\eq
+	In those cases where $\lim_{n\rightarrow\infty} |c_{n+1}|/|c_n| = 0$,
+	the value of $R := +\infty$, and when this happens there is no need
+	to proceed to step 2.
+
+  \item[2.]
+	the determination (by some other means than the ratio test) of
+	whether the series converges when $|x-a| = R$ (i.e., at the points
+	$x = a \pm R$).
+  \ei
+  The upshot is that the domain of a power series whose radius of
+  convergence $R$ is nonzero is always an interval, an interval
+  that has $x=a$ at its center and, in the case $R \ne +\infty$,
+  may include one or both of its endpoints $x = a \pm R$.  For this
+  reason the domain of a power series is usually called its
+  {\em interval of convergence}.
+\ei
+
+\vs{0.2in}
+\ni
+{\bf Example}: Determine the interval of convergence for
+\be
+\item[(a)] $\ds{\sum_{n=0}^\infty \frac{(3x-2)^n}{n3^n}}$
+\item[(b)] $\ds{\sum_{n=0}^\infty \frac{x^n}{n!}}$
+\item[(c)] $\ds{\sum_{n=0}^\infty n! x^n}$
+\item[(d)] $\ds{\sum_{n=0}^\infty \frac{x^n 3^n}{n^{3/2}}}$
+\ee
+
+\np
+\ni
+{\bf Power Series Expressions for Some Fns.~(building new series
+from known ones)}
+
+\vs{0.1in}
+\ni
+We know that, for $|x| < 1$, the fn.~$f(x) = 1/(1-x)$ may be
+expressed as a power series:
+$$ \frac{1}{1-x} \;=\; \sum_{n=0}^\infty x^n, \qquad |x| < 1. $$
+Thus, we may express similar-looking fns.~as power series:
+$$ \begin{array}{ll}
+	\ds{\frac{1}{1 - 3x} \;=\; \sum_{n=0}^\infty (3x)^n
+	  \;=\; \sum_{n=0}^\infty 3^n x^n}, & |3x| < 1 \;\;\Rightarrow\;\;
+	  \ds{-\frac{1}{3} < x < \frac{1}{3}} \\[20pt]
+	\ds{\frac{1}{2-x} \;=\; \frac{1}{2}\cdot\frac{1}{1-(x/2)}
+	  \;=\; \frac{1}{2}\,\sum_{n=0}^\infty \left(\frac{x}{2}\right)x^n
+	  \;=\; \sum_{n=0}^\infty \frac{x^n}{2^{n+1}}}, \quad\mbox{} &
+	  \ds{\left|\frac{x}{2}\right| < 1 \;\;\Rightarrow\;\; -2 < x < 2}. \\[20pt]
+	\ds{\frac{x^3}{1-x} \;=\; x^3\cdot\frac{1}{1-x}
+	  \;=\; x^3\,\sum_{n=0}^\infty x^n
+	  \;=\; \sum_{n=0}^\infty x^{n+3}}, & -1 < x < 1. \\[20pt]
+	\ds{\frac{1}{1+x} \;=\; \frac{1}{1-(-x)} \;=\; \sum_{n=0}^\infty [(-1)x]^n
+	  \;=\; \sum_{n=0}^\infty (-1)^n x^n}, & |-x| < 1 \;\;\Rightarrow\;\;
+	  -1 < x < 1. \\[20pt]
+	\ds{\frac{1}{1+x^2} \;=\; \sum_{n=0}^\infty (-1)^n (x^2)^n
+	  \;=\; \sum_{n=0}^\infty (-1)^n x^{2n}}, & |x^2| < 1 \;\;\Rightarrow\;\;
+	  -1 < x < 1.
+  \end{array} $$
+All of the above are power series about $x=0$.  We show how the
+2nd one (in the above list of 5) could also be written as a power
+series centered around $x=1$:
+$$ \frac{1}{2-x} \;=\; \frac{1}{1 - (x-1)}
+	\;=\; \sum_{n=0}^\infty (x-1)^n, \qquad |x - 1| < 1 \;\;\Rightarrow\;\;
+	0 < x < 2. $$
+
+\end{document}
+

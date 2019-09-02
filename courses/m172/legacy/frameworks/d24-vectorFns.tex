@@ -1,0 +1,224 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{Vector Functions and Differential Calculus}
+\def\lecdate{Thurs., Mar.~15}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{ascii}
+%\usepackage{wasysym}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\def\mbunsc{\blank{0.07in}}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+\def\fb#1{\framebox{\parbox[t]{6.5in}{#1}}}
+\def\sfb#1{\framebox{\parbox[t]{6.0in}{#1}}}
+\def\defn#1{\fb{{\bf Definition}: #1}}
+\def\sdefn#1{\sfb{{\bf Definition}: #1}}
+\def\thm#1{\fb{{\bf Theorem}: #1}}
+\def\sthm#1{\sfb{{\bf Theorem}: #1}}
+\def\eg#1{{\bf Example}: #1}
+\def\egs#1{{\bf Examples}: #1}
+\def\newt{\vspace{0.2in}\ni}
+\setlength{\fboxsep}{5pt}
+%\def\vdotprod{{\ascii\BEL}}
+\def\vdotprod{\,\mbox{{\Large $\cdot$}}\,}
+\def\vcrossprod{\times}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH 162---Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+{\bf Today's Goal}: To understand parametrized curves and
+their derivatives.
+
+\vspace{0.3in}
+\ni
+In yesterday's lab, we called a set of continuous functions
+over a common interval $I$
+\begin{equation}
+  \begin{array}{l} x = x(t), \\ y = y(t), \\ z = z(t), \end{array}
+	\quad t \in I, \label{paramEqns}
+\end{equation}
+a {\em parametrized curve}.
+($I$ may be a finite interval, like $I = [a,b]$, or one of infinite
+length.)  Another name for a parametrized
+curve is {\em path}, as one may think of tracing out the location
+of a particle $(x(t), y(t), z(t))$ at various $t$-values in $I$.
+
+\vspace{0.1in}
+\ni
+\subsection*{Equations of lines in space}
+
+Whereas lines in the $xy$-plane may be characterized by
+a slope, lines in $xyz$-space are most
+easily characterized by a vector that is parallel to the
+line in question.  Since there are infinitely many parallel
+vectors, there are infinitely many ways to describe a given
+line.  Say we want the line passing through the point
+$P = (x_0,y_0,z_0)$ parallel to the vector
+$\mbv = v_1 \mbi + v_2 \mbj + v_3 \mbk$.
+We describe it parametrically.  We might arbitrarily decide
+to associate the point $P$ with the parameter value $t=0$,
+and integer values of $t$ correspond to integer leaps of
+length $|\mbv|$:
+$$ \begin{array}{l} x = x_0 + v_1 t, \\ y = y_0 + v_2 t, \\ z = z_0 + v_3 t,
+  \end{array} \quad -\infty < t < \infty. $$
+
+\newt
+\eg{}
+Find 3 possible parametrizations of the line through
+$(2,-1,4)$ in the direction of $\mbv = -\mbi + 2\mbj -2\mbk$.
+Make one of these parametrizations be by arc length.
+
+\subsection*{The position vector}
+
+One might take the functions (\ref{paramEqns}) and create from
+them a {\em vector function}, with $x(t)$, $y(t)$, and
+$z(t)$ as {\em component functions}:
+$$ \mbr(t) \;=\; x(t)\mbi + y(t)\mbj + z(t)\mbk. $$
+Following the idea that the path (\ref{paramEqns}) describes the
+locations of a moving particle, $\mbr(t)$ is often called
+a {\em position vector}---that is, when drawn in {\em standard
+position} (i.e., with its initial point at the origin), the
+terminal point of $\mbr(t)$ moves so as to trace out the curve.
+
+\newt
+\eg{}
+{\bf Equation of a line in space, vector form}.
+For the line passing through the point $P = (x_0,y_0,z_0)$
+parallel to the vector $\mbv = v_1 \mbi + v_2 \mbj + v_3 \mbk$,
+we have the vector form
+$$ \mbr(t) \;=\; (x_0 + v_1 t)\mbi + (y_0 + v_2 t)\mbj
+  + (z_0 + v_3 t) \mbk. $$
+
+\newt
+\subsection*{Limits and continuity of vector functions}
+
+While the following definition is not identical to the one
+given in the text, the two are logically equivalent.\\[8pt]
+\defn{
+Let $\mbr(t) = x(t)\mbi + y(t)\mbj + z(t)\mbk$ (so the component
+functions of $\mbr(t)$ are $x(t)$, $y(t)$ and $z(t)$).  We say
+that
+$$ \lim_{t\rightarrow t_0} \mbr(t) \;=\; \mbL \;=\;
+	L_1 \mbi + L_2 \mbj + L_3 \mbk $$
+precisely when each corresponding limit of the component functions
+$$ \lim_{t\rightarrow t_0} x(t) \;=\; L_1, \qquad
+	\lim_{t\rightarrow t_0} y(t) \;=\; L_2, \qquad\mbox{and}\qquad
+	\lim_{t\rightarrow t_0} z(t) \;=\; L_3 $$
+holds. \\[10pt]
+We say that $\mbr(t)$ is continuous at $t=t_0$ precisely when
+each of the component functions $x(t)$, $y(t)$ and $z(t)$ are
+continuous at $t=t_0$.}
+
+\newt
+\eg{}
+The vector function $\mbr(t) = t/(t-1)^2 \mbi + (\ln t)\mbj$
+is continuous at all points $t$ where its component functions
+$x(t) = t/(t-1)^2$ and $y(t) = \ln t$ are continuous---that is
+for $t > 0$.  Thus, $\lim_{t\rightarrow t_0} \mbr(t)$ exists
+whenever $t_0 > 0$.
+
+\newt
+\subsection*{Derivatives of vector functions}
+\defn{A vector function $\mbr(t) = x(t)\mbi + y(t)\mbj + z(t)\mbk$
+is {\em differentiable at} $t$ if the limit
+$$ \mbr'(t) \;:=\; \lim_{\Delta t\rightarrow 0}
+  \frac{\mbr(t+\Delta t) - \mbr(t)}{\Delta t}$$
+exists.}
+
+\newt
+Notes:
+\bi
+\item
+  An equivalent definition to the one above would be that
+  $\mbr(t)$ is differentiable at a given $t$-value precisely when
+  each of its component functions $x(t)$, $y(t)$ and $z(t)$ are
+  differentiable there.  When this is so, we have
+  $$ \frac{d\mbr}{dt} \;=\; x'(t)\mbi + y'(t)\mbj + z'(t)\mbk. $$
+\item
+  If a vector function $\mbr(t)$ is differentiable, then the
+  derivative $\mbr'(t)$ is itself another vector function, which
+  may be differentiable as well.  When this is so, we have
+  $$ \frac{d^2 \mbr}{d^2 t} \;=\; x''(t)\mbi + y''(t)\mbj
+	+ z''(t)\mbk. $$
+\item
+  If the position vector function $\mbr(t)$ is differentiable,
+  then $d\mbr/dt$ is the corresponding {\em velocity} vector
+  function.  What we call {\em speed} is actually the length
+  $|d\mbr/dt|$ of the velocity function.\\[10pt]
+  If $d\mbr/dt$ is differentiable, then we call $d^2\mbr/dt^2$
+  the {\em acceleration} vector function.
+\item
+  One check that we have defined dot and cross products between
+  vectors in a useful fashion is whether they obey ``product
+  rules.''  In fact, all of the rules for differentiation that
+  hold for scalar functions, and are appropriate to apply to
+  vector functions, still hold:
+  \be
+  \item
+	$\ds{\frac{d}{dt}\,\mbC \;=\; \0} \qquad$
+	(constant function rule)\\[10pt]
+  \item
+	$\ds{\frac{d}{dt}[c \mbu(t)] \;=\; c\mbu'(t)} \qquad$
+	(constant multiple rule)\\[10pt]
+  \item
+	$\ds{\frac{d}{dt}[f(t) \mbu(t)] \;=\; f'(t)\mbu(t) + f(t)\mbu'(t)} \qquad$
+	(product of scalar and vector fn.)\\[10pt]
+  \item
+	$\ds{\frac{d}{dt}\left[\frac{\mbu(t)}{f(t)}\right] \;=\;
+	  \frac{f'(t)\mbu(t) - f(t)\mbu'(t)}{[f(t)]^2}} \qquad$
+	(quotient of vector and scalar fn.)\\[10pt]
+  \item
+	$\ds{\frac{d}{dt}[\mbu(t) \pm \mbv(t)] \;=\; \mbu'(t) \pm \mbv'(t)} \qquad$
+	(sum and difference rules)\\[10pt]
+  \item
+	$\ds{\frac{d}{dt}[\mbu\vdotprod\mbv] \;=\; \mbu'(t)\vdotprod\mbv(t)
+	  + \mbu(t)\vdotprod\mbv'(t)} \qquad$ (dot product rule)\\[10pt]
+  \item
+	$\ds{\frac{d}{dt}[\mbu\vcrossprod\mbv] \;=\; \mbu'(t)\vcrossprod\mbv(t)
+	  + \mbu(t)\vcrossprod\mbv'(t)} \qquad$ (cross product rule)\\[10pt]
+  \item
+	$\ds{\frac{d}{dt}[\mbu(f(t))] \;=\; f'(t)\mbu'(f(t))} \qquad$
+	(chain rule)
+  \ee
+\ei
+
+\end{document}
+

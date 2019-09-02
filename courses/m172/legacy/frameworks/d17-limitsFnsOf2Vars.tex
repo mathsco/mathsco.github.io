@@ -1,0 +1,233 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{Limits and Continuity}
+\def\lecdate{Wed., Feb.~28}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\def\unsc{\blank{0.07in}}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+\def\fb#1{\framebox{\parbox[t]{6.5in}{#1}}}
+\def\sfb#1{\framebox{\parbox[t]{6.0in}{#1}}}
+\def\defn#1{\fb{{\bf Definition}: #1}}
+\def\sdefn#1{\sfb{{\bf Definition}: #1}}
+\def\thm#1{\fb{{\bf Theorem}: #1}}
+\def\sthm#1{\sfb{{\bf Theorem}: #1}}
+\def\eg#1{{\bf Example}: #1}
+\def\egs#1{{\bf Examples}: #1}
+\setlength{\fboxsep}{5pt}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH 162---Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+{\bf Today's Goal}: To understand the meaning of limits and
+continuity of functions of 2 and 3 variables.
+
+\section*{Geometry of the Domain Space}
+
+\defn{(Distance in $\mathR^3$): Suppose that $(x_1,y_1,z_1)$
+and $(x_2,y_2,z_2)$ are points in $\mathR^3$.  The {\em distance}
+between these two points is
+$$ \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2 + (z_1 - z_2)^2}. $$}
+
+\vspace{0.1in}
+\ni
+If our two points have the same $z$-value (for instance, if
+they both lie in the $xy$-plane), then the distance between
+them is just
+$$ \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}. $$
+We employ these definitions for distance in $\mathR^2$, $\mathR^3$
+to define circles, disks, spheres and balls.
+
+\vspace{0.2in}
+\ni
+\defn{A {\em circle} in $\mathR^2$ centered at $(a,b)$ with radius
+$r$ is the set of points $(x,y)$ satisfying
+$$ (x - a)^2 + (y - b)^2 \;=\; r^2. $$
+Given such a circle $C$, the set of all points on or inside $C$
+is a {\em closed disk}.  The set of points inside but not on $C$
+is an {\em open disk}.}
+
+\vspace{0.2in}
+\ni
+\defn{A {\em sphere} in $\mathR^3$ centered at $(a,b,c)$ with radius
+$r$ is the set of points $(x,y,z)$ satisfying
+$$ (x - a)^2 + (y - b)^2 + (z - c)^2 \;=\; r^2. $$
+The inside of a sphere is called a {\em ball}, and can be closed
+or open depending on whether the (whole) sphere is included.}
+
+\vspace{0.2in}
+\ni
+Open intervals in $\mathR$ are sets of the form
+$a < x < b$ (also written using interval notation $(a,b)$), where
+neither endpoint $a$, $b$ is included in the set.  One observation
+about such sets is that, if you take any $x \in (a,b)$, there is a
+value of $r > 0$, perhaps quite small, for which the interval
+$(x - r, x + r)$ is wholly contained inside $(a, b)$.  We build
+on that idea when defining various kinds of subsets of $\mathR^2$.
+
+\vspace{0.2in}
+\ni
+\defn{Let $R$ be a region of the $xy$-plane and $(x_0, y_0)$ a point
+(perhaps in $R$, perhaps not).  We call $(x_0,y_0)$ an {\em interior
+point} of $R$ if there is an open disk of positive radius centered
+at $(x_0,y_0)$ such that every point in this disk lies inside
+$R$.\\[6pt]
+We call $(x_0,y_0)$ a {\em boundary point} of $R$ if every disk
+with positive radius centered at $(x_0,y_0)$ contains both a
+point that is in $R$ and a point that isn't in $R$. \\[6pt]
+The region $R$ is said to be {\em open} if all points in $R$
+are interior points of $R$. \\[6pt]
+The region $R$ is said to be {\em closed} if all boundary points
+of $R$ are in $R$. \\[6pt]
+The region $R$ is said to be {\em bounded} if it lies entirely
+inside a disk of finite radius.}
+
+\vspace{0.2in}
+\ni
+\egs{}
+\be
+\item
+  An open disk is open.  A closed disk is closed.  For both,
+  the boundary points are those found on the enclosing circle.
+\item
+  The upper half-plane $R$ consisting of points $(x,y)$ for
+  which $y > 0$ is an open, unbounded set.  The boundary
+  points of $R$ are precisely those points found along the
+  $x$-axis, none of which are contained in $R$.
+\item
+  If $y = f(x)$ is a continuous function on the interval
+  $a \le x \le b$, then the graph of $f$ is a closed, bounded
+  set made up entirely of boundary points.
+\item
+  The set of points $(x,y)$ satisfying $x \ge 0$, $y \ge 0$
+  and $y < x+1$ is bounded, but neither open nor closed.
+\item
+  The only nonempty region of the plane which is both open
+  and closed is the entire plane $\mathR^2$.
+\ee
+
+\section*{Limits and Continuity}
+
+The idea behind the statement
+$$ \lim_{(x,y)\rightarrow (x_0,y_0)} f(x,y) \;=\; L $$
+for a function $f$ of two variables is that you can make the
+value of $f(x,y)$ as close to $L$ as you like by focusing only
+on $(x,y)$ in the domain of $f$ which are inside an open disk
+centered at $(x_0,y_0)$ of some positive radius.  The official
+definition follows.
+
+\vspace{0.2in}
+\ni
+\defn{The {\em limit} of $f$ as $(x,y)$ approaches $(x_0,y_0)$
+is $L$ if for every $\epsilon > 0$ there is a corresponding
+$\delta > 0$ such that, for all $(x,y)$ in $\dom(f)$,
+$$ \mbox{if} \quad 0 < \sqrt{(x - x_0)^2 + (y - y_0)^2} < \delta
+	\quad\mbox{then}\quad |f(x,y) - L| < \epsilon. $$}
+
+\vspace{0.2in}
+\ni
+Remarks:
+\be
+\item
+  All the limit laws of functions of a single variable---those
+  stated in Section 2.2---have analogs for functions of 2 variables.
+  For instance, the analog to Rule 5 on p.~65 goes like this:
+
+  \vspace{0.1in}
+  \ni
+  \sthm{Suppose
+  $$ \lim_{(x,y)\rightarrow(x_0,y_0)} f(x,y) = L
+	\qquad\mbox{and}\qquad \lim_{(x,y)\rightarrow(x_0,y_0)}
+	g(x,y) = M. $$
+  (That is, suppose both these limits exist, and call them
+  $L$, $M$ respectively.)  If $M \ne 0$, then
+  $$ \lim_{(x,y)\rightarrow(x_0,y_0)} \frac{f(x,y)}{g(x,y)}
+	= \frac{L}{M}. $$}
+
+\item
+  We recall that, for a function $f$ of a single variable and
+  a point $x_0$ interior to the domain of $f$, the statement
+  $\lim_{x\rightarrow\x_0} f(x) = L$ requires the values of
+  $f$ to approach $L$ as the $x$-values approach $x_0$ from
+  both the left and the right.  The requirement at interior points
+  $(x_0,y_0)$ to the domain of a function $f$ of 2 variables
+  is even more strict.  Any path of $(x,y)$-values within the
+  domain of $f$ traversed en route to $(x_0,y_0)$ should
+  produce function values which approach $L$.
+
+  \vspace{0.1in}
+  \ni
+  \eg{} The limits $\;\ds{\lim_{(x,y)\rightarrow(0,0)}
+  \frac{4xy}{x^2 + y^2}}\;$ and $\;\ds{\lim_{(x,y)\rightarrow(0,0)}
+  \frac{4xy^2}{x^2+y^4}}\;$ do not exist.
+\vspace{0.1in}
+\item
+  One defines continuity for functions of two variables in
+  an identical fashion as for functions of a single variable.
+
+  \vs{0.1in}
+  \sdefn{Suppose $(x_0,y_0)$ is in the domain of $f$.  We say
+  that {\em f is continuous at} $(x_0, y_0)$ if
+  $$ \lim_{(x,y)\rightarrow(x_0,y_0)} f(x,y) = f(x_0, y_0) $$
+  (i.e., if this limit exists and has the same value as
+  $f(x_0,y_0)$).  We say {\em f is continuous} (or {\em f is
+  continuous throughout its domain}) if $f$ is continuous at
+  each point in its domain.
+  }
+
+  \vspace{0.1in}
+  \ni
+  \eg{} The functions $\;\ds{f(x,y) := \frac{4xy}{x^2 + y^2}}\;$
+  and $\;\ds{g(x,y) := \frac{4xy^2}{x^2+y^4}}\;$ are continuous
+  at all points $(x,y)$ except $(0,0)$.
+\vspace{0.1in}
+\item
+  The notions of {\em distance}, {\em open} and {\em closed balls},
+  {\em boundary point}, {\em interior point}, {\em open},
+  {\em closed} and {\em bounded sets}, {\em limits} and {\em continuity}
+  may all be generalized to functions of $n$ variables, where $n$
+  is any integer greater than 1.
+
+\ee
+
+\end{document}
+

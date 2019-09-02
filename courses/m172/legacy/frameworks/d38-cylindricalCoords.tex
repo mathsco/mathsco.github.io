@@ -1,0 +1,161 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{Integration in Cylindrical Coordinates}
+\def\lecdate{Mon., Apr.~30}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{ascii}
+%\usepackage{wasysym}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\def\mbunsc{\blank{0.07in}}
+\def\pref#1{(\ref{#1})}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+\def\fb#1{\framebox{\parbox[t]{6.5in}{#1}}}
+\def\sfb#1{\framebox{\parbox[t]{6.0in}{#1}}}
+\def\defn#1{\fb{{\bf Definition}: #1}}
+\def\sdefn#1{\sfb{{\bf Definition}: #1}}
+\def\thm#1{\fb{{\bf Theorem}: #1}}
+\def\sthm#1{\sfb{{\bf Theorem}: #1}}
+\def\eg#1{{\bf Example}: #1}
+\def\egs#1{{\bf Examples}: #1}
+\def\egsc#1{{\bf Examples #1:}}
+\def\newt{\vspace{0.2in}\ni}
+\setlength{\fboxsep}{5pt}
+%\def\vdotprod{{\ascii\BEL}}
+\def\vdotprod{\,\mbox{{\Large $\cdot$}}\,}
+\def\vcrossprod{\times}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+{\bf Today's Goal}:
+To develop an understanding of cylindrical and spherical
+coordinates, and to learn to set up and evaluate triple
+integrals in cylindrical coordinates.
+
+\vspace{0.15in}
+\ni
+{\bf Important Note}: In conjunction with this framework,
+you should look over Section 13.7 of your text.
+
+\vspace{0.15in}
+\subsection*{Coordinate Systems for 3D Space}
+
+\begin{minipage}[t]{4.5in}
+\bi
+\item {\bf Rectangular Coordinates}:
+  Generally uses letters $(x,y,z)$.  It tells how far to travel
+  in directions parallel to three orthogonal coordinate axes
+  in order to arrive at the specified point.
+
+\item {\bf Cylindrical Coordinates}
+  Generally uses letters $(r,\theta,z)$.  Here $z$ should
+  be understood in exactly the same way as it is for
+  rectangular coordinates, while $r$ and $\theta$ are
+  polar coordinates for the shadow point in the $xy$-plane.
+  (See the top figure.)  Each of the three coordinates may take
+  any value in $\mathR$.
+
+\item {\bf Spherical Coordinates}
+  Generally uses letters $(\rho, \phi, \theta)$.  The meaning
+  of $\theta$ is precisely the same as with cylindrical
+  coordinates.  If a ray is drawn from the origin to the point
+  in question, then $\rho$ is the distance along that ray to
+  the point, while $\phi$ is the angle that ray makes with the
+  $z$-axis.  It is possible to identify all points of 3D-space
+  using values for the three coordinates which satisfy
+  $$ \rho \ge 0, \qquad 0 \le \theta \le 2\pi, \qquad
+	0 \le \phi \le \pi. $$
+\ei
+\end{minipage}\hspace{0.3in}
+\begin{minipage}[t]{2in}
+  \mbox{}
+
+  \vspace{-0.5in}
+  \includegraphics[width=2in]{figs/cylindCoords.png}\\[20pt]
+
+  \includegraphics[width=2in]{figs/sphCylCoords.png}
+\end{minipage}
+
+\subsection*{Conversions between Coordinates}
+The Pythagorean Theorem and trigonometry give
+$$ r \;=\; \sqrt{x^2 + y^2} \;=\; \rho\sin\phi, \and
+  \rho \;=\; \sqrt{x^2 + y^2 + z^2}. $$
+Thus,
+$$ \begin{array}{l}
+  x \;=\; r\cos\theta \;=\; \rho\sin\phi\cos\theta, \\
+  y \;=\; r\sin\theta \;=\; \rho\sin\phi\sin\theta, \\
+  z \;=\; \rho\cos\phi \quad\mbox{(by trigonometry)}.
+  \end{array} $$
+
+\subsection*{Triple Integrals in Cylindrical Coordinates}
+
+When computing the triple integral $\iiint_D f(x,y,z)\,dV$,
+one can choose any of the three coordinate systems discussed
+above.  Cylindrical coordinates are attractive when
+\bi
+\item
+  the boundary of the shadow region in the plane may be
+  expressed nicely as a combination of polar functions, and/or
+\item
+  the integrand $f(r\cos\theta, r\sin\theta, z)$ is simple.
+\ei
+For iterated integrals in cylindrical coordinates, the volume
+element is $dV = r \,dz \,dr \,d\theta$, or some permutation
+of this.  Thus,
+$$ \iiint\limits_D f(x,y,z)\,dV \;=\; \iiint\limits_D
+	f(r\cos\theta, r\sin\theta, z)r \,dz\,dr\,d\theta. $$
+\egs{}
+\be
+\item
+  Show that the volume of a sphere with radius $a$ is what we
+  think it should be.
+\item
+  Find the volume of a ``cored apple''---a sphere of radius
+  $a$ from which a cylindrical region of radius $b$ ($b < a$)
+  has been removed.
+\item
+  Find the volume of a typical cone whose radius at the base
+  is $a$ and whose height is $h$.
+\ee
+
+\end{document}
+

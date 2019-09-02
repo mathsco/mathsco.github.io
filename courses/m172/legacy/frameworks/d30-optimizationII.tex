@@ -1,0 +1,148 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{Constrained Optimization of Functions of 2 Variables}
+\def\lecdate{Mon., Apr.~9}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{ascii}
+%\usepackage{wasysym}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\def\mbunsc{\blank{0.07in}}
+\def\pref#1{(\ref{#1})}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+\def\fb#1{\framebox{\parbox[t]{6.5in}{#1}}}
+\def\sfb#1{\framebox{\parbox[t]{6.0in}{#1}}}
+\def\defn#1{\fb{{\bf Definition}: #1}}
+\def\sdefn#1{\sfb{{\bf Definition}: #1}}
+\def\thm#1{\fb{{\bf Theorem}: #1}}
+\def\sthm#1{\sfb{{\bf Theorem}: #1}}
+\def\eg#1{{\bf Example}: #1}
+\def\egs#1{{\bf Examples}: #1}
+\def\newt{\vspace{0.2in}\ni}
+\setlength{\fboxsep}{5pt}
+%\def\vdotprod{{\ascii\BEL}}
+\def\vdotprod{\,\mbox{{\Large $\cdot$}}\,}
+\def\vcrossprod{\times}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+{\bf Today's Goal}:
+To be able to find absolute extrema for functions
+of two variables on closed and bounded domains.
+
+\vspace{0.3in}
+\ni
+\defn{A function $f$ of two variables is said to have
+\be
+\item
+  a {\em global maximum} (or {\em absolute maximum}) at the
+  point $(a,b)\in \dom(f)$ if $f(a,b) \ge f(x,y)$ for all
+  points $(x,y)$ in $\dom(f)$.
+\item
+  a {\em global minimum} (or {\em absolute minimum}) at the
+  point $(a,b)\in \dom(f)$ if $f(a,b) \ge f(x,y)$ for all
+  points $(x,y)$ in $\dom(f)$.
+\ee
+The value $f(a,b)$ is correspondingly called the {\em global}
+(or {\em absolute}) {\em maximum or minimum} value of $f$.
+}\\[18pt]
+Before we embark on a process of looking for absolute extrema,
+it would be nice to know that what we are looking for is out
+there to be found.  The following theorem supplies such an assurance
+in the special case that the domain of $f$ is closed and bounded.\\[18pt]
+\thm{
+({\em Extreme Value Theorem})\;
+Suppose $f(x,y)$ is a continuous function on a closed and bounded
+region $R$ of the $xy$-plane.  Then there exist points
+$(a,b)$ and $(c,d)$ in $R$ for which
+$$ f(a,b) \ge f(x,y) \qquad\mbox\qquad f(c,d) \le f(x,y) $$
+for all $(x,y)$ in $R$.
+}\\[18pt]
+
+%% TLS pick it up here
+
+\vs{0.1in}
+\ni
+Remarks:
+\bi
+\item
+  In some simple cases, it is even possible that $(a,b)$ and
+  $(c,d)$ from the theorem are the same point.
+
+\item
+  The theorem says that ``continuity of $f$ over a closed, bounded
+  region $R$'' provides {\em sufficient} conditions to guarantee
+  that $f$ reaches maximum and minimum values in $R$.  They are not
+  {\em necessary}, however, meaning that it is possible for $f$ to
+  attain such extrema even if one or both of these conditions (the
+  ``continuity'' or the ``closed and boundedness of $R$'') is
+  not in place.
+\ei
+
+\vspace{0.1in}
+\ni
+\egs{}
+\be
+\item
+  Find the maximum value of $\;f(x,y) = 49 - x^2 - y^2\;$ along the
+  line $\; x + 3y = 10$.
+
+\item
+  Find the absolute extrema of
+  $\;f(x,y) = x^2 - y^2 - 2x + 4y\;$ on the region of the $xy$-plane
+  bounded below by the $x$-axis, above by the line $y = x+2$,
+  and on the right by the line $x=2$.
+
+\item
+  Find the absolute extrema of
+  $\;f(x,y) = x^2 + 2y^2\;$ on the closed disk $\;x^2 + y^2 \le 1$.
+
+\item
+  Find the maximum of $\;f(x,y,z) = 36 - x^2 - y^2 - z^2\;$ subject
+  to the constraint $\;x + 4y - z = 21$.
+
+\item
+  Find the point on the graph of $\; z = x^2 + y^2 + 10\;$ closest
+  to the plane $\; x + 2y - z = 0$.
+\ee
+\end{document}
+

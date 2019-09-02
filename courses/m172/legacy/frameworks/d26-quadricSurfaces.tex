@@ -1,0 +1,161 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{Quadric Surfaces}
+\def\lecdate{Mon., Mar.~26}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{ascii}
+%\usepackage{wasysym}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\def\mbunsc{\blank{0.07in}}
+\def\pref#1{(\ref{#1})}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+\def\fb#1{\framebox{\parbox[t]{6.5in}{#1}}}
+\def\sfb#1{\framebox{\parbox[t]{6.0in}{#1}}}
+\def\defn#1{\fb{{\bf Definition}: #1}}
+\def\sdefn#1{\sfb{{\bf Definition}: #1}}
+\def\thm#1{\fb{{\bf Theorem}: #1}}
+\def\sthm#1{\sfb{{\bf Theorem}: #1}}
+\def\eg#1{{\bf Example}: #1}
+\def\egs#1{{\bf Examples}: #1}
+\def\newt{\vspace{0.2in}\ni}
+\setlength{\fboxsep}{5pt}
+%\def\vdotprod{{\ascii\BEL}}
+\def\vdotprod{\,\mbox{{\Large $\cdot$}}\,}
+\def\vcrossprod{\times}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH 162---Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+{\bf Today's Goal}: To review how equations in three variables
+are graphed, and to identify special graphs known as quadric
+surfaces.
+
+\vspace{0.3in}
+\ni
+{\bf What we already know}:
+A 2nd-order polynomial in $x$ and $y$ takes the general form
+$$ p(x,y) \;=\; Ax^2 + Bxy + Cy^2 + Dx + Ey + F. $$
+Such a polynomial is called a {\em quadratic polynomial} (in $x$
+and $y$).\\[20pt]
+{\bf Some special cases}, usually treated in high school classes:
+\bi
+\item
+  {\bf Case} $B = C = 0,\; A\ne 0, \; E\ne 0$:
+  $\quad\ds{ p(x, y) \;=\; Ax^2 + Dx + Ey + F }$
+  \bi
+  \item The level sets of $p$ are parabolas.
+  \item By symmetry of argument, the level sets are parabolas
+	opening sideways when $A=B=0$, $C\ne 0$ and $D\ne 0$.
+  \ei
+\item
+  {\bf Case} $B^2 < 4AC$:
+% $\quad\ds{ p(x, y) \;=\; Ax^2 + Bxy + Cy^2 + Dx + Ey + F }$
+  \bi
+  \item Some level sets of $p$ are ellipses.
+  \item When $B=0$ and $A=C$, the ellipses are actually circles.
+  \ei
+\item
+  {\bf Case} $AC < 0$:
+% $\quad\ds{ p(x, y) \;=\; Ax^2 + Bxy + Cy^2 + Dx + Ey + F }$\\[8pt]
+  Almost all level sets of $p$ are hyperbolas.
+\ei
+
+\subsection*{Quadric Surfaces}
+Similar to the above, a quadratic polynomial in $x$, $y$ and $z$ is
+a 2nd-order polynomial having general form
+\begin{equation}
+  p(x,y,z) \;=\; Ax^2 + Bxy + Cy^2 + Dxz + Eyz + Fz^2 + Gx + Hy + Iz + J.
+  \label{quadraticxyz}
+\end{equation}
+\bi
+\item
+  The graph of $p$ would require 4 dimensions, but the level sets
+  of $p$ are {\em surfaces} in 3D.
+\item
+  The solutions of the equation $p(x,y,z) = k\;$ ($k$ a fixed number)
+  coincide with the $k$-level surface for the quadratic function $p$.\\[8pt]
+% For a fixed number $k$, the level surface equation is $p(x,y,z) = k$.\\[8pt]
+  \sdefn{For a quadratic polynomial $p$ in the form \pref{quadraticxyz},
+  the set of points $(x,y,z)$ which satisfy the level surface equation
+  $p(x,y,z) = k$ is called a {\em quadric surface}.}
+\item
+  When the coefficient $F = 0$ and at least one of $D$, $E$ or $I$ is nonzero,
+  the level surface equation may be manipulated algebraically to solve
+  for $z$ as a function of $x$ and $y$.  In these cases, what we learned
+  about graphing functions of 2 variables still applies.\\[18pt]
+  \eg{}
+% $\ds{9x^2 + y^2 - 4z = 1} \quad$ (elliptic paraboloid)
+  $\ds{9x^2 - y^2 - 4z = 0} \quad$ (hyperbolic paraboloid)\\[18pt]
+  By symmetry of argument, the level surface equation $p(x,y,z) = k$
+  can be written as a function if
+  \bi
+  \item
+	$A = 0$ and at least one of $B$, $D$ or $G$ is nonzero, in which
+	case $x$ may be written as a function of $y$ and $z$, or
+  \item
+	$C = 0$ and any one of $B$, $E$ or $H$ is nonzero, in which case
+	$y$ may be written as a function of $x$ and $z$.
+  \ei
+\item
+  Even when the equation $p(x,y,z) = k$ cannot be re-written as
+  a function of two variables, a good way to get an idea of the
+  graph of the level surface is to consider cross-sections:
+  \bi
+  \item
+	slices by planes parallel to the $xy$-plane are the result
+	of setting $z = z_0$.
+  \item
+	slices by planes parallel to the $xz$-plane are the result
+	of setting $y = y_0$.
+  \item
+	slices by planes parallel to the $yz$-plane are the result
+	of setting $x = x_0$.
+  \ei
+  \egs{}\\[10pt]
+  $\ds{9x^2 + y^2 - 4z^2 = 1} \quad$ (an hyperboloid in one sheet)\\[70pt]
+  $\ds{9x^2 + y^2 - 4z^2 = 0} \quad$ (an elliptic cone)\\[70pt]
+  $\ds{9x^2 - y^2 - 4z^2 = 1} \quad$ (an hyperboloid in two sheets)\\[70pt]
+  $\ds{9x^2 + y^2 + 4z^2 = 1} \quad$ (an ellipsoid)
+\ei
+
+\end{document}
+

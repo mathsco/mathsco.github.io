@@ -1,0 +1,118 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{Applications of Double Integrals}
+\def\lecdate{Mon., Apr.~16}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{ascii}
+%\usepackage{wasysym}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\def\mbunsc{\blank{0.07in}}
+\def\pref#1{(\ref{#1})}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+\def\fb#1{\framebox{\parbox[t]{6.5in}{#1}}}
+\def\sfb#1{\framebox{\parbox[t]{6.0in}{#1}}}
+\def\defn#1{\fb{{\bf Definition}: #1}}
+\def\sdefn#1{\sfb{{\bf Definition}: #1}}
+\def\thm#1{\fb{{\bf Theorem}: #1}}
+\def\sthm#1{\sfb{{\bf Theorem}: #1}}
+\def\eg#1{{\bf Example}: #1}
+\def\egs#1{{\bf Examples}: #1}
+\def\newt{\vspace{0.2in}\ni}
+\setlength{\fboxsep}{5pt}
+%\def\vdotprod{{\ascii\BEL}}
+\def\vdotprod{\,\mbox{{\Large $\cdot$}}\,}
+\def\vcrossprod{\times}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+{\bf Today's Goal}:
+To use double integrals meaningfully in solving problems.
+
+\vspace{0.15in}
+\ni
+{\bf Important Note}: In conjunction with this framework,
+you should look over Section 13.3 of your text.
+
+\vspace{0.15in}
+\subsection*{Area}
+
+If $R$ is a bounded region of the plane, then $\iint_R dA$
+gives the area of $R$.  (This is because the volume under
+the curve $z = 1$ over the region $R$, while it has different
+units, is the same as the area of $R$.)
+
+\vspace{0.15in}
+\subsection*{Average Value of a Function}
+For $y = f(x)$ (a function of one variable), we defined
+the average value of $f$ over the interval $[a,b]$ to be
+$$ \frac{1}{b-a}\,\int_a^b f(x)\,dx \;=\;
+	\frac{1}{\mbox{length of interval $[a,b]$}}\,\int_a^b f(x)\,dx. $$
+Similarly, \\[10pt]
+\defn{If $f(x,y)$ is integrable over a region $R$ of the plane,
+then the {\em average value} of $f$ over $R$ is defined to be
+$$ \frac{1}{\mbox{Area}(R)}\,\iint\limits_R f(x,y)\,dA. $$}
+
+\vspace{0.15in}
+\subsection*{Integral of a Density}
+Some functions give the amount of something per unit of
+measurement, as in
+\bi
+\item
+  $f(x)$ is the number of grams per unit length in an
+  (idealized) 1-dimensional string.
+\item
+  $f(x,y)$ is the number of grams per unit area in an
+  (idealized) 2-dimensional plate.
+\item
+  $f(x,y,z)$ is the number of molecules per unit volume
+  of a certain gas.
+\ei
+Such functions are collectively known as {\em densities}.
+The examples above are 1, 2 and 3-dimensional densities
+respectively.\\[10pt]
+If $f(x,y)$ gives the density (2-dimensional) of something
+at each point $(x,y)$ in the region $R$, then
+$ \iint_R f(x,y) \,dA $ is the total of that substance found in $R$.
+
+\end{document}
+

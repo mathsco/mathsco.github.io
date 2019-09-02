@@ -1,0 +1,148 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{Dot Products and Projections}
+\def\lecdate{Mon., Mar.~12}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{ascii}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\def\mbunsc{\blank{0.07in}}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+\def\fb#1{\framebox{\parbox[t]{6.5in}{#1}}}
+\def\sfb#1{\framebox{\parbox[t]{6.0in}{#1}}}
+\def\defn#1{\fb{{\bf Definition}: #1}}
+\def\sdefn#1{\sfb{{\bf Definition}: #1}}
+\def\thm#1{\fb{{\bf Theorem}: #1}}
+\def\sthm#1{\sfb{{\bf Theorem}: #1}}
+\def\eg#1{{\bf Example}: #1}
+\def\egs#1{{\bf Examples}: #1}
+\def\newt{\vspace{0.2in}\ni}
+\setlength{\fboxsep}{5pt}
+%\def\vdotprod{{\ascii\BEL}}
+\def\vdotprod{\,\mbox{{\Large $\cdot$}}\,}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH 162---Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+{\bf Today's Goal}: To define the dot product and learn of some of its
+properties and uses
+
+\vspace{0.1in}
+\subsection*{The Dot Product}
+
+\defn{For vectors $\mbu = \left<u_1,u_2,u_3\right>$ and
+$\mbv = \left<v_1,v_2,v_3\right>$, we define the {\em dot
+product} of $\mbu$ and $\mbv$ to be
+$$ \mbu \vdotprod \mbv \;:=\; u_1 v_1 + u_2 v_2 + u_3 v_3. $$}
+
+\newt
+Notes:
+\bi
+\item
+  The dot product $\mbu\vdotprod\mbv$ is a scalar (number), not another vector.
+\item
+  Properties
+  \be
+  \item[1.] $\mbu\vdotprod\mbv \;=\; \mbv\vdotprod\mbu$
+  \item[2.] $c(\mbu\vdotprod\mbv) \;=\; (c\mbu)\vdotprod\mbv
+				\;=\; \mbu\vdotprod (c\mbv)$.
+  \item[3.] $\mbu\vdotprod(\mbv + \mbw) \;=\; \mbu\vdotprod\mbv
+				+ \mbu\vdotprod\mbw$
+  \item[4.] $\0\vdotprod\mbv \;=\; 0$
+  \item[5.] $\mbv\vdotprod\mbv \;=\; |\mbv|^2$
+  \ee
+\ei
+
+\newt
+\thm{If $\mbu$ and $\mbv$ are nonzero vectors, then the angle $\theta$
+between them satisfies
+$$ \cos\theta \;=\; \frac{\mbu\vdotprod\mbv}{|\mbu||\mbv|}. $$}\\[16pt]
+Note that, when $\theta = \pi/2$, the numerator on the right-hand
+side must be zero.  This motivates the following definition.
+
+\newt
+\subsection*{Orthogonality}
+
+\vspace{0.1in}
+\defn{Two vectors $\mbu$ and $\mbv$ are said to be {\em orthogonal}
+(or {\em perpendicular}) if $\mbu\vdotprod\mbv = 0$.}
+
+\newt
+\eg{}The zero vector $\0$ is orthogonal to every other vector.
+In 2D, the vectors $\left<a,b\right>$ and $\left<-b,a\right>$
+are orthogonal, since
+$$ \left<a,b\right>\vdotprod \left<-b,a\right> \;=\; (a)(-b)
+	+ (b)(a) \;=\; 0. $$
+
+\np
+\ni
+\eg{}
+Find an equation for the plane containing the point $(1, 1, 2)$
+and perpendicular to the vector $\left<A, B, C\right>$.
+
+\newt
+\subsection*{Projections}
+
+{\bf Scalar component of $\mbu$ in the direction of $\mbv$}:
+$\quad\ds{ |\mbu|\cos\theta \;=\; \frac{\mbu\vdotprod\mbv}{|\mbv|} }$.\\[20pt]
+{\bf Vector projection of $\mbu$ onto $\mbv$}:
+$$ \proj_{\mbv} \mbu \;:=\;
+	\left(\begin{array}{c}
+	  \mbox{scalar component of $\mbu$} \\
+	  \mbox{in direction of $\mbv$}
+	\end{array}\right)
+	\left(\begin{array}{c}
+	  \mbox{direction}\\
+	  \mbox{of $\mbu$}
+	\end{array}\right) \;=\; \left(\frac{\mbu\vdotprod\mbv}{|\mbv|}\right)
+	\left(\frac{\mbv}{|\mbv|}\right) \;=\; \frac{\mbu\vdotprod\mbv}
+	{|\mbv|^2}\,\mbv. $$
+
+\newt
+\subsection*{Work}
+
+The {\em work} done by a constant force $\mbF$ acting through a
+displacement vector $\mbD = \overrightarrow{PQ}$ is given by
+$$ W \;=\; \mbF\vdotprod\mbD \;=\; |\mbF||\mbD|\cos\theta, $$
+where $\theta$ is the angle between $\mbF$ and $\mbD$.
+
+\end{document}
+

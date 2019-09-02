@@ -1,0 +1,151 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{Cross Products}
+\def\lecdate{Tues., Mar.~13}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{ascii}
+%\usepackage{wasysym}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\def\mbunsc{\blank{0.07in}}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+\def\fb#1{\framebox{\parbox[t]{6.5in}{#1}}}
+\def\sfb#1{\framebox{\parbox[t]{6.0in}{#1}}}
+\def\defn#1{\fb{{\bf Definition}: #1}}
+\def\sdefn#1{\sfb{{\bf Definition}: #1}}
+\def\thm#1{\fb{{\bf Theorem}: #1}}
+\def\sthm#1{\sfb{{\bf Theorem}: #1}}
+\def\eg#1{{\bf Example}: #1}
+\def\egs#1{{\bf Examples}: #1}
+\def\newt{\vspace{0.2in}\ni}
+\setlength{\fboxsep}{5pt}
+%\def\vdotprod{{\ascii\BEL}}
+\def\vdotprod{\,\mbox{{\Large $\cdot$}}\,}
+\def\vcrossprod{\times}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH 162---Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+{\bf Today's Goal}: To define the cross product and learn of some of its
+properties and uses
+
+\vspace{0.1in}
+\subsection*{The Cross Product}
+
+\defn{For nonzero, non-parallel 3D vectors $\mbu$ and $\mbv$, we define the
+{\em cross product} of $\mbu$ and $\mbv$ to be
+$$ \mbu \vcrossprod \mbv \;:=\; (|\mbu||\mbv|\sin\theta)\mbn, $$
+where $\theta$ is the angle between $\mbu$ and $\mbv$, and
+$\mbn$ is a unit vector perpendicular to both $\mbu$ and $\mbv$,
+and in the direction determined by the ``right-hand rule.''\\[10pt]
+If either $\mbu = \0$ or $\mbv = \0$, we define $\mbu\vcrossprod\mbv = \0$.
+Similarly, if $\mbu$ and $\mbv$ are parallel, we take
+$\mbu\vcrossprod\mbv = \0$.}
+
+\newt
+Notes:
+\bi
+\item
+  There is no corresponding concept for 2D vectors.
+\item
+  The dot product between two vectors produces a scalar.
+  The cross product of two vectors yields another vector.
+\item
+  Properties
+  \be
+  \item $\mbu\vcrossprod\mbv = -\mbv\vcrossprod\mbu$
+  \item
+	$\mbi\vcrossprod\mbj = \mbk$, $\;\;\mbj\vcrossprod\mbk = \mbi$,
+	$\;\;\mbk\vcrossprod\mbi = \mbj$
+  \item $(r\mbu)\vcrossprod (s\mbv) \;=\; (rs) (\mbu\vcrossprod\mbv)$
+  \item
+	The cross product is not associative!  This means that, in general,
+	it is {\em not} the case that
+	$$ (\mbu \vcrossprod \mbv) \vcrossprod \mbw \qquad\mbox{and}\qquad
+		\mbu \vcrossprod (\mbv \vcrossprod \mbw) $$
+	are equal.
+  \ee
+\item
+  The cross product $\mbu\vcrossprod\mbv$ may be computed from
+  the following symbolic determinant:
+  $$ \mbu\vcrossprod\mbv \;=\; \left|\begin{array}{ccc}
+	  \mbi & \mbj & \mbk \\ u_1 & u_2 & u_3 \\ v_1 & v_2 & v_3
+	\end{array}\right| \;:=\;
+	\left|\begin{array}{cc} u_2 & u_3 \\ v_2 & v_3 \end{array}\right|\mbi
+	- \left|\begin{array}{cc} u_1 & u_3 \\ v_1 & v_3 \end{array}\right|\mbj
+	+ \left|\begin{array}{cc} u_1 & u_2 \\ v_1 & v_2 \end{array}\right|\mbk, $$
+  where $\mbu = \left<u_1, u_2, u_3\right>$ and
+  $\mbv = \left<v_1, v_2, v_3\right>$.
+\ei
+
+\np
+\ni
+\subsection*{Applications}
+
+\bi
+\item
+  $\mbr\vcrossprod\mbF$ is the {\em torque} vector resulting
+  from a force $\mbF$ applied at the end of a lever arm $\mbr$.
+\item
+  $|\mbu\vcrossprod\mbv|$ (the length of the cross product
+  $\mbu\vcrossprod\mbv$) is the area of a parallelogram
+  determined by $\mbu$ and $\mbv$.
+\item
+  $|(\mbu\vcrossprod\mbv)\vdotprod\mbw|$ (the absolute value
+  of the scalar $(\mbu\vcrossprod\mbv)\vdotprod\mbw$) is the
+  volume of the parallelepiped determined by $\mbu$, $\mbv$
+  and $\mbw$.
+\item
+  Finding normal vectors to planes. \\[14pt]
+  \eg{}
+  The vectors $\mbu = \left<1, 2, -1\right>$ and
+  $\mbv = \left<-2,3,1\right>$
+  \bi
+  \item are not parallel,
+  \item so they determine a family of parallel planes.
+  \ei
+  Find a vector that is normal to these planes.  Then determine
+  an equation for the particular one of these planes passing
+  through the point $(1,1,1)$.
+\ei
+
+\end{document}
+

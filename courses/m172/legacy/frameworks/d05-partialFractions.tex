@@ -1,0 +1,95 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{Integrals using Partial Fraction Expansion}
+\def\lecdate{Mon., Feb.~5}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\def\unsc{\blank{0.07in}}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH 162---Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+{\bf Definition}: A {\em rational function} is a function that is
+the ratio of polynomials. \\[10pt]
+Examples:
+$ \ds{\qquad \frac{2x}{x^2 + 6} \qquad\qquad \frac{x^2 - 1}{(x^2+3x+1)(x-2)^2}
+  \qquad\qquad \frac{1}{\sqrt{x + 7}}} $ \\[10pt]
+{\bf Definition}: A quadratic (2nd-degree) polynomial function with
+real coefficients is said to be {\em irreducible} (over the reals) if
+it has no real roots. \\[10pt]
+A quadratic polynomial is reducible if and only if it may be written as the
+product of linear (1st-degree polynomial) factors with real coefficients \\[6pt]
+Examples:
+\bi
+\item[] $\ds{x^2 + 4x + 3}$
+\item[] $\ds{x^2 + 4x + 5}$
+\ei
+
+\section*{Partial fraction expansion}
+\bi
+\item
+  Reverses process of
+  ``combining rational fns.~into one''
+  \bi
+  \item
+	Input: a rational fn.  \ Output: simpler rational
+	fns.~that sum to input fn.
+  \item
+	degree of numerator in input fn.~must be less than or equal to degree
+	of denominator (You may have to use long division to make this so.)
+  \item
+	denominator of input fn.~must be factored completely
+	(i.e., into linear and quadratic polynomials)
+  \ei
+\item
+  Why a ``technique of integration''?
+\item
+  leaves you with integrals that you must be able to evaluate by
+  other means.  Some examples:
+  $$ \int\frac{5}{2(x - 5)}\,dx \qquad\qquad
+	\int\frac{2}{(3x + 1)^3}\,dx \qquad\qquad
+	\int\frac{x+1}{(x^2+4)^2}\,dx $$
+\ei
+
+\end{document}
+

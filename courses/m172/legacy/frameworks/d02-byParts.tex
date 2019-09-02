@@ -1,0 +1,89 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{Integration by Parts}
+\def\lecdate{Tues., Jan.~30}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\def\unsc{\blank{0.07in}}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH 162---Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+Integration by parts formula:
+$$ \int u\, dv \= uv - \int v\,du $$
+
+\ni
+Remarks
+\bi
+\item
+  Counterpart to product rule for differentiation
+\item
+  Applicable for definite integrals as well:
+  $$ \int_a^b u \,dv \= uv\Big|_a^b - \int_a^b v\,du. $$
+\item
+  Technique used when integrands have the form:
+  \bi
+  \item
+	$p(x) e^{ax}$, $\;p(x) e^{ax},\;$ where $p(x)$ is a
+	polynomial, $a$ a constant \\
+	Let $u$ be the polynomial part; number of iterations equals
+	degree of $p$
+  \item
+	$p(x) \cos(bx)$, $\;p(x) \sin(bx),\;$ where $p(x)$ is a
+	polynomial, $b$ a constant \\
+	Let $u$ be the polynomial part; number of iterations equals
+	degree of $p$
+  \item
+	$e^{ax} \cos(bx)$, $\;e^{ax} \sin(bx),\;$ where $a$, $b$ are constants \\
+	No rule for which part $u$ equals; requires 2 iterations and algebra
+  \ei
+\ei
+
+\ni
+Some integrals (less obviously) done by parts:
+\bi
+\item $\ds{\int \ln x \,dx}\;\;$ (see p.~450)
+\item $\ds{\int \arccos x\, dx}\;\;$ (and other inverse fns; see p.~454)
+\item $\ds{\int \sec^3 x \, dx}\;\;$ (see p.~459)
+\ei
+
+\end{document}
+

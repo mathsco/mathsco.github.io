@@ -1,0 +1,187 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{Unconstrained Optimization of Functions of 2 Variables}
+\def\lecdate{Wed., Apr.~4}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{ascii}
+%\usepackage{wasysym}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\def\mbunsc{\blank{0.07in}}
+\def\pref#1{(\ref{#1})}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+\def\fb#1{\framebox{\parbox[t]{6.5in}{#1}}}
+\def\sfb#1{\framebox{\parbox[t]{6.0in}{#1}}}
+\def\defn#1{\fb{{\bf Definition}: #1}}
+\def\sdefn#1{\sfb{{\bf Definition}: #1}}
+\def\thm#1{\fb{{\bf Theorem}: #1}}
+\def\sthm#1{\sfb{{\bf Theorem}: #1}}
+\def\eg#1{{\bf Example}: #1}
+\def\egs#1{{\bf Examples}: #1}
+\def\newt{\vspace{0.2in}\ni}
+\setlength{\fboxsep}{5pt}
+%\def\vdotprod{{\ascii\BEL}}
+\def\vdotprod{\,\mbox{{\Large $\cdot$}}\,}
+\def\vcrossprod{\times}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Fmwk.~for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+{\bf Today's Goal}:
+To be able to locate and classify local extrema for functions
+of two variables.
+
+\vspace{0.3in}
+\ni
+\defn{Suppose the domain of $f(x,y)$ includes the point $(a,b)$.
+\be
+\item
+  $f(a,b)$ is called a {\em local maximum} (or {\em relative maximum})
+  value of $f$ if $f(a,b) \ge f(x,y)$ for all points from $\dom(f)$
+  contained in some open disk (an open disk of some positive, though
+  perhaps quite small, radius) centered at $(a,b)$.
+\item
+  $f(a,b)$ is called a {\em local minimum} (or {\em relative miminum})
+  value of $f$ if $f(a,b) \le f(x,y)$ for all points from $\dom(f)$
+  contained in some open disk centered at $(a,b)$.
+\ee
+}
+
+\vs{0.1in}
+\ni
+Remarks:
+\bi
+\item
+  As with functions of a single variable (think of the absolute value
+  function), local extrema (maxima or minima) of functions $f$ of two
+  variables may occur at points where $f$ is not differentiable.
+
+\item
+  When an extremum occurs at an interior point $(a,b)$ of $\dom(f)$
+  where $f$ is differentiable,
+  one would expect $f$ to have a horizontal tangent plane there.
+  The equation for the tangent plane to $z = f(x,y)$ at a point $(x_0,y_0)$
+  where $f$ is differentiable is
+  $$ f_x(x_0,y_0) (x-x_0) + f_y(x_0,y_0) (y-y_0) - (z-z_0) \;=\; 0, $$ or
+  $$ z \;=\; z_0 + f_x(x_0,y_0) (x-x_0) + f_y(x_0,y_0) (y-y_0), $$
+  while the equation of a horizontal plane (one parallel to the $xy$-plane
+  is) $z =$ constant.  We may, therefore, conclude:\\[14pt]
+  \sthm{
+  If $f(x,y)$ has a local extremum at an interior point $(a,b)$ of
+  $\dom(f)$, and if the partial derivatives of $f$ exist there, then
+  $$ f_x(a,b) = 0 \qquad\mbox{and}\qquad f_y(a,b) = 0. $$
+% or, equivalently
+% $$ \vec\nabla f(a,b) = \0. $$
+  }\\[14pt]
+% Said another way, when an extremum occurs at an interior point of
+% the domain, there should be no (single) direction of maximum increase
+% (nor maximum decrease).
+  This motivates the following definition.\\[14pt]
+  \sdefn{Let $f$ be a function of two variables.
+  An interior point of $\dom(f)$ where
+  \be
+  \item[(i)]
+	both $f_x$ and $f_y$ are zero, or
+  \item[(ii)]
+	at least one of $f_x$, $f_y$ does not exist
+  \ee
+  is called a {\em critical point} of $f$.
+  }
+\ei
+
+\newpage
+\subsection*{Classifying Critical Points}
+
+Just as with functions of one variable, not all critical points
+of $f(x,y)$ correspond to a local extremum.  On pp.~757--759 of
+the text, Figures 12.37 and 12.41 depict situations in which $(0,0)$
+is a critical point corresponding to an extremum; Figure 12.40 depicts
+situations in which $(0,0)$ is the location of a saddle point.\\[18pt]
+\defn{Suppose $f(x,y)$ is a differentiable function with critical
+point $(a,b)$.  If every open disk centered at $(a,b)$ contains
+both domain points $(x,y)$ for which $f(x,y) > f(a,b)$
+and domain points $(x,y)$ for which $f(x,y) < f(a,b)$, then
+$f$ is said to have a {\em saddle point} at $(a,b)$.
+}\\[18pt]
+With functions of a single variable, we have several tests (the
+First Derivative Test and the Second Derivative Test) for determining
+when a critical point corresponds to a local extremum.  The following
+theorem provides a test for those critical points of type (i) for
+which $f$ is twice continuously differentiable throughout a disk
+surrounding the critical point.\\[18pt]
+\thm{
+Suppose that $f(x,y)$ and its first and 2nd partial derivatives
+are continuous throughout a disk centered at $(a,b)$, and that
+$\vec\nabla f(a,b) = \0$.  Let $D$ be given by the following
+two-by-two determinant:
+$$ D(x,y) \;:=\; \left|\begin{array}{cc}
+	f_{xx}(x,y) & f_{xy}(x,y) \\ f_{xy}(x,y) & f_{yy}(x,y)
+  \end{array}\right| \;=\; f_{xx}f_{yy} - f_{xy}^2. $$
+Then
+\be
+\item[(i)]
+  $f$ has a local maximum at $(a,b)$ if $f_{xx}(a,b) < 0$
+  and $D(a,b) > 0$.
+\item[(ii)]
+  $f$ has a local minimum at $(a,b)$ if $f_{xx}(a,b) > 0$
+  and $D(a,b) > 0$.
+\item[(iii)]
+  $f$ has a saddle point at $(a,b)$ if $D(a,b) < 0$.
+\ee
+If $D(a,b) = 0$, or if $D(a,b) > 0$ and $f_{xx}(a,b) = 0$,
+then this test fails to classify the critical point $(a,b)$.
+}\\[18pt]
+\egs{}
+\bi
+\item[]
+% $\ds{f(x,y) \;=\; 9 - 2x + 4y - x^2 - 4y^2}$
+  $\ds{f(x,y) \;=\; x^3 y + 12x^2 - 8y}$
+\vs{0.2in}
+\item[]
+% $\ds{f(x,y) \;=\; e^{4y-x^2-y^2}}$
+  $\ds{f(x,y) \;=\; \frac{x^2 y^2 - 8x + y}{xy}}$
+\vs{0.2in}
+\item[]
+  $\ds{f(x,y) \;=\; xy(1-x-y)}$
+\ei
+
+\end{document}
+

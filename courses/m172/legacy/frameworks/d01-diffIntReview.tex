@@ -1,0 +1,153 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{Review of Differentiation and Integration}
+\def\lecdate{Mon., Jan.~29}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\def\unsc{\blank{0.07in}}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH 162---Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\section*{Differentiation}
+\vs{0.2in}
+\ni
+Definition of derivative $f'(x)$:
+$$ \lim_{h\rightarrow 0} \frac{f(x+h) - f(x)}{h} \qquad\mbox{or}\qquad
+  \lim_{y\rightarrow x} \frac{f(y) - f(x)}{y-x}. $$
+
+\vs{0.2in}
+\ni
+Differentiation rules:
+\be
+\item {\bf Sum/Difference rule}: If $f$, $g$ are differentiable at $x_0$, then
+  $$ (f \pm g)'(x_0) \= f'(x_0) \pm g'(x_0). $$
+\item {\bf Product rule}: If $f$, $g$ are differentiable at $x_0$, then
+  $$ (fg)'(x_0) \= f'(x_0)g(x_0) + f(x_0)g'(x_0). $$
+\item {\bf Quotient rule}: If $f$, $g$ are differentiable at $x_0$, and
+  $g(x_0) \ne 0$, then
+  $$ \left(\frac{f}{g}\right)'(x_0) \= \frac{f'(x_0)g(x_0)
+	- f(x_0)g'(x_0)}{[g(x_0)]^2}. $$
+\item {\bf Chain rule}: If $g$ is differentiable at $x_0$, and $f$
+  is differentiable at $g(x_0)$, then
+  $$ (f \circ g)'(x_0) \= f'(g(x_0)) g'(x_0). $$
+  This rule may also be expressed as
+  $$ \frac{dy}{dx}\Big|_{x=x_0} \= \left(\frac{dy}{du}\Big|_{u=u(x_0)}\right)
+	\left(\frac{du}{dx}\Big|_{x=x_0}\right). $$
+  Implicit differentiation is a consequence of the chain rule.  For
+  instance, if $y$ is really dependent upon $x$ (i.e., $y = y(x)$),
+  and if $u = y^3$, then
+  $$ \frac{d}{dx} (y^3) \= \frac{du}{dx} \= \frac{du}{dy}\,\frac{dy}{dx}
+	\= \frac{d}{dy}(y^3) y'(x) \= 3y^2 y'. $$
+  {\em Practice}: Find
+  $$ \frac{d}{dx} \left(\frac{x}{y}\right), \qquad
+	\frac{d}{dx} (x^2 \sqrt{y}), \qquad\mbox{and}\qquad
+	\frac{d}{dx} [y\cos(xy)]. $$
+
+\ee
+
+\section*{Integration}
+
+\ni
+The definite integral
+\bi
+\item the area problem
+\item Riemann sums
+\item definition
+\ei
+
+\ni
+{\bf Fundamental Theorem of Calculus}:
+\be
+\item[I:]
+  Suppose $f$ is continuous on $[a,b]$.  Then the function given by
+  $F(x) := \int_a^x f(t)\,dt$ is continuous on $[a,b]$ and differentiable
+  on $(a,b)$, with derivative
+  $$ F'(x) \= \frac{d}{dx} \int_a^x f(t)\,dt \= f(x). $$
+\item[II:]
+  Suppose that $F(x)$ is continuous on the interval $[a,b]$
+  and that $F'(x) = f(x)$ for all $a < x < b$.  Then
+  $$ \int_a^b f(x)\, dx \= F(b) - F(a). $$
+\ee
+
+\ni
+Remarks:
+\bi
+\item
+  Part I says there is always a formal antiderivative on
+  $(a,b)$ to continuous $f$.  A vertical shift of one antiderivative
+  results in another antiderivative (so, if one exists, infinitely
+  many do).  But if an antiderivative is to pass through a particular
+  point (an {\em initial value problem}), there is often just one
+  satisfying this additional criterion.
+\item
+  Part II indicates the definite integral is equal to the total
+  change in any (and all) antiderivatives.
+\ei
+
+\ni
+The {\em average value of $f$ over $[a,b]$} is defined to be
+$$ \frac{1}{b-a} \int_a^b f(x)\, dx, $$
+when this integral exists.
+
+\vs{0.2in}
+\ni
+Integration by substitution:
+\bi
+\item
+  Counterpart to the chain rule  (Q: What rules for integration
+  correspond to the other differentiation rules?)
+\item Examples:
+  \be
+  \item $\ds{\int e^{3x}\,dx}$
+  \item $\ds{\int_0^5 \frac{dx}{2x + 1}}$
+  \item $\ds{\int_0^{\sqrt \pi/2} 2x\cos(x^2)\,dx}$
+  \item $\ds{\int \frac{\ln x}{x}\,dx}$
+  \item $\ds{\int \frac{dx}{1 + (x-3)^2}}$
+  \item $\ds{\int \frac{dx}{x \sqrt{4x^2-1}}}$
+  \item $\ds{\int \cos(3x)\sin(3x)\,dx}$
+  \item $\ds{\int \frac{\arctan(2x)}{1 + 4x^2}\,dx}$
+  \item $\ds{\int \tan^m x \sec^2 x \, dx}$
+  \item $\ds{\int \tan x \, dx}\quad$ (worth extra practice)
+  \item $\ds{\int \sec x \, dx}\quad$ (worth extra practice)
+  \ee
+\ei
+
+\end{document}
+

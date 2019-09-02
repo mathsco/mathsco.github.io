@@ -1,0 +1,126 @@
+
+<html><head><title> Calculus notes page </title>
+<link rel="stylesheet" type="text/css"
+href="~/styles/mystandard.css">
+
+<STYLE TYPE="text/css">
+<!--
+.indented
+{
+padding-left: 20pt;
+}
+-->
+</STYLE>
+
+</head>
+<body>
+
+<p>
+
+<h2>Some Calculus notes by Thomas Scofield</h2>
+
+<a href=
+  "http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d02-byParts.pdf">
+  Integration by parts </a> <br>
+
+<a href=
+  "http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d03-trigInts.pdf">
+  Integrals involving trig functions </a> <br>
+
+<a href=
+  "http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d04-trigSubs.pdf">
+  Trigonometric substitutions </a> <br>
+
+<a href=
+  "http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d05-partialFractions.pdf">
+  Partial fraction and integration </a> <br>
+
+<a href=
+  "http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d06-numericalIntegration.pdf">
+  Numerical integration </a> <br>
+
+<a href=
+  "http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d07-improperIntegrals.pdf">
+  Improper integrals </a> <br>
+
+<a href=
+  "http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d08-seriesIntro.pdf">
+  Introduction to infinite series </a> <br>
+
+<a href=
+  "http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d09-geometricSeries.pdf">
+  Geometric series </a> <br>
+
+<a href=
+  "http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d10-absConvTest.pdf">
+  Absolute convergence </a> <br>
+
+<a href=
+  "http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d11-ratioTest.pdf">
+  Ratio test </a> <br>
+
+Power series:
+  <a href=
+  "http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d12-powerSeries.pdf">
+  Part I</a>,
+  <a href=
+  "http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d13-powerSeriesII.pdf">
+  Part II </a> <br>
+
+Taylor series:
+<a href=
+  "http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d14-taylorSeries.pdf">
+  Part I</a>,
+  <a href="http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d15-taylorSeriesII.pdf">
+  Part II </a> <br>
+
+<a href=
+  "http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d16-fnsOfMultVarsIntro.pdf">
+  Functions of multiple variables (intro) </a> <br>
+
+<a href=
+  "http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d35-polarCoords.pdf">
+  Polar coordinates </a> <br>
+
+<!--
+<a href=
+  "http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d21-vectors.pdf">
+  Vectors </a> <br>
+
+<a href=
+  "http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d22-dotProduct.pdf">
+  Dot product </a> <br>
+
+<a href=
+  "http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d23-crossProduct.pdf">
+  Cross product </a> <br>
+
+<a href=
+  "http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d27-moreOnLinesPlanes.pdf">
+  Lines and planes in space </a> <br>
+
+<a href="http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d17-limitsFnsOf2Vars.pdf"> Limits of functions of multiple variables </a> <br>
+<a href="http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d18-partialDerivs.pdf"> Partial derivatives </a> <br>
+<a href="http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d19-differentiability.pdf"> Differentiability of functions of multiple variables </a> <br>
+<a href="http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d20-chainRule.pdf"> Multivariable chain rule </a> <br>
+Vector functions:
+<a href="http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d24-vectorFns.pdf"> Part I,</a>
+<a href="http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d25-vectorFnsII.pdf"> Part II </a> <br>
+<a href="http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d26-quadricSurfaces.pdf"> Quadric surfaces </a> <br>
+<a href="http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d28-gradients.pdf"> Gradients </a> <br>
+Optimization of functions of multiple variables:
+<a href="http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d29-optimizationI.pdf"> Part I,</a>
+<a href="http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d30-optimizationII.pdf"> Part II </a> <br>
+Iterated integrals:
+<a href="http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d31-iteratedInts.pdf"> Part I,</a>
+<a href="http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d32-iteratedIntsII.pdf"> Part II </a> <br>
+<a href="http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d33-doubleIntsApps.pdf"> Double integrals in rectangular coordinates </a> <br>
+<a href="http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d34-tripleInts.pdf"> Triple integrals in rectangular coordinates </a> <br>
+<a href="http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d36-doubleIntsPolar.pdf"> Double integrals in polar coordinates </a> <br>
+<a href="http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d37-moments.pdf"> Moments </a> <br>
+<a href="http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d38-cylindricalCoords.pdf"> Cylindrical coordinates </a> <br>
+<a href="http://www.calvin.edu/~scofield/courses/m162/S07/frameworks/d39-sphericalCoords.pdf"> Spherical coordinates </a> <br>
+-->
+
+</body>
+

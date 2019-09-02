@@ -1,0 +1,198 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{More about Lines and Planes in Space}
+\def\lecdate{Tues., Mar.~27}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{ascii}
+%\usepackage{wasysym}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\def\mbunsc{\blank{0.07in}}
+\def\pref#1{(\ref{#1})}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+\def\fb#1{\framebox{\parbox[t]{6.5in}{#1}}}
+\def\sfb#1{\framebox{\parbox[t]{6.0in}{#1}}}
+\def\defn#1{\fb{{\bf Definition}: #1}}
+\def\sdefn#1{\sfb{{\bf Definition}: #1}}
+\def\thm#1{\fb{{\bf Theorem}: #1}}
+\def\sthm#1{\sfb{{\bf Theorem}: #1}}
+\def\eg#1{{\bf Example}: #1}
+\def\egs#1{{\bf Examples}: #1}
+\def\newt{\vspace{0.2in}\ni}
+\setlength{\fboxsep}{5pt}
+%\def\vdotprod{{\ascii\BEL}}
+\def\vdotprod{\,\mbox{{\Large $\cdot$}}\,}
+\def\vcrossprod{\times}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH 162---Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+{\bf Today's Goal}:
+To review how lines and planes in space are represented,
+and use these notions to derive some useful formulas
+and algorithms involving points, lines and planes.
+
+\vspace{0.2in}
+\subsection*{Lines and Planes}
+We have derived the following representations.
+\bi
+\item
+  {\bf Lines}.  The line trough point $P = (x_0,y_0,z_0)$
+  parallel to $\mbv = v_1 \mbi + v_2 \mbj + v_3 \mbk$ \\[8pt]
+  \begin{tabular}{ll}
+	{\bf component form}: & $x = x_0 + v_1 t,$ \\
+	& $y = y_0 + v_2 t,$ $\qquad -\infty < t < \infty$, \\
+	& $z = z_0 + v_3 t,$ \\[8pt]
+	{\bf vector form}: & $\mbr(t) = (x_0 + v_1t)\mbi + (y_0 + v_2t)\mbj
+	  (z_0 + v_3t)\mbk,$ $\qquad -\infty < t < \infty$. \\
+  \end{tabular}
+
+\item
+  {\bf Planes}.  The plane trough point $P = (x_0,y_0,z_0)$
+  perpendicular to $\mbn = a \mbi + b \mbj + c\mbk$
+  $$ \mbn \vdotprod [(x - x_0)\mbi + (y - y_0)\mbj + (z - z_0)\mbk] = 0, 
+	\qquad\mbox{or}\qquad ax + by + cz = d, $$
+  where $d = ax_0 + by_0 + cz_0$.
+\ei
+
+\vspace{0.2in}
+\subsection*{Formulas and Algorithms for Lines and Planes}
+\bi
+\item
+  {\bf Distance from a point $S$ to a line $L$}.\\[8pt]
+  \begin{minipage}[t]{4in}
+	Keys to a formula:
+	\be
+	\item
+	  Our distance is $|\overrightarrow{PS}|\sin\theta$, where\\
+	  $P$ is any point on line $L$.
+	\item
+	  For two vectors $\mbu$ and $\mbv$,
+	  $\quad |\mbu\vcrossprod\mbv| = |\mbu||\mbv|\sin\theta$.
+%	  \[ |\mbu\vcrossprod\mbv| = |\mbu||\mbv|\sin\theta. \]
+	\ee
+	From these we get
+	\[ |\overrightarrow{PS}|\sin\theta = \frac{|\overrightarrow{PS}
+	  \vcrossprod \mbv|}{|\mbv|}, \]
+	where $\mbv$ is any vector parallel to line $L$.
+  \end{minipage}
+% \hspace{0.5in}
+  \begin{minipage}[t]{2in}
+	\mbox{}
+
+	\setlength{\unitlength}{2mm}
+	\begin{picture}(35,10)
+	  \put(0,7){\line(5,-1){35}}
+	  \put(25,2){\line(1,5){2.32}}
+	  \put(5,6){\circle*{1}}
+	  \put(27.3,13.4){\circle*{1}}
+	  \put(28,-1.5){$L$}
+	  \put(4.1,3.5){$P$}
+	  \put(27,15.2){$S$}
+	  \qbezier(8.5,6.7)(9.3,6.5)(9,4.9)
+	  \put(10.5,5.6){$\theta$}
+%	  \put(17,1){$\mbv$}
+	  \thicklines
+	  \put(5,6){\vector(3,1){22.2}}
+%	  \put(15,3){\vector(5,-1){8}}    % vector directions are too limited
+	\end{picture}
+  \end{minipage}
+
+\np
+\item
+  {\bf Distance from a point $S$ to a plane} containing the point $P$
+  with normal vector $\mbn$. \\[8pt]
+  Keys to a formula:
+  \be
+  \item
+	Our distance is $|\overrightarrow{PS}||\cos\theta|$, where
+	$\theta$ is the angle between $\overrightarrow{PS}$ and $\mbn$.
+  \item
+	If $\theta$ is the angle between vectors $\mbu$ and $\mbv$, then
+	$\quad\ds{ \cos\theta \;=\; \frac{\mbu\vdotprod\mbv}{|\mbu||\mbv|} }$.
+  \ee
+  Thus, we get
+  $$ |\overrightarrow{PS}||\cos\theta| \;=\; \frac{|\overrightarrow{PS}
+	\vdotprod \mbn|}{|\mbn|}. $$
+
+\item
+  {\bf Angle between two planes}. \\[8pt]
+  \sdefn{The {\em angle between planes} is taken to
+	be the angle $\theta \in [0,\pi/2]$ between normal
+	vectors to the planes.}
+
+  By this definition, if $\mbn_1$ and $\mbn_2$ are normal vectors
+  to the two planes, then the angle between the planes is
+  $$ \theta \;=\; \left\{\begin{array}{ll}
+	\ds{\arccos\left(\frac{\mbn_1\vdotprod\mbn_2}
+	  {|\mbn_1||\mbn_2|}\right),}
+	  & \mbox{if}\; \mbn_1\vdotprod\mbn_2 \ge 0, \\[14pt]
+	\ds{\pi - \arccos\left(\frac{\mbn_1\vdotprod\mbn_2}
+	  {|\mbn_1||\mbn_2|}\right),}
+	  & \mbox{if}\; \mbn_1\vdotprod\mbn_2 < 0.
+	\end{array}\right. $$
+
+\item
+  {\bf Line of intersection between two non-parallel planes}. \\[10pt]
+  It should not be difficult to find a point on the desired line.
+  If the two planes have equations $a_1 x + b_1 y + c_1 z = d_1$
+  and $a_2 x + b_2 y + c_2 z = d_2$, then it is quite likely the
+  line of intersection will eventually pass through a point $P$ where
+  the $x$-coordinate is zero.  Assuming this is so, we may do the
+  usually steps of solving the simultaneous equations in 2 unknowns
+  $$ \begin{array}{l} b_1 y + c_1 z = d_1 \\ b_2 y + c_2 z = d_2 \end{array} $$
+  for the corresponding $y$ and $z$ coordinates of this point.
+  (If the solution process fails to yield corresponding $y$ and $z$
+  coordinates, one can instead look for the point $P$ for which the
+  $y$ or, alternatively, the $z$-coordinate is zero.)
+
+  Once a point $P$ on our line of intersection is found, we next need
+  a vector that is parallel to our line.  Such a vector would be
+  perpendicular to normal vectors to both planes, and so could be
+  any multiple of
+  $$ (a_1 \mbi + b_1 \mbj + c_1 \mbk) \vcrossprod
+	(a_2 \mbi + b_2 \mbj + c_2 \mbk)  \;=\; \left|\begin{array}{ccc}
+	\mbi & \mbj & \mbk \\ a_1 & b_1 & c_1 \\ a_2 & b_2 & c_2
+  \end{array}\right|. $$
+\ei
+
+\end{document}
+

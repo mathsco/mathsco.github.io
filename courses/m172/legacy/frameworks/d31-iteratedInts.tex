@@ -1,0 +1,159 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{Double and Iterated Integrals, Rectangular Regions}
+\def\lecdate{Wed., Apr.~11}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{ascii}
+%\usepackage{wasysym}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\def\mbunsc{\blank{0.07in}}
+\def\pref#1{(\ref{#1})}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+\def\fb#1{\framebox{\parbox[t]{6.5in}{#1}}}
+\def\sfb#1{\framebox{\parbox[t]{6.0in}{#1}}}
+\def\defn#1{\fb{{\bf Definition}: #1}}
+\def\sdefn#1{\sfb{{\bf Definition}: #1}}
+\def\thm#1{\fb{{\bf Theorem}: #1}}
+\def\sthm#1{\sfb{{\bf Theorem}: #1}}
+\def\eg#1{{\bf Example}: #1}
+\def\egs#1{{\bf Examples}: #1}
+\def\newt{\vspace{0.2in}\ni}
+\setlength{\fboxsep}{5pt}
+%\def\vdotprod{{\ascii\BEL}}
+\def\vdotprod{\,\mbox{{\Large $\cdot$}}\,}
+\def\vcrossprod{\times}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+{\bf Today's Goal}:
+To understand the meaning of double integrals over
+bounded rectangular regions $R$ of the plane, and to be
+able to evaluate such integrals.
+
+\vspace{0.15in}
+\ni
+{\bf Important Note}: In conjunction with this framework,
+you should look over Section 13.1 of your text.
+
+\vspace{0.15in}
+\subsection*{Riemann Sums}
+We assume that $f(x,y)$ is a function of 2 variables, and
+that $R = \{(x,y)\in\mathR^2 \,|\, a\le x\le b, \; c\le y\le d\}$
+(i.e., $R$ is some bounded rectangular region of the plane whose sides
+are parallel to the coordinate axes).  Supppose we
+\bi
+\item
+  divide $R$ up into $n$ smaller rectangles, labeling them
+  $R_1$, $R_2$, \ldots, $R_n$,
+\item
+  choose, from each rectangle $R_k$, some point $(x_k,y_k)$, and
+\item
+  use the symbol $\Delta A_k$ to denote the area of rectangle $R_k$.
+\ei
+Then the sum
+$$ \sum_{k=1}^n f(x_k,y_k)\Delta A_k $$
+is called a {\em Riemann sum} of $f$ over the region $R$.\\[10pt]
+\defn{
+The collection of smaller rectangles $R_1$, \ldots, $R_n$ is
+called a {\em partition} $P$ of $R$.  The maximum, taken over all
+lengths and widths of these rectangles, is called the {\em norm}
+of the partition $P$, and is denoted by $\|P\|$.\\[10pt]
+The function $f$ is said to be {\em integrable over} $R$ if the limit
+$$ \lim_{\|P\|\rightarrow 0} \sum_{k=1}^n f(x_k,y_k)\Delta A_k, $$
+taken over all partitions $P$ of $R$, exists.  The value of this
+limit, called the {\em double integral of} $f$ over $R$, is denoted by
+$$ \iint\limits_R f(x,y)\,dA. $$}\\[10pt]
+The following theorem tells us that, for certain functions,
+integrability is assured\\[10pt]
+\thm{
+  Suppose $f(x,y)$ is a continuous function over the closed and
+  bounded rectangle $R = \{(x,y\in\mathR^2 \,|\, a\le x\le b, \;
+  c\le y\le d\}$ in the plane.  Then $f$ is integrable over $R$.}
+
+\newpage
+\ni
+Remarks
+\bi
+\item
+  The double integral of $f$ over $R$ is a definite integral,
+  and has a numeric value.
+\item
+  When $f(x,y)$ is a nonnegative function, $\iint_R f(x,y)\,dA$
+  may be interpreted as the volume under the surface $z = f(x,y)$
+  over the region $R$ in the $xy$-plane.
+\item
+  When $f(x,y)$ is a constant function (i.e., $f$ has the same
+  value, say $c$, for each input point $(x,y)$), then
+  $$ \iint\limits_R f(x,y)\,dA \;=\; c \cdot Area(R). $$
+\ei
+
+\vspace{0.1in}
+\subsection*{Iterated Integrals and Fubini's Theorem}
+Except in the very special case of constant functions $f$, the
+definition of $\iint_R f(x,y)\,dA$ does not, by itself, provide
+us with much help for evaluating a double integral.  (If you are
+viewing this document on the web, click
+\href{http://www.jstor.org/view/0025570x/di021064/02p0066q/0}{here}
+for an alternate point of view, expressed by Peter A.~Lindstrom
+of Genesee Community College.)  However, the following theorem
+indicates that the double integral may be evaluated as an
+{\em iterated integral}.\\[16pt]
+\thm{
+({\bf{Fubini}}) Suppose $f(x,y)$ is continuous throughout the
+rectangle \mbox{$R = \{(x,y)\in\mathR^2 \,|\,
+a\le x\le b, \; c\le y\le d\}$}.  Then
+$$ \iint\limits_R f(x,y)\,dA \;=\; \int_a^b \int_c^d f(x,y)\,dy\,dx
+	\;=\; \int_c^d \int_a^b f(x,y)\,dx\,dy. $$ }\\[16pt]
+\egs{}
+Evaluate the double integral, with $R$ as specified.
+\be
+\item
+  $\ds{\iint\limits_R (2x + x^2 y)\,dA,}\quad$ where
+  $R: -2 \le x \le 2, \; -1 \le y \le 1$.\\[52pt]
+\item
+  $\ds{\iint\limits_R y\sin(xy)\,dA,}\quad$ where
+  $R: 1 \le x \le 2, \; 0 \le y \le \pi$.
+\ee
+
+\end{document}
+

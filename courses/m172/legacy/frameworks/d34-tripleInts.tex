@@ -1,0 +1,252 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{Triple Integrals, Rectangular Coordinates}
+\def\lecdate{Tues., Apr.~17}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{ascii}
+%\usepackage{wasysym}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\def\mbunsc{\blank{0.07in}}
+\def\pref#1{(\ref{#1})}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+\def\fb#1{\framebox{\parbox[t]{6.5in}{#1}}}
+\def\sfb#1{\framebox{\parbox[t]{6.0in}{#1}}}
+\def\defn#1{\fb{{\bf Definition}: #1}}
+\def\sdefn#1{\sfb{{\bf Definition}: #1}}
+\def\thm#1{\fb{{\bf Theorem}: #1}}
+\def\sthm#1{\sfb{{\bf Theorem}: #1}}
+\def\eg#1{{\bf Example}: #1}
+\def\egs#1{{\bf Examples}: #1}
+\def\newt{\vspace{0.2in}\ni}
+\setlength{\fboxsep}{5pt}
+%\def\vdotprod{{\ascii\BEL}}
+\def\vdotprod{\,\mbox{{\Large $\cdot$}}\,}
+\def\vcrossprod{\times}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+{\bf Today's Goal}:
+To be able to set up and evaluate triple integrals.
+
+\vspace{0.15in}
+\ni
+{\bf Important Note}: In conjunction with this framework,
+you should look over Section 13.5 of your text.
+
+\vspace{0.15in}
+\subsection*{Defining Triple Integrals}
+Suppose
+\bi
+\item
+  $D$ is a ``nice'' bounded region in $3$-dimensional space.
+\item
+  We subdivide $D$, creating a partition $P$ of $D$, where
+  $P$ consists of $n$ ``boxes'' wholly contained in $D$.
+\item
+  In the $k$th box ($1 \le k \le n$), we choose a point $(x_k, y_k, z_k)$.
+\ei
+We then look at sums of the form
+$$ \sum_{k=1}^n f(x_k,y_k,z_k)\Delta V_k, $$
+where $\Delta V_k$ denotes the volume of the $k$th box.\\[10pt]
+As with Riemann sums over partitions of regions of the plane, there
+are many functions and regions $D$ for which the limit
+$$ \lim_{\|P\|\rightarrow 0} \sum_{k=1}^n f(x_k,y_k,z_k)\Delta V_k $$
+exists, in which case we say that $f$ is {\em integrable} over $D$.
+This limit is denoted by
+$$ \iiint\limits_D f(x,y,z)\,dV, $$
+read as the {\em triple integral} of $f$ over $D$.
+
+\newpage
+\section*{Comparisons to Double Integrals}
+\be
+\item {\bf Evaluation}.\\[8pt]
+  {\bf Double integrals:}
+  \bq
+  Here our principle tool is Fubini's Theorem.  We have two cases.\\[8pt]
+  {\bf Case:} $\ds{\iint\limits_R g(x,y)\,dA = \int_a^b \int_{g_1(x)}^{g_2(x)}
+	g(x,y)\,dy \, dx}$.
+  \bq
+  \begin{minipage}[t]{5.5in}
+	Here, $a$ and $b$ reflect the lowest and highest of a continuum of
+	$x$-values encountered in the region $R$, while the lower and upper
+	boundaries of $R$ may be identified as functions of $x$.
+  \end{minipage}
+  \eq
+  {\bf Case:} $\ds{\iint\limits_R g(x,y)\,dA = \int_c^d \int_{h_1(x)}^{h_2(x)}
+	g(x,y)\,dx \, dy}$.
+  \bq
+  \begin{minipage}[t]{5.5in}
+	Here, $c$ and $d$ reflect the lowest and highest of a continuum of
+	$y$-values encountered in the region $R$, while the left and right
+	boundaries of $R$ may be identified as functions of $y$.
+  \end{minipage}
+  \eq
+  \begin{minipage}[t]{5.9in}
+  For most regions $R$, either case is applicable (sometimes one of
+  the options requires a sum of integrals instead of a single one),
+  meaning that the double integral may be written in either of
+  {\em two orders} (i.e., either with $y$ as the inner integral, as
+  in $dy\,dx$, or in the order $dx\,dy$).
+  \end{minipage}
+  \eq
+
+  {\bf Triple integrals:}
+  \bq
+  Given a bounded region $D$ of 3-dimensional space, the triple integral
+  $\iiint_D f(x,y,z)\,dV$ may be written as an iterated integral
+  in {\em six different orders}.  Here are {\em two of the possibilities}:
+  \bi
+  \item
+	$\ds{\iiint\limits_D f(x,y,z)\,dV = \int_c^d \int_{g_1(y)}^{g_2(y)}
+	  \int_{h_1(y,z)}^{h_2(y,z)} f(x,y,z) \,dx \,dz \,dy}$.
+	\bq
+	  \begin{minipage}[t]{5.5in}
+	  Here, $c$ and $d$ are the lowest and highest in a
+	  continuum of $y$-values encountered as one passes
+	  through the region $D$.  For any fixed $y \in [c,d]$,
+	  we imagine a 2-dimensional (planar) region that results
+	  from slicing through $D$ with a plane parallel to the
+	  $xz$-plane.  This planar region has a starting and
+	  ending $z$-value, given by $g_1(y)$ and and $g_2(y)$
+	  respectively.  At the inner-most level (the inner-most
+	  integral, which is in $x$), $y$ and $z$ are held fixed
+	  while $x$ is allowed to vary.  The interval of possible
+	  $x$-values starts at $h_1(y,z)$ and ends at $h_2(y,z)$.
+	  \end{minipage}
+	\eq
+  \item
+	$\ds{\iiint\limits_D f(x,y,z)\,dV = \int_r^s \int_{g_1(z)}^{g_2(z)}
+	  \int_{h_1(x,z)}^{h_2(x,z)} f(x,y,z) \,dy \,dx \,dz}$.
+	\bq
+	  \begin{minipage}[t]{5.5in}
+	  The explanation of our region is similar to the above,
+	  but this time $r$ and $s$ represent lowest and highest
+	  $z$-values encountered in $D$; for a fixed $z$,
+	  $g_1(z)$ and $g_2(z)$ give lowest and highest $x$-values;
+	  for both $x$ and $z$ fixed, $h_1(x,z)$ and $h_2(x,z)$
+	  give lowest and highest $y$-values.
+	  \end{minipage}
+	\eq
+  \ei
+  \eq
+
+\item {\bf Interpretations}.
+  \be
+  \item {\bf Areas, volumes and higher}.\\[10pt]
+	{\bf Double integrals:}
+	\bq
+	\begin{minipage}[t]{5.5in}
+	When $g(x,y)$ is nonnegative, the double integral
+	$\iint_R f(x,y)\,dA$ gives the volume under the surface
+	$z = g(x,y)$ over the region $R$ of the $xy$-plane.
+	If $g$ changes sign in the region $R$, then $\iint_R
+	g(x,y)\,dA$ represents a {\em difference of volumes}.\\[10pt]
+	A special case is when $g(x,y) \equiv 1$.
+	As we have seen $\iint_R g(x,y)\,dA = \iint dA$ gives
+	the {\em area} of $R$ (numerically equal to the volume
+	under a surface over $R$ whose height is uniformly 1).
+	\end{minipage}
+	\eq
+
+	{\bf Triple integrals:}
+	\bq
+	\begin{minipage}[t]{5.5in}
+	When $f(x,y,z)$ is nonnegative, we can be sure that
+	$\iiint_D f(x,y,z)\,dV$ is nonnegative as well.  But
+	since the graph of $w = f(x,y,z)$ is 4-dimensional,
+	we would have to think of this value as a type of
+	4-dimensional volume (or difference of volumes, if
+	$f$ changes sign in $D$).\\[10pt]
+	When $f(x,y) \equiv 1$, then $\iiint_R f(x,y,z)\,dV
+	= \iiint dV$ gives the {\em volume} of the 3-dimensional
+	region $D$.
+	\end{minipage}
+	\eq
+
+  \item {\bf Average values}.\\
+	The average value of $g(x,y)$ over a region $R$ of the
+	$xy$-plane was defined to be
+	$\iint_R g(x,y)\,dA/\iint_R dA$.
+	Similarly, we define the average value of
+	$f(x,y,z)$ over a region $D$ of 3-dimensional space
+	to be $\iiint_D f(x,y,z)\,dV/\iiint_D dV$.
+
+  \item {\bf Density integrals}.
+	When $g(x,y)$ gives the amount of a substance per unit
+	area, then $\iint_R g(x,y)\,dA$ tallies the amount of
+	that substance found in a region $R$ of the $xy$-plane.
+	Similarly, when $f(x,y,z)$ gives the amount of a substance
+	per unit volume, then $\iiint_D f(x,y,z)\,dV$ tallies the
+	amount of that substance found in a region $D$ of 3D space.
+  \ee
+\ee
+
+
+\vspace{0.2in}
+\ni
+\egs{}
+\be
+\item
+  Evaluate $\iiint_D z\,dV$ over the region enclosed by the
+  three coordinate planes and the plane $x + y + z = 1$.
+%\item
+% Write two other integrals whose value should be the same
+% as above.
+\item
+  Find the average $z$-value in the region from problem 1.
+\item
+  Find limits of integration for $\iiint_D \sqrt{x^2 + z^2}
+  \,dy \,dz \,dx$ where $D$ is the region bounded by the paraboloid
+  $y = x^2 + z^2$ and the plane $y = 4$.
+\item
+  Write a triple integral for $f(x,y,z)$ over the region bounded
+  by the ellipsoid $9x^2 + 4y^2 + z^2 = 1$.
+\item
+  What solid is it for which the iterated triple integral
+  $\int_0^2 \int_0^{2-y} \int_0^{4-y^2} dz \,dx \,dy$
+  gives its volume.  What do other iterated triple
+  integrals for the same expression look like?
+\ee
+
+\end{document}
+

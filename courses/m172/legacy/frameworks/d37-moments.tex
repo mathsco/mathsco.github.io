@@ -1,0 +1,169 @@
+\documentclass[12pt,fleqn]{article}
+
+\newif\ifcomplete
+\completetrue
+%\completefalse
+\def\topic{Moments, Centers of Mass}
+\def\lecdate{Thurs., Apr.~26--Fri., Apr.~27}
+
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.0in
+
+\input mathMacros.tex
+\usepackage{amsmath}
+\usepackage{ascii}
+%\usepackage{wasysym}
+\usepackage{fancyhdr}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+\usepackage{graphicx}
+\usepackage[usenames,dvipsnames]{color}
+\def\mbunsc{\blank{0.07in}}
+\def\pref#1{(\ref{#1})}
+%\def\RE{$\mathrm{Re}\,$}
+%\def\IM{$\mathrm{Im}\,$}
+\def\RE{$\mbox{Re}\,$}
+\def\IM{$\mbox{Im}\,$}
+\def\fb#1{\framebox{\parbox[t]{6.5in}{#1}}}
+\def\sfb#1{\framebox{\parbox[t]{6.0in}{#1}}}
+\def\defn#1{\fb{{\bf Definition}: #1}}
+\def\sdefn#1{\sfb{{\bf Definition}: #1}}
+\def\thm#1{\fb{{\bf Theorem}: #1}}
+\def\sthm#1{\sfb{{\bf Theorem}: #1}}
+\def\eg#1{{\bf Example}: #1}
+\def\egs#1{{\bf Examples}: #1}
+\def\egsc#1{{\bf Examples #1:}}
+\def\newt{\vspace{0.2in}\ni}
+\setlength{\fboxsep}{5pt}
+%\def\vdotprod{{\ascii\BEL}}
+\def\vdotprod{\,\mbox{{\Large $\cdot$}}\,}
+\def\vcrossprod{\times}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Framework for \lecdate}
+\chead{}
+\rhead{\topic}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\begin{center}
+  \Large{MATH 162: Calculus II} \\
+  \large{Framework for \lecdate} \\
+  \large{\topic}
+\end{center}
+
+\vs{0.2in}
+\ni
+{\bf Today's Goal}:
+To learn to apply the skill of setting up and evaluating
+triple integrals in the context of finding centers of mass.
+
+\vspace{0.15in}
+\ni
+{\bf Important Note}: In conjunction with this framework,
+you should look over Section 13.6 of your text.
+
+\vspace{0.15in}
+\subsection*{Point Masses along a Line (1D)}
+\bi
+\item
+  Assume $n$ masses $m_1$, \ldots, $m_n$ sit at
+  locations $x_1$, \ldots, $x_n$ on a number line.
+\item
+  Call the location $\bar x$ about which the total torque
+  is zero.  That is, $\bar x$ is the location to place a
+  fulcrum so that
+  $$ \sum_{k=1}^n m_k (x_k - \bar x) \;=\; 0. $$
+  Solving for $\bar x$, we get
+  \begin{equation}
+	\qquad\qquad\qquad
+	\bar x \;=\; \frac{\ds{\sum_{k=1}^n m_k x_k}}{\ds{\sum_{k=1}^n m_k}}
+	  \;=:\; \frac{\mbox{1st moment about $x=0$}}{\mbox{total mass}}
+		\label{discreteCOM}
+  \end{equation}
+\ei
+
+\subsection*{Continuous Mass along a Line
+ (1D; more instructive than practical)}
+When
+\bi
+\item
+  mass is distributed throughout a continuous body (instead of
+  being concentrated at finitely-many distinct positions),
+\item
+  $\rho(x)$ gives the mass density (mass per unit length)
+  inside the interval $a \le x \le b$,
+\ei
+then the total mass is
+$$ \int_a^b \rho(x)\, dx. $$
+The continuous analog to the numerator of \pref{discreteCOM}
+comes from the following definition:\\[8pt]
+\defn{
+If $\rho(x)$ is the mass density (in mass per unit {\em length})
+of a substance contained in a region $a \le x \le b$ of 1D space,
+then the {\em first moment} about $x=0$ is given by
+$$ \int_a^b x \rho(x)\,dx. $$
+}\\
+Using this, the corresponding center of mass is
+\begin{equation}
+  \qquad\qquad\qquad\qquad\qquad\qquad\qquad
+  \bar x \;=\; \frac{\int_a^b x \rho(x)\, dx}{\int_q^b \rho(x)\, dx}
+	\label{contCOM1D}
+\end{equation}
+
+\subsection*{Centers of Mass in 3D}
+\defn{
+If $\rho(x,y,z)$ is the mass density (in mass per unit volume)
+of a substance contained in a region $D$ of 3D space, then the
+{\em first moment} about the $yz$-plane ($x=0$) is given by
+$$ M_{yz} \;:=\; \iiint\limits_D x \rho(x,y,z)\,dV. $$
+Similarly, the first moments about the $xz$ and $xy$-planes are
+$$ M_{xz} \;:=\; \iiint\limits_D y \rho(x,y,z)\,dV \and
+	M_{xy} \;:=\; \iiint\limits_D z \rho(x,y,z)\,dV $$
+respectively.
+}\\[8pt]
+The corresponding {\em center of mass} will reside at a point
+$(\bar x, \bar y, \bar z)$ in space.  If we denote the total
+mass in the region $D$ by
+$$ M \;:=\; \iiint\limits_D \rho(x,y,z)\,dV, $$
+then the {\bf coordinates of the center of mass} are given by
+\begin{equation}
+  \bar x \;=\; \frac{M_{yz}}{M}, \quad
+	\bar y \;=\; \frac{M_{xz}}{M}, \and
+	\bar z \;=\; \frac{M_{xy}}{M}. \label{com3d}
+\end{equation}
+Remarks:
+\bi
+\item
+  One can develop formulas for the position $(\bar x, \bar y)$
+  of the center of mass in two dimensions.  In that case it is
+  assumed $\rho(x,y)$ gives mass density in mass per unit area,
+  and the first moments $M_y = \iint_R x\rho(x,y) \,dA$ and
+  $M_x = \iint_R y\rho(x,y) \,dA$ are {\em about the x-axis and
+  y-axis} respectively.
+\item
+  When there is constant mass density $\rho(x,y,z) = \delta$
+  throughout the region $D$, then another name for the center
+  of mass is the {\em centroid}.  In this case,
+  $$ \bar x \;=\; \frac{M_{yz}}{M} \;=\; \frac{\delta \iiint\limits_D 
+	x\,dV}{\iiint\limits_D \delta \,dV}
+	\;=\; \frac{\iiint\limits_D x\,dV}{\iiint\limits_D dV}
+	\;=\; \mbox{avg.~$x$-value in $D$}. $$
+  Similar statements may be made about the other coordinates
+  $\bar y$ and $\bar z$ of the centroid.
+\ei
+
+\end{document}
+
