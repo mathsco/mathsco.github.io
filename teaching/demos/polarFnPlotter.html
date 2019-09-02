@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Polar Function Plotter</title>
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>
+$(function () {
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+    						template:       sagecell.templates.minimal,
+                           evalButtonText: 'Launch the Interactive Applet Now'});
+});
+    </script>
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Polar Function Plotter</h1>
+
+<p>An Interactive Applet powered by Sage and MathJax.</p>
+<p>(By Thomas Scofield)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+\textrm{Use this app to view graphs of any function of } t \textrm{ in both the rectangular and polar frames.}
+</div>
+
+<hr>
+
+<div class="compute">
+<script type="text/x-sage">
+var('x y t')
+@interact( layout=[['func1','func2'],['t_min','numIntPts'],['t_max','addPt','extraPt']])
+def polarPlotter( func1 = input_box(default=1+cos(t),label="$f(t)$=",width=40), 
+     func2 = input_box(default=0, label="$g(t)$ = ",width=40),
+     numIntPts = input_box(default=16,label="numberOfIntermediatePts",width=5),
+     t_min = input_box( default = -pi, label = "$t_{min}$", width = 5 ), 
+     t_max = input_box( default = pi, label = "$t_{max}$", width = 5 ),
+     extraPt = input_box( default = (0,0), width=10, label="polarPointToAdd"),
+     auto_update=False, addPt = False ):
+
+  f = func1.function(t)
+  try:
+    g = func2.function(t)
+  except:
+    g(t) = func2
+  graph1 = plot(f,t_min,t_max,color="blue", title="As rectangular coords",
+                axes_labels=['$\theta$','$r$'])
+  graph1 += plot(g,t_min,t_max,color="black")
+  graph2 = plot(f,t_min,t_max,polar=True,color="blue",
+                title="As polar coords")
+  graph2 += plot(g,t_min,t_max,polar=True,color="black")
+  g1PtsY = list();
+  g2PtsX = list();
+  g2PtsY = list();
+  try:
+    f(t_min)
+    graph1 += point( (t_min, f(t_min)), color=(0,1,0.2), size=25 )
+    graph1 += line( ((t_min,0),(t_min, f(t_min))), color=(0,1,0.2) )
+    graph2 += point( (f(t_min)*cos(t_min), f(t_min)*sin(t_min)),
+                     color=(0,1,0.2), size=25)
+    graph2 += line( ((0,0),(f(t_min)*cos(t_min), f(t_min)*sin(t_min))),
+                     color=(0,1,0.2) )
+    g1PtsY.append(f(t_min))
+    g2PtsX.append(f(t_min)*cos(t_min))
+    g2PtsY.append(f(t_min)*sin(t_min))
+  except:
+    0
+  try:
+    f(t_max)
+    graph1 += point( (t_max, f(t_max)), color=(1,0,0.2), size=25 )
+    graph1 += line( ((t_max,0),(t_max, f(t_max))), color=(1,0,0.2) )
+    graph2 += point( (f(t_max)*cos(t_max), f(t_max)*sin(t_max)),
+                     color=(1,0,0.2), size=25 )
+    graph2 += line( ((0,0),(f(t_max)*cos(t_max), f(t_max)*sin(t_max))),
+                     color=(1,0,0.2) )
+    g1PtsY.append(f(t_max))
+    g2PtsX.append(f(t_max)*cos(t_max))
+    g2PtsY.append(f(t_max)*sin(t_max))
+  except:
+    0
+  for jj in range(1,numIntPts+1):
+    pct = jj / (numIntPts+1)
+    xCoord = t_min + pct * (t_max - t_min)
+    yCoord = f(xCoord)
+    graph1 += point( (xCoord, yCoord), rgbcolor=(pct,1-pct,0.2), size=15 )
+    graph1 += line( ((xCoord, 0),(xCoord, yCoord)), rgbcolor=(pct,1-pct,0.2) )
+    graph2 += point( (f(xCoord)*cos(xCoord), f(xCoord)*sin(xCoord)),
+                        rgbcolor=(pct,1-pct,0.2), size=15 )
+    graph2 += line( ((0,0), (f(xCoord)*cos(xCoord), f(xCoord)*sin(xCoord))),
+                        rgbcolor=(pct,1-pct,0.2) )
+    g1PtsY.append(yCoord)
+    g2PtsX.append(f(xCoord)*cos(xCoord))
+    g2PtsY.append(f(xCoord)*sin(xCoord))
+    g1PtsY.append(g(xCoord))
+    g2PtsX.append(g(xCoord)*cos(xCoord))
+    g2PtsY.append(g(xCoord)*sin(xCoord))
+  if addPt:
+    xtraX = extraPt[0]*cos(extraPt[1])
+    xtraY = extraPt[0]*sin(extraPt[1])
+    graph2 += point((xtraX, xtraY), color="black", size=25)
+    g2PtsX.append(xtraX)
+    g2PtsY.append(xtraY)
+
+  g1PtsY.sort()
+  g2PtsX.sort()
+  g2PtsY.sort()
+  g1ymin = g1PtsY[0]
+  g1ymax = g1PtsY.pop()
+  y1Range = g1ymax - g1ymin
+  if y1Range == 0:
+    g1ymin = -1.2*abs(g1ymin)
+    g1ymax = 1.2*abs(g1ymin)
+  else:
+    g1ymin -= y1Range * .15
+    g1ymax += y1Range * .15
+    if (t_max-t_min)/y1Range > 0.25 and (t_max-t_min)/y1Range < 4:
+      graph1.set_aspect_ratio(1)
+  g2xmin = g2PtsX[0]
+  g2xmax = g2PtsX.pop()
+  x2Range = g2xmax - g2xmin
+  if x2Range == 0:
+    g2xmin = -1.2*abs(g2xmin)
+    g2xmax = 1.2*abs(g2xmin)
+  else:
+    g2xmin -= x2Range * .15
+    g2xmax += x2Range * .15
+  g2ymin = g2PtsY[0]
+  g2ymax = g2PtsY.pop()
+  y2Range = g2ymax - g2ymin
+  if y2Range == 0:
+    g2ymin = -1.2*abs(g2ymin)
+    g2ymax = 1.2*abs(g2ymin)
+  else:
+    g2ymin -= y2Range * .15
+    g2ymax += y2Range * .15
+    if x2Range/y2Range > 0.3 and x2Range/y2Range < 3.3:
+      graph2.set_aspect_ratio(1)
+  graph1.axes_range(xmin=t_min, xmax=t_max, ymin=g1ymin, ymax=g1ymax)
+  graph2.axes_range(xmin=g2xmin, xmax=g2xmax, ymin=g2ymin, ymax=g2ymax)
+  show( graphics_array((graph1, graph2)) )
+    
+</script>
+</div>
+
+<hr>
+Last modified on July 28th, 2017.
+</body>
+</html>
