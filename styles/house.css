@@ -1,0 +1,38 @@
+#alignright {text-align:right}
+sup {font-size="-1"}
+sub {font-size="-1"}
+#overline {text-decoration:overline}
+#nounderline {text-decoration:none}
+
+#bluetype {color:blue}
+#bluetypebold {color:blue; font-weight:bold}
+#bluetypeitalic {color:blue; font-style:italic}
+#greentype {color:green}
+#greentypebold {color:green; font-weight:bold}
+#greentypeitalic {color:green; font-style:italic}
+#orangetype {color:orange}
+#orangetypebold {color:orange; font-weight:bold}
+#orangetypeitalic {color:orange; font-style:italic}
+#redtype {color:red}
+#redtypebold {color:red; font-weight:bold}
+#redtypeitalic {color:red; font-style:italic}
+
+#arial {font-family:Arial}
+#border {border-width:thin; border-style:solid}
+#doubleborder {border-width:thin; border-style:double}
+
+body {background:#ffffff}
+
+table th, td {vertical-align:top}
+span {text-indent:60px}
+
+h2 {color:#483d8b}
+h3 {color:blue}
+h4 {color:#483d8b; font-size:25px}
+h5 {color:#483d8b; font-size:19px; font-weight:bold}
+h6 {color:red; font-size:19px; font-weight:bold}
+
+
+#a:link {color:red; text-decoration:none}
+a:link {color:red}
+a:visited {color:#aa0000}

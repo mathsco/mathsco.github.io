@@ -1,0 +1,47 @@
+#alignright {text-align:right}
+sup {font-size="-1"}
+sub {font-size="-1"}
+#overline {text-decoration:overline}
+#nounderline {text-decoration:none}
+
+#bluetype {color:blue}
+#bluetypebold {color:blue; font-weight:bold}
+#bluetypeitalic {color:blue; font-style:italic}
+#greentype {color:green}
+#greentypebold {color:green; font-weight:bold}
+#greentypeitalic {color:green; font-style:italic}
+#orangetype {color:orange}
+#orangetypebold {color:orange; font-weight:bold}
+#orangetypeitalic {color:orange; font-style:italic}
+#redtype {color:red}
+#redtypebold {color:red; font-weight:bold}
+#redtypeitalic {color:red; font-style:italic}
+
+#arial {font-family:Arial}
+#border {border-width:thin; border-style:solid}
+#doubleborder {border-width:thin; border-style:double}
+
+body {background:#ffffff}
+
+h2 {color:blue}
+h3 {color:blue}
+h4 {color:#483d8b; font-size:25px}
+h5 {color:#483d8b; font-size:19px; font-weight:bold}
+h6 {color:red; font-size:19px; font-weight:bold}
+
+ol li 			{list-style-type:lower-alpha}
+ol ol li		{list-style-type:lower-roman}
+ol ul li,
+ol ol ul li,
+ol ol ol ul li,
+ol ol ol ol ul li,
+ol ol ol ol ol ul li		{list-style-type:disc}
+ol ul ul li,
+ol ol ul ul li,
+ol ol ol ul ul li,
+ol ol ol ol ul ul li,
+ol ol ol ol ol ul ul li		{list-style-type:circle}
+
+span	{text-indent:-29px;margin-left:70px}
+a:link {color:red; text-decoration:none}
+a:visited {color:#aa0000}

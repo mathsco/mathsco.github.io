@@ -1,0 +1,39 @@
+#alignright {text-align:right}
+sup {font-size="-1"}
+sub {font-size="-1"}
+#overline {text-decoration:overline}
+#nounderline {text-decoration:none}
+
+#bluetype {color:blue}
+#bluetypebold {color:blue; font-weight:bold}
+#bluetypeitalic {color:blue; font-style:italic}
+#greentype {color:green}
+#greentypebold {color:green; font-weight:bold}
+#greentypeitalic {color:green; font-style:italic}
+#orangetype {color:orange}
+#orangetypebold {color:orange; font-weight:bold}
+#orangetypeitalic {color:orange; font-style:italic}
+#redtype {color:red}
+#redtypebold {color:red; font-weight:bold}
+#redtypeitalic {color:red; font-style:italic}
+
+#arial {font-family:Arial}
+#border {border-width:thin; border-style:solid}
+#doubleborder {border-width:thin; border-style:double}
+
+.head	{font-family:Arial; font-size:19px; color:#000066}
+.row	{font-family:Arial; font-size:15px; color:#000066}
+
+body {background:#ffffcc}
+h2 {color:blue}
+h3 {color:blue}
+h4 {color:#000066; font-size:25px}
+h5 {color:#000066; font-size:19px; font-weight:bold}
+h6 {color:red; font-size:19px; font-weight:bold}
+hr {border-color:yellow}
+ul, ol {margin-left:-27px; margin-top:-7px; margin-bottom:-17px}
+th {font-family:Arial; font-size:19px; color:#000066}
+td {font-family:Arial; font-size:15px; color:#000066}
+
+a:link {color:red; text-decoration:none}
+a:visited {color:#aa0000}
