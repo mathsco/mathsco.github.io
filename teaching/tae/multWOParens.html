@@ -1,0 +1,174 @@
+
+<h2>Multiplication Without Parentheses (MWP<A NAME="275"></A>)</h2>
+
+<P>
+	The discussion here necessarily must begin with an appeal
+	to the <B>order of algebraic operations</B> (<B>OO</B><A NAME="279"></A>).
+	These are rules
+	of hierarchy as to which operations to perform 1st, 2nd, etc.
+	when an algebraic expression requires more than one operation
+	be performed.  There are three levels of hierarchy:
+<ol>
+	<li>powers,</li>
+	<li>multiplication and division, and</li>
+	<li>addition and subtraction.</li>
+</ol>
+	When faced with an expression like the one below that has both
+	an addition and a multiplication in it, the order of operations
+	dictates that the multiplication be performed first:
+<BR>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+2 + 3\cdot5 \quad\mbox{is}\quad 17, \quad\mbox{not}\quad 30.
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="228" HEIGHT="37" BORDER="0"
+ SRC="img62.png"
+ ALT="\begin{displaymath}2 + 3\cdot5 \quad\mbox{is}\quad 17, \quad\mbox{not}\quad 30. \end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+	The levels above do not give the whole story, however.  For
+	instance, what if an expression has both an addition and a
+	subtraction, operations which appear at the same level?  The answer
+	here is that operations appearing on the same level are always
+	performed left-to-right:
+<BR>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+2 + 3 - 5 \quad\mbox{is}\quad 0, \qquad
+		2 - 3 + 5 \quad\mbox{is}\quad 4, \qquad\mbox{and}\qquad
+		2 / 3 \cdot 5 \quad\mbox{is}\quad \frac{10}{3}.
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="553" HEIGHT="46" BORDER="0"
+ SRC="img63.png"
+ ALT="\begin{displaymath}2 + 3 - 5 \quad\mbox{is}\quad 0, \qquad
+2 - 3 + 5 \quad\mbox...
+...ox{and}\qquad
+2 / 3 \cdot 5 \quad\mbox{is}\quad \frac{10}{3}. \end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+	Also, one may use parentheses to override these rules.  Things
+	in parentheses are performed before things outside of those
+	parentheses, starting from the inside and working out.  So
+<BR>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+2 - (3 - (2 - 6)) \quad\mbox{is}\quad -5,
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="222" HEIGHT="38" BORDER="0"
+ SRC="img64.png"
+ ALT="\begin{displaymath}2 - (3 - (2 - 6)) \quad\mbox{is}\quad -5, \end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+	while
+<BR>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+2 - (3 - 2 - 6) \quad\mbox{is}\quad 7
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="180" HEIGHT="38" BORDER="0"
+ SRC="img65.png"
+ ALT="\begin{displaymath}2 - (3 - 2 - 6) \quad\mbox{is}\quad 7 \end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+and
+<BR>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+2 - 3 - 2 - 6 \quad\mbox{is}\quad -13.
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="202" HEIGHT="35" BORDER="0"
+ SRC="img66.png"
+ ALT="\begin{displaymath}2 - 3 - 2 - 6 \quad\mbox{is}\quad -13. \end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+	These order of operations apply to expressions involving
+	variables as well.  Thus
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\begin{array}{lll}
+		x \cdot 2x - 7 &
+			\qquad\mbox{is not the same as}\qquad &
+			x(2x-7), \\\\
+		3-x/x^2 & &
+			(3-x)/x^2.
+		\end{array}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="421" HEIGHT="90" BORDER="0"
+ SRC="img67.png"
+ ALT="\begin{displaymath}\begin{array}{lll}
+x \cdot 2x - 7 &amp;
+\qquad\mbox{is not the ...
+...qquad &amp;
+x(2x-7),  \\
+3-x/x^2 &amp; &amp;
+(3-x)/x^2.
+\end{array} \end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+	In this light, acceptable notation for the product of two
+	expressions like <IMG
+ WIDTH="29" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img68.png"
+ ALT="$(3)$"> and <IMG
+ WIDTH="62" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img69.png"
+ ALT="$(-5x^2)$"> is
+<BR>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+(3)(-5x^2) \qquad\mbox{or, more simply}\qquad -15x^2,
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="346" HEIGHT="38" BORDER="0"
+ SRC="img70.png"
+ ALT="\begin{displaymath}(3)(-5x^2) \qquad\mbox{or, more simply}\qquad -15x^2, \end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+	<EM>not, as so many students write,</EM>
+<BR>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+3\cdot -5x^2.
+		\mbox{\hspace{0.6in} \epsfig{0.5in}{mwp.eps}}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="199" HEIGHT="35" BORDER="0"
+ SRC="img71.png"
+ ALT="\begin{displaymath}3\cdot -5x^2.
+\mbox{\hspace{0.6in} \epsfig{0.5in}{mwp.eps}}\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
