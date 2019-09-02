@@ -1,0 +1,187 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2K.1beta (1.48)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Grading Codes for Common Observations from Mathematics Professors</TITLE>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2K.1beta">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="tae2.css">
+
+<LINK REL="next" HREF="node1.html">
+</HEAD>
+
+<BODY>
+<h1>Grading Codes</h1>
+
+<blockquote>
+<table>
+<tr>
+	<td>AEM</td>
+	<td>&nbsp;=&nbsp;</td>
+	<td>Adding Exponents which should be Multiplied</td>
+	</tr>
+<tr>
+	<td>CADD</td>
+	<td>&nbsp;=&nbsp;</td>
+	<td><a href="calcErrorCodes.pdf#nameddest=CADD">Confusing AntiDerivative
+	  and Derivative</td>
+	</tr>
+<tr>
+	<td>CES</td>
+	<td>&nbsp;=&nbsp;</td>
+	<td><a href="tae/ces.shtml">Cancelling Everything in Sight</a></td>
+	</tr>
+<tr>
+	<td>CFE</td>
+	<td>&nbsp;=&nbsp;</td>
+	<td>Check For Extremum (i.e., not all critical nos. correspond
+		to extrema)</td>
+	</tr>
+<tr>
+	<td>CNFE</td>
+	<td>&nbsp;=&nbsp;</td>
+	<td><a href="tae/cnfe.shtml">Confusing Negative and Fractional
+		Exponents</a></td>
+	</tr>
+<tr>
+	<td>ECF</td>
+	<td>&nbsp;=&nbsp;</td>
+	<td>Error Carried Forward (without additional penalty)</td>
+	</tr>
+<tr>
+	<td>EPE</td>
+	<td>&nbsp;=&nbsp;</td>
+	<td><a href="tae/epe.shtml">Equation Properties for Expressions</a></td>
+	</tr>
+<tr>
+	<td>FPR</td>
+	<td>&nbsp;=&nbsp;</td>
+	<td><a href="calcErrorCodes.pdf#nameddest=FPR">False
+	  Product Rule</td>
+	</tr>
+<tr>
+	<td>FP</td>
+	<td>&nbsp;=&nbsp;</td>
+	<td><a href="tae/fp.shtml">Frivolous Parentheses</a></td>
+	</tr>
+<tr>
+	<td>GOWU</td>
+	<td>&nbsp;=&nbsp;</td>
+	<td>Goal Of Work is Unclear</td>
+	</tr>
+<tr>
+	<td>LFB</td>
+	<td>&nbsp;=&nbsp;</td>
+	<td><a href="tae/lfb.shtml">Linear Function Behavior</a></td>
+	</tr>
+<tr>
+	<td>MEA</td>
+	<td>&nbsp;=&nbsp;</td>
+	<td>Multiplying Exponents which should be Added</td>
+	</tr>
+<tr>
+	<td>MIP</td>
+	<td>&nbsp;=&nbsp;</td>
+	<td><a href="tae/mip.shtml">Multiplication Ignoring Powers</a></td>
+	</tr>
+<tr>
+	<td>MND</td>
+	<td>&nbsp;=&nbsp;</td>
+	<td><a href="tae/mnd.shtml">Multiplication Not Distributive</a></td>
+	</tr>
+<tr>
+	<td>MRRZ</td>
+	<td>&nbsp;=&nbsp;</td>
+	<td><a href="tae/mrrz.shtml">Misunderstood Relationship between Roots
+		and Zeros</a></td>
+	</tr>
+<tr>
+	<td>MT</td>
+	<td>&nbsp;=&nbsp;</td>
+	<td>Empty</td>
+	</tr>
+<tr>
+	<td>MWP</td>
+	<td>&nbsp;=&nbsp;</td>
+	<td><a href="tae/mwp.shtml">Multiplication without Parentheses</a></td>
+	</tr>
+<tr>
+	<td>NAD</td>
+	<td>&nbsp;=&nbsp;</td>
+	<td><a href="calcErrorCodes.pdf#nameddest=NAD">Not an AntiDerivative
+	  of the integrand</td>
+	</tr>
+<tr>
+	<td>NAE</td>
+	<td>&nbsp;=&nbsp;</td>
+    <td>The quantities you have separated with an equals sign 
+        are <b>Not Actually Equal</b></td>
+	</tr>
+<tr>
+	<td>OO</td>
+	<td>&nbsp;=&nbsp;</td>
+	<td><a href="tae/mwp.shtml">Order of (Algebraic) Operations</a></td>
+	</tr>
+<tr>
+	<td>PUML</td>
+	<td>&nbsp;=&nbsp;</td>
+	<td><a href="tae/puml.shtml">Poor Use of Mathematical Language</a></td>
+	</tr>
+<tr>
+	<td>RFPRF</td>
+	<td>&nbsp;=&nbsp;</td>
+	<td><a href="calcErrorCodes.pdf#nameddest=RFPRF">Reverse False
+	  Product Rule is False</td>
+	</tr>
+<tr>
+	<td>UAS</td>
+	<td>&nbsp;=&nbsp;</td>
+	<td><a href="tae/umd.shtml">Undo Addition with Subtraction</a></td>
+	</tr>
+<tr>
+	<td>UEC</td>
+	<td>&nbsp;=&nbsp;</td>
+	<td><a href="tae/puml.shtml">Using Equals as a Conjunction</a></td>
+	</tr>
+<tr>
+	<td>UMD</td>
+	<td>&nbsp;=&nbsp;</td>
+	<td><a href="tae/umd.shtml">Undo Multiplication with Division</a></td>
+	</tr>
+<tr>
+	<td>UPR</td>
+	<td>&nbsp;=&nbsp;</td>
+	<td>Use the Product Rule</td>
+	</tr>
+<tr>
+	<td>UQR</td>
+	<td>&nbsp;=&nbsp;</td>
+	<td>Use the Quotient Rule</td>
+	</tr>
+<tr>
+	<td>WLINV</td>
+	<td>&nbsp;=&nbsp;</td>
+	<td><a href="calcErrorCodes.pdf#nameddest=WLINV">Wrong
+	  Limits of Integration in the New Variable</td>
+	</tr>
+</table>
+</blockquote>
+
+<br><hr>
+<a href="tae.pdf">Top Algebra Errors Made by Calculus Students</a>
+	(full document)<br>
+<br><hr>
+<ADDRESS>
+Thomas L. Scofield
+2003-09-04
+</ADDRESS>
+</BODY>
+</HTML>
