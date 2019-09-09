@@ -31,7 +31,8 @@ h3 {color:blue}
 h4 {color:black; font-size:25px; font-weight:bold; margin-bottom: 5px;}
 h5 {color:black; font-size:19px; font-weight:bold}
 h6 {color:red; font-size:19px; font-weight:bold}
-body {line-height: 150%;}
+#body {line-height: 150%;}
+body {line-height: 1.1;}
 
 ol {margin-top: 0em; padding-left: 2em;}
 ol li {margin-top: 3px; padding-left: 0em;}
@@ -65,3 +66,29 @@ ol ol ol ol ol ul ul li		{list-style-type:circle}
 #a:link {color:red; text-decoration:none}
 a:link {color:red}
 a:visited {color:#aa0000}
+
+.wrap {
+   max-width:900px;
+   margin:auto;
+}
+.zoom {
+   width:60%;
+   max-width:100px;
+   margin:auto;
+   padding:1em;
+   background:#fff;
+   border-radius:1px;
+   text-align:center;
+}
+.zoom img {
+   display:block;
+   margin:0 0 1em;
+   max-width:100%;
+   height:auto;
+   border-radius:1px;
+   transition:transform 0.5s;
+}
+.zoom img:hover {
+   transform:scale(6.0) ;
+}
+
