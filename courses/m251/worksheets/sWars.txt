@@ -1,16 +1,7 @@
 female(leia).
 female(mara).
 female(padme).
-male(jaina).
-male(luke).
-male(anakin).
-male(maul).
-male(han).
-male(yoda).
-male(anakin).
-male(anakin2).
-male(jacen).
-male(obi-wan).
+female(jaina).
 wife(leia, han).
 wife(mara, luke).
 wife(padme, anakin).
@@ -48,4 +39,6 @@ master(yoda, luke).
 master(yoda, dooku).
 master(obi-wan, anakin).
 
+male(X) :- \+female(X).
 husband(X, Y) :- wife(Y, X).
+
