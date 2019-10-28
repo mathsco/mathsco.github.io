@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Space Curve with Tangent</title>
+    <script src="https://sagecell.sagemath.org/static/.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>sagecell.makeSagecell({inputLocation: ".sage"});</script>
+    <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Embedding area under f of integral test between two sums</h1>
+<p>(By Thomas Scofield)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+  \textrm{Specify your function } f, \textrm{ the viewing window,}\\
+  {\mathbf r}(t)=x(t)\,{\mathbf i} + y(t)\,{\mathbf j} + z(t)\,{\mathbf k},
+  \textrm{and which terms to show.  If your function is decreasing and}\\
+  \textrm{positive, the app displays inscribed and circumscribed rectangles.}
+</div>
+
+<hr>
+
+<div class="sage">
+<script type="text/x-sage">
+# Set the data for yourself in these lines
+f(x) = 1/x
+
+nStart = 1
+nEnd = 5
+xWindowMin = 0
+xWindowMax = 5
+yWindowMin = -0.5
+yWindowMax = 2
+
+# Take caution about edits below this line
+p = plot(f, xWindowMin, xWindowMax, ymin=yWindowMin, ymax=yWindowMax)
+
+import numpy as np
+plusPresent = False
+for x in np.arange(nStart, nEnd+1, 1):
+  p += polygon([(x,0),(x,f(x+1)),(x+1,f(x+1)),(x+1,0)], color="purple", alpha=0.4)
+  p += polygon([(x,0),(x,f(x+1)),(x+1,f(x+1)),(x+1,0)], color="black", fill=False)
+
+  p += polygon([(x,0),(x,f(x)),(x+1,f(x)),(x+1,0)], color="red", alpha=0.4)
+  p += polygon([(x,0),(x,f(x)),(x+1,f(x)),(x+1,0)], color="black", fill=False)
+  if plusPresent:
+    summedBlue = summedBlue + "+" + latex(f(x+1))
+    summedRed = summedRed + "+" + latex(+f(x))
+  else:
+    summedBlue = latex(f(x+1))
+    summedRed = latex(f(x))
+  plusPresent = True
+
+show(p)
+pretty_print(html('The area of the darker shaded (inscribed) rectangles is: $%s$'%latex(summedBlue)))
+pretty_print(html('The area of the full/stacked rectangles is: $%s$'%latex(summedRed)))
+</script>
+</div>
+
+<hr>
+Last modified on Aug. 24, 2018.
+</body>
+</html>
