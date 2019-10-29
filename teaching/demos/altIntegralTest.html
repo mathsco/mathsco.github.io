@@ -26,10 +26,9 @@ $(function () {
 </script>
 
 <div class="latex">
-  \textrm{Specify your function } f, \textrm{ the viewing window,}\\
-  {\mathbf r}(t)=x(t)\,{\mathbf i} + y(t)\,{\mathbf j} + z(t)\,{\mathbf k},
-  \textrm{and which terms to show.  If your function is decreasing and}\\
-  \textrm{positive, the app displays inscribed and circumscribed rectangles.}
+  \textrm{Specify your function } f, \textrm{ the viewing window, and which terms to show.}\\
+  \textrm{If your function is decreasing and positive, the app displays inscribed}\\
+  \textrm{and circumscribed rectangles.}
 </div>
 
 <hr>
@@ -66,12 +65,13 @@ for x in np.arange(nStart, nEnd+1, 1):
   plusPresent = True
 
 show(p)
-pretty_print(html('The area of the darker shaded (inscribed) rectangles is: $%s$'%latex(summedBlue)))
-pretty_print(html('The area of the full/stacked rectangles is: $%s$'%latex(summedRed)))
+pretty_print(html('The area of the darker shaded (inscribed) rectangles is: &nbsp; %s $%s$'%('  ', latex(summedBlue))))
+pretty_print(html('&nbsp;'))
+pretty_print(html('The area of the full/stacked rectangles is: &nbsp; $%s$'%latex(summedRed)))
 </script>
 </div>
 
 <hr>
-Last modified on Aug. 24, 2018.
+Last modified on Oct. 29, 2019.
 </body>
 </html>
