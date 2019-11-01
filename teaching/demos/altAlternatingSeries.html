@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Space Curve with Tangent</title>
+    <script src="https://sagecell.sagemath.org/static/.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>sagecell.makeSagecell({inputLocation: ".sage"});</script>
+    <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Visualizing an alternating sequence and its partial sums</h1>
+<p>(By Thomas Scofield)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+  \textrm{Specify your function } f, \textrm{ so that it produces an alternating series, with terms}\\
+  a_j = f(j). \textrm{Red points are terms } a_j, \textrm{ while blue points are terms in the sequence } s_j \\
+  \textrm{of partial sums.  The horizontal blue line approximates the limit/sum of the series.}
+</div>
+
+<hr>
+
+<div class="sage">
+<script type="text/x-sage">
+# Don't edit the next line
+var('j')
+
+# Adjust content of these lines as appropriate
+f(j) = (-1)^(j+1)*1/j     # formula for values of sequence
+nStart = 1
+nEnd = 15
+
+# Probably leave things below as they are
+baseSequencePts = []
+partialSumSeqPts = []
+runningSum = 0
+p = Graphics()
+L = sum([f(n) for n in range(nStart,2000)]).n()
+prevY = 0
+for n in range(nStart,nEnd):
+    if f(n) < 0:
+        p += arrow((n,runningSum),(n,runningSum+f(n)),color="red", arrowsize=2, width=1, linestyle="dashed")
+    else:
+        p += arrow((n,runningSum),(n,runningSum+f(n)),color="green", arrowsize=2, width=1, linestyle="dashed")
+    runningSum += f(n)
+    baseSequencePts.append((n,f(n)))
+    partialSumSeqPts.append((n,runningSum))
+
+p + list_plot(baseSequencePts, color="red") + list_plot(partialSumSeqPts, color="blue")+line([(0,L),(nEnd,L)],linestyle="--")
+</script>
+</div>
+
+<hr>
+Last modified on Oct. 31, 2019.
+</body>
+</html>
