@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+  <title>Surface patches and Riemann approximations of multiple integrals</title>
+    <script src="https://sagecell.sagemath.org/static/.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>sagecell.makeSagecell({inputLocation: ".sage"});</script>
+    <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Surface patches and Riemann approximations of multiple integrals</h1>
+<p>(By Thomas Scofield)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+    \textrm{This app displays the graph of a surface } z = f(x,y)\\
+    \textrm{along with surface patches arising from a regular partition.}\\
+    \textrm{It allows you several methods for calculating a Riemann sum.}
+</div>
+
+<hr>
+
+<div class="sage">
+<script type="text/x-sage">
+# don't change
+var('x y')
+
+# edit specifics here
+f(x,y) = 24 - 3*x^2 - y^2
+xmin=0; xmax=2; xN=4;
+ymin=0; ymax=3; yN=6;
+
+# code to produce plot
+dX = (xmax - xmin) / xN
+dY = (ymax - ymin) / yN
+p1 = plot3d(f, (x,xmin,xmax), (y,ymin,ymax), alpha=0.8)
+
+# add gridlines in xy-plane
+for ii in range(xN+1):
+  p1 += line3d([(xmin+ii*dX,ymin,0),(xmin+ii*dX,ymax,0)], color="black")
+for jj in range(yN+1):
+  p1 += line3d([(xmin,ymin+jj*dY,0),(xmax,ymin+jj*dY,0)], color="black")
+
+# add surface patches
+mySum = 0
+for ii in range(xN):
+  for jj in range(yN):
+    #ex = xmin+ii*dX; why = ymin+jj*dY;  # lower end method
+    ex = xmin+(ii+1/2)*dX; why = ymin+(jj+1/2)*dY;  # midpoint method
+    #ex = xmin+(ii+1)*dX; why = ymin+(jj+1)*dY;  # upper end method
+    p1 += plot3d(f(ex,why), (x,xmin+ii*dX,xmin+(ii+1)*dX), (y,ymin+jj*dY,ymin+(jj+1)*dY), color="red", alpha=.8)
+    p1 += line3d([(ex,why,0),(ex,why,f(ex,why))], color="red")
+    mySum += f(ex,why)*dX*dY
+    
+show(p1)
+show(mySum.n())
+</script>
+</div>
+
+<hr>
+Last modified on Aug. 24, 2018.
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Space Curve with Full TNB-Frame</title>
+    <script src="https://sagecell.sagemath.org/static/.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>sagecell.makeSagecell({inputLocation: ".sage"});</script>
+    <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Space Curve with Full TNB-Frame</h1>
+<p>(By Thomas Scofield)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+    \textrm{This app displays the trajectory in space of a vector function}\\
+    {\mathbf r}(t)=x(t)\,{\mathbf i} + y(t)\,{\mathbf j} + z(t)\,{\mathbf k},
+    \textrm{ along with its moving TNB-Frame.}
+</div>
+
+<hr>
+
+<div class="sage">
+<script type="text/x-sage">
+# Don't edit this line
+var('t u')
+
+# Set the vector function/curve
+r = vector([sin(t),cos(t),cos(2*t)])
+tst=0; tend=2*pi;
+framestep = 0.32      # For "time" running from 0 to 6.28, this results in about 32 frames
+includeOsculatingCircle = False
+xmin = -2; xmax = 2;
+ymin = -2; ymax = 2;
+zmin = -2; zmax = 2;
+
+# Do computations and produce animated plot
+v = diff(r,t)      # v(t) = r'(t), the velocity vector
+T = v/v.norm()
+N = diff(T,t) / (diff(T,t).norm())
+B = T.cross_product(N)
+kappa = v.cross_product(diff(v,t)).norm() / v.norm()^3
+oscCenter = r(t)+N(t)/kappa(t)
+
+end_ts = srange(framestep, tend+framestep, framestep)
+if includeOsculatingCircle:
+  c = animate([
+    parametric_plot3d(r, (t,tst,tend), thickness=5)
+     + arrow3d(r(t=tend),r(t=tend)+N(t=tend), color="blue")
+     + arrow3d(r(t=tend),r(t=tend)+B(t=tend), color="green")
+     + arrow3d(r(t=tend),r(t=tend)+T(t=tend), color="red")
+     + line3d([(xmin,ymin,zmin),(xmax,ymax,zmax)], color="white")
+     + parametric_plot3d(oscCenter(t=tend)+(cos(u)*T(t=tend)+sin(u)*N(t=tend))/kappa(t=tend), (u,0,2*pi), color="red")
+       for tend in end_ts], figsize=15)
+else:
+  c = animate([
+    parametric_plot3d(r, (t,tst,tend), thickness=5)
+     + arrow3d(r(t=tend),r(t=tend)+N(t=tend), color="blue")
+     + arrow3d(r(t=tend),r(t=tend)+B(t=tend), color="green")
+     + arrow3d(r(t=tend),r(t=tend)+T(t=tend), color="red")
+     + line3d([(xmin,ymin,zmin),(xmax,ymax,zmax)], color="white") for tend in end_ts], figsize=15)
+
+c.show(delay=60)
+</script>
+</div>
+
+<hr>
+Last modified on Aug. 24, 2018.
+</body>
+</html>

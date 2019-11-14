@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>3D Vector Field Plotter</title>
+    <script src="https://sagecell.sagemath.org/static/.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>sagecell.makeSagecell({inputLocation: ".sage"});</script>
+    <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+  </head>
+  <body style="width: 1000px;">
+
+<h1>3D Vector Field Plotter</h1>
+<p>(By Thomas Scofield)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+ \textrm{This app displays a 3D vector field } {\mathbf F}(x,y,z)
+ = \left< F_1(x,y,z), F_2(x,y,z), F_3(x,y,z) \right>.
+</div>
+
+<hr>
+
+<div class="sage">
+<script type="text/x-sage">
+# Do not edit this line
+var('x y z')
+
+# Edit lines below to obtain the specific plot you desire
+F = (1,-1, 3)      # constant vector field
+#F = (-y,x,0)      # spiraling
+#F = (x/sqrt(x^2+y^2+z^2), y/sqrt(x^2+y^2+z^2), z/sqrt(x^2+y^2+z^2))    # outward facing, unit length
+xmin = -5; xmax = 5;
+ymin = -5; ymax = 5;
+zmin = -5; zmax = 5;
+
+plot_vector_field3d(F, (x,xmin,xmax), (y,ymin,ymax), (z,zmin,zmax), aspect_ratio=1)
+</script>
+</div>
+
+<hr>
+Last modified on Aug. 24, 2018.
+</body>
+</html>

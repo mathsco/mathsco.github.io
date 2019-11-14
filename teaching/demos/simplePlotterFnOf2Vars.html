@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Simple Surface Plotter</title>
+    <script src="https://sagecell.sagemath.org/static/.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>sagecell.makeSagecell({inputLocation: ".sage"});</script>
+    <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+  </head>
+  <body style="width: 1000px;">
+
+<h1>Simple Surface Plotter</h1>
+<p>(By Thomas Scofield)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+    \textrm{This app displays the graph of a function } z = f(x, y),
+    \textrm{ or some of the level sets of the function (i.e., a contour plot).}
+</div>
+
+<hr>
+
+<div class="sage">
+<script type="text/x-sage">
+# Do not edit this line
+var('x y')
+
+# Edit lines below to obtain the specific plot you desire
+f(x,y) = x^2+y^2
+xmin=-2; xmax=2;
+ymin=-2; ymax=2;
+
+# Uncomment (i.e., remove the pound symbol at the start of) the line for the plot type you want
+plot3d(f, (x,xmin,xmax), (y,ymin,ymax))
+#contour_plot(f, (x,xmin,xmax), (y,ymin,ymax))
+</script>
+</div>
+
+<hr>
+Last modified on Aug. 24, 2018.
+</body>
+</html>

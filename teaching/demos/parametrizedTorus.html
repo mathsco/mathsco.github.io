@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Parametrized Surface: Torus</title>
+    <script src="https://sagecell.sagemath.org/static/.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>sagecell.makeSagecell({inputLocation: ".sage"});</script>
+    <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+  </head>
+  <body style="width: 1000px;">
+
+<h1>Parametrized Surface: Torus</h1>
+<p>(By Thomas Scofield)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+ \textrm{This app plots a torus based on settings such as bigRad and smallRad.} \newline
+ \textrm{By changing False to True in the addCurvlinearPatch setting, you may add}\newline
+ \textrm{a surface patch depicting how a rectangle in } uv \textrm{-space maps to
+ the surface.}
+</div>
+
+<hr>
+
+<div class="sage">
+<script type="text/x-sage">
+# Don't edit
+var('u v')
+
+# Specifics of the parametrization
+umin = -pi; umax = pi
+vmin = -pi; vmax = pi
+bigRad = 4
+smallRad = 2
+G(u,v) = ((bigRad+smallRad*cos(v))*cos(u),(bigRad+smallRad*cos(v))*sin(u), smallRad*sin(v))
+addCurvilinearPatch = False
+
+# produces the actual plot
+myplot = parametric_plot3d(G(u,v), (u,umin,umax), (v,vmin,vmax), aspect_ratio=1)
+
+# Curvilinear coords
+if addCurvilinearPatch:
+    usmin = 0.4; usmax = 0.8; uspace = 0.1
+    vsmin = 1.4; vsmax = 2.2; vspace = 0.2
+    for uu in srange(usmin, usmax+uspace, uspace):
+        myplot += parametric_plot3d(G(uu,v), (v,vsmin,vsmax), color="red", thickness=3)
+    for vv in srange(vsmin, vsmax+vspace, vspace):
+        myplot += parametric_plot3d(G(u,vv), (u,usmin,usmax), color="red", thickness=3)
+
+show(myplot)
+</script>
+</div>
+
+<hr>
+Last modified on Nov. 20, 2018.
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Space Curve with Tangent</title>
+    <script src="https://sagecell.sagemath.org/static/.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>sagecell.makeSagecell({inputLocation: ".sage"});</script>
+    <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Space Curve with Tangent</h1>
+<p>(By Thomas Scofield)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+    \textrm{This app displays the trajectory in space of a vector function}\\
+    {\mathbf r}(t)=x(t)\,{\mathbf i} + y(t)\,{\mathbf j} + z(t)\,{\mathbf k},
+    \textrm{ along with its velocity vector.}
+</div>
+
+<hr>
+
+<div class="sage">
+<script type="text/x-sage">
+# Don't edit this line
+var('t')
+
+# Set the specifics of your curve here
+r = (cos(t), sin(t), t/10)
+tmin = 0
+tmax = 20
+framestep = 0.4
+xmin=-1.5; xmax=1.5;     # viewing window settings
+ymin=-1.5; ymax=1.5;
+zmin=-0.5; zmax=2.5;
+
+# lines to produce the actual plot
+r = vector(r)
+tVals = srange(tmin+framestep, tmax, framestep)
+v = r.diff(t)
+c = animate(
+    [parametric_plot3d(r, (t, tmin, myt), color="gray") + arrow3d((0,0,0),r(t=myt), color="red")
+     + arrow3d(r(t=myt), r(t=myt)+v(t=myt), color="purple")
+     + line3d([(xmin,ymin,zmin), (xmax,ymax,zmax)], color="white") for myt in tVals])
+c.show() 
+</script>
+</div>
+
+<hr>
+Last modified on Aug. 24, 2018.
+</body>
+</html>
