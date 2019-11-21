@@ -57,7 +57,7 @@ def polarPlotter( func1 = input_box(default=1+cos(t),label="$f(t)$=",width=40),
   except:
     g(t) = func2
   graph1 = plot(f,t_min,t_max,color="blue", title="As rectangular coords",
-                axes_labels=['$\theta$','$r$'])
+                axes_labels=['$\\theta$','$r$'])
   graph1 += plot(g,t_min,t_max,color="black")
   graph2 = plot(f,t_min,t_max,polar=True,color="blue",
                 title="As polar coords")
