@@ -1,0 +1,63 @@
+
+nuclearWasteHanfordWA.csv
+  For 9 counties with frontage on the Columbia River or the Pacific Ocean,
+  an index of exposure is provided (based on county's stream distance
+  from the nuclear waste area in Hanford, WA and the avg. distance its
+  population lives from the water frontage) and a count of cancer mortalities
+  per 100,000 inhabitants is given.
+
+  This data makes a good illustration of linear a linear relationship.
+
+shoshoniRectangles.csv
+  This list gives the width-to-length ratios for 20 rectangles found on
+  Shoshoni handicraft.  It has an average of 0.661.
+
+  The list of data has no header.  It is just one variable, as described above.
+
+  Good for testing the hypothesis that the golden ratio 0.618 is a universal
+  aesthetic standard.
+
+transylvaniaEffect.csv
+  Admission rates (in patients per day) to the emergency room of a Virginia
+  mental health clinic are given for each month Aug. 1971 to July 1972,
+  broken down by whether it was the period prior to a full moon, during
+  the full moon, or following the full moon.
+
+  Use to illustrate 1-way ANOVA(?)
+
+ncaaFirstRound.csv
+  The number of first-round winners who were seeded 10th-14th in their
+  regions is given for each year since 1985, the year that the NCAA
+  tournament began admitting 64 teams.
+
+illusion.csv
+  This is data from a randomized block experiment.  See Case Study 12.2.1
+  on p. 536 of "An Introduction to Mathematical Statistics and Its
+  Applications", by Larsen and Marx for details.
+
+salesAndPrice.csv
+  This is data from a two-way design.  Students were given information
+  about supermarket products, including promotions of that product via
+  a sale (discounts), and the amount of discount during the promotion.
+  What varied between treatment groups is the number of times the
+  products were promoted at a discount, and the discounted level.  The
+  response was how much students were willing to pay for the items.
+  The data was taken from Exercise 13.15, p. 821 in Moore/McCabe.
+
+  variables:
+    price - what students expect to pay
+	promos - Number of promotions students were subjected to;
+			 levels are 1, 3, 5 and 7.
+	discount - percentage price was discounted; levels = 10, 20, 30, 40.
+
+companyTraning.csv
+  A firm wishes to compare four programs for training workers to perform a
+  certain manual task.  Twenty new employees are randomly assigned to the
+  training programs, with 5 in each program.  At the end of the training
+  period, a test is conducted to see how quickly trainees can perform the
+  task.  The number of times the task is performed per minute is recorded
+  for each trainee.
+
+  variables:
+    program - program to which employee was assigned, numbered 1 through 4
+    iterations - number of times employee performed task per minute

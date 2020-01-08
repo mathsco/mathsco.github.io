@@ -1,0 +1,408 @@
+ethnicity,educ.num,bl.smoke,post.smoke,bl.date,post.date,birthdate,hormones,bl.age,post.age,hyst,bl.wt,post.wt,bl.chol,post.chol,bl.ldl,post.ldl,bl.bdi,post.bdi,wt.chg,wt.loss,wt.gain,wt.chg.grp,educ,smoke.status,between.time
+white,6,no,no,30820,31636,12698,no,49.615,51.849,no,126.0,123.0,196,204, 88.9,114.39, 5, 8, -3.0,no,no,no chg,some college,nonsmoker, 2.234
+white,7,no,no,30629,32738,14196,no,44.991,50.765,no,149.0,148.5,179,203,105.7,115.82, 0, 7, -0.5,no,no,no chg,college grad,nonsmoker, 5.774
+white,5,no,no,30629,32287,12858,no,48.654,53.194,no,150.0,147.0,167,189,104.5,118.21, 3, 2, -3.0,no,no,no chg,hs grad,nonsmoker, 4.540
+white,5,no,no,30631,31121,12555,yes,49.489,50.831,yes,141.0,145.0,205,185,127.9, 95.70, 0, 0,  4.0,no,no,no chg,hs grad,nonsmoker, 1.342
+white,8,no,no,30636,33054,14108,no,45.251,51.871,no,208.0,237.0,180,175,118.8,109.38, 1, 2, 29.0,no,yes,wt gain,post college,nonsmoker, 6.620
+white,6,no,no,30632,33054,14310,yes,44.687,51.318,no,147.0,142.0,184,206,100.8,108.33, 0, 0, -5.0,yes,no,wt loss,some college,nonsmoker, 6.631
+white,8,no,no,30635,32956,14011,no,45.514,51.869,no,149.0,146.0,159,202, 88.9,117.95, 3, 3, -3.0,no,no,no chg,post college,nonsmoker, 6.355
+white,5,no,no,30635,32287,14142,yes,45.155,49.678,yes,147.0,151.5,208,266,126.3,166.52, 1, 3,  4.5,no,no,no chg,hs grad,nonsmoker, 4.523
+white,6,no,no,30662,32434,13317,yes,47.488,52.339,no,136.0,138.0,182,195,117.9,119.07, 6,20,  2.0,no,no,no chg,some college,nonsmoker, 4.851
+white,8,no,no,30636,32416,13036,yes,48.186,53.060,no,174.0,191.0,177,183,102.9,103.94, 2, 0, 17.0,no,yes,wt gain,post college,nonsmoker, 4.874
+white,8,no,no,30639,31717,12771,yes,48.920,51.871,yes,138.0,138.5,163,157, 97.1, 98.42, 4, 2,  0.5,no,no,no chg,post college,nonsmoker, 2.951
+white,7,no,no,30639,33992,13189,no,47.776,56.956,no,127.0,121.0,169,173, 65.3, 66.71, 0, 0, -6.0,yes,no,wt loss,college grad,nonsmoker, 9.180
+white,8,no,no,30639,31100,13116,no,47.975,49.238,no,126.0,127.0,188,186, 91.0, 89.60, 8,16,  1.0,no,no,no chg,post college,nonsmoker, 1.263
+white,6,no,no,30629,32249,13760,yes,46.185,50.620,no,117.0,125.5,223,243,150.9,146.48, 3, 1,  8.5,no,yes,wt gain,some college,nonsmoker, 4.435
+nonwhite,5,yes,yes,30634,32760,12413,no,49.886,55.707,no,126.0,122.0,250,265,173.1,194.23, 4, 8, -4.0,no,no,no chg,hs grad,smoker, 5.821
+white,7,no,no,30651,33376,14356,yes,44.613,52.074,no,134.0,150.0,196,207,117.5,141.93, 0, 1, 16.0,no,yes,wt gain,college grad,nonsmoker, 7.461
+white,5,no,no,30652,31360,12681,no,49.202,51.140,no,158.0,152.0,227,221,143.7,143.70,23,22, -6.0,yes,no,wt loss,hs grad,nonsmoker, 1.938
+white,7,no,no,30656,32512,13404,yes,47.233,52.315,no,128.0,137.0,203,224,119.5,123.29, 1, 6,  9.0,no,yes,wt gain,college grad,nonsmoker, 5.082
+white,6,no,no,30635,33578,13603,no,46.631,54.689,no,162.0,166.5,253,266,178.3,181.31, 1, 7,  4.5,no,no,no chg,some college,nonsmoker, 8.058
+white,5,yes,yes,30641,33004,13745,no,46.259,52.728,yes,148.0,176.0,198,237,124.3,161.52, 1, 2, 28.0,no,yes,wt gain,hs grad,smoker, 6.469
+white,7,no,no,30653,34629,14152,yes,45.177,56.063,yes,152.0,150.0,183,256,120.5,169.20, 7, 4, -2.0,no,no,no chg,college grad,nonsmoker,10.886
+nonwhite,5,no,no,30698,32116,13459,no,47.198,51.080,no,191.0,195.0,195,212,135.0,158.92, 3, 6,  4.0,no,no,no chg,hs grad,nonsmoker, 3.882
+white,5,no,no,30660,32494,13068,no,48.164,53.185,no,138.0,141.0,202,259,133.3,174.32, 3,12,  3.0,no,no,no chg,hs grad,nonsmoker, 5.021
+white,5,no,no,30634,32393,12789,no,48.857,53.673,no,133.0,129.0,254,270,158.7,172.84,23,31, -4.0,no,no,no chg,hs grad,nonsmoker, 4.816
+white,8,no,no,30642,34535,14336,yes,44.643,55.302,no,127.0,131.0,127,151, 69.1, 93.79, 2, 3,  4.0,no,no,no chg,post college,nonsmoker,10.659
+white,7,no,no,30649,32401,12749,yes,49.008,53.804,no,106.0,100.0,191,187,101.2, 89.91, 2, 9, -6.0,yes,no,wt loss,college grad,nonsmoker, 4.796
+white,8,no,no,30641,34444,14379,no,44.523,54.935,no,129.0,125.0,164,177, 72.1, 81.43, 2, 4, -4.0,no,no,no chg,post college,nonsmoker,10.412
+white,7,no,no,30649,33130,13858,no,45.971,52.764,no,143.0,142.0,216,222,143.9,142.80, 2, 3, -1.0,no,no,no chg,college grad,nonsmoker, 6.793
+white,8,no,no,30650,32750,12382,yes,50.015,55.765,no,128.0,126.0,159,169, 88.8,104.29, 2, 3, -2.0,no,no,no chg,post college,nonsmoker, 5.750
+white,8,yes,yes,30652,33613,13137,no,47.953,56.060,no,126.0,127.5,180,241,115.6,167.63, 3, 7,  1.5,no,no,no chg,post college,smoker, 8.107
+white,7,no,no,30657,33920,12670,yes,49.246,58.179,no,138.0,143.0,175,184, 92.2, 87.06, 0, 0,  5.0,no,yes,wt gain,college grad,nonsmoker, 8.933
+white,5,no,no,30642,32429,12486,no,49.708,54.601,no,133.0,127.5,139,155, 60.0, 76.95, 2, 3, -5.5,yes,no,wt loss,hs grad,nonsmoker, 4.893
+white,8,no,no,30657,34577,13997,no,45.613,56.345,no,107.0,112.0,201,220,127.6,140.68, 0, 0,  5.0,no,yes,wt gain,post college,nonsmoker,10.732
+white,8,no,no,30659,33397,14414,yes,44.476,51.973,no,150.0,157.5,208,247,130.9,151.66, 7, 4,  7.5,no,yes,wt gain,post college,nonsmoker, 7.497
+white,8,yes,yes,30667,33214,12822,no,48.857,55.830,no,135.0,136.0,266,301,185.5,214.02, 7, 2,  1.0,no,no,no chg,post college,smoker, 6.973
+white,5,yes,yes,30659,31534,13206,no,47.784,50.179,no,150.0,102.0,187,203,129.6,140.90,19,12,-48.0,yes,no,wt loss,hs grad,smoker, 2.395
+white,8,no,no,30658,32746,14046,yes,45.481,51.198,no,114.0,125.0,202,194,106.1,116.29, 4, 3, 11.0,no,yes,wt gain,post college,nonsmoker, 5.717
+white,6,no,no,30660,32340,13390,no,47.283,51.882,no,131.0,139.0,187,214,102.6,135.20, 4, 7,  8.0,no,yes,wt gain,some college,nonsmoker, 4.599
+white,7,no,no,30659,32245,12650,yes,49.306,53.648,no,166.0,168.0,224,246,148.4,171.38, 2, 4,  2.0,no,no,no chg,college grad,nonsmoker, 4.342
+white,5,no,no,30658,33873,13403,yes,47.242,56.044,no,149.0,162.5,230,218,140.1,132.51, 0, 2, 13.5,no,yes,wt gain,hs grad,nonsmoker, 8.802
+white,6,no,no,30709,33557,14137,no,45.372,53.169,no,117.0,126.5,177,220,102.6,143.49, 1, 5,  9.5,no,yes,wt gain,some college,nonsmoker, 7.797
+white,6,no,no,30664,33862,13320,no,47.485,56.241,no,125.0,131.5,197,247,122.0,166.81, 2,16,  6.5,no,yes,wt gain,some college,nonsmoker, 8.756
+white,5,yes,yes,30670,32030,12617,no,49.426,53.150,no,119.0,123.5,169,195, 98.2,126.04, 4, 6,  4.5,no,no,no chg,hs grad,smoker, 3.724
+white,8,no,no,30702,31458,12579,no,49.618,51.688,yes,181.0,192.0,149,201, 96.1,114.60, 5, 5, 11.0,no,yes,wt gain,post college,nonsmoker, 2.070
+white,8,no,no,30688,32116,13551,yes,46.919,50.828,no,103.0,103.5,181,208, 95.9,126.24, 1, 5,  0.5,no,no,no chg,post college,nonsmoker, 3.909
+white,5,no,yes,30692,31835,12872,yes,48.788,51.918,no,117.0,122.5,233,228,154.0,149.08, 6, 3,  5.5,no,yes,wt gain,hs grad,new smoker, 3.130
+white,8,no,no,30776,34377,14348,no,44.977,54.836,no,122.5,131.0,171,168, 98.5,102.77, 7, 8,  8.5,no,yes,wt gain,post college,nonsmoker, 9.859
+white,6,yes,yes,30690,31462,13665,yes,46.612,48.726,no,122.0,123.0,283,315,202.1,221.80,20, 4,  1.0,no,no,no chg,some college,smoker, 2.114
+white,8,no,no,30705,33394,13749,no,46.423,53.785,no,142.0,134.5,168,227, 84.5,128.17, 6, 4, -7.5,yes,no,wt loss,post college,nonsmoker, 7.362
+white,6,yes,yes,30728,32878,13773,yes,46.420,52.307,no,118.0,114.5,151,171, 86.1, 99.52, 1, 1, -3.5,no,no,no chg,some college,smoker, 5.887
+white,7,yes,yes,30697,32267,13132,yes,48.090,52.389,no,105.0,112.0,172,161,100.2, 80.25, 0, 3,  7.0,no,yes,wt gain,college grad,smoker, 4.299
+white,7,no,no,30702,32599,13205,no,47.904,53.098,no,119.0,117.0,203,222,115.6,135.78, 1,12, -2.0,no,no,no chg,college grad,nonsmoker, 5.194
+white,7,no,no,30709,31486,13033,no,48.394,50.522,no,142.5,144.5,188,202, 95.6,103.80, 4, 2,  2.0,no,no,no chg,college grad,nonsmoker, 2.128
+white,8,no,no,30705,31458,14259,no,45.027,47.088,no,135.0,128.0,158,149, 82.9, 71.90, 2, 6, -7.0,yes,no,wt loss,post college,nonsmoker, 2.061
+white,8,yes,yes,30713,32165,13127,no,48.148,52.123,no,144.0,134.0,225,243,149.6,173.14, 7, 5,-10.0,yes,no,wt loss,post college,smoker, 3.975
+white,8,yes,no,30729,33387,12442,no,50.067,57.344,no,150.0,146.5,189,202,123.6,122.88, 0, 2, -3.5,no,no,no chg,post college,quitter, 7.277
+white,8,no,no,30709,33502,13916,no,45.977,53.624,no,123.0,133.0,171,206, 91.4,123.81, 3, 3, 10.0,no,yes,wt gain,post college,nonsmoker, 7.647
+white,8,no,no,30707,34234,13844,no,46.168,55.825,no,138.0,149.0,173,212,106.2,151.31, 4, 4, 11.0,no,yes,wt gain,post college,nonsmoker, 9.657
+white,8,no,no,30712,33543,13702,no,46.571,54.322,no,142.0,136.5,182,226,111.9,151.19, 2, 3, -5.5,yes,no,wt loss,post college,nonsmoker, 7.751
+white,7,no,no,30779,34444,14196,no,45.402,55.436,no,113.0,151.0,156,210, 96.0,139.09,12, 8, 38.0,no,yes,wt gain,college grad,nonsmoker,10.034
+white,5,no,no,30712,34732,13601,yes,46.847,57.854,no,176.0,198.5,198,256,140.0,182.96,13,23, 22.5,no,yes,wt gain,hs grad,nonsmoker,11.007
+white,8,no,no,30713,31841,13633,no,46.762,49.851,no,194.0,188.0,303,286,231.9,226.75, 2, 0, -6.0,yes,no,wt loss,post college,nonsmoker, 3.089
+white,7,no,no,30716,32263,12306,yes,50.404,54.639,no,138.5,148.5,159,183, 84.3,108.64, 4, 1, 10.0,no,yes,wt gain,college grad,nonsmoker, 4.235
+white,6,no,no,30718,33445,13641,yes,46.754,54.220,no,144.5,153.5,182,212,124.2,135.88, 5, 3,  9.0,no,yes,wt gain,some college,nonsmoker, 7.466
+white,7,no,no,30715,31982,14018,no,45.714,49.183,no,145.5,154.0,163,205, 97.9,134.19, 6,10,  8.5,no,yes,wt gain,college grad,nonsmoker, 3.469
+white,8,yes,yes,30723,31301,12441,no,50.053,51.636,no,185.0,191.5,199,213,125.3,141.50, 2, 5,  6.5,no,yes,wt gain,post college,smoker, 1.583
+white,7,no,no,30835,32277,13152,no,48.413,52.361,no,145.5,149.5,198,209,111.7,121.66, 8, 3,  4.0,no,no,no chg,college grad,nonsmoker, 3.948
+nonwhite,5,yes,yes,30715,31848,13187,no,47.989,51.091,no,157.5,168.0,243,222,170.4,161.23,19,15, 10.5,no,yes,wt gain,hs grad,smoker, 3.102
+white,7,yes,yes,30720,32381,13393,no,47.439,51.986,no,154.0,161.0,158,200, 81.3,128.17, 8,15,  7.0,no,yes,wt gain,college grad,smoker, 4.547
+white,6,no,no,30723,32263,14404,no,44.679,48.895,yes,204.0,210.5,149,133, 79.9, 67.74, 2, 0,  6.5,no,yes,wt gain,some college,nonsmoker, 4.216
+white,6,no,no,30844,34263,14075,no,45.911,55.272,no,133.5,146.0,223,232,129.9,158.50, 2,11, 12.5,no,yes,wt gain,some college,nonsmoker, 9.361
+white,8,yes,yes,30723,31561,12980,no,48.578,50.872,no,114.0,107.0,160,183, 78.5, 94.90, 5, 5, -7.0,yes,no,wt loss,post college,smoker, 2.294
+white,6,no,no,30722,31311,12252,yes,50.568,52.181,no,213.0,214.0,208,242,129.2,171.00, 6, 2,  1.0,no,no,no chg,some college,nonsmoker, 1.613
+white,8,no,no,30719,33635,13565,no,46.965,54.949,no,119.0,117.5,197,236,105.7,136.60, 2,10, -1.5,no,no,no chg,post college,nonsmoker, 7.984
+white,5,no,no,30712,32640,13738,no,46.472,51.751,no,130.0,130.0,183,228,117.1,155.69,13,15,  0.0,no,no,no chg,hs grad,nonsmoker, 5.279
+white,8,no,no,30730,33152,14324,yes,44.917,51.548,no,150.0,162.0,138,180, 68.2, 84.20, 5, 7, 12.0,no,yes,wt gain,post college,nonsmoker, 6.631
+white,8,no,no,30733,31280,12324,no,50.401,51.899,no,181.0,196.0,149,173, 71.0, 88.80, 4, 8, 15.0,no,yes,wt gain,post college,nonsmoker, 1.498
+white,7,no,no,30728,32892,12965,no,48.632,54.557,no,158.5,160.5,184,233,106.6,144.43, 6,10,  2.0,no,no,no chg,college grad,nonsmoker, 5.925
+white,6,yes,yes,30718,33277,13202,no,47.956,54.962,no,142.0,148.0,238,223,138.1,124.86, 2, 5,  6.0,no,yes,wt gain,some college,smoker, 7.006
+white,8,no,no,30722,32468,14145,no,45.385,50.166,no,214.5,252.5,146,150, 72.6, 72.76, 3, 0, 38.0,no,yes,wt gain,post college,nonsmoker, 4.781
+white,6,no,no,30730,31584,14034,yes,45.711,48.049,yes,147.0,145.5,170,177, 92.7,103.07, 8, 7, -1.5,no,no,no chg,some college,nonsmoker, 2.338
+white,6,no,no,30939,34009,13841,yes,46.812,55.217,yes,146.0,118.5,197,256,113.7,160.84, 5,11,-27.5,yes,no,wt loss,some college,nonsmoker, 8.405
+white,7,yes,yes,30831,32419,12472,no,50.264,54.612,no,121.0,119.0,191,201,118.6,129.14, 4, 2, -2.0,no,no,no chg,college grad,smoker, 4.348
+white,8,no,no,30737,33152,14157,no,45.394,52.005,no,174.5,142.5,185,186,103.9, 94.82, 3, 2,-32.0,yes,no,wt loss,post college,nonsmoker, 6.611
+nonwhite,5,yes,yes,30746,31891,12449,yes,50.094,53.229,no,132.0,171.5,147,167, 75.8,100.98, 6, 9, 39.5,no,yes,wt gain,hs grad,smoker, 3.135
+white,7,no,no,30736,31664,14152,no,45.405,47.945,yes,189.0,173.0,202,202,128.4,129.58,13, 5,-16.0,yes,no,wt loss,college grad,nonsmoker, 2.540
+white,7,yes,no,30730,32333,13678,yes,46.686,51.075,no,138.0,153.0,148,176, 73.8, 95.57, 2,13, 15.0,no,yes,wt gain,college grad,quitter, 4.389
+nonwhite,5,yes,yes,30739,32905,12841,no,49.002,54.932,no,183.0,193.5,161,163, 79.7, 83.12, 0, 3, 10.5,no,yes,wt gain,hs grad,smoker, 5.930
+white,8,no,no,30742,32617,12792,yes,49.144,54.278,no,149.0,144.5,201,210,119.9,120.25, 0, 0, -4.5,no,no,no chg,post college,nonsmoker, 5.134
+white,7,no,no,31015,32444,13705,no,47.392,51.305,no,188.0,194.0,167,215, 99.0,134.64, 2, 7,  6.0,no,yes,wt gain,college grad,nonsmoker, 3.913
+white,6,no,no,30746,31715,12651,yes,49.541,52.194,yes,141.5,145.0,180,152, 77.9, 57.58, 7,10,  3.5,no,no,no chg,some college,nonsmoker, 2.653
+white,6,no,no,30734,33271,13587,yes,46.946,53.892,no,207.0,220.5,288,270,212.0,189.78, 6,14, 13.5,no,yes,wt gain,some college,nonsmoker, 6.946
+white,8,no,no,30749,34215,13624,yes,46.886,56.375,no,128.0,136.5,167,190, 70.3, 96.10,26,30,  8.5,no,yes,wt gain,post college,nonsmoker, 9.489
+white,8,no,no,30725,32290,13970,yes,45.873,50.157,yes,135.5,140.5,173,196, 98.4,116.00, 0, 1,  5.0,no,yes,wt gain,post college,nonsmoker, 4.284
+nonwhite,6,yes,yes,30726,31944,13843,no,46.223,49.558,no,169.0,172.0,137,159, 58.6, 89.04,12, 6,  3.0,no,no,no chg,some college,smoker, 3.335
+white,5,no,no,30733,32352,12790,no,49.125,53.558,no,124.5,126.5,161,195, 87.0,118.01, 1, 5,  2.0,no,no,no chg,hs grad,nonsmoker, 4.433
+white,6,no,no,30733,32444,12691,no,49.396,54.081,no,150.5,150.0,221,257,137.3,168.67, 8, 3, -0.5,no,no,no chg,some college,nonsmoker, 4.685
+white,8,no,no,30733,31636,12908,yes,48.802,51.274,yes,144.0,138.0,185,215,106.8,115.57, 0, 0, -6.0,yes,no,wt loss,post college,nonsmoker, 2.472
+white,8,yes,no,30735,33719,14322,no,44.936,53.106,no,131.0,138.0,174,236,113.2,164.42, 0,10,  7.0,no,yes,wt gain,post college,quitter, 8.170
+white,6,no,no,30735,33669,14013,yes,45.782,53.815,no,138.0,147.5,235,258,166.6,178.47, 0, 2,  9.5,no,yes,wt gain,some college,nonsmoker, 8.033
+white,6,no,yes,30736,31525,12288,no,50.508,52.668,no,143.0,141.0,211,239,129.1,161.90, 1, 0, -2.0,no,no,no chg,some college,new smoker, 2.160
+white,4,no,no,30739,33467,14259,no,45.120,52.589,no,171.0,161.5,194,239,115.2,163.50, 1, 0, -9.5,yes,no,wt loss,some hs,nonsmoker, 7.469
+nonwhite,8,no,no,30747,31367,12533,yes,49.867,51.565,no,149.0,158.5,211,195,109.0, 96.10, 4, 7,  9.5,no,yes,wt gain,post college,nonsmoker, 1.698
+white,7,no,no,30750,32542,12943,no,48.753,53.659,no,114.5,108.0,176,203, 92.9,122.52, 5, 5, -6.5,yes,no,wt loss,college grad,nonsmoker, 4.906
+white,8,no,no,30758,31878,13861,yes,46.261,49.328,no,153.0,167.0,161,166, 71.3, 87.21, 0, 2, 14.0,no,yes,wt gain,post college,nonsmoker, 3.067
+white,5,yes,no,30756,31969,13578,yes,47.031,50.352,no,105.5,108.5,171,188, 86.9, 63.13, 4, 0,  3.0,no,no,no chg,hs grad,quitter, 3.321
+white,8,no,no,30744,31899,15190,no,42.585,45.747,yes,169.5,215.0,157,164, 82.6, 97.21, 5, 2, 45.5,no,yes,wt gain,post college,nonsmoker, 3.162
+white,8,no,no,30765,33114,12978,yes,48.698,55.129,no,128.0,137.8,184,192,100.6,109.34, 1, 6,  9.8,no,yes,wt gain,post college,nonsmoker, 6.431
+white,5,no,no,30740,32683,13603,no,46.919,52.238,no,203.0,190.0,247,259,151.6,170.47, 3, 6,-13.0,yes,no,wt loss,hs grad,nonsmoker, 5.319
+white,7,no,no,30742,31457,12959,no,48.687,50.645,no,100.0,109.5,201,201,105.4,110.00, 0, 4,  9.5,no,yes,wt gain,college grad,nonsmoker, 1.958
+white,6,no,no,30743,32527,13439,yes,47.376,52.260,no,135.0,146.0,221,170,129.0,103.97, 4, 3, 11.0,no,yes,wt gain,some college,nonsmoker, 4.884
+white,5,no,no,30747,31525,13349,yes,47.633,49.763,no,148.5,155.5,198,195,110.9,114.00, 1, 8,  7.0,no,yes,wt gain,hs grad,nonsmoker, 2.130
+white,6,no,no,30737,33614,13369,no,47.551,55.428,no,159.5,184.0,160,190, 84.0,112.11,17, 6, 24.5,no,yes,wt gain,some college,nonsmoker, 7.877
+white,5,no,no,30742,34388,13243,no,47.910,57.892,no,166.0,170.0,251,275,167.2,206.61, 0, 6,  4.0,no,no,no chg,hs grad,nonsmoker, 9.982
+white,7,no,no,30748,32689,14215,no,45.265,50.579,yes,261.0,252.5,227,201,151.3,126.91,11,11, -8.5,yes,no,wt loss,college grad,nonsmoker, 5.314
+white,8,yes,yes,30744,33642,13981,yes,45.895,53.829,no,128.5,136.5,186,197,104.0,111.88, 3, 5,  8.0,no,yes,wt gain,post college,smoker, 7.934
+white,5,yes,yes,30754,33681,13669,no,46.776,54.790,no,120.5,135.0,203,240,119.9,156.04, 5,13, 14.5,no,yes,wt gain,hs grad,smoker, 8.014
+white,6,no,no,30751,33170,14153,no,45.443,52.066,no,147.0,158.5,170,184, 97.7,102.47, 3, 4, 11.5,no,yes,wt gain,some college,nonsmoker, 6.623
+white,5,no,no,30966,31783,12676,no,50.075,52.312,no,189.5,190.5,174,191,102.3,108.46,14, 9,  1.0,no,no,no chg,hs grad,nonsmoker, 2.237
+white,6,no,no,30758,35119,13783,no,46.475,58.415,no,158.0,146.0,175,167, 98.9,100.44, 4, 0,-12.0,yes,no,wt loss,some college,nonsmoker,11.940
+white,7,no,no,30753,33920,13420,yes,47.455,56.126,no,113.0,120.0,187,190,109.6,121.99, 0, 0,  7.0,no,yes,wt gain,college grad,nonsmoker, 8.671
+white,8,yes,yes,30756,31671,13652,no,46.828,49.333,no, 95.0, 96.0,164,191, 88.0,107.83, 1, 2,  1.0,no,no,no chg,post college,smoker, 2.505
+white,8,no,no,30765,32697,12801,yes,49.183,54.472,no,147.0,147.0,204,228, 98.1,120.09, 0, 2,  0.0,no,no,no chg,post college,nonsmoker, 5.289
+white,8,no,no,30750,32828,14205,yes,45.298,50.987,yes,171.5,143.0,177,169,110.8, 64.89, 5,10,-28.5,yes,no,wt loss,post college,nonsmoker, 5.689
+white,5,no,no,30753,32850,13263,no,47.885,53.626,no,131.0,138.0,160,204, 83.6,119.82, 1, 2,  7.0,no,yes,wt gain,hs grad,nonsmoker, 5.741
+white,6,no,no,30755,32393,13020,no,48.556,53.040,no,136.5,150.5,224,281,120.4,159.43, 1, 0, 14.0,no,yes,wt gain,some college,nonsmoker, 4.484
+nonwhite,7,no,no,30763,31385,13823,no,46.379,48.082,no,219.5,214.0,182,142,103.7, 88.20, 3,10, -5.5,yes,no,wt loss,college grad,nonsmoker, 1.703
+nonwhite,7,no,no,30764,33047,13818,yes,46.396,52.646,no,132.5,155.0,165,195, 79.4,100.09, 4, 2, 22.5,no,yes,wt gain,college grad,nonsmoker, 6.250
+white,5,yes,yes,30779,33194,13948,yes,46.081,52.693,no,120.5,146.3,138,183, 68.9,104.61, 6, 9, 25.8,no,yes,wt gain,hs grad,smoker, 6.612
+nonwhite,5,no,no,30751,31528,13398,no,47.510,49.637,yes,110.5,113.0,205,203,132.2,134.70, 8,10,  2.5,no,no,no chg,hs grad,nonsmoker, 2.127
+white,5,yes,yes,30840,31258,13468,no,47.562,48.706,no,181.5,182.5,160,180, 70.7,106.40, 0, 0,  1.0,no,no,no chg,hs grad,smoker, 1.144
+white,8,yes,yes,30786,32095,13447,no,47.472,51.055,no,156.0,196.0,186,218,120.8,152.17,12,20, 40.0,no,yes,wt gain,post college,smoker, 3.583
+nonwhite,8,no,no,30764,33814,14108,yes,45.602,53.952,no,118.0,130.0,160,216, 83.7,140.80, 0, 4, 12.0,no,yes,wt gain,post college,nonsmoker, 8.350
+white,6,no,no,30823,34397,13156,no,48.370,58.155,no,132.5,136.5,206,247,127.8,158.99, 6, 3,  4.0,no,no,no chg,some college,nonsmoker, 9.785
+white,6,yes,yes,30777,31888,13058,yes,48.512,51.554,no,148.0,155.0,194,209,117.0,136.14,10,26,  7.0,no,yes,wt gain,some college,smoker, 3.042
+white,7,no,no,30758,35329,14182,no,45.383,57.897,no,137.0,168.0,179,253, 91.2,162.17, 2, 4, 31.0,no,yes,wt gain,college grad,nonsmoker,12.514
+white,5,yes,no,30816,32007,12455,no,50.270,53.530,no,140.5,156.0,261,278,178.2,188.06, 4, 8, 15.5,no,yes,wt gain,hs grad,quitter, 3.260
+white,8,no,no,30768,34745,13129,no,48.293,59.181,no,177.0,202.0,242,255,158.9,167.68, 0, 0, 25.0,no,yes,wt gain,post college,nonsmoker,10.888
+nonwhite,5,no,yes,30767,33520,13848,no,46.322,53.859,no,146.5,153.5,164,203, 83.6,112.06, 3, 0,  7.0,no,yes,wt gain,hs grad,new smoker, 7.537
+white,8,no,no,30762,33219,13673,no,46.787,53.514,no,129.0,140.5,188,232,111.1,142.56, 0, 1, 11.5,no,yes,wt gain,post college,nonsmoker, 6.727
+nonwhite,5,no,no,30772,31856,13935,no,46.097,49.065,no,189.0,187.0,138,176, 68.1, 96.54, 8, 7, -2.0,no,no,no chg,hs grad,nonsmoker, 2.968
+white,6,yes,yes,30769,32696,14069,no,45.722,50.998,no,117.0,124.5,186,248,114.1,170.21, 2, 5,  7.5,no,yes,wt gain,some college,smoker, 5.276
+white,6,no,no,30774,33184,12781,yes,49.262,55.860,no,111.5,123.0,175,197, 73.3, 94.74, 4, 3, 11.5,no,yes,wt gain,some college,nonsmoker, 6.598
+white,8,no,no,30778,32402,12895,no,48.961,53.407,no,134.0,131.0,156,154, 71.7, 74.78, 0, 1, -3.0,no,no,no chg,post college,nonsmoker, 4.446
+white,5,no,no,30776,31552,13765,yes,46.574,48.698,yes,115.5,115.0,202,224,120.0,113.20, 5, 8, -0.5,no,no,no chg,hs grad,nonsmoker, 2.124
+white,6,yes,yes,30786,31792,12973,yes,48.769,51.524,yes,103.0,104.0,157,188, 72.6,102.30, 0, 2,  1.0,no,no,no chg,some college,smoker, 2.755
+white,5,no,no,30776,33096,14392,no,44.857,51.209,no,183.5,185.0,187,227, 92.4,138.53, 0, 2,  1.5,no,no,no chg,hs grad,nonsmoker, 6.352
+white,6,no,no,30777,33086,12463,no,50.141,56.463,yes,185.0,199.0,234,252,158.7,177.72, 6,10, 14.0,no,yes,wt gain,some college,nonsmoker, 6.322
+white,7,yes,yes,30786,32269,13757,no,46.623,50.683,no,126.0,132.0,146,162, 81.4, 89.22, 7, 7,  6.0,no,yes,wt gain,college grad,smoker, 4.060
+white,5,no,no,31133,32297,12562,yes,50.845,54.031,no,156.0,156.0,190,181, 97.6, 81.13, 8,11,  0.0,no,no,no chg,hs grad,nonsmoker, 3.186
+white,7,no,no,30772,35021,15259,yes,42.472,54.105,no,269.5,263.5,150,212, 82.3,137.62, 5, 2, -6.0,yes,no,wt loss,college grad,nonsmoker,11.633
+white,7,no,no,30775,32808,13509,no,47.272,52.838,no,132.0,137.0,160,214, 78.2,118.88, 2, 5,  5.0,no,yes,wt gain,college grad,nonsmoker, 5.566
+white,5,no,no,30775,34468,14133,no,45.563,55.674,no,150.5,168.0,170,220, 86.0,140.31, 0, 0, 17.5,no,yes,wt gain,hs grad,nonsmoker,10.111
+white,8,no,no,30930,32444,12461,yes,50.565,54.710,no,204.0,200.0,164,135, 63.9, 54.92, 0, 1, -4.0,no,no,no chg,post college,nonsmoker, 4.145
+white,7,no,no,30785,31616,13174,yes,48.216,50.491,no,152.0,151.5,259,191,167.0, 91.62, 0, 2, -0.5,no,no,no chg,college grad,nonsmoker, 2.275
+nonwhite,3,yes,no,30783,31364,14373,no,44.928,46.519,no,140.5,150.0,239,244,179.1,179.30,15, 8,  9.5,no,yes,wt gain,some hs,quitter, 1.591
+white,7,no,no,30798,33165,13581,yes,47.138,53.618,yes,145.5,156.5,217,224,133.4,132.30, 1, 0, 11.0,no,yes,wt gain,college grad,nonsmoker, 6.480
+white,7,no,no,30833,33144,13303,no,47.995,54.322,no,140.5,143.0,179,228, 97.2,125.39, 6, 3,  2.5,no,no,no chg,college grad,nonsmoker, 6.327
+white,6,no,no,30785,31392,12905,no,48.953,50.615,yes,122.0,117.0,141,149, 73.3, 81.90, 0, 1, -5.0,yes,no,wt loss,some college,nonsmoker, 1.662
+white,8,yes,yes,30800,31898,14003,no,45.988,48.994,no,159.0,188.5,169,207, 98.9,121.59, 4, 3, 29.5,no,yes,wt gain,post college,smoker, 3.006
+white,8,no,no,30957,33275,13913,no,46.664,53.010,yes,117.0,108.5,175,154,106.8, 76.97, 0, 1, -8.5,yes,no,wt loss,post college,nonsmoker, 6.346
+white,7,no,no,30799,32330,13619,yes,47.036,51.228,yes,136.0,131.0,214,236,140.5,151.84, 0, 0, -5.0,yes,no,wt loss,college grad,nonsmoker, 4.192
+white,6,no,no,30804,33086,13310,yes,47.896,54.144,no,108.0,106.0,165,183, 70.8, 86.64, 0, 3, -2.0,no,no,no chg,some college,nonsmoker, 6.248
+white,7,no,no,30797,33660,13210,no,48.151,55.989,no,126.0,135.0,282,296,159.4,192.37, 7, 5,  9.0,no,yes,wt gain,college grad,nonsmoker, 7.838
+white,8,no,no,30796,31952,13561,no,47.187,50.352,no,122.5,128.0,183,178,108.6,107.16, 3, 1,  5.5,no,yes,wt gain,post college,nonsmoker, 3.165
+white,6,no,no,30799,31149,12633,no,49.736,50.694,no,162.0,168.0,173,171, 94.7, 98.20, 3, 2,  6.0,no,yes,wt gain,some college,nonsmoker, 0.958
+white,5,no,no,30800,31388,13393,yes,47.658,49.268,yes,166.0,171.0,136,173, 56.8, 75.70, 5, 2,  5.0,no,yes,wt gain,hs grad,nonsmoker, 1.610
+white,7,yes,yes,30807,33138,14206,yes,45.451,51.833,no,134.0,132.0,152,154, 94.3, 89.20, 3, 1, -2.0,no,no,no chg,college grad,smoker, 6.382
+white,5,no,yes,30831,33508,13296,no,48.008,55.337,no,194.0,195.5,164,172, 97.4,100.77, 0, 0,  1.5,no,no,no chg,hs grad,new smoker, 7.329
+white,7,no,no,30797,33978,13567,no,47.173,55.882,no,132.5,139.0,160,199, 74.8,107.18, 3, 2,  6.5,no,yes,wt gain,college grad,nonsmoker, 8.709
+white,5,no,no,30802,34598,13475,no,47.439,57.832,no,125.5,127.0,254,295,164.9,212.01, 0, 4,  1.5,no,no,no chg,hs grad,nonsmoker,10.393
+white,7,no,no,30807,33856,13181,no,48.257,56.605,no,145.0,162.5,192,254,115.3,179.91, 2, 5, 17.5,no,yes,wt gain,college grad,nonsmoker, 8.348
+white,8,no,no,30821,31892,12927,no,48.991,51.923,no,163.0,150.0,221,140,108.7, 43.98, 0, 3,-13.0,yes,no,wt loss,post college,nonsmoker, 2.932
+white,8,no,no,30805,34080,14157,no,45.580,54.546,no,150.0,158.0,134,150, 48.6, 69.29, 1, 2,  8.0,no,yes,wt gain,post college,nonsmoker, 8.966
+white,6,yes,no,30795,34460,12848,no,49.136,59.170,no,134.5,147.5,202,228,124.5,144.02, 2, 7, 13.0,no,yes,wt gain,some college,quitter,10.034
+white,5,no,no,30796,33376,14398,no,44.895,51.959,no,143.5,148.5,144,160, 75.6, 96.99,16,12,  5.0,no,yes,wt gain,hs grad,nonsmoker, 7.064
+white,5,yes,yes,31140,32829,13492,yes,48.318,52.942,no,134.0,131.5,291,301,216.7,232.06,19,15, -2.5,no,no,no chg,hs grad,smoker, 4.624
+white,4,no,no,30804,33523,14052,no,45.864,53.309,no,139.0,150.5,202,211,122.8,143.34, 9,17, 11.5,no,yes,wt gain,some hs,nonsmoker, 7.445
+white,8,no,no,30811,32352,13309,no,47.918,52.137,no,150.0,143.5,183,201,108.8,134.89, 0, 1, -6.5,yes,no,wt loss,post college,nonsmoker, 4.219
+white,8,no,no,30811,34220,14078,yes,45.812,55.146,no,125.0,114.0,177,218,102.0,107.00, 0, 4,-11.0,yes,no,wt loss,post college,nonsmoker, 9.334
+white,6,yes,yes,30807,34930,13255,yes,48.055,59.343,no,136.5,155.0,216,240,147.5,155.02, 0, 1, 18.5,no,yes,wt gain,some college,smoker,11.288
+white,7,no,yes,30809,32382,13175,no,48.279,52.586,no,150.0,161.0,172,183,102.1,110.63, 7, 4, 11.0,no,yes,wt gain,college grad,new smoker, 4.307
+white,7,no,no,30823,32970,13581,no,47.206,53.084,no,131.0,131.0,137,163, 56.9, 79.20, 0, 3,  0.0,no,no,no chg,college grad,nonsmoker, 5.878
+white,7,yes,yes,30812,31980,14019,yes,45.977,49.175,no,161.5,161.0,249,237,174.6,104.95,13,17, -0.5,no,no,no chg,college grad,smoker, 3.198
+white,7,no,no,30803,32259,14053,yes,45.859,49.845,no,138.5,147.5,166,196, 92.4,116.25, 2, 6,  9.0,no,yes,wt gain,college grad,nonsmoker, 3.986
+white,6,no,no,30812,34643,13055,yes,48.616,59.105,yes,220.5,205.0,169,216, 88.7,138.51, 1, 1,-15.5,yes,no,wt loss,some college,nonsmoker,10.489
+white,8,no,no,30814,31451,13241,no,48.112,49.856,no,131.0,134.5,172,172, 92.9, 92.50, 6, 0,  3.5,no,no,no chg,post college,nonsmoker, 1.744
+white,8,yes,yes,30814,32696,13389,no,47.707,52.860,no,107.0,108.0,173,217, 85.0,134.18, 3, 4,  1.0,no,no,no chg,post college,smoker, 5.153
+white,5,no,no,30816,31317,13819,yes,46.535,47.907,yes,189.0,185.0,207,201,130.6,110.80, 2, 0, -4.0,no,no,no chg,hs grad,nonsmoker, 1.372
+white,8,no,no,30819,33144,14307,no,45.207,51.573,no,121.5,128.0,194,200,111.7,111.53, 6, 3,  6.5,no,yes,wt gain,post college,nonsmoker, 6.366
+white,8,no,no,30814,32269,13048,yes,48.641,52.624,no,156.5,166.0,150,169, 59.2, 54.88, 3, 5,  9.5,no,yes,wt gain,post college,nonsmoker, 3.983
+white,5,no,no,30821,33191,13936,no,46.229,52.717,no,136.5,158.0,160,208, 89.9,131.90, 1, 1, 21.5,no,yes,wt gain,hs grad,nonsmoker, 6.488
+white,6,yes,yes,30811,31588,12867,no,49.128,51.255,no,146.0,147.0,235,233,141.5,151.98, 3, 2,  1.0,no,no,no chg,some college,smoker, 2.127
+white,8,no,no,30813,33565,14295,yes,45.224,52.758,no,122.5,134.0,179,203, 99.0,111.86, 0, 1, 11.5,no,yes,wt gain,post college,nonsmoker, 7.534
+white,5,no,no,30819,32259,12900,no,49.060,53.002,no,127.0,135.0,209,242,129.1,158.23, 2, 1,  8.0,no,yes,wt gain,hs grad,nonsmoker, 3.942
+white,7,no,no,30989,32564,13904,yes,46.776,51.088,no,126.5,127.0,122,217, 70.6,135.35, 0, 3,  0.5,no,no,no chg,college grad,nonsmoker, 4.312
+white,8,no,no,30820,32325,12887,no,49.098,53.218,no,128.0,134.0,159,201, 89.3,119.42, 2, 1,  6.0,no,yes,wt gain,post college,nonsmoker, 4.120
+nonwhite,4,no,no,30817,31671,14274,yes,45.292,47.630,yes,179.0,195.0,159,138,101.9, 75.65, 0, 1, 16.0,no,yes,wt gain,some hs,nonsmoker, 2.338
+white,5,no,no,30820,33733,13829,no,46.519,54.494,no,146.0,162.0,175,205, 98.0,119.88, 4, 3, 16.0,no,yes,wt gain,hs grad,nonsmoker, 7.975
+white,8,no,no,30842,33219,13751,yes,46.793,53.300,no,133.5,145.5,166,179, 79.2, 95.45,18, 2, 12.0,no,yes,wt gain,post college,nonsmoker, 6.507
+white,8,no,no,30819,34864,14157,yes,45.618,56.693,no,112.0,117.0,198,241,117.7,121.61, 3, 4,  5.0,no,yes,wt gain,post college,nonsmoker,11.075
+white,8,no,no,30832,32515,13626,no,47.107,51.715,no,116.0,121.0,179,226,100.3,127.25, 0, 4,  5.0,no,yes,wt gain,post college,nonsmoker, 4.608
+white,8,no,no,30835,33613,13520,no,47.406,55.012,no,123.5,132.5,162,208, 97.5,134.11, 4, 2,  9.0,no,yes,wt gain,post college,nonsmoker, 7.606
+white,7,no,no,30884,34621,13976,no,46.292,56.523,no,150.0,152.0,217,263,139.2,179.76, 2, 5,  2.0,no,no,no chg,college grad,nonsmoker,10.231
+white,8,no,no,30832,33268,13673,yes,46.979,53.648,no,154.0,155.0,159,162, 77.2, 64.49, 1, 1,  1.0,no,no,no chg,post college,nonsmoker, 6.669
+white,8,no,no,30848,33184,13518,no,47.447,53.843,no,150.0,152.5,203,257,101.3,158.98, 1, 0,  2.5,no,no,no chg,post college,nonsmoker, 6.396
+white,8,no,no,30869,33954,13167,no,48.465,56.912,no,124.0,128.0,177,194,106.0,118.91, 2, 4,  4.0,no,no,no chg,post college,nonsmoker, 8.447
+white,8,no,no,30846,32245,13766,no,46.762,50.593,no,134.0,133.5,212,250,135.6,159.53, 1, 1, -0.5,no,no,no chg,post college,nonsmoker, 3.831
+white,7,yes,yes,30839,31385,12253,no,50.886,52.381,no,135.5,137.5,192,206,122.7,131.40, 1, 3,  2.0,no,no,no chg,college grad,smoker, 1.495
+white,7,no,no,30832,32416,12885,no,49.136,53.473,no,144.5,143.0,193,215,113.2,138.81, 2, 5, -1.5,no,no,no chg,college grad,nonsmoker, 4.337
+white,7,no,no,30844,31528,12259,no,50.883,52.756,yes,121.5,122.0,176,183,100.3,110.10,16,12,  0.5,no,no,no chg,college grad,nonsmoker, 1.873
+white,8,no,no,30834,35363,13603,no,47.176,59.576,no,128.5,128.5,203,295,134.5,214.02, 2, 4,  0.0,no,no,no chg,post college,nonsmoker,12.400
+white,8,no,no,30839,32282,13973,yes,46.177,50.127,no,133.5,133.0,201,222,110.5,113.47, 0, 0, -0.5,no,no,no chg,post college,nonsmoker, 3.950
+nonwhite,5,yes,yes,30863,31269,13749,no,46.856,47.967,no,220.5,218.0,159,159, 89.7, 93.30, 3, 1, -2.5,no,no,no chg,hs grad,smoker, 1.111
+white,6,no,no,30840,33870,14008,yes,46.084,54.379,no,151.5,150.0,154,179, 86.2, 90.85, 5, 4, -1.5,no,no,no chg,some college,nonsmoker, 8.295
+white,3,yes,yes,30846,33667,13288,no,48.071,55.795,no,117.0,132.0,128,162, 67.3, 94.53, 1, 0, 15.0,no,yes,wt gain,some hs,smoker, 7.724
+nonwhite,6,no,no,30856,32725,13136,yes,48.515,53.632,no,124.5,145.0,126,132, 44.0, 61.53, 5, 5, 20.5,no,yes,wt gain,some college,nonsmoker, 5.117
+nonwhite,5,no,no,30853,33180,13229,no,48.252,54.623,no,109.5,116.0,167,220, 84.1,125.37, 6, 8,  6.5,no,yes,wt gain,hs grad,nonsmoker, 6.371
+white,6,no,no,30846,34271,13107,yes,48.567,57.944,no,132.0,138.5,152,166, 84.8, 73.03, 3,10,  6.5,no,yes,wt gain,some college,nonsmoker, 9.377
+white,7,no,no,30856,32067,14326,yes,45.257,48.572,no,211.0,246.5,125,164, 46.6, 79.52, 3, 5, 35.5,no,yes,wt gain,college grad,nonsmoker, 3.315
+white,5,yes,yes,30860,33038,13503,no,47.521,53.484,no,142.0,164.5,233,334,158.8,267.59,11,10, 22.5,no,yes,wt gain,hs grad,smoker, 5.963
+white,7,no,no,30914,33684,13772,no,46.932,54.516,no,134.0,139.0,162,195, 91.0,113.87, 3, 5,  5.0,no,yes,wt gain,college grad,nonsmoker, 7.584
+white,5,yes,yes,30870,31990,13382,no,47.880,50.946,no,160.0,150.0,182,170, 97.0,110.66, 1, 4,-10.0,yes,no,wt loss,hs grad,smoker, 3.066
+white,7,yes,yes,30869,32631,13864,no,46.557,51.381,no,101.0,103.5,269,253,192.9,176.51, 3, 5,  2.5,no,no,no chg,college grad,smoker, 4.824
+white,8,no,no,30870,32534,14255,yes,45.489,50.045,no,120.0,126.0,191,230,121.5,147.08, 2, 2,  6.0,no,yes,wt gain,post college,nonsmoker, 4.556
+white,8,no,no,30861,33368,12960,no,49.010,55.874,no,128.0,134.0,172,271,107.9,197.18, 4, 5,  6.0,no,yes,wt gain,post college,nonsmoker, 6.864
+white,7,yes,yes,30869,33550,12939,yes,49.090,56.430,no,109.5,132.0,182,213, 81.9,111.79, 0, 0, 22.5,no,yes,wt gain,college grad,smoker, 7.340
+white,5,yes,no,30861,32522,12935,no,49.079,53.626,no,133.0,133.5,159,149, 82.8, 62.40, 1, 4,  0.5,no,no,no chg,hs grad,quitter, 4.547
+white,7,no,no,30874,32970,14242,yes,45.536,51.274,no,140.0,143.5,192,224,118.2,112.46, 5, 7,  3.5,no,no,no chg,college grad,nonsmoker, 5.738
+white,6,yes,no,30861,31573,13262,yes,48.183,50.133,no,115.0,131.0,198,210,117.0,105.74, 4, 7, 16.0,no,yes,wt gain,some college,quitter, 1.950
+nonwhite,5,no,no,30868,31542,13822,no,46.669,48.515,yes,139.0,141.0,178,233,105.1,145.70,17,12,  2.0,no,no,no chg,hs grad,nonsmoker, 1.846
+white,5,yes,yes,30877,31213,12548,no,50.182,51.102,no,172.5,176.5,220,214,153.8,128.80, 6, 5,  4.0,no,no,no chg,hs grad,smoker, 0.920
+white,6,no,no,30862,32745,12937,no,49.076,54.231,no,149.5,145.5,192,195,116.4,110.43, 1, 2, -4.0,no,no,no chg,some college,nonsmoker, 5.155
+white,7,no,no,30869,32304,12797,no,49.478,53.407,no,150.0,158.0,177,198,104.0,124.62, 2, 5,  8.0,no,yes,wt gain,college grad,nonsmoker, 3.929
+white,6,yes,yes,30876,31616,13367,no,47.937,49.963,no,238.5,249.5,194,196, 94.3,116.91, 6, 5, 11.0,no,yes,wt gain,some college,smoker, 2.026
+white,5,no,no,30877,31115,13170,no,48.479,49.131,no,130.0,137.0,200,185,119.9,106.00, 3, 2,  7.0,no,yes,wt gain,hs grad,nonsmoker, 0.652
+white,8,no,no,30874,34006,14375,no,45.172,53.747,no,165.0,157.0,161,155, 97.3, 88.77, 4, 6, -8.0,yes,no,wt loss,post college,nonsmoker, 8.575
+white,5,no,no,30874,32249,13896,yes,46.483,50.248,yes,113.0,115.0,150,152, 74.8, 56.22, 2, 0,  2.0,no,no,no chg,hs grad,nonsmoker, 3.765
+nonwhite,8,no,no,30863,33086,14300,yes,45.347,51.433,no,121.0,121.0,178,212,104.0,130.01, 0, 7,  0.0,no,no,no chg,post college,nonsmoker, 6.086
+white,7,no,no,30933,34629,12955,no,49.221,59.340,no,129.5,144.5,139,168, 82.2,107.49, 1, 3, 15.0,no,yes,wt gain,college grad,nonsmoker,10.119
+white,6,no,no,30876,33754,14075,yes,45.999,53.878,no,161.5,224.5,147,189, 75.7,105.69, 0, 0, 63.0,no,yes,wt gain,some college,nonsmoker, 7.879
+nonwhite,8,no,no,30881,31251,13021,no,48.898,49.911,no,150.0,150.0,196,182,126.1,112.90, 2, 1,  0.0,no,no,no chg,post college,nonsmoker, 1.013
+white,5,no,no,30883,32290,12783,no,49.555,53.407,yes,111.5,113.0,252,236,172.8,163.47, 0, 2,  1.5,no,no,no chg,hs grad,nonsmoker, 3.852
+white,6,yes,no,30897,33268,13415,no,47.863,54.355,no,134.0,138.5,257,261,175.2,164.77, 1, 5,  4.5,no,no,no chg,some college,quitter, 6.492
+white,5,yes,yes,30877,31242,13373,no,47.923,48.923,yes,110.0,113.5,205,170,142.0,109.70, 1, 1,  3.5,no,no,no chg,hs grad,smoker, 1.000
+white,8,no,no,30883,31575,12306,yes,50.861,52.756,no,159.5,153.3,241,206,151.8, 93.77, 3, 4, -6.2,yes,no,wt loss,post college,nonsmoker, 1.895
+white,8,no,no,30882,32003,13007,no,48.939,52.008,no,178.0,188.5,182,254,119.1,171.28, 1, 1, 10.5,no,yes,wt gain,post college,nonsmoker, 3.069
+white,5,yes,yes,30881,31462,14192,yes,45.692,47.283,no,117.0,128.0,217,212,134.2,122.30, 2, 9, 11.0,no,yes,wt gain,hs grad,smoker, 1.591
+white,5,no,no,30919,33359,12819,no,49.555,56.235,no,127.5,146.5,208,261,132.0,175.39, 9,15, 19.0,no,yes,wt gain,hs grad,nonsmoker, 6.680
+white,6,no,no,30877,33138,13959,no,46.319,52.509,no,132.5,146.0,189,238,126.3,167.98, 2, 4, 13.5,no,yes,wt gain,some college,nonsmoker, 6.190
+white,5,yes,no,30883,34075,13375,yes,47.934,56.674,no,137.0,153.5,160,208, 97.4,126.21, 3, 8, 16.5,no,yes,wt gain,hs grad,quitter, 8.740
+white,6,no,no,31183,32928,13991,no,47.069,51.847,no,148.0,146.0,167,208, 89.4,124.12, 4, 3, -2.0,no,no,no chg,some college,nonsmoker, 4.778
+white,7,yes,yes,30882,32014,13366,no,47.956,51.055,no,118.5,127.0,242,252,157.1,173.50, 1, 7,  8.5,no,yes,wt gain,college grad,smoker, 3.099
+white,6,no,no,30919,32102,13596,yes,47.428,50.667,no,120.0,123.5,191,229,116.2,116.15, 0, 0,  3.5,no,no,no chg,some college,nonsmoker, 3.239
+white,7,no,no,30888,35298,13917,no,46.464,58.538,no,114.5,130.0,176,200, 98.3,113.88, 4, 4, 15.5,no,yes,wt gain,college grad,nonsmoker,12.074
+white,6,no,no,30882,34109,13657,no,47.159,55.995,no,222.6,231.5,171,198, 77.3, 88.12, 7, 5,  8.9,no,yes,wt gain,some college,nonsmoker, 8.836
+white,8,yes,yes,30888,33737,14330,yes,45.333,53.133,no,126.0,129.5,181,179,107.8, 87.23, 0, 4,  3.5,no,no,no chg,post college,smoker, 7.800
+white,6,yes,no,30884,32459,13198,no,48.422,52.734,no,126.0,159.5,221,253,155.7,167.10, 2, 1, 33.5,no,yes,wt gain,some college,quitter, 4.312
+white,7,yes,yes,30898,32259,13966,yes,46.357,50.084,no,174.5,171.0,207,224,153.9,159.22, 0, 2, -3.5,no,no,no chg,college grad,smoker, 3.727
+white,6,yes,yes,31135,33845,14026,yes,46.842,54.261,no,128.0,145.5,174,243, 99.4,156.00,11,10, 17.5,no,yes,wt gain,some college,smoker, 7.419
+white,7,no,no,30903,32464,12576,no,50.177,54.450,no,133.0,150.0,150,186, 82.0,114.56, 0, 0, 17.0,no,yes,wt gain,college grad,nonsmoker, 4.273
+white,7,no,no,30910,33289,13260,no,48.323,54.836,no,155.0,173.0,213,227,103.1,127.73, 4, 5, 18.0,no,yes,wt gain,college grad,nonsmoker, 6.513
+white,7,no,no,30944,34480,13943,no,46.546,56.227,no,150.0,166.0,210,256,123.7,155.90, 4, 5, 16.0,no,yes,wt gain,college grad,nonsmoker, 9.681
+white,8,no,no,30902,34783,14386,no,45.218,55.844,no,133.0,138.5,156,185, 86.2,117.54, 7, 0,  5.5,no,yes,wt gain,post college,nonsmoker,10.626
+white,5,yes,yes,30896,32919,12647,no,49.963,55.502,no,156.0,154.5,202,253,139.0,176.86, 0, 0, -1.5,no,no,no chg,hs grad,smoker, 5.539
+white,6,no,no,30902,32634,12598,no,50.114,54.856,no,116.0,115.5,193,200,117.6,133.01,13, 6, -0.5,no,no,no chg,some college,nonsmoker, 4.742
+white,8,no,no,30903,33457,13574,no,47.444,54.437,no,172.0,194.5,231,245,154.4,169.74,16,12, 22.5,no,yes,wt gain,post college,nonsmoker, 6.993
+nonwhite,6,no,no,31059,32298,14062,no,46.535,49.927,no,122.5,130.0,140,161, 66.7, 92.08, 7, 3,  7.5,no,yes,wt gain,some college,nonsmoker, 3.392
+white,5,no,no,30909,33527,14384,no,45.243,52.411,no,118.0,124.5,167,209, 93.4,126.92, 0, 0,  6.5,no,yes,wt gain,hs grad,nonsmoker, 7.168
+white,8,no,no,30933,32662,14298,no,45.544,50.278,no,148.5,172.0,164,222,109.7,150.41, 0, 3, 23.5,no,yes,wt gain,post college,nonsmoker, 4.734
+nonwhite,5,no,no,30903,32004,14401,no,45.180,48.194,no,152.5,161.0,176,187, 96.1,105.61, 3, 2,  8.5,no,yes,wt gain,hs grad,nonsmoker, 3.014
+white,7,no,no,30938,34249,13072,yes,48.914,57.979,no,130.0,129.5,178,185, 82.7, 90.37, 1, 2, -0.5,no,no,no chg,college grad,nonsmoker, 9.065
+white,5,no,no,30910,32240,14252,yes,45.607,49.248,no,150.0,155.0,171,190, 91.6, 97.72, 3, 4,  5.0,no,yes,wt gain,hs grad,nonsmoker, 3.641
+white,8,no,no,30909,33669,13709,no,47.091,54.648,no,128.0,130.0,159,192, 82.0,121.03, 1, 3,  2.0,no,no,no chg,post college,nonsmoker, 7.557
+white,6,yes,no,30994,33004,13389,yes,48.200,53.703,no,132.0,138.5,158,169, 57.6, 81.56, 4, 0,  6.5,no,yes,wt gain,some college,quitter, 5.503
+white,7,no,no,30931,34732,13344,yes,48.151,58.557,no,125.0,129.0,190,188,124.8,108.66, 2, 7,  4.0,no,no,no chg,college grad,nonsmoker,10.406
+white,4,no,no,30910,32259,12774,no,49.654,53.347,no,142.0,150.0,205,221,134.6,138.98, 2, 2,  8.0,no,yes,wt gain,some hs,nonsmoker, 3.693
+white,7,no,no,30909,33452,14074,no,46.092,53.054,no,148.0,151.5,201,212,113.1,131.75, 0, 5,  3.5,no,no,no chg,college grad,nonsmoker, 6.962
+nonwhite,8,no,no,30905,31325,13099,yes,48.750,49.900,no,161.0,150.0,194,199,129.5,135.90, 5, 5,-11.0,yes,no,wt loss,post college,nonsmoker, 1.150
+white,7,no,no,30951,33487,13976,no,46.475,53.418,no,125.0,137.5,181,234,105.2,146.21, 3, 7, 12.5,no,yes,wt gain,college grad,nonsmoker, 6.943
+white,8,no,no,30961,33131,12659,no,50.108,56.049,no,185.5,219.0,184,215,111.5,142.56,16,20, 33.5,no,yes,wt gain,post college,nonsmoker, 5.941
+white,6,no,no,30931,32459,12508,no,50.439,54.623,no,132.5,131.0,213,288,148.0,216.10, 5, 6, -1.5,no,no,no chg,some college,nonsmoker, 4.184
+white,7,no,no,30914,33488,12949,yes,49.185,56.233,no,158.0,162.5,185,209,125.4,125.38, 2, 5,  4.5,no,no,no chg,college grad,nonsmoker, 7.048
+white,7,no,no,30933,32704,13451,yes,47.863,52.712,no,128.0,137.0,132,163, 65.9, 94.91, 1, 2,  9.0,no,yes,wt gain,college grad,nonsmoker, 4.849
+white,7,no,no,30945,33081,13322,no,48.249,54.097,no,131.0,140.5,175,234, 90.4,143.49, 4, 0,  9.5,no,yes,wt gain,college grad,nonsmoker, 5.848
+white,7,yes,yes,30982,33152,13752,no,47.173,53.114,no,128.0,144.0,171,216,109.1,153.52, 4, 7, 16.0,no,yes,wt gain,college grad,smoker, 5.941
+white,6,yes,no,30940,32280,12319,yes,50.982,54.650,no,134.5,139.5,186,196,116.2,104.37,16,24,  5.0,no,yes,wt gain,some college,quitter, 3.668
+white,6,no,no,30940,32129,14263,no,45.659,48.914,no,125.0,132.0,191,173,102.3, 93.47, 6, 6,  7.0,no,yes,wt gain,some college,nonsmoker, 3.255
+nonwhite,5,yes,yes,30961,32907,14048,no,46.305,51.633,no,146.0,153.5,215,257,147.0,181.02, 8,12,  7.5,no,yes,wt gain,hs grad,smoker, 5.328
+white,8,no,no,30946,32941,13008,no,49.112,54.574,no,145.0,155.0,181,223,103.0,136.19, 0, 0, 10.0,no,yes,wt gain,post college,nonsmoker, 5.462
+white,7,yes,yes,30947,33261,13952,no,46.530,52.865,no,108.0,113.5,181,197, 94.4,102.52, 7,14,  5.5,no,yes,wt gain,college grad,smoker, 6.335
+white,5,no,no,30945,31692,13587,yes,47.524,49.569,yes,223.5,220.0,195,227,132.4,165.73, 0, 1, -3.5,no,no,no chg,hs grad,nonsmoker, 2.045
+white,6,yes,yes,31006,33467,14188,yes,46.045,52.783,no,149.0,121.5,213,241,118.4,154.83, 3, 4,-27.5,yes,no,wt loss,some college,smoker, 6.738
+white,6,no,no,30939,32476,13379,yes,48.077,52.285,no,164.0,183.0,161,196,102.3,136.10, 6,13, 19.0,no,yes,wt gain,some college,nonsmoker, 4.208
+white,5,no,no,30946,33004,13807,no,46.924,52.559,yes,251.0,260.0,176,197, 91.4,130.23, 3, 0,  9.0,no,yes,wt gain,hs grad,nonsmoker, 5.635
+white,5,no,no,30961,33537,13867,no,46.801,53.854,no,149.0,168.5,144,170, 74.8, 94.82,21,17, 19.5,no,yes,wt gain,hs grad,nonsmoker, 7.053
+white,5,yes,yes,30952,33733,14049,no,46.278,53.892,no,162.5,171.0,185,181,126.8,104.57, 0, 0,  8.5,no,yes,wt gain,hs grad,smoker, 7.614
+white,7,no,no,30951,31843,13811,no,46.927,49.369,yes,154.0,158.0,146,169, 75.0, 88.51, 0, 1,  4.0,no,no,no chg,college grad,nonsmoker, 2.442
+white,7,no,no,30951,32254,13169,yes,48.684,52.252,no,133.5,137.0,134,171, 62.8, 64.64, 1, 4,  3.5,no,no,no chg,college grad,nonsmoker, 3.568
+nonwhite,6,yes,yes,30959,31736,12959,no,49.281,51.409,no,133.0,136.0,183,194, 83.8, 96.22,11, 3,  3.0,no,no,no chg,some college,smoker, 2.128
+white,6,no,no,30961,33942,13704,no,47.247,55.409,no,141.5,148.5,151,195, 85.6,117.44, 4, 7,  7.0,no,yes,wt gain,some college,nonsmoker, 8.162
+white,8,no,no,30980,31423,12989,no,49.257,50.470,no,149.0,141.5,179,169, 99.0, 97.60, 6,10, -7.5,yes,no,wt loss,post college,nonsmoker, 1.213
+white,7,no,no,30979,33642,14425,no,45.322,52.613,no,103.0,109.0,221,210,127.7,123.37, 0, 0,  6.0,no,yes,wt gain,college grad,nonsmoker, 7.291
+white,7,no,no,31003,32046,13475,no,47.989,50.845,no,118.0,115.0,223,204,132.7,122.08, 0, 8, -3.0,no,no,no chg,college grad,nonsmoker, 2.856
+white,8,no,no,30975,35165,13437,no,48.016,59.488,no,139.0,137.0,201,209,126.2,124.33, 1, 0, -2.0,no,no,no chg,post college,nonsmoker,11.472
+white,7,no,no,30975,33271,13522,no,47.784,54.070,no,115.0,117.5,160,173, 83.2, 93.22, 1,11,  2.5,no,no,no chg,college grad,nonsmoker, 6.286
+white,8,yes,yes,30958,32445,13758,yes,47.091,51.162,yes,118.0,126.0,181,197,121.7,112.21,10, 0,  8.0,no,yes,wt gain,post college,smoker, 4.071
+nonwhite,6,yes,no,30982,34362,14043,no,46.376,55.630,no,100.0,120.5,188,228,121.7,159.64, 6, 6, 20.5,no,yes,wt gain,some college,quitter, 9.254
+white,6,no,no,30959,32676,13927,no,46.631,51.332,no,137.0,148.0,129,164, 59.9, 92.42, 4, 0, 11.0,no,yes,wt gain,some college,nonsmoker, 4.701
+white,5,no,no,30975,31563,12495,no,50.595,52.205,no,147.0,147.0,187,219,117.3,153.40, 0, 0,  0.0,no,no,no chg,hs grad,nonsmoker, 1.610
+white,7,yes,no,30973,33016,12896,no,49.492,55.086,no,143.0,161.5,277,292,196.2,211.35, 1, 5, 18.5,no,yes,wt gain,college grad,quitter, 5.594
+white,4,yes,yes,30980,33394,12685,no,50.089,56.698,no,132.0,137.0,184,217,118.7,132.27, 6, 3,  5.0,no,yes,wt gain,some hs,smoker, 6.609
+white,5,yes,yes,31000,33065,13339,yes,48.353,54.007,yes,127.0,121.5,173,178,111.9, 97.29, 7,25, -5.5,yes,no,wt loss,hs grad,smoker, 5.654
+white,5,yes,yes,30989,31750,13129,no,48.898,50.982,yes,131.5,129.5,143,177, 72.7,106.41,11, 5, -2.0,no,no,no chg,hs grad,smoker, 2.084
+white,5,yes,no,30974,32536,13774,no,47.091,51.368,no,130.0,146.0,203,199,146.5,127.12, 0, 0, 16.0,no,yes,wt gain,hs grad,quitter, 4.277
+white,8,no,no,30980,33925,15087,no,43.513,51.576,no,182.0,205.0,182,211, 99.5,131.07, 6, 8, 23.0,no,yes,wt gain,post college,nonsmoker, 8.063
+white,8,no,no,30989,34097,13762,no,47.165,55.674,no,173.5,188.5,187,206,129.5,116.30, 0, 5, 15.0,no,yes,wt gain,post college,nonsmoker, 8.509
+white,5,no,no,30979,32490,13772,no,47.110,51.247,no,127.0,132.0,168,136, 97.8, 87.63, 6, 4,  5.0,no,yes,wt gain,hs grad,nonsmoker, 4.137
+white,8,yes,no,31002,33866,13878,yes,46.883,54.724,no,140.0,148.5,183,196,111.5,113.67, 3, 4,  8.5,no,yes,wt gain,post college,quitter, 7.841
+white,7,no,no,30996,33075,13449,yes,48.041,53.733,yes,149.0,151.0,135,178, 57.0, 75.45, 6, 4,  2.0,no,no,no chg,college grad,nonsmoker, 5.692
+white,7,yes,no,30986,32522,13907,no,46.760,50.965,no,128.0,134.0,143,152, 61.6, 54.60, 0, 1,  6.0,no,yes,wt gain,college grad,quitter, 4.205
+white,4,yes,yes,30987,34279,13828,no,46.979,55.992,no,129.0,148.0,175,223,115.1,157.21, 0, 1, 19.0,no,yes,wt gain,some hs,smoker, 9.013
+white,5,yes,yes,30995,31981,13742,yes,47.236,49.936,no,136.0,142.0,153,204, 96.5,133.24, 1, 5,  6.0,no,yes,wt gain,hs grad,smoker, 2.700
+white,4,no,no,30986,32315,13071,no,49.049,52.687,no,173.5,175.0,214,224,129.8,148.76, 8,12,  1.5,no,no,no chg,some hs,nonsmoker, 3.638
+nonwhite,5,yes,yes,31005,33254,13096,no,49.032,55.190,no,150.5,152.0,173,231, 74.1,127.29, 2, 5,  1.5,no,no,no chg,hs grad,smoker, 6.158
+white,5,yes,no,30987,33026,12756,no,49.914,55.496,no,120.5,129.0,139,176, 71.9,109.39, 8, 1,  8.5,no,yes,wt gain,hs grad,quitter, 5.582
+white,5,no,no,30996,32644,13840,no,46.971,51.483,no,140.5,151.0,236,330,128.7,175.21,12,11, 10.5,no,yes,wt gain,hs grad,nonsmoker, 4.512
+white,7,no,no,30994,33436,13124,no,48.925,55.611,no,143.0,132.5,175,226, 75.2,143.26, 8, 0,-10.5,yes,no,wt loss,college grad,nonsmoker, 6.686
+white,5,no,no,31003,32333,13898,no,46.831,50.472,no,245.0,258.0,259,313,162.3,225.75, 2,14, 13.0,no,yes,wt gain,hs grad,nonsmoker, 3.641
+white,7,no,no,30996,33915,14005,no,46.519,54.511,no,129.0,132.5,177,192, 95.7,107.25, 2, 2,  3.5,no,no,no chg,college grad,nonsmoker, 7.992
+white,8,yes,yes,30993,31469,13887,yes,46.834,48.137,no,122.0,123.0,153,176, 66.9,108.30, 0, 7,  1.0,no,no,no chg,post college,smoker, 1.303
+white,5,yes,no,31001,32554,13797,no,47.102,51.354,yes,223.5,241.5,243,242,161.2,171.34, 9, 9, 18.0,no,yes,wt gain,hs grad,quitter, 4.252
+white,6,no,no,31014,34017,13096,no,49.057,57.279,no,166.0,195.5,169,185, 70.5, 97.66, 5,11, 29.5,no,yes,wt gain,some college,nonsmoker, 8.222
+white,8,no,no,31001,34186,14166,yes,46.092,54.812,yes,122.0,146.0,173,235,105.0,155.84, 6, 6, 24.0,no,yes,wt gain,post college,nonsmoker, 8.720
+white,5,no,no,31001,31723,12648,no,50.248,52.224,no,140.0,141.5,170,181, 84.3,116.79, 0, 1,  1.5,no,no,no chg,hs grad,nonsmoker, 1.976
+white,7,no,no,31014,32598,13351,yes,48.359,52.695,no,101.5,106.0,166,181, 94.6, 94.72,10,18,  4.5,no,no,no chg,college grad,nonsmoker, 4.336
+nonwhite,3,no,no,31251,33527,13305,no,49.133,55.365,no,209.0,209.5,186,225,113.5,129.72, 5, 2,  0.5,no,no,no chg,some hs,nonsmoker, 6.232
+white,5,no,no,31015,32620,13909,no,46.834,51.228,no,125.5,139.0,156,189, 85.7,112.50, 5, 5, 13.5,no,yes,wt gain,hs grad,nonsmoker, 4.394
+white,8,no,no,31017,32360,12843,no,49.758,53.435,no,218.5,211.0,195,220,131.3,158.22, 3, 3, -7.5,yes,no,wt loss,post college,nonsmoker, 3.677
+white,7,no,no,31015,34052,13948,yes,46.727,55.042,no,141.5,153.0,158,215, 74.0,126.19, 2, 3, 11.5,no,yes,wt gain,college grad,nonsmoker, 8.315
+white,6,yes,yes,31059,33131,13079,no,49.227,54.899,no,248.5,259.5,165,159, 94.6,101.89, 1, 2, 11.0,no,yes,wt gain,some college,smoker, 5.672
+white,7,no,no,31014,32014,13626,no,47.606,50.344,no,157.5,168.0,171,193,113.5,137.75, 0, 1, 10.5,no,yes,wt gain,college grad,nonsmoker, 2.738
+white,8,yes,no,31050,33123,13166,yes,48.964,54.639,no,170.5,184.0,215,278,148.2,205.12, 4, 4, 13.5,no,yes,wt gain,post college,quitter, 5.675
+white,7,yes,yes,31024,32571,12386,no,51.028,55.264,no,177.0,187.0,194,203,105.9,102.84, 8, 9, 10.0,no,yes,wt gain,college grad,smoker, 4.236
+white,6,yes,yes,31024,31738,13550,no,47.841,49.796,no,134.0,156.0,171,177,114.9,112.49, 2, 2, 22.0,no,yes,wt gain,some college,smoker, 1.955
+white,6,no,no,31022,32045,13866,yes,46.971,49.771,no,129.5,127.0,146,167, 81.7, 92.16, 5, 6, -2.5,no,no,no chg,some college,nonsmoker, 2.800
+white,6,no,no,31031,32480,14620,no,44.931,48.898,no,140.0,141.0,125,181, 67.9, 92.29, 3, 4,  1.0,no,no,no chg,some college,nonsmoker, 3.967
+nonwhite,4,no,no,31087,31695,13538,no,48.047,49.711,yes,162.0,176.0,157,152, 72.6, 75.28, 4, 3, 14.0,no,yes,wt gain,some hs,nonsmoker, 1.664
+white,6,no,no,31031,31584,13021,no,49.309,50.823,no,121.5,127.5,173,189,100.6,125.10, 3, 3,  6.0,no,yes,wt gain,some college,nonsmoker, 1.514
+white,7,yes,yes,31037,31703,13939,no,46.812,48.635,no,173.0,175.5,185,220, 99.2,132.93, 5, 5,  2.5,no,no,no chg,college grad,smoker, 1.823
+white,5,yes,yes,31024,33110,13717,no,47.384,53.095,no,189.0,205.0,182,214,129.6,152.68, 3, 2, 16.0,no,yes,wt gain,hs grad,smoker, 5.711
+white,5,yes,yes,31084,32360,13821,no,47.264,50.757,no, 99.0, 94.5,212,237,142.5,150.84, 3, 2, -4.5,no,no,no chg,hs grad,smoker, 3.493
+white,7,no,no,31105,33872,13514,no,48.162,55.737,no,133.0,147.5,149,179, 80.4,107.71, 4, 9, 14.5,no,yes,wt gain,college grad,nonsmoker, 7.575
+white,7,no,no,31036,31736,12777,yes,49.990,51.907,no,149.0,149.0,150,159, 49.5, 55.19,16,15,  0.0,no,no,no chg,college grad,nonsmoker, 1.917
+white,5,yes,no,31079,34220,13689,no,47.611,56.211,no,125.5,148.5,158,158, 87.3, 82.11, 1, 7, 23.0,no,yes,wt gain,hs grad,quitter, 8.600
+white,5,no,no,31161,33191,13578,yes,48.140,53.697,no,162.0,169.5,192,190,136.5,133.55, 2, 7,  7.5,no,yes,wt gain,hs grad,nonsmoker, 5.557
+nonwhite,7,yes,yes,31080,32801,13794,no,47.326,52.038,no,133.0,128.0,204,211,108.8, 92.65, 3, 3, -5.0,yes,no,wt loss,college grad,smoker, 4.712
+white,6,no,no,31084,33634,13660,no,47.704,54.686,no,170.0,183.5,136,192, 77.0,132.01,15,15, 13.5,no,yes,wt gain,some college,nonsmoker, 6.982
+white,6,no,no,31084,31925,13336,no,48.591,50.894,no,134.0,136.0,193,158,111.6, 85.61,10, 1,  2.0,no,no,no chg,some college,nonsmoker, 2.303
+white,8,no,yes,31079,32330,13894,no,47.050,50.475,no,131.0,144.0,215,264,128.3,175.40, 6, 3, 13.0,no,yes,wt gain,post college,new smoker, 3.425
+white,7,yes,yes,31084,32325,13129,no,49.158,52.556,no,131.5,133.0,158,181, 71.4,103.60,19, 9,  1.5,no,no,no chg,college grad,smoker, 3.398
+white,6,no,no,31086,35084,13497,no,48.156,59.102,no,127.0,129.7,187,245,114.0,159.46, 0, 2,  2.7,no,no,no chg,some college,nonsmoker,10.946
+white,7,no,no,31087,34047,13709,yes,47.578,55.682,no, 94.0,128.0,137,221, 65.7,151.77,11,16, 34.0,no,yes,wt gain,college grad,nonsmoker, 8.104
+white,5,no,no,31087,32799,13175,no,49.040,53.728,no,148.5,157.0,177,226, 98.9,129.80, 5, 4,  8.5,no,yes,wt gain,hs grad,nonsmoker, 4.688
+white,7,no,no,31091,32661,13924,no,47.001,51.299,no,166.0,181.0,180,254,113.7,184.08, 5, 2, 15.0,no,yes,wt gain,college grad,nonsmoker, 4.298
+white,8,no,no,31258,32444,13332,no,49.079,52.326,no,153.0,163.0,162,154, 97.1, 88.37, 2, 1, 10.0,no,yes,wt gain,post college,nonsmoker, 3.247
+white,4,no,no,31098,33753,12925,no,49.755,57.024,no,146.0,152.5,166,192,103.0,121.97, 7,13,  6.5,no,yes,wt gain,some hs,nonsmoker, 7.269
+white,6,no,no,31280,34908,14055,yes,47.159,57.092,no,169.0,180.0,189,154,117.2, 84.04, 4,10, 11.0,no,yes,wt gain,some college,nonsmoker, 9.933
+white,5,yes,yes,31129,33639,13783,yes,47.491,54.363,no,130.0,139.5,177,177,113.1,102.70, 6, 2,  9.5,no,yes,wt gain,hs grad,smoker, 6.872
+nonwhite,5,no,no,31101,31836,13006,no,49.541,51.554,yes,163.0,167.5,252,279,166.1,197.30, 7, 5,  4.5,no,no,no chg,hs grad,nonsmoker, 2.013
+white,6,no,no,31105,32464,13582,yes,47.975,51.696,no,107.5,115.0,202,205,111.1, 97.23, 6, 5,  7.5,no,yes,wt gain,some college,nonsmoker, 3.721
+white,7,yes,yes,31126,32031,13454,no,48.383,50.861,no,116.0,112.0,194,239, 99.6,130.44, 1, 4, -4.0,no,no,no chg,college grad,smoker, 2.478
+white,5,no,no,31107,31792,12840,no,50.012,51.888,no,145.0,154.0,209,207,123.5,124.65, 3, 6,  9.0,no,yes,wt gain,hs grad,nonsmoker, 1.876
+white,8,yes,yes,31107,32892,13993,no,46.856,51.743,no,164.0,150.0,184,197,119.9,134.60, 3, 5,-14.0,yes,no,wt loss,post college,smoker, 4.887
+white,6,no,no,31108,32487,12518,no,50.897,54.672,no,184.5,200.0,175,194, 94.3,121.19, 0, 0, 15.5,no,yes,wt gain,some college,nonsmoker, 3.775
+white,8,no,no,31108,33558,13205,no,49.016,55.723,no,207.0,213.0,118,166, 67.7, 95.75, 3, 5,  6.0,no,yes,wt gain,post college,nonsmoker, 6.707
+white,8,yes,yes,31114,31841,12624,no,50.623,52.613,no,141.0,149.0,176,196, 76.6,113.79, 3, 0,  8.0,no,yes,wt gain,post college,smoker, 1.990
+white,8,no,no,31133,33359,12941,no,49.807,55.901,no,135.0,138.5,168,214,112.6,148.30, 3, 7,  3.5,no,no,no chg,post college,nonsmoker, 6.094
+white,6,no,no,31119,32245,13099,yes,49.336,52.419,no,136.0,144.0,180,181, 78.3, 61.96, 1, 8,  8.0,no,yes,wt gain,some college,nonsmoker, 3.083
+white,6,no,no,31126,32478,13831,no,47.351,51.053,no,143.0,142.0,191,203,103.8,120.71, 2, 3, -1.0,no,no,no chg,some college,nonsmoker, 3.702
+white,8,no,no,31114,34297,13008,yes,49.572,58.286,yes,110.0,121.0,162,238,107.5,167.19, 3, 3, 11.0,no,yes,wt gain,post college,nonsmoker, 8.714
+white,5,yes,yes,31115,32458,12850,no,50.007,53.684,no,130.0,123.0,251,293,166.4,204.74, 7, 1, -7.0,yes,no,wt loss,hs grad,smoker, 3.677
+white,5,no,no,31136,32113,13158,no,49.221,51.896,no,195.5,200.0,194,221,119.9,147.40,20,26,  4.5,no,no,no chg,hs grad,nonsmoker, 2.675
+white,5,no,no,31216,34129,12597,no,50.976,58.951,no,153.0,164.0,169,229,106.2,141.22, 3, 0, 11.0,no,yes,wt gain,hs grad,nonsmoker, 7.975
+white,5,no,no,31255,32305,13082,no,49.755,52.630,no,160.0,191.0,238,202,166.0,138.93, 0, 1, 31.0,no,yes,wt gain,hs grad,nonsmoker, 2.875
+white,5,no,no,31121,33026,13975,no,46.943,52.159,no,135.0,112.5,203,257,138.5,203.07, 2, 3,-22.5,yes,no,wt loss,hs grad,nonsmoker, 5.216
+white,8,yes,yes,31129,32396,14060,no,46.732,50.201,no,180.0,193.5,173,186,113.5,122.56, 2, 5, 13.5,no,yes,wt gain,post college,smoker, 3.469
+white,7,yes,yes,31122,32963,13631,no,47.888,52.928,no,142.0,152.5,179,243,110.9,179.85, 2, 3, 10.5,no,yes,wt gain,college grad,smoker, 5.040
+nonwhite,5,yes,yes,31122,31787,14002,no,46.872,48.693,no,111.0,114.0,248,302,159.9,202.06,15, 4,  3.0,no,no,no chg,hs grad,smoker, 1.821
+white,8,no,no,31126,33277,13837,no,47.335,53.224,no,135.0,139.0,139,175, 58.0, 70.96, 1, 3,  4.0,no,no,no chg,post college,nonsmoker, 5.889
+white,6,no,no,31133,33422,14047,no,46.779,53.046,no,149.0,167.5,171,230, 86.9,134.51, 0, 2, 18.5,no,yes,wt gain,some college,nonsmoker, 6.267
+white,5,yes,yes,31135,33107,14001,yes,46.910,52.309,no,160.0,186.5,146,214, 87.1,134.03, 4, 4, 26.5,no,yes,wt gain,hs grad,smoker, 5.399
+white,6,no,no,31129,32277,13560,no,48.101,51.244,no,133.5,137.0,199,203, 92.3,109.55, 2, 5,  3.5,no,no,no chg,some college,nonsmoker, 3.143
+white,5,no,no,31129,33684,13881,yes,47.222,54.218,no,193.0,215.0,219,200,135.4,104.86, 2, 8, 22.0,no,yes,wt gain,hs grad,nonsmoker, 6.996
+white,7,no,no,31126,32478,13425,no,48.463,52.164,yes,118.0,125.0,170,196, 87.3,100.30, 0, 3,  7.0,no,yes,wt gain,college grad,nonsmoker, 3.701
+nonwhite,7,no,no,31136,32554,12661,no,50.582,54.464,no,174.0,184.0,139,179, 88.0,122.75, 2, 1, 10.0,no,yes,wt gain,college grad,nonsmoker, 3.882
+white,5,no,no,31199,31836,12674,no,50.719,52.463,no,154.0,153.5,149,175, 96.5,115.33, 0, 0, -0.5,no,no,no chg,hs grad,nonsmoker, 1.744
+white,6,no,no,31149,31787,13959,no,47.064,48.810,no,142.5,143.5,177,217,108.2,136.27,12, 2,  1.0,no,no,no chg,some college,nonsmoker, 1.746
+white,8,no,no,31150,33088,14249,no,46.272,51.578,no,134.5,140.0,178,196,118.4,121.69, 4, 2,  5.5,no,yes,wt gain,post college,nonsmoker, 5.306
+white,8,no,no,31199,33691,13716,yes,47.866,54.689,no,155.0,137.5,138,183, 64.1, 88.98, 6, 1,-17.5,yes,no,wt loss,post college,nonsmoker, 6.823
+white,8,no,no,31136,31679,13844,yes,47.343,48.830,no,128.0,129.0,206,203,132.3,127.23, 1, 1,  1.0,no,no,no chg,post college,nonsmoker, 1.487
+white,5,no,no,31157,33096,13110,no,49.410,54.719,no,146.5,143.0,154,233, 84.7,163.33, 0, 7, -3.5,no,no,no chg,hs grad,nonsmoker, 5.309
+white,7,no,no,31185,32116,13783,no,47.644,50.193,no,127.5,127.5,223,228,134.6,155.18, 8, 0,  0.0,no,no,no chg,college grad,nonsmoker, 2.549
+white,5,yes,no,31164,34377,13967,yes,47.083,55.880,no,142.0,165.0,158,186, 99.2,105.83, 4, 3, 23.0,no,yes,wt gain,hs grad,quitter, 8.797
+white,6,yes,yes,31189,31849,12993,yes,49.818,51.625,no,138.0,144.5,170,203, 97.6,113.94, 5, 9,  6.5,no,yes,wt gain,some college,smoker, 1.807
+white,5,yes,yes,31178,33915,14037,yes,46.929,54.423,no,153.5,163.0,207,259,143.9,181.21, 7,12,  9.5,no,yes,wt gain,hs grad,smoker, 7.494
+white,6,no,no,31258,32759,13330,no,49.084,53.194,no,188.5,203.0,203,243,133.0,145.06, 0, 0, 14.5,no,yes,wt gain,some college,nonsmoker, 4.110

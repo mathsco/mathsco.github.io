@@ -1,0 +1,9 @@
+Size,Treatment,Outcome,Freq
+small,open,success,81
+small,open,failure,6
+small,perc,success,234
+small,perc,failure,36
+large,open,success,192
+large,open,failure,71
+large,perc,success,55
+large,perc,failure,25
