@@ -224,9 +224,9 @@ def dir_field( funcxp = input_box( default = 5*x+12*y, label = "$x'=f(t,x,y,z)=$
     badTRange = True
 
   if icsUnmatched:
-    print "Lists of initial values must be of equal length."
+    print("Lists of initial values must be of equal length.")
   elif badTRange:
-    print "All initial times must be between t_min and t_max."
+    print("All initial times must be between t_min and t_max.")
   else:
     # To help avoid including vertical asymptotes and multiple branches
     # of solutions, I will monitor how far "off screen" a solution gets.
