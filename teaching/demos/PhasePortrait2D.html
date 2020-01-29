@@ -1,0 +1,240 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Phase Plane Plotter</title>
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>
+$(function () {
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+    						template:       sagecell.templates.minimal,
+                           evalButtonText: 'Launch the Interactive Applet Now'});
+});
+    </script>
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Phase Plane Plotter</h1>
+
+<p>An Interactive Applet powered by Sage and MathJax.</p>
+<p>(By Thomas Scofield)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+ \textrm{Given a planar 1st order system initial value problem } \newline
+ \textrm{} \qquad\begin{array}{l} x' = f(t,x,y) \\ y' = g(t,x,y) \end{array},
+ \qquad (x_0, y_0) = (x(t_0), y(t_0)), \newline
+ \textrm{(} t \textrm{ is independent, }
+ x, y \textrm{ are dependent), this app plots the corresponding solution} \newline
+ \textrm{curves }
+ (x(t), y(t)) \textrm{ parametrically on the phase plane.  For autonomous} \newline
+ \textrm{systems, we plot the slope field and attempt to plot equilibria (red points).}
+</div>
+
+<hr>
+
+<div class="compute">
+<script type="text/x-sage">
+var('t x y')
+@interact( layout=[ ['funcxp', 'funcyp'], ['init_t', 'tm', 'tM'],
+                    ['init_x', 'xm', 'xM'], ['init_y', 'ym', 'yM']])
+def dir_field( funcxp = input_box( default = 5*x+12*y, label = "$x'=f(t,x,y)=$",
+                                 width = 20 ), 
+        funcyp = input_box( default = -15*x, label = "$y'=g(t,x,y)=$",
+                                 width = 20 ), 
+        init_t = input_box( default = "0", label = "$t_0$",
+                            width = 20 ),
+        init_x = input_box( default = "2", label = "$x_0$",
+                            width = 20 ),
+        init_y = input_box( default = "6", label = "$y_0$",
+                            width = 20 ),
+        tm = input_box( default = "-1.7", label = "t min", width = 5 ), 
+        tM = input_box( default = "6", label = "t max", width = 5 ), 
+        xm = input_box( default = "-5", label = "x min", width = 5 ), 
+        xM = input_box( default = "5", label = "x max", width = 5 ), 
+        ym = input_box( default = "-7", label = "y min", width = 5 ), 
+        yM = input_box( default = "7", label = "y max", width = 5 ),
+        auto_update=False ):
+  import numpy as np
+  import scipy as sp
+  from scipy.integrate import odeint    # numerical solver
+  x_prime(t,x,y) = funcxp
+  y_prime(t,x,y) = funcyp
+  fx = fast_callable(x_prime, vars=[x,y,t])
+  fy = fast_callable(y_prime, vars=[x,y,t])
+  def g(P,t):
+    return [fx(P[0],P[1],t), fy(P[0],P[1],t)]
+
+  #graph = plot_slope_field( y_prime, (t, t_min, t_max), (y, y_min, y_max) )
+  graph = Graphics()
+
+  badTRange = False
+  t_min = eval(str(tm))
+  t_max = eval(str(tM))
+  x_min = eval(str(xm))
+  x_max = eval(str(xM))
+  y_min = eval(str(ym))
+  y_max = eval(str(yM))
+  startTs = eval(str(init_t))
+  startXs = eval(str(init_x))
+  startYs = eval(str(init_y))
+  icsUnmatched = False
+
+  # Check if DE is autonomous, and if so add plots of equilibrium solutions
+  if diff(y_prime, t)==0 and diff(x_prime, t)==0:
+    isAutonomous = True
+    unitXPrime(x,y) = fx(x,y,0) / sqrt(fx(x,y,0)^2 + fy(x,y,0)^2)
+    unitYPrime(x,y) = fy(x,y,0) / sqrt(fx(x,y,0)^2 + fy(x,y,0)^2)
+    graph += plot_vector_field( [unitXPrime(x,y),unitYPrime(x,y)],
+                      (x, x_min, x_max), (y, y_min, y_max), color="lightgrey")
+    equilibriumSolns = solve( [x_prime == 0, y_prime == 0], x, y)
+    for eqnAr in equilibriumSolns:
+      graph += point( (eqnAr[0].rhs(), eqnAr[1].rhs()), color="red", size=20 )
+
+    # Process initial conditions
+    if isinstance(startXs, float) or isinstance(startXs, int):
+      if isinstance(startYs, float) or isinstance(startYs, int):
+        start_xs = [startXs, startXs]
+        start_ys = [startYs, startYs]
+      else:
+        start_ys = startYs
+        start_xs = [startXs for jj in start_ys]
+    elif isinstance(startYs, float) or isinstance(startYs, int):
+      start_xs = startXs
+      start_ys = [startYs for jj in start_xs]
+    else:
+      start_xs = startXs
+      start_ys = startYs
+      if len(startXs) != len(startYs):
+        icsUnmatched = True
+    start_ts = [0 for jj in start_ys]
+
+  else:
+    # Process initial conditions
+    if isinstance(startXs, tuple) and isinstance(startYs, tuple):
+      if len(startXs) != len(startYs):
+        icsUnmatched = True
+      start_xs = startXs
+      start_ys = startYs
+      if isinstance(startTs, float) or isinstance(startTs, int):
+        start_ts = [startTs for jj in start_ys]
+      elif len(startTs) != len(startYs):
+        icsUnmatched = True
+      start_ts = startTs
+    if isinstance(startTs, tuple) and isinstance(startYs, tuple):
+      if len(startTs) != len(startYs):
+        icsUnmatched = True
+      start_ts = startTs
+      start_ys = startYs
+      start_xs = [startXs for jj in start_ys]
+    if isinstance(startTs, tuple) and isinstance(startXs, tuple):
+      if len(startTs) != len(startXs):
+        icsUnmatched = True
+      start_ts = startTs
+      start_xs = startXs
+      start_ys = [startYs for jj in start_xs]
+    if isinstance(startTs, float) or isinstance(startTs, int):
+      if isinstance(startXs, float) or isinstance(startXs, int):
+        if isinstance(startYs, float) or isinstance(startYs, int):
+          start_ts = [startTs, startTs]
+          start_xs = [startXs, startXs]
+          start_ys = [startYs, startYs]
+        else:
+          start_ts = [startTs for jj in start_ys]
+          start_xs = [startXs for jj in start_ys]
+      else:
+          start_ts = [startTs for jj in start_xs]
+          start_ys = [startYs for jj in start_xs]
+    else:
+      start_xs = [startXs for jj in start_ts]
+      start_ys = [startYs for jj in start_ts]
+
+    if isinstance(startXs, float) or isinstance(startXs, int):
+      # If it is not already, make a tuple of the initial x-values
+      start_xs = (startXs, startXs)
+    else:
+      start_xs = startXs
+    if isinstance(startYs, float) or isinstance(startYs, int):
+      # If it is not already, make a tuple of the initial y-values
+      start_ys = (startYs, startYs)
+    else:
+      start_ys = startYs
+    if isinstance(startTs, float) or isinstance(startTs, int):
+      start_ts = [startTs for jj in start_ys]
+    else:
+      start_ts = startTs
+
+  tVals = copy(start_ts)
+  tVals.sort()
+  if tVals[0] < t_min or tVals.pop() > t_max:
+    badTRange = True
+  if icsUnmatched:
+    print "Lists of initial values must be of equal length."
+  elif badTRange:
+    print "All initial times must be between t_min and t_max."
+  else:
+    # To help avoid including vertical asymptotes and multiple branches
+    # of solutions, I will monitor how far "off screen" a solution gets.
+    center_x = (x_min + x_max) / 2
+    distToXBdry = x_max - center_x
+    center_y = (y_min + y_max) / 2
+    distToYBdry = y_max - center_y
+
+    # Construct numerical solutions corresponding to the ICs
+    for ii in range(len(start_ys)):
+      t0 = start_ts[ii]
+      x0 = start_xs[ii]
+      y0 = start_ys[ii]
+
+      if t_max > t0:
+        fts = np.linspace(t0, t_max, 1001)
+        # This numerical soln method employs odeint() from scipy
+        solnVals = odeint(g, [x0,y0], fts)
+        #pts = [tuple(solnVals[jj,:]) for jj in range(len(solnVals[:,0]))]
+        pts = []
+        keepAddingPts = True
+        jj = 0
+        while keepAddingPts and jj < len(solnVals[:,0]):
+          nPt = tuple(solnVals[jj,:])
+          if abs(nPt[0]-center_x) < 5*distToXBdry and abs(nPt[1]-center_y) < 5*distToYBdry:
+            pts.append(nPt)
+          else:
+            keepAddingPts = False
+          jj += 1
+        graph += list_plot(pts, plotjoined=True, color="green", thickness=2)
+      if t_min < t0:
+        bts = np.linspace(t0, t_min, 1001)
+        solnVals = odeint(g, [x0,y0], bts)
+        pts = []
+        keepAddingPts = True
+        jj = 0
+        while keepAddingPts and jj < len(solnVals[:,0]):
+          nPt = tuple(solnVals[jj,:])
+          if abs(nPt[0]-center_x) < 5*distToXBdry and abs(nPt[1]-center_y) < 5*distToYBdry:
+            pts.append(nPt)
+          else:
+            keepAddingPts = False
+          jj += 1
+        graph += list_plot(pts, plotjoined=True, color="palegreen", thickness=2)
+      graph += point( (x0, y0), color="black", size=20 )
+    graph.show(xmin=x_min, xmax=x_max, ymin=y_min, ymax=y_max)
+</script>
+</div>
+
+<hr>
+Last modified on July 29th, 2017.
+</body>
+</html>

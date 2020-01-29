@@ -1,0 +1,284 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>3D Phase Space Plotter</title>
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>
+$(function () {
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+    						template:       sagecell.templates.minimal,
+                           evalButtonText: 'Launch the Interactive Applet Now'});
+});
+    </script>
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>3D Phase Space Plotter</h1>
+
+<p>An Interactive Applet powered by Sage and MathJax.</p>
+<p>(By Thomas Scofield)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+ \textrm{Given a (3d) spatial 1st order system initial value problem } \newline
+ \textrm{} \qquad\begin{array}{l} x' = f(t,x,y,z) \\
+  y' = g(t,x,y,z) \\ z' = h(t,x,y,z) \end{array},
+ \qquad (x_0, y_0, z_0) = (x(t_0), y(t_0), z(t_0)), \newline
+ \textrm{(} t \textrm{ is independent, }
+ x, y, z \textrm{ are dependent), this app plots the corresponding} \newline
+ \textrm{solution curves }
+ (x(t), y(t), z(t)) \textrm{ parametrically in phase space.  For} \newline
+ \textrm{autonomous systems, an attempt is made to plot equilibria (red points).}
+</div>
+
+<hr>
+
+<div class="compute">
+<script type="text/x-sage">
+var('t x y z')
+@interact( layout=[ ['funcxp','funcyp','funczp'],['init_t','tm','tM'],
+               ['init_x','xm','xM'],['init_y','ym','yM'],['init_z','zm','zM']])
+def dir_field( funcxp = input_box( default = 5*x+12*y, label = "$x'=f(t,x,y,z)=$",
+                                 width = 20 ), 
+        funcyp = input_box( default = -15*z, label = "$y'=g(t,x,y,z)=$",
+                                 width = 20 ), 
+        funczp = input_box( default = 2*y, label = "$z'=h(t,x,y,z)=$",
+                                 width = 20 ), 
+        init_t = input_box( default = "0", label = "$t_0$",
+                            width = 20 ),
+        init_x = input_box( default = "-2,2", label = "$x_0$",
+                            width = 20 ),
+        init_y = input_box( default = "-4,-1", label = "$y_0$",
+                            width = 20 ),
+        init_z = input_box( default = "-3,1", label = "$z_0$",
+                            width = 20 ),
+        tm = input_box( default = "-4", label = "t min", width = 5 ), 
+        tM = input_box( default = "6", label = "t max", width = 5 ), 
+        xm = input_box( default = "-5", label = "x min", width = 5 ), 
+        xM = input_box( default = "5", label = "x max", width = 5 ), 
+        ym = input_box( default = "-5", label = "y min", width = 5 ), 
+        yM = input_box( default = "5", label = "y max", width = 5 ),
+        zm = input_box( default = "-5", label = "z min", width = 5 ), 
+        zM = input_box( default = "5", label = "z max", width = 5 ),
+        auto_update=False ):
+  import numpy as np
+  import scipy as sp
+  from scipy.integrate import odeint    # numerical solver
+  x_prime(t,x,y,z) = funcxp
+  y_prime(t,x,y,z) = funcyp
+  z_prime(t,x,y,z) = funczp
+  fx = fast_callable(x_prime, vars=[x,y,z,t])
+  fy = fast_callable(y_prime, vars=[x,y,z,t])
+  fz = fast_callable(z_prime, vars=[x,y,z,t])
+  def g(P,t):
+    return [fx(P[0],P[1],P[2],t), fy(P[0],P[1],P[2],t), fz(P[0],P[1],P[2],t)]
+
+  #graph = plot_slope_field( y_prime, (t, t_min, t_max), (y, y_min, y_max) )
+  graph = Graphics()
+
+  badTRange = False
+  t_min = eval(str(tm))
+  t_max = eval(str(tM))
+  x_min = eval(str(xm))
+  x_max = eval(str(xM))
+  y_min = eval(str(ym))
+  y_max = eval(str(yM))
+  z_min = eval(str(zm))
+  z_max = eval(str(zM))
+  startTs = eval(str(init_t))
+  startXs = eval(str(init_x))
+  startYs = eval(str(init_y))
+  startZs = eval(str(init_z))
+  icsUnmatched = False
+
+  # Check if DE is autonomous, and if so add plots of equilibrium solutions
+  if diff(x_prime, t)==0 and diff(y_prime, t)==0 and diff(z_prime, t)==0:
+    isAutonomous = True
+    equilibriumSolns = solve( [x_prime==0, y_prime==0, z_prime==0], x, y, z)
+    for eqnAr in equilibriumSolns:
+      graph += point3d( (eqnAr[0].rhs(),eqnAr[1].rhs(),eqnAr[2].rhs()),
+                     color="red", size=10 )
+
+    # Process initial conditions
+    if isinstance(startXs, float) or isinstance(startXs, int):
+      if isinstance(startYs, float) or isinstance(startYs, int):
+        if isinstance(startZs, float) or isinstance(startZs, int):
+          start_xs = [startXs, startXs]
+          start_ys = [startYs, startYs]
+          start_zs = [startZs, startZs]
+        else:
+          start_zs = startZs
+          start_ys = [startYs for jj in start_zs]
+          start_xs = [startXs for jj in start_zs]
+      else:
+        if isinstance(startZs, float) or isinstance(startZs, int):
+          start_ys = startYs
+          start_zs = [startZs for jj in start_ys]
+          start_xs = [startXs for jj in start_ys]
+        else:
+          start_ys = startYs
+          start_zs = startZs
+          start_xs = [startXs for jj in start_ys]
+          if len(start_ys) != len(start_zs):
+            icsUnmatched = True
+    else:
+      if isinstance(startYs, float) or isinstance(startYs, int):
+        if isinstance(startZs, float) or isinstance(startZs, int):
+          start_xs = startXs
+          start_ys = [startYs for jj in start_xs]
+          start_zs = [startZs for jj in start_xs]
+        else:
+          start_xs = startXs
+          start_zs = startZs
+          start_ys = [startYs for jj in start_xs]
+          if len(start_xs) != len(start_zs):
+            icsUnmatched = True
+      else:
+        start_xs = startXs
+        start_ys = startYs
+        start_zs = startZs
+        if len(start_xs)!=len(start_ys) or len(start_xs)!=len(start_zs):
+          icsUnmatched = True
+    start_ts = [0 for jj in start_ys]
+
+  else:
+    # Process initial conditions
+    if isinstance(startXs, tuple):
+      start_xs = startXs
+      if isinstance(startYs, tuple):
+        start_ys = startYs
+        if len(start_xs) != len(start_ys):
+          icsUnmatched = True
+      else:
+        start_ys = [startYs for jj in start_xs]
+      if isinstance(startZs, tuple):
+        start_zs = startZs
+        if len(start_zs) != len(start_xs):
+          icsUnmatched = True
+      else:
+        start_zs = [startZs for jj in start_xs]
+      if isinstance(startTs, tuple):
+        start_ts = startTs
+        if len(start_ts) != len(start_xs):
+          icsUnmatched = True
+        else:
+          start_ts = [startTs for jj in start_xs]
+
+    else:
+      if isinstance(startYs, tuple):
+        start_ys = startYs
+        start_xs = [startXs for jj in start_ys]
+        if isinstance(startZs, tuple):
+          start_zs = startZs
+          if len(start_ys) != len(start_zs):
+            icsUnmatched = True
+        else:
+          start_zs = [startZs for jj in start_ys]
+        if isinstance(startTs, tuple):
+          start_ts = startTs
+          if len(start_ys) != len(start_ts):
+            icsUnmatched = True
+        else:
+          start_ts = [startTs for jj in start_ys]
+
+      else:
+        if isinstance(startZs, tuple):
+          start_zs = startZs
+          start_xs = [startXs for jj in start_zs]
+          start_ys = [startYs for jj in start_zs]
+          if isinstance(startTs, tuple):
+            start_ts = startTs
+            if len(start_zs) != len(start_ts):
+              icsUnmatched = True
+          else:
+            start_ts = [startTs for jj in start_zs]
+        else:
+          if isinstance(startTs, tuple):
+            start_ts = startTs
+            start_xs = [startXs for jj in start_ts]
+            start_ys = [startYs for jj in start_ts]
+            start_zs = [startZs for jj in start_ts]
+          else:
+            start_ts = [startTs, startTs]
+            start_xs = [startXs, startXs]
+            start_ys = [startYs, startYs]
+            start_zs = [startZs, startZs]
+
+  tVals = copy(start_ts)
+  tVals.sort()
+  if tVals[0] < t_min or tVals.pop() > t_max:
+    badTRange = True
+
+  if icsUnmatched:
+    print "Lists of initial values must be of equal length."
+  elif badTRange:
+    print "All initial times must be between t_min and t_max."
+  else:
+    # To help avoid including vertical asymptotes and multiple branches
+    # of solutions, I will monitor how far "off screen" a solution gets.
+    center_x = (x_min + x_max) / 2
+    distToXBdry = x_max - center_x
+    center_y = (y_min + y_max) / 2
+    distToYBdry = y_max - center_y
+    center_z = (z_min + z_max) / 2
+    distToZBdry = z_max - center_z
+
+    # Construct numerical solutions corresponding to the ICs
+    for ii in range(len(start_ys)):
+      t0 = start_ts[ii]
+      x0 = start_xs[ii]
+      y0 = start_ys[ii]
+      z0 = start_zs[ii]
+
+      if t_max > t0:
+        fts = np.linspace(t0, t_max, 1001)
+        # This numerical soln method employs odeint() from scipy
+        solnVals = odeint(g, [x0,y0,z0], fts)
+        pts = []
+        keepAddingPts = True
+        jj = 0
+        while keepAddingPts and jj < len(solnVals[:,0]):
+          nPt = tuple(solnVals[jj,:])
+          if abs(nPt[0]-center_x) < 5*distToXBdry and abs(nPt[1]-center_y) < 5*distToYBdry and abs(nPt[2]-center_z) < 5*distToZBdry:
+            pts.append(nPt)
+          else:
+            keepAddingPts = False
+          jj += 1
+        graph += line(pts, color="dodgerblue", thickness=2)
+      if t_min < t0:
+        bts = np.linspace(t0, t_min, 1001)
+        solnVals = odeint(g, [x0,y0,z0], bts)
+        pts = []
+        keepAddingPts = True
+        jj = 0
+        while keepAddingPts and jj < len(solnVals[:,0]):
+          nPt = tuple(solnVals[jj,:])
+          if abs(nPt[0]-center_x) < 5*distToXBdry and abs(nPt[1]-center_y) < 5*distToYBdry:
+            pts.append(nPt)
+          else:
+            keepAddingPts = False
+          jj += 1
+        graph += line(pts, color="palegoldenrod", thickness=2)
+      graph += point3d( (x0, y0, z0), color="black", size=10 )
+    graph.show(xmin=x_min,xmax=x_max,ymin=y_min,ymax=y_max,zmin=z_min,zmax=z_max)
+</script>
+</div>
+
+<hr>
+Last modified on July 29th, 2017.
+</body>
+</html>
