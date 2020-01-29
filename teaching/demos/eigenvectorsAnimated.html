@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>SageMathCell</title>
+    <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+    <script>$(function () {
+    // Make the div with id 'mycell' a Sage cell
+    sagecell.makeSagecell({inputLocation:  '#mycell',
+                           template:       sagecell.templates.minimal,
+                           evalButtonText: 'Activate'});
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+                           evalButtonText: 'Evaluate'});
+    });
+    </script>
+  </head>
+  <body>
+  <h1>Input <b>u</b> with corresponding output <b>Au</b></h1>
+
+  &#147;Evaluate&#148; this code to see the image of vectors on the unit
+  circle (blue) under the mapping <i>f(</i><b>u</b><i>)</i> = <b>Au</b>.
+  You may make whatever edits to the code you like, but will most likely
+  want to limit your changes to ones on the matrix itself, replacing it
+  with another (real) 2-by-2 matrix.
+
+<p>
+  The stepsize for t (set to 0.15)
+  results in the generation of approximately 42 frames for the animation.
+  It seems this is relatively close to predefined limits, for when the
+  stepsize is set to 0.1 (which would generate 63 frames), error messages
+  have been the result.
+
+<div class="compute"><script type="text/x-sage">
+A = matrix(RR, [[7/3, 4/3], [2/3, 5/3]])
+angleIncrement = 0.25
+
+var('t v')
+a=animate(
+  parametric_plot(A*vector((cos(v),sin(v))), (v,0,2*pi), color="red")
+  + parametric_plot((cos, sin), (0,2*pi), color="blue")
+  + arrow((0,0),(cos(t),sin(t)),xmin=-3,xmax=3,ymin=-2,ymax=2)
+  + arrow((0,0),A*vector((cos(t),sin(t))), color="red")
+  for t in sxrange(0, 2*pi, angleIncrement))
+show(a)
+</script></div>
+
+<!--
+def _(h=(0, 5)):
+    print factorial(a)
+-->
+  </body>
+</html>

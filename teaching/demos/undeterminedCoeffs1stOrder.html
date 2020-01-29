@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Undetermined Coefficients, 1st-order DEs</title>
+    <script src="https://sagecell.sagemath.org/static/.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>sagecell.makeSagecell({inputLocation: ".sage"});</script>
+    <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Practice undetermined coefficients with 1st-order linear ODEs</h1>
+<p>(By Thomas Scofield)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+ \textrm{Use this app to develop intuition for the Method of Undetermined Coefficients}\\
+ \textrm{as applied to first-order linear ODEs in the form }
+ \;y' = a(t)y + f(t).\; \textrm{ You must specify}\\
+ a(t),\;
+ \textrm{ and pose a form for a particular solution } \;y_p(t).\;
+ \textrm{ The app will apply the linear}\\
+ \textrm{operator } \;L = \frac{d}{dt} - a(t)\;
+ \textrm{ to the proposed } \;y_p\; \textrm{ which you can compare with } \;f(t).
+</div>
+
+<hr>
+
+<div class="sage">
+<script type="text/x-sage">
+# For 1st-order linear DEs in normal form  y' = a(t)y + f(t),  describe a(t)
+a(t) = -6
+
+# If you require more than 3 (A,B,C) undetermined coefficients in yp, add them.
+# Then define the form of yp(t) using undetermined coefficients.
+var('t A B C')
+yp(t) = A*cos(t)
+
+# These lines define the linear differential operator L, and compute L(yp).
+def L(y,a):
+    return y.diff(t)-a(t)*y(t)
+
+L(yp, a)(t)
+</script>
+</div>
+
+<hr>
+Last modified on Mar. 5, 2019.
+</body>
+</html>

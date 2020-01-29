@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Elementary Row Operations</title>
+    <script src="https://sagecell.sagemath.org/static/.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>sagecell.makeSagecell({inputLocation: ".sage"});</script>
+    <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Elementary Row Operations</h1>
+<p>(By Thomas Scofield)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+    \textrm{This app mimics the elementary row operations built into various}\\
+    \textrm{TI-8x series calculators.  The first section of commands, which}\\
+    \textrm{you should not alter, translate the native zero-indexing of}\\
+    \textrm{Python into the more prevalent 1-indexing of matrix language.}\\
+</div>
+
+<hr>
+
+<div class="sage">
+<script type="text/x-sage">
+# Cells to define TI-8x type elementary row operation (ERO) commands
+def mrow(fact, A, row):
+    C = copy(A); C.rescale_row(row-1, fact); return C
+def rswap(A, row1, row2):
+    C = copy(A); C.swap_rows(row1-1, row2-1); return C
+def mrowadd(fact, A, rowToRescale, rowToAddTo):
+    C = copy(A); C.add_multiple_of_row(rowToAddTo-1, rowToRescale-1, fact); return C
+
+# Define the matrix here you want to conduct EROs on
+A = matrix(QQ, [[1,2,3],[4,5,6],[7,8,9]]); show(A)
+
+# Sequence of EROs
+A = mrowadd(-4,A,1,2); show(A)
+A = mrowadd(-7,A,1,3); show(A)
+A = mrow(-1/3,A,2); show(A)
+A = mrowadd(6,A,2,3); show(A)
+A = mrowadd(-2,A,2,1); show(A)
+</script>
+</div>
+
+<hr>
+Last modified on Aug. 24, 2018.
+</body>
+</html>

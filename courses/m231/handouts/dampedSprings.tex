@@ -1,0 +1,180 @@
+\documentclass[12pt]{report}
+\oddsidemargin=0in
+\textwidth=6.5in
+\topmargin=-0.5in
+\textheight=9.2in
+
+\newif\ifstarted
+ \startedtrue
+%\startedfalse
+\newif\ifcomplete
+ \completetrue
+%\completefalse
+\newif\ifgiveProbStatement
+ \giveProbStatementtrue
+%\giveProbStatementfalse
+\newif\ifgiveProbSoln
+ \giveProbSolntrue
+%\giveProbSolnfalse
+\newif\ifgraderNote
+ \graderNotetrue
+%\graderNotefalse
+\def\psnum{3}
+\def\duedate{Mon., Dec.~7, 2015}
+
+%\usepackage{MnSymbol}
+%\usepackage{nath}
+\usepackage{bookextras}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{comment}
+\usepackage{/Users/scofield/Library/texmf/latex/timestamp}
+\usepackage{tikz}
+\usepackage{pgflibraryarrows}
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfpagemode=None,colorlinks=true}
+%\input my362Environments.tex
+\input mathMacros.tex
+\input myepsf.tex
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=none,
+  language=sh,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+% keywordstyle=\color{blue},
+  commentstyle=\color{blue},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\lstnewenvironment{tiCode} {\lstset{language=pascal}} {}
+\lstnewenvironment{octave} {\lstset{language=matlab,xleftmargin=0.2in,frame=single,basicstyle=\footnotesize,frameround=tttt,backgroundcolor=\color{lightgray},showstringspaces=false}} {}
+
+\newcommand{\sn}[1]{\mbox{\texttt{#1}}}
+\newcommand{\rank}{\mbox{rank}}
+\renewcommand{\ran}{\mbox{col}}
+\def\Octave{{\sc{Octave}}}
+\def\Matlab{{\sc{Matlab}}}
+\def\unsc{\blank{0.07in}}
+%\def\dblip#1#2{\llangle #1, #2 \rrangle}   % if MnSymbol package used
+%\def\dblip#1#2{\lAngle #1, #2 \rAngle}     % if nath package used
+\def\dblip#1#2{\left\langle\!\left\langle #1, #2 \right\rangle\!\right\rangle}
+%\def\dblip#1#2{\left<\left< #1, #2 \right>\right>}
+\def\dblnorm{|||}
+\def\f{\mbox{f}}
+\def\mb#1{{\mathbf #1}}
+\def\mat#1{{\mathbf #1}}
+\def\bldset#1#2{\left\{#1 \,|\, #2\right\}}
+\def\cbldset#1#2{\left\{#1 \,\,\colon #2\right\}}
+\def\linspan{\mbox{span}}
+
+\def\be{\begin{enumerate}}
+\def\ee{\end{enumerate}}
+\def\bi{\begin{itemize}}
+\def\ei{\end{itemize}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%  Use section to turn on/off displaying of problem/solution  %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifgiveProbStatement
+  \includecomment{problem}
+\else
+  \excludecomment{problem}
+\fi
+\ifgiveProbSoln
+  \includecomment{solution}
+\else
+  \excludecomment{solution}
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%        All the settings appear above this line        %%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{problem}
+  \giveProbStatementtrue
+\end{problem}
+\begin{solution}
+  \giveProbSolntrue
+\end{solution}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\pagestyle{fancy}
+\fancyhf{}
+\ifgiveProbStatement
+\lhead{MATH 231}
+\chead{Spot Check \psnum}
+\rhead{\bfseries\thepage}
+\lfoot{}
+\ifcomplete
+  \ifgiveProbSoln
+	\cfoot{SC\psnum---Solutions to written exercises}
+  \else
+	\cfoot{SC\psnum}
+  \fi
+\else
+  \cfoot{SC\psnum---Problems for \duedate}
+% \timestamp}
+\fi
+\fi
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\thispagestyle{empty}
+
+\ifgiveProbStatement
+\begin{center}
+  \Large{MATH 231: Differential Equations with Linear Algebra} \\
+  \large{Spot Check \psnum,}
+\ifcomplete
+  \ifgiveProbSoln
+	\large{Solutions}\\
+  \fi
+\else
+% \large{updated \timestamp}\\
+  \large{problems for \duedate}\\
+\fi
+\ifgiveProbSoln
+\else
+  \large{Due Date: \duedate}
+\fi
+\end{center}
+\fi
+
+
+\ifstarted
+ \ifgiveProbStatement
+  \ifgiveProbSoln
+  \else
+  \vspace{0.1in}
+  \noindent
+%	Read Section 2 of the Course Pack.
+  \fi
+ \fi
+
+ \begin{enumerate}
+ \item[{\underline{$\star$21}}]
+  \input /Users/scofield/courses/231/exercises/mine/ampAndPhaseAsFnOfDrivingFreq
+
+ \end{enumerate}
+
+\else
+  \vspace{0.5in}
+  No information about this problem set is currently available.
+\fi
+
+\end{document}

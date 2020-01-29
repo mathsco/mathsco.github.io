@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>SageMathCell</title>
+    <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+    <script>$(function () {
+    // Make the div with id 'mycell' a Sage cell
+    sagecell.makeSagecell({inputLocation:  '#mycell',
+                           template:       sagecell.templates.minimal,
+                           evalButtonText: 'Activate'});
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+                           evalButtonText: 'Evaluate'});
+    });
+    </script>
+  </head>
+  <body>
+  <h1>Input <b>u</b> with corresponding output <b>Au</b></h1>
+
+  Click the &#147;Activate&#148; button to view the image of the
+  unit circle for the function <i>f(</i><b>u</b><i>)</i> = <b>Au</b>
+  for a user-specified 2-by-2 matrix <b>A</b>.
+    <div id="mycell"><script type="text/x-sage">
+@interact
+def tangent_line(A=('$A =$',matrix(RR, [[1,2],[3,4]])), theta=slider([0.0,0.01,..,6.28],default=0.0,label="$\\theta =$")):
+    var('t')
+    p = parametric_plot((cos,sin), (-pi, pi), color="blue")
+    p += parametric_plot(A*vector((cos(t),sin(t))), (t,-pi, pi), color="red")
+    p += arrow((0,0),(cos(theta),sin(theta)), color="blue")
+    p += arrow((0,0), A*vector((cos(theta),sin(theta))), color="red")
+    show("unit input (blue) vector u =", vector((cos(theta),sin(theta))))
+    show("output (red) vector Au =", A*vector((cos(theta),sin(theta))))
+    show(p)
+ </script>
+</div>
+
+<!--
+def _(h=(0, 5)):
+    print factorial(a)
+-->
+  </body>
+</html>
