@@ -85,7 +85,7 @@ def dir_field( func = input_box( default = -y/t+t, label = "y'=f(t,y)=",
     start_ts = startTs
 
   if len(start_ts) != len(start_ys):
-    print "Lists of initial t-values and y-values must be of equal length."
+    print("Lists of initial t-values and y-values must be of equal length.")
   else:
     # Check if DE is autonomous, and if so add plots of equilibrium solutions
     if diff(y_prime, t)==0:
