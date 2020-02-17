@@ -1,0 +1,128 @@
+---
+title: "Plotting in RStudio"
+author: "Thomas Scofield"
+date: "Feb. 17, 2020"
+output: 
+  html_document:
+    fig_height: 3
+    fig_width: 5
+  pdf_document:
+    fig_height: 3
+    fig_width: 5
+  word_document:
+    fig_height: 3
+    fig_width: 5
+---
+
+```{r, setup, include=FALSE}
+require(mosaic)   # Load additional packages here 
+knitr::opts_chunk$set(
+  tidy=FALSE,     # display code as typed
+  size="small")   # slightly smaller font for code
+```
+
+## Using RMarkdown
+For what follows I will use several data sets, including
+
+ * Student survey data from STAT 143 students at Calvin
+ * Data on eruptions of Old Faithful, found in *faithful*
+ * Data on iris plants, found in *iris*
+
+The iris and faithful sets are built into R, but I've got to read in the student survey data.
+```{r}
+ss <- read.csv("http://scofield.site/teaching/data/csv/ssurv.csv")
+```
+Let's look at this data.
+```{r}
+head(ss)
+names(ss)
+```
+
+### Univariate categorical data
+We might be curious about the selfhandedness, a categorical variable.  A frequency table, or a bar graph, can summarize its results.
+```{r}
+tally(~selfhandedness, data=ss)
+gf_bar(~selfhandedness, data=ss)
+```
+Evidently, there is one survey respondent who neglected to share selfhandedness information.
+
+Other common ways to view univariate categorical data include
+
+ * relative frequency table
+ * relative frequency bar chart
+ * pie chart (not recommended)
+
+### Univariate quantitative data
+One quantitative variable in the survey data is gpa.  We have seen how favstats() offers us summary information.
+```{r}
+favstats(~gpa, data=ss)
+```
+It is possible to use tally to produce a frequency table for values of gpa, but there are so many different values reported, that may result in visual overload.  (Go ahead.  Try it.)
+
+A more common way to plot quantitative is using a histogram.
+```{r}
+gf_histogram(~gpa, data=ss, color="black")
+```
+
+Other common ways to view univariate quantitative data include
+
+ * dotplot (best when data set is small)
+ * boxplot (visual display of 5-number summary)
+
+## Exploring associations between two variables
+Many research questions two variables, wishing to see if there is an association between them.
+### Two categorical variables
+Is there an assocation between the handedness of a father and that of his child?  Our ss data contains both of these variables, which are categorical.  We can look at them using a two-way table (also known as a contingency table):
+```{r}
+tally(~selfhandedness | dadhandedness, data=ss)
+```
+Data often contains flaws, and the flaw this table reveals is that some student failed to supply a value for the selfhandedness variable, and three students did not supply dadhandedness.  It seems likely their responses to these variables are the empty string "".  We can use the filter() command to pull just the cases that we want, fitting one or more criteria we specify.  The command
+```{r eval=FALSE}
+filter(ss, selfhandedness != "")
+```
+calls for the cases in the ss data frame whose selfhandedness variable have a value different than the empty string.  We might prefer to filter simultaneously grab only cases with nonempty answers in both selfhandedness and dadhandedness, with the command
+```{r eval=FALSE}
+filter(ss, selfhandedness != "", dadhandedness != "")
+```
+
+If we make this, not the full ss data frame, the data from which our contingency table is built, we will get (mostly) what we want: 
+
+```{r}
+tally(~selfhandedness | dadhandedness, 
+      data=filter(ss, selfhandedness!="",
+                  dadhandedness!=""))
+gf_bar(~selfhandedness | dadhandedness, 
+      data=filter(ss, selfhandedness!="",
+                  dadhandedness!=""))
+```
+For investigating an association, it would be better to view the marginal distributions, the result of a relative frequency table that sums to 100 percent in each column:
+```{r}
+tally(~selfhandedness | dadhandedness, data=filter(ss,selfhandedness!="", dadhandedness!=""), format="proportion")
+```
+We do not see, as we might if there were no association, the same proportion of left-handed people with left-handed fathers as we see among those with right-handed fathers.  But would they have to come out equal every time?  Is the discrepancy, about 18\% of those with left-handed fathers being left-handed, as opposed to only about 10\% of those with right-handed fathers, due to more than sampling error?
+
+### A categorical variable and a quantitative one
+Is there a difference in Sepal.Width for the various species of iris plants?  Species is a categorical variable, and we are likley treating it as a (possible) explanatory variable in an association with Sepal.Width.  We might look at side-by-side histograms:
+```{r}
+gf_histogram(~Sepal.Width | Species, fill=~Species, data=iris, color="black")
+```
+Another option which can be visually appealing is side-by-side boxplots.
+```{r}
+gf_boxplot(~Sepal.Width | Species, data=iris, color="black")
+```
+Do you see indications here of an association"
+
+### Two quantitative variables
+Let's take a quick look at the faithful dataset.
+```{r}
+head(faithful)
+```
+It contains two variables, both quantitative, namely eruptions and waiting.  The cases are instances of the geyser known as Old Faithful spouting its froth in Yellowstone National Park.  You can learn more with
+```{r eval=FALSE}
+help(faithful)
+```
+The way to explore an association between quantitative variables is to use a **scatterplot**, obtained using the gf_point() command.  It's not clear which variable to take as explanatory.  In the command below, I make eruptions explanatory (it comes after the tilde, and appears along the horizontal axis).
+```{r}
+gf_point(waiting~eruptions, data=faithful)
+```
+Do you see evidence of an association?
