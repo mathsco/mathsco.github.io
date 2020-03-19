@@ -25,9 +25,9 @@ $(function () {
 });
 </script>
 
-<div class="latex">
- \textrm{Enter your matrix, get info about its eigenpairs.}
-</div>
+<h4>
+Enter your matrix, get info about its eigenpairs.
+</h4>
 
 <hr>
 
@@ -37,18 +37,18 @@ A = matrix([[0,1,1],[1,0,1],[1,1,0]])
 
 # You may want to leave the code below intact
 pA(x) = A.characteristic_polynomial().factor()
-print "The characteristic polynomial is " + str(pA(x))
+print("The characteristic polynomial is " + str(pA(x)))
 for jay in range(len(pA.roots())):
-  print str(pA.roots()[jay][0]) + " is a root of algebraic multiplicity " + str(pA.roots()[jay][1])
+  print(str(pA.roots()[jay][0]) + " is a root of algebraic multiplicity " + str(pA.roots()[jay][1]))
 
 print
 kay = len(set(A.eigenvalues()))
-print "It has eigenpairs:"
+print("It has eigenpairs:")
 for jay in range(kay):
   myStr = ""
   for eye in range(len(A.eigenvectors_right()[jay][1])):
     myStr = myStr + str(A.eigenvectors_right()[jay][1][eye]) + "  "
-  print str(A.eigenvectors_right()[jay][0])+":", myStr
+  print(str(A.eigenvectors_right()[jay][0])+":", myStr)
 </script>
 </div>
 
