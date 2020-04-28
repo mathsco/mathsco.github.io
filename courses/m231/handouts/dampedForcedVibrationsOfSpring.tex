@@ -20,7 +20,7 @@
  \graderNotetrue
 %\graderNotefalse
 \def\psnum{3}
-\def\duedate{Mon., Dec.~7, 2015}
+\def\duedate{Mon., May 4, 2015}
 
 %\usepackage{MnSymbol}
 %\usepackage{nath}
@@ -114,67 +114,18 @@
 \begin{document}
 \pagestyle{fancy}
 \fancyhf{}
-\ifgiveProbStatement
 \lhead{MATH 231}
 \chead{Spot Check \psnum}
+\chead{Example: damped forced spring}
 \rhead{\bfseries\thepage}
 \lfoot{}
-\ifcomplete
-  \ifgiveProbSoln
-	\cfoot{SC\psnum---Solutions to written exercises}
-  \else
-	\cfoot{SC\psnum}
-  \fi
-\else
-  \cfoot{SC\psnum---Problems for \duedate}
-% \timestamp}
-\fi
-\fi
 \rfoot{}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
 
 \thispagestyle{empty}
 
-\ifgiveProbStatement
-\begin{center}
-  \Large{MATH 231: Differential Equations with Linear Algebra} \\
-  \large{Spot Check \psnum,}
-\ifcomplete
-  \ifgiveProbSoln
-	\large{Solutions}\\
-  \fi
-\else
-% \large{updated \timestamp}\\
-  \large{problems for \duedate}\\
-\fi
-\ifgiveProbSoln
-\else
-  \large{Due Date: \duedate}
-\fi
-\end{center}
-\fi
+\input /Users/scofield/githubRepos/math231/exercises/mine/ampAndPhaseAsFnOfDrivingFreq
 
-
-\ifstarted
- \ifgiveProbStatement
-  \ifgiveProbSoln
-  \else
-  \vspace{0.1in}
-  \noindent
-%	Read Section 2 of the Course Pack.
-  \fi
- \fi
-
- \begin{enumerate}
- \item[{\underline{$\star$21}}]
-  \input /Users/scofield/courses/231/exercises/mine/ampAndPhaseAsFnOfDrivingFreq
-
- \end{enumerate}
-
-\else
-  \vspace{0.5in}
-  No information about this problem set is currently available.
-\fi
 
 \end{document}
