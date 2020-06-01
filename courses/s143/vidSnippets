@@ -1,0 +1,133 @@
+
+<html><head><title> Stat 143 Videos </title>
+<link rel="stylesheet" type="text/css"
+href="/styles/newClasspage.css">
+
+<style>
+.wrap {
+   max-width:900px;
+   margin:auto;
+}
+.zoom {
+   width:60%;
+   max-width:100px;
+   margin:auto;
+   padding:1em;
+   background:#fff;
+   border-radius:1px;
+   text-align:center;
+}
+.zoom img {
+   display:block;
+   margin:0 0 1em;
+   max-width:100%;
+   height:auto;
+   border-radius:1px;
+   transition:transform 0.5s;
+}
+.zoom img:hover {
+   transform:scale(5.5) ;
+}
+</style>
+
+<STYLE TYPE="text/css">
+<!--
+.indented
+{
+padding-left: 20pt;
+}
+-->
+body {
+    line-height: 1.1;
+}
+</STYLE>
+
+</head>
+<body>
+
+<a href="https://calvin.edu/academic/math/">Stat</a> 145A<br>
+Biostatistics<br>
+Spring, 2020
+<p>
+
+<h4>Miscellaneous</h4>
+<ul class="none">
+  <li>Turning an <a href="https://www.youtube.com/watch?v=RW0BTP-XyeY">
+      Excel spreadsheet into a .csv</a> file
+  <li>Writing up homework in and including <a href=
+      "./videos/homeworkWriteupWithStatkeyImages.mp4">
+      StatKey images in a Google document</a>
+  <li>Using Hypatia to <a href="https://www.youtube.com/watch?v=bufBf_9jgBU">
+      add math symbols to a Google document</a>
+  <li>Download and use Evernote Scannable on an iPhone to <a href=
+      "./videos/downloadAndUseScannable.mp4">scan pages to a .pdf file</a>
+  <li><a href="./videos/submittingWorkInGradescope.mp4">Submitting
+      work to gradescope.com</a>
+</ul>
+
+<h4>Class topics</h4>
+<ul class="none">
+  <li>What is meant by <a href="./videos/xbarUnbiasedEstimatorOfMu.mp4">
+      the sample mean is an unbiased estimator of the population mean</a>
+  <li>How to <a href="./videos/makingADotplot.mp4">
+      make a dotplot</a> of univariate quantitative data
+  <li><a href= "./videos/boxplotPercentilesEtc.mp4">Percentiles, 5-number
+      summary, boxplots, range and IQR</a>
+  <li>How to <a href="./videos/histograms.mp4">make a histogram</a>,
+      starting from a dotplot
+  <li>Calculating <a href="https://www.youtube.com/watch?v=QaGoVm6ZTKQ">
+      sample standard deviation</a>
+  <li>How the <a href="./videos/correlationChangingWithAPoint.mp4">
+      correlation and regression line change with outliers</a>
+</ul>
+
+<h4>StatKey basics</h4>
+<ul class="none">
+  <li>Descriptive statistics and plots
+  <ul class="none">
+    <li><a href="./videos/univariateCategoricalDataStatKey.mp4">
+        univariate categorical data</a>
+    <li><a href="./videos/statkeyForOneQuantitativeVariable.mp4">
+        univariate quantitative data</a>
+    <li><a href="./videos/importDataToStatkey.mp4">
+        bivariate data: one categorical and one quantitative variable</a>
+    <li><a href="./videos/statkeyDescriptiveStats2QuantVars.mp4">
+        bivariate data: two quantitative variables</a>
+  </ul>
+  <li>Sampling distributions for <a href=
+      "https://www.youtube.com/watch?v=e3E4pCNJhWo">means and proportions</a>
+      (not viewed to see if I like it)
+</ul>
+
+<h4>StatKey randomization distributions demos</h4>
+<ul class="none">
+  <li><a href=
+    "https://drive.google.com/open?id=1xb_5HIxeepNRBjVJMyNXaa4s5yLfTG88">
+    1-proportion</a>
+  <li><a href=
+    "https://drive.google.com/open?id=1eah0MVaSder4dKAU-1hHIJ7TUtJhirdM">
+    1-sample mean</a>
+  <li><a href=
+    "https://drive.google.com/open?id=1xDN5enP32Xilg8VUmqFMc9Yi1S_fwevH">
+    2-independent-sample means</a>
+  <li><a href=
+    "https://drive.google.com/open?id=1qoZ0GbGgC8I_19jb1JgezH5s08XNq1do">
+    correlation</a>
+</ul>
+
+<!--
+<h4>Class sessions in Microsoft Stream</h4>
+<ul class="none">
+  <li>Week 7 (Mar. 16-20):
+    <a href=
+"https://web.microsoftstream.com/video/b734cdf1-f108-453d-b6e0-7b8dd7078ce3">
+      Monday</a>
+</ul>
+-->
+
+<p>
+<hr>
+
+</body>
+</html>
+
