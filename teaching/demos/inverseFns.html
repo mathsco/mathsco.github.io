@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Invertibility of a Function</title>
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>
+$(function () {
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+    						template:       sagecell.templates.minimal,
+                           evalButtonText: 'Launch the Interactive Applet Now'});
+});
+    </script>
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Is the Function Invertible</h1>
+<p>(By Thomas Scofield)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="../jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+    \textrm{This app displays the reflection across the line } y=x
+    \textrm{ of those points on the }\newline
+    \textrm{graph of } y = f(x) \textrm{ with }
+    x-\textrm{coordinate in the
+    interval } [a, b]. \textrm{ The graph of } f \textrm{ is
+    green,} \newline
+    \textrm{while the reflected points are purple.  Can you make a
+    sketch yourself of the reflected } \newline
+    \textrm{curve before displaying it?  Can you anticipate whether }
+    f \textrm{ on the domain } [a, b] \textrm{ is } \newline
+    \textrm{invertible before displaying the reflected points?}
+</div>
+
+<hr>
+
+<div class="compute">
+<script type="text/x-sage">
+@interact(layout = {'top': [["func", "a", "b"], ["reflect", "x_min", "x_max"]]})
+def graphs( func = input_box( default = x^2, label="$f(x) =$", width = 20), 
+        a = input_box( default = -1, label="$a =$", width = 3), 
+        b = input_box( default = 2, label="$b =$", width = 3),
+        x_min = input_box( default = -3, label = "x min", width = 3),
+        x_max = input_box( default = 3, label = "x max", width = 3),
+        reflect = False):
+            
+    # Avoid the deprecation warning
+    f = func.function(x)
+    
+    # Prep the function graph, points for a and b, the line from a to b, and calculate the slope
+    graph = plot(f, x_min, x_max, color="palegreen")
+    graph += plot(f, a, b, color="green")
+    if reflect == True:
+        graph += plot(x, x_min, x_max, color="orange")
+        graph += parametric_plot([f(x), x], (a, b), color="purple")
+    graph.show()
+    
+</script>
+</div>
+
+<hr>
+Last modified on July 24, 2017.
+</body>
+</html>

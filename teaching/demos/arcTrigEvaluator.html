@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Angles from Values of a Trig Function</title>
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>
+$(function () {
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+    						template:       sagecell.templates.minimal,
+                           evalButtonText: 'Launch the Interactive Applet Now'});
+});
+    </script>
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Angles from Values of a Trig Function</h1>
+<p>(By Thomas Scofield)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="../jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+    \textrm{Pick a trigonometric function and a value in the
+    function's range, and the app will generate } \newline
+    \textrm{two angles }
+    \theta_1, \theta_2 \in [0, 2\pi) \textrm{ which, as inputs
+    to your trig function, produce this output.}
+</div>
+
+<hr>
+
+<div class="compute">
+<script type="text/x-sage">
+@interact(layout = {'top': [["trigFn","degrees"],["atVal","showTriangles"]]})
+def arcTrig( trigFn = selector(['sin', 'cos', 'tan', 'csc', 'sec', 'cot'],
+           default = 'sin', label = "value of (select)"),
+        atVal = input_box( default = "0.5", label="$=$", width = 10), 
+        degrees = False,
+        showTriangles = False):
+            
+    # Avoid the deprecation warning
+    # f = func.function(x)
+    
+    # Is the given value in the range of the trig function?
+    fnVal = float(atVal)
+    canDo = True
+    if trigFn == "sin" or trigFn == "cos":
+        if fnVal < -1 or fnVal > 1:
+            print "Your value is not in the range of the specified function."
+            canDo = False
+    if trigFn == "sec" or trigFn == "csc":
+        if fnVal > -1 and fnVal < 1:
+            print "Your value is not in the range of the specified function."
+            canDo = False
+
+    if canDo:
+        # Compute possible angles
+        if trigFn == "sin":
+            angle1 = arcsin(fnVal)
+            angle2 = pi - angle1
+        if trigFn == "cos":
+            angle1 = arccos(fnVal)
+            angle2 = -angle1
+        if trigFn == "tan":
+            angle1 = arctan(fnVal)
+            angle2 = pi + angle1
+        if trigFn == "csc":
+            angle1 = arccsc(fnVal)
+            angle2 = pi - angle1
+        if trigFn == "sec":
+            angle1 = arcsec(fnVal)
+            angle2 = -angle1
+        if trigFn == "cot":
+            angle1 = arccot(fnVal)
+            angle2 = pi + angle1
+        if angle1 < 0:
+            angle1 += 2*pi
+        if angle2 < 0:
+            angle2 += 2*pi
+
+        lab1 = str("(%6.5f"% n(cos(angle1)))+str(",%6.5f"% n(sin(angle1)))+")"
+        lab2 = str("(%6.5f"% n(cos(angle2)))+str(",%6.5f"% n(sin(angle2)))+")"
+
+        graph = circle((0,0), 1, color="black")
+        graph += arc((0,0), .2, sector=(0,angle1), color="red")
+        graph += arrow((0,0),(1.2*cos(angle1),1.2*sin(angle1)),color="red")
+        graph += arc((0,0), .3, sector=(0,angle2), color="purple")
+        graph += arrow((0,0),(1.2*cos(angle2),1.2*sin(angle2)),color="purple")
+        graph += text(lab1, (1.1*cos(angle1),1.1*sin(angle1)),color="black")
+        graph += text(lab2, (1.1*cos(angle2),1.1*sin(angle2)),color="black")
+        graph += text("$\\theta_1$",(cos(angle1/2)/4,sin(angle1/2)/4),
+                      color="red", fontsize="14")
+        graph += text("$\\theta_2$",(cos(angle2/2)/2.8,sin(angle2/2)/2.8),
+                      color="purple", fontsize="14")
+
+        if showTriangles == True:
+            graph += line([(0,0),(cos(angle1),0)],color="firebrick",thickness=2)
+            graph += line([(cos(angle1),0),(cos(angle1),sin(angle1))],
+                          color="firebrick", thickness=2)
+            graph += line([(0,0),(cos(angle2),0)],color="violet", thickness=2)
+            graph += line([(cos(angle2),0),(cos(angle2),sin(angle2))],
+                          color="violet", thickness=2)
+
+        if degrees == True:
+            expr1=LatexExpr(r"\theta_1 \;\mbox{(red)} = %4.2f"% n(180*angle1/pi))
+            expr2=LatexExpr(r"\theta_2 \;\mbox{(purple)} = %4.2f"% n(180*angle2/pi))
+        else:
+            expr1 = LatexExpr(r"\theta_1 \;\mbox{(red)} = %4.2f"% n(angle1))
+            expr2 = LatexExpr(r"\theta_2 \;\mbox{(purple)} = %4.2f"% n(angle2))
+        pretty_print(expr1)
+        pretty_print(expr2)
+        graph.show()
+    
+</script>
+</div>
+
+<hr>
+Last modified on July 24, 2017.
+</body>
+</html>
