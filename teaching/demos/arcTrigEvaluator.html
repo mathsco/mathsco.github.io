@@ -58,11 +58,11 @@ def arcTrig( trigFn = selector(['sin', 'cos', 'tan', 'csc', 'sec', 'cot'],
     canDo = True
     if trigFn == "sin" or trigFn == "cos":
         if fnVal < -1 or fnVal > 1:
-            print "Your value is not in the range of the specified function."
+            print("Your value is not in the range of the specified function.")
             canDo = False
     if trigFn == "sec" or trigFn == "csc":
         if fnVal > -1 and fnVal < 1:
-            print "Your value is not in the range of the specified function."
+            print("Your value is not in the range of the specified function.")
             canDo = False
 
     if canDo:
