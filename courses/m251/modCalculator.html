@@ -1,0 +1,242 @@
+<!doctype html>
+<!-- Head begin -->
+<head>
+	<meta charset="UTF-8">
+
+	<title>Modulo Calculator</title>
+
+<link rel='stylesheet' id='peekaboo-foundation-stylesheet-css'  href='https://www.calculators.org/learn/wp-content/themes/peekaboo/css/app.css' type='text/css' media='all' />
+
+
+<script type='text/javascript' src='https://www.calculators.org/learn/wp-includes/js/jquery/jquery.js'></script>
+<script type='text/javascript' src='https://www.calculators.org/learn/wp-includes/js/jquery/jquery-migrate.min.js'></script>
+<script type='text/javascript' src='https://www.calculators.org/learn/wp-content/themes/peekaboo/bower_components/modernizr/modernizr.js'></script>
+        <link rel="shortcut icon" href="https://www.calculators.org/learn/wp-content/themes/peekaboo/img/favicon.ico"/>
+<style type="text/css" id="et-social-custom-css">
+
+			</style>
+    <style type='text/css'>
+.replace {font-family:'Raleway';}
+
+</style>
+
+    <style type='text/css'>
+.replace {font-family:'Raleway';}
+
+/*Tabs*/
+.tabs {
+  max-width: 800px;
+  margin-top: 20px;
+  padding: 0px;
+}
+.tabs input[type="radio"] {
+  display: none;
+}
+.tabs label {
+  display: inline-block;
+  padding: 6px 0 6px 0;
+  margin: 0 -2px;
+  width: 25%; /* =100/tabs number */
+  border-bottom: 3px solid #13964A;
+  text-align: center;
+  font-weight:bold;
+  color: #E57200;
+}
+.tabs label:hover {
+  cursor: pointer;
+}
+.tabs input:checked + label {
+  border:  3px solid #13964A;
+  color: #2A80B9;
+  border-width: 3px 3px 0 3px;
+}
+.tabs #tab1:checked ~ .content #content1,
+.tabs #tab2:checked ~ .content #content2,
+.tabs #tab3:checked ~ .content #content3,
+.tabs #tab4:checked ~ .content #content4 {
+  display: block;
+}
+.tabs .content > div {
+  display: none;
+  padding-top: 20px;
+  text-align: left;
+  /*height: 192px;*/
+  overflow: auto;
+}
+
+</style>
+
+<script src="https://www.calculators.org/sortme.js"></script> 
+
+<style type='text/css'>
+/* Sortable tables */
+table.sortme thead {
+    background-color:#eee;
+    color:#666666;
+    font-weight: bold;
+    cursor: default;
+}
+</style>
+
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,600" rel="stylesheet" type="text/css">
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type='text/javascript' src='https://www.calculators.org/js/sticky-sidebar-scroll.min.js'></script>
+
+<script>
+$(document).ready(function() {
+  $.stickysidebarscroll("#sidebarbit",{offset: {top: 40, bottom: 620}});
+});
+</script>
+<script async id="__lxGc__rtr" type="text/javascript" src="//s.clickiocdn.com/t/209735/360.js"></script>
+<script async type="text/javascript" src="//s.clickiocdn.com/t/common_258.js"></script><SCRIPT LANGUAGE="JavaScript">
+function calc(form) {
+var first = Number(form.firstnumber.value);
+var second = Number(form.secondnumber.value);
+var count = 0;
+
+if (first > 0 && second > 0) {
+var maxi = Math.max(first, second);
+var maximum = Math.max(first, second);
+var minimum = Math.min(first, second);
+while (maximum >= minimum) {
+	maximum = maximum - minimum;
+	count = count + 1;
+form.modulovalue.value = maximum;
+form.countvalue.value = "" +maxi+" = (" +minimum+ " * " + count + ") + " +maximum+"";
+	}
+} else if (first < 0 && second > 0) {
+var maxi = Math.max(first, second);
+var mini = Math.min(first, second);
+var maximum = Math.max(first, second);
+var minimum = Math.min(first, second);
+while (maximum >= minimum) {
+	minimum = minimum + maximum;
+	count = count + 1;
+	}
+	minimum = minimum - maximum;
+	count = count - 1;	
+
+form.modulovalue.value = minimum;
+form.countvalue.value = "" +mini+" = (" +maximum+ " * " + count + ") + " +minimum+"";
+} else if  (first < 0 && second < 0) {
+var maxi = Math.max(first, second);
+var mini = Math.min(first, second);
+var maximum = Math.max(first, second);
+var minimum = Math.min(first, second);
+while (maximum >= minimum) {
+	minimum = minimum - maximum;
+	count = count + 1;
+	}
+	minimum = minimum - maximum;
+	count = count + 1;	
+
+form.modulovalue.value = minimum;
+form.countvalue.value = "" +mini+" = (" +maximum+ " * " + count + ") + " +minimum+"";		
+} else if  (first > 0 && second < 0) {
+var maxi = Math.max(first, second);
+var mini = Math.min(first, second);
+var maximum = Math.max(first, second);
+var minimum = Math.min(first, second);
+while (maximum >= minimum) {
+	maximum = maximum + minimum;
+	count = count + 1;
+	}
+	maximum = maximum - minimum;
+	count = count - 1;
+
+form.modulovalue.value = maximum;
+form.countvalue.value = "" +first+" = (" +second+ " * -" + count + ") " +maximum+"";			
+	} else if (second == 0) {
+form.modulovalue.value = "undefined";
+form.countvalue.value = "can't divide by zero ";					
+		}
+	else if (first == 0) {
+form.modulovalue.value = 0;
+form.countvalue.value = "0 = (0 * "+second+") + 0";						
+		} 
+}
+</script>
+</head>
+
+<body class="page page-child page-template page-template-page-full-width-php antialiased et_monarch">
+
+
+<!-- Content Wrapper begin -->
+<div id="content-wrapper">
+
+  <!-- Container begin -->
+  <div id="container" class="container">
+
+    
+<div align="center" style="background-color:#F00"><noscript><span style="color:#ffffff; font-weight: bold; font-size:36px;">JavaScript is turned off in your web browser.<br /> You need to turn it on to use our JavasSript-based calculators.</span></noscript></div>
+        
+  <!--Main begin-->
+<div id="main" class="round_8 clearfix row" role="main">
+
+
+
+  <!-- Page title begin -->
+  <div class="large-12 columns">
+    <div class="page_title round_6">
+      <h1 class="replace">Division Algorithm</h1>
+      </div>
+  </div>
+  <!-- Page title end -->
+
+  <!-- Content begin -->
+  <div class="full">
+    <div class="row"><div class="large-8 columns">
+
+
+<form name="form">
+<table width="100%">
+  <tr>
+<td><p align="center"><br /><input name="firstnumber" type="number" style="width: 150px; display:inline;" value="17" size="5" onChange="calc(this.form)" onfocus="if (this.value==this.defaultValue) this.value = ''" onblur="if (this.value=='') this.value = this.defaultValue"> 
+mod 
+<input name="secondnumber" type="number" style="width: 150px; display:inline;" value="3" size="5" onChange="calc(this.form)" onfocus="if (this.value==this.defaultValue) this.value = ''" onblur="if (this.value=='') this.value = this.defaultValue"></p></td>
+</tr>
+<tr>
+<td><p align="center"><br /><input type="button" value="Calculate" onClick="calc(this.form)" class="button-action button replace blue"></p></td>
+</tr>
+<tr>
+<td><p align="center">result = 
+    <input type="text" step="any" name="modulovalue" size="5"  style="width: 180px; display:inline;"></p> </td>
+</tr>
+<tr>
+<td><p align="center">full calculation 
+    <input type="text" step="any" name="countvalue" size="5"  style="width: 300px; display:inline;"></p> </td>
+</tr></table>
+</form>
+
+
+
+    </div>
+
+
+
+<div align="center" style="background-color:#F00"><noscript><span style="color:#ffffff; font-weight: bold; font-size:36px;">JavaScript is turned off in your web browser.<br /> You need to turn it on to use our JavasSript-based calculators.</span></noscript></div>
+
+<div class="row"></div>
+<p>&nbsp;</p>
+
+<!-- <hr/> -->
+<p>&nbsp;</p>
+
+    </div>
+    <!-- Content end -->
+
+
+</div>
+<!--Main end-->
+
+</div>
+    <!-- Container end -->
+
+</div>
+<!-- Content Wrapper end -->
+
+
+
+
+</body>
+</html>
