@@ -94,65 +94,34 @@ var first = Number(form.firstnumber.value);
 var second = Number(form.secondnumber.value);
 var count = 0;
 
+if (second < 0) { second = (-1)*second }
 if (first > 0 && second > 0) {
-var maxi = Math.max(first, second);
-var maximum = Math.max(first, second);
-var minimum = Math.min(first, second);
-while (maximum >= minimum) {
-	maximum = maximum - minimum;
+var dividend = first;
+var vidend = first;
+var divisor = second;
+while (vidend >= divisor) {
+	vidend = vidend - divisor;
 	count = count + 1;
-form.modulovalue.value = maximum;
-form.countvalue.value = "" +maxi+" = (" +minimum+ " * " + count + ") + " +maximum+"";
 	}
+form.modulovalue.value = vidend;
+form.countvalue.value = "" +dividend+" = (" + count + ") * (" +divisor+ ") + " +vidend+"";
 } else if (first < 0 && second > 0) {
-var maxi = Math.max(first, second);
-var mini = Math.min(first, second);
-var maximum = Math.max(first, second);
-var minimum = Math.min(first, second);
-while (maximum >= minimum) {
-	minimum = minimum + maximum;
+var dividend = first;
+var vidend = first;
+var divisor = second;
+while (vidend < 0) {
+	vidend = vidend + divisor;
 	count = count + 1;
 	}
-	minimum = minimum - maximum;
-	count = count - 1;	
-
-form.modulovalue.value = minimum;
-form.countvalue.value = "" +mini+" = (" +maximum+ " * " + count + ") + " +minimum+"";
-} else if  (first < 0 && second < 0) {
-var maxi = Math.max(first, second);
-var mini = Math.min(first, second);
-var maximum = Math.max(first, second);
-var minimum = Math.min(first, second);
-while (maximum >= minimum) {
-	minimum = minimum - maximum;
-	count = count + 1;
-	}
-	minimum = minimum - maximum;
-	count = count + 1;	
-
-form.modulovalue.value = minimum;
-form.countvalue.value = "" +mini+" = (" +maximum+ " * " + count + ") + " +minimum+"";		
-} else if  (first > 0 && second < 0) {
-var maxi = Math.max(first, second);
-var mini = Math.min(first, second);
-var maximum = Math.max(first, second);
-var minimum = Math.min(first, second);
-while (maximum >= minimum) {
-	maximum = maximum + minimum;
-	count = count + 1;
-	}
-	maximum = maximum - minimum;
-	count = count - 1;
-
-form.modulovalue.value = maximum;
-form.countvalue.value = "" +first+" = (" +second+ " * -" + count + ") " +maximum+"";			
-	} else if (second == 0) {
+form.modulovalue.value = vidend;
+form.countvalue.value = "" +dividend+" = (" + (-1)*count + ") * (" +divisor+ ") + " +vidend+"";
+} else if (second == 0) {
 form.modulovalue.value = "undefined";
 form.countvalue.value = "can't divide by zero ";					
 		}
 	else if (first == 0) {
 form.modulovalue.value = 0;
-form.countvalue.value = "0 = (0 * "+second+") + 0";						
+form.countvalue.value = "0 = (0) * ("+second+") + 0";						
 		} 
 }
 </script>
@@ -185,8 +154,9 @@ form.countvalue.value = "0 = (0 * "+second+") + 0";
 
   <!-- Content begin -->
   <div class="full">
-    <div class="row"><div class="large-8 columns">
-
+    <div class="row"><div class="large-9 columns">
+ The divisor/modulus cannot be negative.  If entered that way,
+ we work with its absolute value.
 
 <form name="form">
 <table width="100%">
@@ -203,7 +173,7 @@ mod
     <input type="text" step="any" name="modulovalue" size="5"  style="width: 180px; display:inline;"></p> </td>
 </tr>
 <tr>
-<td><p align="center">full calculation 
+<td><p align="center">full division algorithm
     <input type="text" step="any" name="countvalue" size="5"  style="width: 300px; display:inline;"></p> </td>
 </tr></table>
 </form>
