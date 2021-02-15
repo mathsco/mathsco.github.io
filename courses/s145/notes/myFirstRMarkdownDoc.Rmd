@@ -1,0 +1,74 @@
+---
+title: "Stat 145 -- PS07"
+author: "Thomas Scofield"
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+output: 
+  pdf_document:
+    fig_height: 2.2
+    fig_width: 4
+  html_document:
+    fig_height: 2.2
+    fig_width: 4
+  word_document:
+    fig_height: 2.2
+    fig_width: 4
+---
+
+```{r, setup, include = FALSE, message=FALSE}
+# load packages that are going to be used
+library(mosaic)      # this loads ggformula (for plotting), etc. too
+library(openintro)   # this loads data sets intro to modern stats 
+library(oibiostat)   # this loads data sets open intro biostats 
+library(pander)      # for tables
+
+# Some customization. You can alter or delete as desired (if you know what you are doing).
+
+theme_set(theme_bw())     # change theme for ggplot2/ggformula
+
+knitr::opts_chunk$set(
+  tidy = FALSE,     # display code as typed (rather than reformatted)
+  size = "small")   # slightly smaller font for code
+```
+
+<!-- Put your work below here.  Put text in text chunks, code in R chunks. -->
+
+### Exercise 2.100
+
+How to make a list of values, name it *times*, and calculate its mean.
+```{r}
+times <- c(40, 87, 78, 106, 67, 70, 153, 81)
+mean(~times)
+```
+
+### More examples of text, R code and results
+
+To include a scatter plot of data in *faithful*, with *eruptions*
+as explanatory variable and *waiting* as response variable.
+```{r}
+gf_point(waiting ~ eruptions, data=faithful)
+```
+
+This exemplifies a **positive association**, since the larger the value of the explanatory variable (*eruptions*), the larger the response tends to be.
+
+A **negative association** does the opposite---the larger the explanatory value, the *smaller* the response tends to be.
+
+## Correlation
+
+Correlation measures the strength of a linear association.  For this data, the value of the correlation is
+```{r}
+cor(waiting ~ eruptions, data=faithful)
+```
+
+Some facts about correlation:
+
+ * It requires two quantitative variables.
+ * It's always a number between (-1) and (+1).
+ * When close to zero, the *linear* association is weak.
+ * When close to (-1) or to (+1) the linear association is strong.
+ * It's positive or negative to match the slope of a regression line.
+ * If you change the unit of measurement on one of the variables, this has no effect on the correlation.
+ * It doesn't matter which variable is considered explanatory, and which is considered response.  Trade roles between the two variables, and the result is the same:
+```{r}
+cor(eruptions ~ waiting, data=faithful)
+```
+ 
