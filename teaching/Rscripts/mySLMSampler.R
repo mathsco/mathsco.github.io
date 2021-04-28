@@ -26,8 +26,8 @@ sampleAndRegress <-
       SSResiduals = ssr,
       SSTotal = sum( (myLabData$y- meany)^2 ),
       sigmaHat = sqrt(ssr / (sampleSize - 2)),
-      SE_b0 = sigmaEst * sqrt(1/sampleSize + meanx^2/ssx),
-      SE_b1 = sqrt(sigmaEst^2 / ssx)
+      SE.b0 = sigmaEst * sqrt(1/sampleSize + meanx^2/ssx),
+      SE.b1 = sqrt(sigmaEst^2 / ssx)
     )
   }
 
