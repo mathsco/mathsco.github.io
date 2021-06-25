@@ -1,0 +1,185 @@
+
+<html><head><title> Stat 143 Summer 2021: Week 7 </title>
+<link rel="stylesheet" type="text/css"
+href="/styles/newClasspage.css">
+
+<style>
+.wrap {
+   max-width:900px;
+   margin:auto;
+}
+.zoom {
+   width:60%;
+   max-width:100px;
+   margin:auto;
+   padding:1em;
+   background:#fff;
+   border-radius:1px;
+   text-align:center;
+}
+.zoom img {
+   display:block;
+   margin:0 0 1em;
+   max-width:100%;
+   height:auto;
+   border-radius:1px;
+   transition:transform 0.5s;
+}
+.zoom img:hover {
+   transform:scale(5.5) ;
+}
+</style>
+
+<STYLE TYPE="text/css">
+<!--
+.indented
+{
+padding-left: 20pt;
+}
+-->
+body {
+    line-height: 1.1;
+}
+li.str:before {
+  content: "*";
+  position: relative;
+  left: -15px;
+  bottom: -3px;
+}
+</STYLE>
+
+</head>
+<body>
+
+<a href="https://calvin.edu/academic/math/">Stat</a> 143A<br>
+Probability and Statistics<br>
+Summer, 2021
+<p>
+
+<h4>Tasks for Week 7</h4>
+<ol>
+ <li>Work through the material of the
+   <a href="https://rsconnect.calvin.edu:3939/content/86">One-Way ANOVA</a>,
+   watching video tutorials as they are linked into the content.
+ <li>Read Chapter 8 in the Lock textbook.
+ <li>From the book, "How Not to Be Wrong", by Jordan Ellenberg, read
+   Chapter 9.  Note: We are skipping Chapter 8.  The one thing from Chapter
+   8 that would be useful to know in Chapter 9 is the phrase &3147;reductio
+   ad unlikely&#148;, or more simply, just &#147;reduction&#148;.  Suffice
+   it to say that is Ellenberg's phrase of choice for when you do an
+   hypothesis test, get a small <i>P</i>-value, and reject the null
+   hypothesis.  Following the reading, visit <a href=
+   "https://www.gradescope.com/">gradescope.com</a> and answer the reading
+   questions (Ellenberg Ch. 9) you find there.  These should be answered
+   by 11 pm on Thursday, July 1.
+ <li>Do the assigned exercises from Chapter 8 of the Lock textbook.
+   <ul class="disc">
+   <li>Section 8.1: [8.7], 8.8, [8.9], 8.10, [8.11], 8.12, [8.13], 8.14,
+       [8.15], 8.16, 8.24, 8.25, 8.26, 8.27, and 8.31
+   <li>Section 8.2: 8.46 and 8.52.
+  </ul>
+For 8.46, there is computer output provided which you can ignore and replace with this output, which provides a TukeyHSD analysis:<br></span>
+<center>
+    <table style="font-size: 1rem; font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;;">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">&nbsp; &nbsp; &nbsp;diff&nbsp; &nbsp;&nbsp;</th>
+                <th scope="col">&nbsp; &nbsp; &nbsp; lwr&nbsp; &nbsp;&nbsp;</th>
+                <th scope="col">&nbsp; &nbsp; upr</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Nobel-Academy</td>
+                <td>&nbsp; &nbsp;1.699</td>
+                <td>&nbsp; -3.878</td>
+                <td>&nbsp; &nbsp;7.276</td>
+            </tr>
+            <tr>
+                <td>Olympic-Academy</td>
+                <td>&nbsp;-3.263</td>
+                <td>&nbsp; -8.753</td>
+                <td>&nbsp; &nbsp;2.226</td>
+            </tr>
+            <tr>
+                <td>Olympic-Nobel</td>
+                <td>&nbsp;-4.962</td>
+                <td>&nbsp; -8.083</td>
+                <td>&nbsp; -1.841</td>
+            </tr>
+        </tbody>
+    </table><br style="font-size: 1rem; font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;;">
+</center>
+For 8.52, use this computer output giving a TukeyHSD analysis:<br>
+<center>
+    <table style="font-size: 1rem; font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;;">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">&nbsp; &nbsp; &nbsp; diff&nbsp; &nbsp; &nbsp;&nbsp;</th>
+                <th scope="col">&nbsp; &nbsp; &nbsp; &nbsp; lwr&nbsp; &nbsp; &nbsp;&nbsp;</th>
+                <th scope="col">&nbsp; &nbsp; &nbsp; upr</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Low-High</td>
+                <td>&nbsp; &nbsp;10.333</td>
+                <td>&nbsp; &nbsp; &nbsp; 1.220</td>
+                <td>&nbsp; &nbsp;19.447</td>
+            </tr>
+            <tr>
+                <td>Medium-High&nbsp;&nbsp;</td>
+                <td>&nbsp; &nbsp; &nbsp;0.500</td>
+                <td>&nbsp; &nbsp; -8.614</td>
+                <td>&nbsp; &nbsp; &nbsp;9.614</td>
+            </tr>
+            <tr>
+                <td>Medium-Low</td>
+                <td>&nbsp; &nbsp;-9.833</td>
+                <td>&nbsp; -18.947</td>
+                <td>&nbsp; &nbsp;-0.720</td>
+            </tr>
+        </tbody>
+    </table><br style="font-size: 1rem; font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;;">
+</center>
+  Submit these, as usual, to <a href="http://gradescope.com">gradescope.com</a>
+  by 11 pm, on Saturday, July 3.
+ <li>Participate in group discussion topics as they appear in Week 7
+   on the Moodle page.
+ <li>There is a quiz in the Week 7 module of our
+   <a href="https://moodle.calvin.edu/course/view.php?id=54328">
+   Moodle course</a>.  Take it as often as you like.
+</ol>
+
+<h4>Supplemental videos</h4>
+<ul class="none">
+  <li><a href="https://www.youtube.com/watch?v=W36DMVJ4Ibo&list=PLkIselvEzpM5G3IO1tzQ-DUThsJKQzQCD">
+    ANOVA intro</a> from ISRS (9:34)
+  <li><a href="https://www.youtube.com/watch?v=HGFiWMA5OC8&list=PLkIselvEzpM5G3IO1tzQ-DUThsJKQzQCD">
+    Conditions of ANOVA</a> from ISRS (2:58)
+  <li><a href="https://www.youtube.com/watch?v=THG0P3YNbdI&list=PLkIselvEzpM5G3IO1tzQ-DUThsJKQzQCD">
+    Multiple comparisons</a> from ISRS (6:48)
+  <li><a href="http://scofield.site/courses/s143/videos/randomizingFstat.mp4">
+    Randomization of the <i>F</i>-statistic</a> and getting a <i>P</i>-value
+    (17:24)
+  <li><a href="http://scofield.site/courses/s143/videos/usingAnFDist.mp4">
+    Using an <i>F</i>-distribution</a> (6:31)
+  <li><a href="http://scofield.site/courses/s143/videos/twoSampleMeanSpecialCaseOfAnova.mp4">
+    Two-sample mean vs. ANOVA</a> (6:12)
+<!--
+  <li>Goodness-of-fit
+  <ul class="disc">
+    <li><a href="http://scofield.site/courses/s143/videos/gofBirthDays.mp4">
+      Birth days</a> (8:27)
+ -->
+</ul>
+
+
+<p>
+<hr>
+
+</body>
+</html>
+
