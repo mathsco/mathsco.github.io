@@ -1,4 +1,4 @@
-gender,class,gpa,height,pulse,childrank,numchildren,haircut,randomnum,speedtickets,cds,smoker,hourssleep,selfhandedness,momhandedness,dadhandedness,region,oncampus,cupscoffee,birthday,overtwenty
+sex,class,gpa,height,pulse,childrank,numchildren,haircut,randomnum,speedtickets,cds,smoker,hourssleep,selfhandedness,momhandedness,dadhandedness,region,oncampus,cupscoffee,birthday,overtwenty
 F,So,3.6,,,2,3,2,6,0,15,Non,8,R,L,R,Suburban,Y,1,Th,Y
 F,So,3.4,,,4,4,10,7,0,10,Non,8,R,R,R,Rural,Y,0,Fr,N
 M,Fr,3,71,68,2,4,0,17,2,53,Non,5.5,R,R,R,Suburban,Y,0,Th,N
