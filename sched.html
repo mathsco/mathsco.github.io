@@ -1,4 +1,221 @@
-<table border=1 width=95%>
+
+<style type="text/css">
+span.headerColor {
+	color: #906;
+	color: #966;
+	background: #fff;
+}
+
+span.bigger {font-size: larger}
+span.smaller {font-size: smaller}
+
+span.topic, span.Topic {
+	color: black;
+	font-size: medium;
+	font-weight: bold;
+/* #	font-variant: small-caps; */
+}
+
+span.topic a:link, span.topic a:visited{
+	color: blue;
+}
+
+span.lab, span.Lab {
+	color: purple;
+	font-size: medium;
+	font-style: oblique;
+}
+
+span.reading, span.Reading, span.Read, span.reading {
+	font-style: italic;
+	color: #36c;
+}
+span.reading a:link, span.reading a:visited{
+	color: blue;
+}
+span.Reading a:link, span.Reading a:visited{
+	color: blue;
+}
+
+span.read a:link, span.read a:visited{
+	color: blue;
+}
+span.Read a:link, span.Read a:visited{
+	color: blue;
+}
+
+span.vocab, span.Vocab {
+	color: purple;
+}
+
+span.notes, span.Notes {
+	color: green;
+}
+
+span.R {
+	color: purple;
+	font-family: "Lucida Console", "Courier New", Monospace;
+}
+
+span.Note, span.note {
+	color: green;
+}
+
+span.activity, span.Activity {
+	color: #c63;
+}
+
+span.activity a:link, span.activity a:visited{
+	color: brown;
+}
+
+span.Activity a:link, span.Activity a:visited{
+	color: brown;
+}
+
+span.due, span.Due {
+	/* color: #969; */
+	color: red;
+}
+
+span.due a:link, span.due a:visited{
+	color: red;
+}
+
+span.Due a:link, span.Due a:visited{
+	color: red;
+}
+
+span.hw, span.HW {
+	color: green;
+}
+
+span.hw a:link, span.hw a:visited{
+	color: green;
+}
+
+span.HW a:link, span.HW a:visited{
+	color: green;
+}
+
+body, td{
+	color: #000;
+	/* background: #fff; */
+	font-family: sans-serif, arial, helvetica, verdana;
+	}
+
+body td{
+	color: #000;
+	background: #ccc;
+	font-family: sans-serif, arial, helvetica, verdana;
+	}
+
+body td.odd{
+	color: #000;
+	background: #fff;
+	font-family: sans-serif, arial, helvetica, verdana;
+	}
+
+body td.even{
+	color: #000;
+	background: #ccc;
+	font-family: sans-serif, arial, helvetica, verdana;
+	}
+
+td {
+    padding: 10px;
+    text-align: left;
+    vertical-align: top;
+}
+
+th{
+	color: #000;
+	/* background: #fff; */
+	font-family: sans-serif, arial, helvetica, verdana;
+	}
+
+/*hr {text-align: center; margin-left: 25%; width: 50%; margin-right: 25%}*/
+
+hr {
+	color: #906;
+	color: #966;
+	background: #fff;
+}
+
+
+h1, h2, h3, h4{
+	color: #906;
+	color: #336;
+	background: #fff;
+}
+
+
+h1 a:link, h1 a:visited, h2 a:link, h2 a:visited, h3 a:link, h3 a:visited {
+	color: #36c;
+	color: #66c;
+	color: #339;
+	background: #fff;
+	text-decoration: none;
+}
+
+h1 {	 font-size: x-large;
+}
+
+h1 span.smaller{
+	color: #000;
+	background: #fff;
+	font-size: large;
+}
+
+h1 span.smallest{
+	color: #000;
+	background: #fff;
+	font-size: medium;
+}
+
+h2 {	font-size: large;
+	font-style: normal;
+}
+
+h2 span.smaller, h2 span.smallest{
+	color: #000;
+	background: #fff;
+	font-size: medium;
+}
+
+h3 { 	font-size: medium;
+	font-style: normal;
+}
+
+h3 span.smaller, h3 span.smallest{
+	color: #000;
+	background: #fff;
+}
+
+h4 { 	font-size: medium;
+	font-style: italic;
+}
+
+
+a:link {
+	color: #36c;	/* #06c */
+	color: #06c;	/* #06c */
+	background: #fff;
+	text-decoration: none;
+}
+
+a:visited {
+	/*color: #09c; color: #96c; #936 ; #939
+	background: #fff;*/
+	color: #969;
+	background: #fff;
+}
+
+strong {
+	color: #906;
+	background: #fff;
+}
+</style> <table border=1 width=95%>
 <colgroup>
 <col width = "10%">
 <col width = "10%">
@@ -17,56 +234,81 @@
 </tr></thead><tbody><tr>
 <!--  1 > -Inf -->
 </tr><tr>
-<td class = "even">8/16<br><span class = "Note"></span><br><span class = "Topic"></span><br><br></td>
-<td class = "even">8/17<br><span class = "Note"></span><br><span class = "Topic"></span><br><br></td>
-<td class = "even">8/18<br><span class = "Note"></span><br><span class = "Topic"></span><br><br></td>
-<td class = "even">8/19<br><span class = "Note">Town Hall Mtg 2 pm</span><br><span class = "Topic"></span><br><br></td>
-<td class = "even">8/20<br><span class = "Note"></span><br><span class = "Topic"></span><br><br></td>
-<td class = "even">8/21<br><span class = "Note"></span><br><span class = "Topic">GRC vs. GR Catholic Central (Eagle Stadium)</span><br><br></td>
+<td class = "even">8/9<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<td class = "even">8/10<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<td class = "even">8/11<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<td class = "even">8/12<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<td class = "even">8/13<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<td class = "even">8/14<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
 <!--  2 > 1 -->
 </tr><tr>
-<td class = "even">8/23<br><span class = "Note">Faculty Fall Conference 8:30-1:30</span><br><span class = "Topic"></span><br><br></td>
-<td class = "even">8/24<br><span class = "Note"></span><br><span class = "Topic"></span><br><br></td>
-<td class = "even">8/25<br><span class = "Note"></span><br><span class = "Topic"><a href=" https://grchristianeagles.org/main/event/scid/MI495069399/eventId/72141194/id/1752305/seasonid/4600852/">GRC at South Christian </a></span><br><br></td>
-<td class = "even">8/26<br><span class = "Note">Opening Convocation 1:45-2:45<br>Meet Your Major 4:15-5:00</span><br><span class = "Topic"></span><br><br></td>
-<td class = "even">8/27<br><span class = "Note"></span><br><span class = "Topic"></span><br><br></td>
-<td class = "even">8/28<br><span class = "Note"></span><br><span class = "Topic"><a href=" https://grchristianeagles.org/main/event/scid/MI495069399/eventId/72195489/id/1752305/seasonid/4600852/">Holland Invitational </a></span><br><br></td>
+<td class = "even">8/16<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note">BioLife, 2:55 am</span><br><br></td>
+<td class = "even">8/17<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<td class = "even">8/18<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note">BioLife, 8:50 am</span><br><br></td>
+<td class = "even">8/19<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note">Town Hall Mtg 2 pm</span><br><br></td>
+<td class = "even">8/20<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<td class = "even">8/21<br><span class = "Topic">GRC vs. GR Catholic Central (Eagle Stadium)</span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
 <!--  3 > 2 -->
 </tr><tr>
-<td class = "even">8/30<br><span class = "Note"></span><br><span class = "Topic"></span><br><br></td>
-<td class = "even">8/31<br><span class = "Note"></span><br><span class = "Topic"><a href=" https://grchristianeagles.org/main/event/scid/MI495069399/eventId/72909789/id/1752305/seasonid/4600852/">GRC at Portage Central </a></span><br><br></td>
-<td class = "odd">9/1<br><span class = "Note"></span><br><span class = "Topic"></span><br><br></td>
-<td class = "odd">9/2<br><span class = "Note"></span><br><span class = "Topic">GRC vs. FH Eastern (Eagle Stadium)</span><br><br></td>
-<td class = "odd">9/3<br><span class = "Note"></span><br><span class = "Topic"></span><br><br></td>
-<td class = "odd">9/4<br><span class = "Note"></span><br><span class = "Topic"></span><br><br></td>
+<td class = "even">8/23<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note">Faculty Fall Conference 8:30-1:30</span><br><br></td>
+<td class = "even">8/24<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<td class = "even">8/25<br><span class = "Topic"><a href=" https://grchristianeagles.org/main/event/scid/MI495069399/eventId/72141194/id/1752305/seasonid/4600852/">GRC at South Christian </a></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<td class = "even">8/26<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note">Opening Convocation 1:45-2:45<br>Meet Your Major 4:15-5:00</span><br><br></td>
+<td class = "even">8/27<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<td class = "even">8/28<br><span class = "Topic"><a href=" https://grchristianeagles.org/main/event/scid/MI495069399/eventId/72195489/id/1752305/seasonid/4600852/">Holland Invitational </a></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
 <!--  4 > 3 -->
 </tr><tr>
-<td class = "odd">9/6<br><span class = "Note"></span><br><span class = "Topic"></span><br><br></td>
-<td class = "odd">9/7<br><span class = "Note"></span><br><span class = "Topic">GRC vs. Lowell (Gainey)</span><br><br></td>
-<td class = "odd">9/8<br><span class = "Note"></span><br><span class = "Topic"></span><br><br></td>
-<td class = "odd">9/9<br><span class = "Note"></span><br><span class = "Topic"><a href=" https://grchristianeagles.org/main/event/scid/MI495069399/eventId/72187481/id/1752305/seasonid/4600852/">GRC at Northview </a></span><br><br></td>
-<td class = "odd">9/10<br><span class = "Note"></span><br><span class = "Topic"></span><br><br></td>
-<td class = "odd">9/11<br><span class = "Note"></span><br><span class = "Topic"><a href=" https://grchristianeagles.org/main/event/scid/MI495069399/eventId/72911239/id/1752305/seasonid/4600852/">GRC at Jenison </a></span><br><br></td>
+<td class = "even">8/30<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<td class = "even">8/31<br><span class = "Topic"><a href=" https://grchristianeagles.org/main/event/scid/MI495069399/eventId/72909789/id/1752305/seasonid/4600852/">GRC at Portage Central </a></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<td class = "odd">9/1<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<td class = "odd">9/2<br><span class = "Topic">GRC vs. FH Eastern (Eagle Stadium)</span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<td class = "odd">9/3<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<td class = "odd">9/4<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
 <!--  5 > 4 -->
 </tr><tr>
-<td class = "odd">9/13<br><span class = "Note"></span><br><span class = "Topic"></span><br><br></td>
-<td class = "odd">9/14<br><span class = "Note"></span><br><span class = "Topic">GRC vs. FH Central (Gainey)</span><br><br></td>
-<td class = "odd">9/15<br><span class = "Note"></span><br><span class = "Topic"></span><br><br></td>
-<td class = "odd">9/16<br><span class = "Note"></span><br><span class = "Topic"><a href=" https://grchristianeagles.org/main/event/scid/MI495069399/eventId/72187522/id/1752305/seasonid/4600852/">GRC at Byron Center </a></span><br><br></td>
-<td class = "odd">9/17<br><span class = "Note"></span><br><span class = "Topic"></span><br><br></td>
-<td class = "odd">9/18<br><span class = "Note"></span><br><span class = "Topic"></span><br><br></td>
+<td class = "odd">9/6<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<td class = "odd">9/7<br><span class = "Topic">GRC vs. Lowell (Gainey)</span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<td class = "odd">9/8<br><span class = "Topic"></span><br><span class = "Due">Swim practice 6:30-8:30 pm</span><br><span class = "Note"></span><br><br></td>
+<td class = "odd">9/9<br><span class = "Topic"><a href=" https://grchristianeagles.org/main/event/scid/MI495069399/eventId/72187481/id/1752305/seasonid/4600852/">GRC at Northview </a></span><br><span class = "Due">Swim meet away 6:30 pm<br>no return bus<br><a href=" https://www.google.com/maps/dir/2211+Ontonagon+Ave+SE,+Grand+Rapids,+MI/Hamilton+High+School,+4911+136th+Ave,+Hamilton,+MI+49419/@42.8027384,-85.9589782,11z/data=!3m1!4b1!4m13!4m12!1m5!1m1!1s0x8819b2b05697c275:0x47da9b1b5cb3d963!2m2!1d-85.6104388!2d42.9235886!1m5!1m1!1s0x8819eed94fc8e82b:0x72086885810bdd8b!2m2!1d-86.0269272!2d42.6852521">Hamilton HS </a></span><br><span class = "Note"></span><br><br></td>
+<td class = "odd">9/10<br><span class = "Topic"></span><br><span class = "Due">Swim practice 6:30-7:45 am</span><br><span class = "Note"></span><br><br></td>
+<td class = "odd">9/11<br><span class = "Topic"><a href=" https://grchristianeagles.org/main/event/scid/MI495069399/eventId/72911239/id/1752305/seasonid/4600852/">GRC at Jenison </a></span><br><span class = "Due">pool 10-11 am</span><br><span class = "Note"></span><br><br></td>
 <!--  6 > 5 -->
 </tr><tr>
-<td class = "odd">9/20<br><span class = "Note"></span><br><span class = "Topic"></span><br><br></td>
-<td class = "odd">9/21<br><span class = "Note"></span><br><span class = "Topic">GRC vs. Greenville (Gainey)</span><br><br></td>
-<td class = "odd">9/22<br><span class = "Note"></span><br><span class = "Topic"></span><br><br></td>
-<td class = "odd">9/23<br><span class = "Note"></span><br><span class = "Topic">GRC vs. FH Northern (Gainey)</span><br><br></td>
-<td class = "odd">9/24<br><span class = "Note"></span><br><span class = "Topic"></span><br><br></td>
-<td class = "odd">9/25<br><span class = "Note"></span><br><span class = "Topic"></span><br><br></td>
+<td class = "odd">9/13<br><span class = "Topic"></span><br><span class = "Due">Swim practice 7-9 pm</span><br><span class = "Note"></span><br><br></td>
+<td class = "odd">9/14<br><span class = "Topic">GRC vs. FH Central (Gainey)</span><br><span class = "Due">Swim meet home<br>vs. Plainwell</span><br><span class = "Note"></span><br><br></td>
+<td class = "odd">9/15<br><span class = "Topic"></span><br><span class = "Due">Swim practice 7-9 pm</span><br><span class = "Note"></span><br><br></td>
+<td class = "odd">9/16<br><span class = "Topic"><a href=" https://grchristianeagles.org/main/event/scid/MI495069399/eventId/72187522/id/1752305/seasonid/4600852/">GRC at Byron Center </a></span><br><span class = "Due">Swim practice 7-9 pm</span><br><span class = "Note"></span><br><br></td>
+<td class = "odd">9/17<br><span class = "Topic"></span><br><span class = "Due">Swim practice 6:30-7:45 am</span><br><span class = "Note"></span><br><br></td>
+<td class = "odd">9/18<br><span class = "Topic"></span><br><span class = "Due">pool 10-11 am</span><br><span class = "Note"></span><br><br></td>
 <!--  7 > 6 -->
 </tr><tr>
-<td class = "odd">9/27<br><span class = "Note"></span><br><span class = "Topic">GRC vs. Unity Christian (Eagles Stadium)</span><br><br></td>
-<td class = "odd">9/28<br><span class = "Note"></span><br><span class = "Topic"><a href=" https://grchristianeagles.org/main/event/scid/MI495069399/eventId/72187611/id/1752305/seasonid/4600852/">GRC at East GR </a></span><br><br></td>
-<td class = "odd">9/29<br><span class = "Note"></span><br><span class = "Topic"></span><br><br></td>
-<td class = "odd">9/30<br><span class = "Note"></span><br><span class = "Topic"><a href=" https://grchristianeagles.org/main/event/scid/MI495069399/eventId/72198333/id/1752305/seasonid/4600852/">GRC at Holland Christian </a></span><br><br></td>
+<td class = "odd">9/20<br><span class = "Topic"></span><br><span class = "Due">Swim practice 7-9 pm</span><br><span class = "Note"></span><br><br></td>
+<td class = "odd">9/21<br><span class = "Topic">GRC vs. Greenville (Gainey)</span><br><span class = "Due">Swim meet away 6 pm<br>vs. E.Kentwood and Wayland</span><br><span class = "Note"></span><br><br></td>
+<td class = "odd">9/22<br><span class = "Topic"></span><br><span class = "Due">Swim practice 7-9 pm</span><br><span class = "Note"></span><br><br></td>
+<td class = "odd">9/23<br><span class = "Topic">GRC vs. FH Northern (Gainey)</span><br><span class = "Due">Swim practice 7-9 pm</span><br><span class = "Note"></span><br><br></td>
+<td class = "odd">9/24<br><span class = "Topic"></span><br><span class = "Due">Swim practice 6:30-8:30 pm</span><br><span class = "Note"></span><br><br></td>
+<td class = "odd">9/25<br><span class = "Topic"></span><br><span class = "Due">Mid Season Invite (swimming)</span><br><span class = "Note"></span><br><br></td>
+<!--  8 > 7 -->
+</tr><tr>
+<td class = "odd">9/27<br><span class = "Topic">GRC vs. Unity Christian (Eagles Stadium)</span><br><span class = "Due">Swim practice 7-9 pm</span><br><span class = "Note"></span><br><br></td>
+<td class = "odd">9/28<br><span class = "Topic"><a href=" https://grchristianeagles.org/main/event/scid/MI495069399/eventId/72187611/id/1752305/seasonid/4600852/">GRC at East GR </a></span><br><span class = "Due">Swim meet home 7 pm<br>vs. Northview</span><br><span class = "Note"></span><br><br></td>
+<td class = "odd">9/29<br><span class = "Topic"></span><br><span class = "Due">Swim practice 7-9 pm</span><br><span class = "Note"></span><br><br></td>
+<td class = "odd">9/30<br><span class = "Topic"><a href=" https://grchristianeagles.org/main/event/scid/MI495069399/eventId/72198333/id/1752305/seasonid/4600852/">GRC at Holland Christian </a></span><br><span class = "Due">Swim meet away 7 pm<br>vs. Catholic Central</span><br><span class = "Note"></span><br><br></td>
+<td class = "even">10/1<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<td class = "even">10/2<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<!--  9 > 8 -->
+</tr><tr>
+<td class = "even">10/4<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<td class = "even">10/5<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<td class = "even">10/6<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<td class = "even">10/7<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<td class = "even">10/8<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<td class = "even">10/9<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<!--  10 > 9 -->
+</tr><tr>
+<td class = "even">10/11<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<td class = "even">10/12<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<td class = "even">10/13<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<td class = "even">10/14<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note"></span><br><br></td>
+<td class = "even">10/15<br><span class = "Topic"></span><br><span class = "Due"></span><br><span class = "Note">Student Discovery Day<br>1:30-2:30 pm</span><br><br></td>
 </tr></tbody></table>
