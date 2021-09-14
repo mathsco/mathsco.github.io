@@ -1,0 +1,86 @@
+---
+title: "RStudio Cheat Sheet"
+author: "T.Scofield"
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+output: 
+  pdf_document:
+    fig_height: 2.2
+    fig_width: 4
+  html_document:
+    fig_height: 2.2
+    fig_width: 4
+  word_document:
+    fig_height: 2.2
+    fig_width: 4
+---
+
+```{r, setup, include = FALSE, message=FALSE}
+# load packages that are going to be used
+library(mosaic)      # this loads ggformula (for plotting), etc. too
+library(openintro)   # this loads data sets intro to modern stats 
+library(oibiostat)   # this loads data sets open intro biostats 
+library(pander)      # for tables
+
+# Some customization. You can alter or delete as desired (if you know what you are doing).
+
+theme_set(theme_bw())     # change theme for ggplot2/ggformula
+
+knitr::opts_chunk$set(
+  tidy = FALSE,     # display code as typed (rather than reformatted)
+  size = "small")   # slightly smaller font for code
+```
+
+## Making a list of numbers, calculating statistics from it
+
+Suppose I want things like the mean, sd, median, etc. for the
+list of numbers 9, 11, 7, 13, 10.
+```{r}
+c(9, 11, 7, 13, 10) -> x
+mean(~x)
+```
+
+## Tables
+To make a frequency table
+```{r}
+ssurv <- read.csv("http://scofield.site/teaching/data/csv/ssurv.csv")
+tally(~ selfhandedness, data=ssurv)
+```
+
+If I want a relative frequency table instead
+```{r}
+tally(~ selfhandedness, data=ssurv, format="proportion")
+```
+
+For bivariate data (i.e., two-way tables)
+```{r}
+tally(~ selfhandedness | sex, data=ssurv)
+```
+
+Adding the "format" switch
+```{r}
+tally(~ selfhandedness | sex, data=ssurv, format="percent")
+```
+gives us percentages out of the whole, done for each column.  If we want to reverse the roles of `sex` and `handedness`,
+```{r}
+tally(~ sex | selfhandedness, data=ssurv, format="percent")
+```
+
+Now, to make the total of all combined cells make up 100 percent,
+```{r}
+tally(~selfhandedness | sex, data=ssurv) %>% prop.table()
+```
+
+## Plotting bivariate data
+In the `iris` data frame, there is a column (categorical) called
+`Species` and another column (quantitative) called `Sepal.Width`.
+If I want side-by-side boxplots for the quantitative variable
+broken down by the categorical one
+```{r}
+gf_boxplot(~ Sepal.Width | Species, data=iris)
+```
+Now, try out this modification
+
+```{r}
+gf_boxplot(Species ~ Sepal.Width, data=iris)
+```
+
