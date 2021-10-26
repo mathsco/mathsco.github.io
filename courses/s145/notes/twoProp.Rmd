@@ -1,0 +1,137 @@
+---
+title: "Two-Proportion inference"
+author: "Thomas Scofield"
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+output: 
+  pdf_document:
+    fig_height: 2.2
+    fig_width: 4
+  html_document:
+    fig_height: 2.2
+    fig_width: 4
+  word_document:
+    fig_height: 2.2
+    fig_width: 4
+---
+
+```{r, setup, include = FALSE, message=FALSE}
+# load packages that are going to be used
+library(mosaic)      # this loads ggformula (for plotting), etc. too
+library(openintro)   # this loads data sets intro to modern stats 
+library(oibiostat)   # this loads data sets open intro biostats 
+library(pander)      # for tables
+
+# Some customization. You can alter or delete as desired (if you know what you are doing).
+
+theme_set(theme_bw())     # change theme for ggplot2/ggformula
+
+knitr::opts_chunk$set(
+  tidy = FALSE,     # display code as typed (rather than reformatted)
+  size = "small")   # slightly smaller font for code
+```
+
+First, a fact:
+
+**Theorem**: Suppose $X$ and $Y$ are independent variables, and both
+are normally distributed, with $X\sim \mbox{Norm}(\mu_X, \sigma_X)$
+and $Y\sim \mbox{Norm}(\mu_Y, \sigma_Y)$.  Then their difference
+$X-Y$ also has a normal distribution, with $(X-Y) \sim \mbox{Norm}(\mu_X
+- \mu_Y, \sqrt{\sigma_X^2 + \sigma_Y^2})$.
+
+### Two-Proportion context
+Imagine you have two groups/populations in mind, and you take
+*independent* samples, one of size $n_1$ from Group 1, and one
+of size $n_2$ from Group 2.  The variable you measure is binary
+categorical (sex, Christian or not?, have a certain gene or not?).
+The proportions of *successes* are
+
+ * $p_1$, $p_2$, in the two populations
+ * $\widehat p_1$, $\widehat p_2$, in the two samples
+
+Note that
+
+ * $\widehat p_1$, $\widehat p_2$ should be independent, since
+   the samples are.
+ * If the rules-of-thumb
+   $$ n_1 p_1 \ge 10 \qquad\mbox{and}\qquad n_1(1-p_1)
+   \ge 10$$
+   are met, then
+   $$ p_1 \sim \mbox{Norm}\left(p_1,
+   \sqrt{\displaystyle{\frac{p_1(1-p_1)}{n_1}}}\right). $$
+ * Likewise, if
+   $$ n_2 p_2 \ge 10 \qquad\mbox{and}\qquad n_2(1-p_2)
+   \ge 10$$
+   then
+   $$ p_2 \sim \mbox{Norm}\left(p_2,
+   \sqrt{\displaystyle{\frac{p_2(1-p_2)}{n_2}}}\right). $$
+
+Under these conditions, the theorem tells us
+$$ \widehat p_1 - \widehat p_2 \sim \mbox{Norm}\left(p_1 - p_2,
+  \sqrt{\displaystyle{\frac{p_1(1-p_1)}{n_1}
+  + \frac{p_2(1-p_2)}{n_2}}}\right).$$
+This is a statement about the sampling distribution for
+$\widehat p_1 - \widehat p_2$---that (under conditions) it is
+approximately normal.  Thus, the *spread* of that sampling distribution
+is rightly called the **standard error** of $\widehat p_1 -
+\widehat p_2$:
+$$ \mbox{SE}_{\widehat p_1 - \widehat p_2} =
+  \sqrt{\displaystyle{\frac{p_1(1-p_1)}{n_1}
+  + \frac{p_2(1-p_2)}{n_2}}}.$$
+  
+## Confidence Intervals for $p_1 - p_2$
+It's going to be the usual thing:
+$$ \mbox{(point estimate)} \pm (z^*)
+  (\mbox{SE}_{\widehat p_1 - \widehat p_2}) $$
+or, adapting to our situation (and the fact that we do not know
+the values of $p_1$, $p_2$):
+$$ (\widehat p_1 - \widehat p_2) \pm (z^*)
+  \sqrt{\displaystyle{\frac{\widehat p_1(1-\widehat p_1)}{n_1}
+  + \frac{\widehat p_2(1-\widehat p_2)}{n_2}}}.$$
+  
+Examples:
+
+1. **One True Love** (see Example 6.19).  Here (summarized data)
+  $$ \widehat p_f = \frac{363}{1412} \doteq 0.257
+  \qquad\mbox{and}\qquad
+  \widehat p_m = \frac{372}{1213} \doteq 0.307. $$
+
+2. **Scolding Crows** (see Data 6.3).  Here (summarized data)
+  $$ \widehat p_1 = \frac{158}{444} \doteq 0.356
+  \qquad\mbox{and}\qquad
+  \widehat p_2 = \frac{109}{922} \doteq 0.118. $$
+  Group 1 represents the "taggers".
+
+3. **KidsFeet** (available when Mosaic package is loaded).
+  Here, we have raw data on variables `biggerfoot` and `domhand`.
+  
+
+\newpage
+Carrying out the **Scolding Crows** example, we have
+
+ * point estimate
+```{r}
+pointEst <- 158/444 - 109/922
+pointEst
+```
+ * standard error
+```{r}
+se = sqrt(158/444*(1 - 158/444)/444 + 109/922*(1-109/922)/922)
+se
+```
+ * z*-value
+```{r}
+zstar <- qnorm(.99)
+zstar
+```
+
+And the 98% CI is
+```{r}
+pointEst + c(-1,1)*zstar*se
+```
+
+If we use `prop.test()` as a one-stop-shopping method to solve
+(saving us from the individual calculations)
+```{r}
+prop.test(c(158,109), c(444,922), conf.level=.98)
+```
+
