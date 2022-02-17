@@ -76,18 +76,20 @@ def vrk(f, y0, t0, tFin, numSteps, keepCoords):
             w.append(tuple([n(y[j]) for j in keepIdxs]))
     return w
 
-# Here the specifics are for the "predator-prey problem"
 var('t x y u v')
-f(t,x,y) = (1 - x*y/2, -0.75*y + 0.25*x*y)
+
+# Here the specifics are for the "predator-prey problem"
+f(t,x,y) = (x - x*y/2, -0.75*y + 0.25*x*y)
 keepCoords = [1,2]
 pts = vrk(f, [1,2], 0, 7, 200, keepCoords)
-list_plot(pts, plotjoined=True)
 
 # Here the specifics are for the "two-body problem" (satellite orbiting another body)
 var('t x y u v')
 f(t,x,u,y,v) = (u, -x/(x^2+y^2)^(3/2), v, -y/(x^2+y^2)^(3/2))
 keepCoords = [1,3]
 pts = vrk(f, [1,0,0,0.75], 0, 50, 2500, keepCoords)
+
+# Plotting
 list_plot(pts, plotjoined=True)
 </script>
 </div>
