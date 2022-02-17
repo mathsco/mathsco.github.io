@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Vector Runge-Kutta Method</title>
+    <script src="https://sagecell.sagemath.org/static/.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>sagecell.makeSagecell({inputLocation: ".sage"});</script>
+    <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Runge-Kutta Method for a vector (system) 1st-order DE</h1>
+<p>(By Thomas Scofield)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+ \textrm{Use this app to carry out the Runge-Kutta method on a 1st-order}\\
+ \textrm{system of ODEs } y' = g(t,y), \quad y(t_0)=y_0.
+</div>
+
+<hr>
+
+<div class="sage">
+<script type="text/x-sage">
+# vrkstep is not the full program, just a subroutine of it.
+# See the main program vrk below.
+def vrkstep(f, curr_y, t, h):
+    y = vector(RR, curr_y)
+    K1 = vector(RR, f(t, *y))
+    nexty = y + h*K1/2
+    K2 = vector(RR, f(t + h/2, *nexty))
+    nexty = y + h*K2/2
+    K3 = vector(RR, f(t + h/2, *nexty))
+    nexty = y + h*K3
+    K4 = vector(RR, f(t + h, *nexty))
+    return (y + (K1 + 2*K2 + 2*K3 + K4) * h/6)
+
+# This cell is the "program".  It must be evaluated, but will not actually
+# do anything until the specifics of the problem are entered and the program
+# is "called" (see the next cell).
+def vrk(f, y0, t0, tFin, numSteps, keepCoords):
+    h = (tFin - t0)/numSteps
+    w = []
+    t = t0
+    y = vector(RR, y0)
+    if (keepCoords.count(0) > 0):
+        keepCoords.pop(keepCoords.index(0))
+        keep_t = True
+        nEntry = [n(t)]
+        nEntry.extend([n(y0[j-1]) for j in keepCoords])
+        w.append(tuple(nEntry))
+    else:
+        keep_t = False
+        w.append(tuple([y0[j-1] for j in keepCoords]))
+    keepIdxs = [j-1 for j in keepCoords]
+    for i in range(1, numSteps+1):
+        y = vrkstep(f, y, t, h)
+        t = t0 + i*h
+        if keep_t:
+            nEntry = [n(t)]
+            nEntry.extend([n(y[j]) for j in keepIdxs])
+            w.append(tuple(nEntry))
+        else:
+            w.append(tuple([n(y[j]) for j in keepIdxs]))
+    return w
+
+# Here the specifics are for the "predator-prey problem"
+var('t x y u v')
+f(t,x,y) = (1 - x*y/2, -0.75*y + 0.25*x*y)
+keepCoords = [1,2]
+pts = vrk(f, [1,2], 0, 7, 200, keepCoords)
+list_plot(pts, plotjoined=True)
+
+# Here the specifics are for the "two-body problem" (satellite orbiting another body)
+var('t x y u v')
+f(t,x,u,y,v) = (u, -x/(x^2+y^2)^(3/2), v, -y/(x^2+y^2)^(3/2))
+keepCoords = [1,3]
+pts = vrk(f, [1,0,0,0.75], 0, 50, 2500, keepCoords)
+list_plot(pts, plotjoined=True)
+</script>
+</div>
+
+<hr>
+Last modified on Mar. 5, 2019.
+</body>
+</html>
