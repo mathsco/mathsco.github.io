@@ -1,0 +1,345 @@
+institution, sat, state, enrollment, cccu
+"Massachusetts Institute of Technology", 1540, MA, 11254, N
+"Baylor University", 1293, TX, 19297, N
+"Bowdoin College", 1405, ME, 1777, N
+"Pennsylvania State University", 1265, PA, 46810, N
+"Pomona College", 1465, CA, 1475, N
+"Syracuse University", 1275, NY, 21322, N
+"Temple University", 1238, PA, 37236, N
+"University of Massachusetts Amherst", 1290, MA, 31642, N
+"Wake Forest University", 1390, NC, 8789, N
+"Wellesley College", 1437, MA, 2280, N
+"Williams College", 1479, MA, 1987, N
+"Kalamazoo College", 1260, MI, 1451, N
+"Harvard University", 1520, MA, 30391, N
+"Lawrence Tech University", 1160, MI, 2812, N
+"Northern Michigan University", 1050, MI, 7368, N
+"North Central Michigan College", 0, MI, 1748, N
+"Olivet College", 1010, MI, 1023, N
+"Hillsdale College", 1363, MI, 1500, N
+"Northwestern Michigan College", 0, MI, 3278, N
+"Stanford University", 1500, CA, 15953, N
+"Yale University", 1520, CT, 12060, N
+"Grand Valley State University", 1150, MI, 23350, N
+"Villanova University", 1390, PA, 11032, N
+"University of Michigan", 1430, MI, 47907, N
+"University of Pennsylvania", 1520, PA, 26552, N
+"University of Chicago", 1540, IL, 17834, N
+"University of Wisconsin Madison", 1360, WI, 44640, N
+"James Madison University", 1200, VA, 21594, N
+"University of Illinois", 1330, IL, 52679, N
+"University of Pittsburgh", 1330, PA, 32277, N
+"University of Maryland", 1380, MD, 40709, N
+"University of California Irvine", 1330, CA, 36303, N
+"University of California Davis", 1280, CA, 39074, N
+"University of California Berkeley", 1420, CA, 42327, N
+"University of California Santa Barbara", 1350, CA, 26179, N
+"University of California Santa Cruz", 1260, CA, 19161, N
+"University of California Riverside", 1180, CA, 26434, N
+"University of California San Diego", 1380, CA, 39576, N
+"University of Virginia", 1420, VA, 25628, N
+"University of Redlands", 1140, CA, 4566, N
+"University of Louisville", 1160, KY, 22211, N
+"University of Idaho", 1110, ID, 10791, N
+"University of Montana", 1150, MT, 9808, N
+"University of Mount Union", 1060, OH, 2178, N
+"University of Nevada Las Vegas", 1140, NV, 31142, N
+"Virginia Commonwealth University", 1160, VA, 29070, N
+"College of William and Mary", 1400, VA, 8939, N
+"College of the Ozarks", 1170, MO, 1489, Y
+"New York University", 1460, NY, 52775, N
+"Oklahoma Christian University", 1140, OK, 2055, Y
+"Mount Vernon Nazarene University", 1120, OH, 2140, Y
+"Xavier University", 1160, OH, 7061, N
+"Southern Methodist University", 1350, TX, 12373, N
+"Oklahoma Baptist University", 1110, OK, 1763, Y
+"Eastern Michigan University", 1090, MI, 16294, N
+"Central Michigan University", 1110, MI, 17311, N
+"Western Michigan University", 1120, MI, 19887, N
+"Bowling Green State University", 1120, OH, 18142, N
+"Montana State University", 1210, MT, 16218, N
+"Lake Superior State University", 1040, MI, 1909, N
+"Saginaw Valley State University", 1080, MI, 8028, N
+"Eastern Illinois University", 1050, IL, 8626, N
+"Hardin Simmons University", 1060, TX, 2128, Y
+"Tulane University", 1420, LA, 13927, N
+"Tufts University", 1460, MA, 12219, N
+"Regent University", 1080, VA, 10483, Y
+"Houston Baptist University", 1090, TX, 3963, Y
+"Anderson University", 1060, IN, 1406, Y
+"Indiana Wesleyan University", 1110, IN, 3108, Y
+"Wright State University", 1090, OH, 10936, N
+"Youngstown State University", 1080, OH, 11835, N
+"Liberty University", 1150, VA, 93349, N
+"George Fox University", 1130, OR, 4106, Y
+"Bucknell University", 1340, PA, 3726, N
+"Whitworth University", 1160, WA, 2756, Y
+"Biola University", 1180, CA, 5815, Y
+"Hannibal LaGrange University", 1200, MO, 739, Y
+"Dartmouth College", 1500, NH, 6292, N
+"Roberts Wesleyan College", 1140, NY, 1706, Y
+"Carroll College", 1190, MT, 1108, N
+"Luther College", 1160, IA, 1802, N
+"St. Mary's College", 1160, IN, 1581, N
+"Boston College", 1420, MA, 14934, N
+"Emmanuel College", 1200, MA, 1946, Y
+"Davidson College", 1380, MA, 1983, N
+"Wabash College", 1220, IN, 868, N
+"Canisius College", 1140, NY, 2820, N
+"Virginia Tech", 1270, VA, 37024, N
+"Amherst College", 1500, MA, 1745, N
+"Adrian College", 1020, MI, 1865, N
+"Albion College", 1050, MI, 1506, N
+"Augsburg College", 1060, MN, 3346, N
+"Wheaton College", 1330, IL, 1670, N
+"Hobart William Smith Colleges", 1260, NY, 1833, N
+"Skidmore College", 1310, NY, 2582, N
+"Oberlin College", 1320, OH, 2658, N
+"Muhlenberg College", 1260, PA, 2067
+"Westmont College", 1240, CA, 1226, Y
+"Lycoming College", 1110, PA, 1065, N
+"Hope College", 1200, MI, 3061, N
+"Earlham College", 1220, IN, 815, N
+"Calvin College", 1210, MI, 3307, Y
+"Goshen College", 1060, IN, 899, N
+"Marietta College", 1120, OH, 1254, N
+"Covenant College", 1180, GA, 911, Y
+"Franklin College", 1060, IN, 994, N
+"Eureka College", 1030, IL, 511, N
+"Austin College", 1210, TX, 1302, N
+"Montreat College", 1030, NC, 950, Y
+"Gordon College", 1150, MA, 1816, Y
+"College of Charleston", 1160, SC, 10384, N
+"Michigan Tech University", 1260, MI, 6873, N
+"Spring Arbor University", 1090, MI, 3118, Y
+"Lubbock Christian University", 1070, TX, 1664, Y
+"Augustana University", 1220, SD, 2019, N
+"Heidelberg University", 1070, OH, 1230, N
+"Belhaven University", 1070, MS, 4999, Y
+"Colgate University", 1390, NY, 3054, N
+"Madonna University", 1020, MI, 2792, N
+"North Park University", 1030, IL, 2831, Y
+"Northwood University", 1090, MI, 2541, N
+"Bethel University", 1190, MN, 3814, Y
+"Seattle University", 1230, WA, 7050, N
+"Seattle Pacific University", 1085, WA, 3601, Y
+"Brandeis University", 1420, MA, 5440, N
+"Ashland University", 1100, OH, 4447, N
+"Duke University", 1520, NC, 16172, N
+"Millikin University", 1050, IL, 1982, N
+"Andrews University", 1210, MI, 3162, N
+"California Lutheran University", 1160, CA, 4027, N
+"DePauw University", 1240, IN, 1752, N
+"Southwestern University", 1210, TX, 1506, N
+"Brown University", 1500, RI, 9948, N
+"Emory University", 1460, GA, 13997, N
+"Rice University", 1520, TX, 7643, N
+"University of Notre Dame", 1480, IN, 12809, N
+"Stony Brook University", 1340, NY, 26782, N
+"SUNY Binghamton", 1370, NY, 18148, N
+"Carnegie Mellon University", 1510, PA, 13519, N
+"Georgetown University", 1470, DC, 19371, N
+"Pepperdine University", 1310, CA, 9554, N
+"Rutgers University", 1300, NJ, 50411, N
+"Georgia Tech University", 1450, GA, 39771, N
+"Georgia State University", 1450, GA, 36360, N
+"Northwest University", 1110, WA, 1184, Y
+"Northwestern University", 1490, IL, 22603, N
+"Northwestern College", 1110, IA, 1496, Y
+"Hanover College", 1150, OH, 1028, N
+"Northeastern University", 1480, MA, 22905, N
+"Cornell University", 1470, NY, 23620, N
+"Appalachian State University", 1160, NC, 20023, N
+"Columbia University", 1520, NY, 30135, N
+"Purdue University", 1300, IN, 46655, N
+"Princeton University", 1510, NJ, 7853, N
+"Valparaiso University", 1180, IN, 3122, N
+"Southeastern University", 1080, FL, 9546, Y
+"Ohio State University", 1320, OH, 61369, N
+"Ohio Wesleyan University", 1160, OH, 1426, N
+"Ferris State University", 1050, MI, 11165, N
+"Case Western Reserve University", 1430, OH, 11465, N
+"Vanderbilt University", 1520, TN, 13537, N
+"Washington University", 1520, MS, 15449, N
+"Washington State University", 1120, WA, 31159, N
+"University of Washington Seattle", 1330, WA, 48149, N
+"University of Toledo", 1100, OH, 18319, N
+"Washington and Lee University", 1430, VA, 2183, N
+"Lehigh University", 1350, PA, 7067, N
+"Trinity University", 1340, TX, 2677, N
+"Clemson University", 1300, SC, 26406, N
+"Johns Hopkins University", 1520, MD, 28890, N
+"Arizona State University", 1210, AZ, 74795, N
+"Michigan State University", 1200, MI, 49695, N
+"North Carolina State University", 1320, N
+"San Diego State University", 1200, CA, 36334, N
+"Boston University", 1410, MA, 32718, N
+"Auburn University", 1240, AL, 30737, N
+"Miami University", 1270, OH, 18880, N
+"Gonzaga University", 1260, WA, 7295, N
+"Texas Christian University", 1220, TX, 11379, N
+"Southern Methodist University", 1350, N
+"Indiana University", 1240, IN, 43064, N
+"Loyola University Chicago", 1230, IL, 16893, N
+"Brigham Young University", 1310, UT, 36461, N
+"Drexel University", 1280, PA, 23589, N
+"Butler University", 1240, IN, 5544, N
+"Marquette University", 1250, WI, 11550, N
+"Oakland University", 1100, MI, 18552, N
+"Aurora University", 1060, IL, 6265, N
+"Lander University", 1020, SC, 3513, N
+"Louisiana State University", 1200, LA, 34285, N
+"Iowa State University", 1160, IA, 31822, N
+"Oregon State University", 1200, OR, 32312, N
+"Oregon University", 1190, OR, 21752, N
+"West Virginia University", 1130, WV, 26269, N
+"Boise State University", 1120, ID, 24069, N
+"Cleveland State University", 1060, OH, 15247, N
+"George Mason University", 1200, VA, 38541, N
+"Texas Tech University", 1160, TX, 40322, N
+"Western Washington University", 1180, WA, 15197, N
+"University of Rochester", 1420, NY, 11741, N
+"University of Arkansas", 1190, AR, 27562, N
+"University of Cincinnati", 1230, OH, 40826, N
+"University of Nebraska", 1220, NE, 25108, N
+"University of Dallas", 1240, TX, 2489, N
+"University of Arizona", 1220, AZ, 45601, N
+"University of Hawaii", 1180, HI, 18025, N
+"Texas A&M University", 1270, TX, 70418, N
+"University of Georgia", 1360, GA, 39147, N
+"University of Iowa", 1210, IA, 30318, N
+"University of North Texas", 1150, TX, 40953, N
+"University of Minnesota", 1350, MN, 52017, N
+"University of Houston", 1220, TX, 47090, N
+"University of Utah", 1240, UT, 33081, N
+"University of Tennessee", 1220, TN, 30559, N
+"University of Miami", 1340, FL, 17809, N
+"University of North Carolina", 1390, NC, 30092, N
+"University of North Florida", 1140, FL, 16926, N
+"University of Florida", 1380, FL, 53372, N
+"University of Dayton", 1190, OH, 11650, N
+"University of Central Florida", 1250, FL, 71881, N
+"University of West Florida", 1150, FL, 13061, N
+"University of South Florida", 1240, FL, 50626, N
+"Florida State University", 1290, FL, 43569, N
+"Florida Southern University", 1200, FL, 3413, N
+"Florida International University", 1190, FL, 58836, N
+"Florida Gulf Coast University", 1140, FL, 15358, N
+"Florida Atlantic University", 1140, FL, 30805, N
+"University of Southern California", 1440, CA, 46287, N
+"University of Texas Arlington", 1150, TX, 48072, N
+"University of Texas San Antonio", 1120, TX, 34742, N
+"University of Vermont", 1260, VT, 13292, N
+"University of Rhode Island", 1180, RI, 17649, N
+"University of Kansas", 1200, KS, 26744, N
+"University of Alabama", 1200, AL, 37840, N
+"University of Kentucky", 1180, KY, 29986, N
+"University of Alabama Tuscaloosa", 1200, AL, 37840, N
+"University of Colorado Boulder", 1240, CO, 37437, N
+"University of Detroit Mercy", 1160, MI, 4987, N
+"Colorado State University", 1180, CO, 32428, N
+"Utah State University", 1200, UT, 27691, N
+"Wichita State University", 1140, KS, 14999, N
+"John Carroll University", 1160, OH, 3278, N
+"American University", 1310, DC, 14001, N
+"Ohio University", 1150, OH, 25714, N
+"Lamar University", 1040, TX, 16637, N
+"Seton Hall University", 1230, NJ, 9814, N
+"California Baptist University", 1060, CA, 11317, Y
+"Abilene Christian University", 1120, TX, 5291, Y
+"Colorado School of Mines", 1360, CO, 6744, N
+"Olin College of Engineering", 1500, MA, 310, N
+"Austin College", 1210, TX, 1302, N
+"US Air Force Academy", 1330, CO, 4307, N
+"US Naval Academy", 1340, MD, 4594, N
+"US Military Academy", 1330, NY, 4536, N
+"Citadel Military College", 1120, SC, 3740, N
+"US Coast Guard Academy", 1310, CN, 1056, N
+"Rhode Island School of Design", 1360, RI, 2227, N
+"Swarthmore College", 1470, PA, 1437, N
+"Lafayette College", 1350, PA, 2514, N
+"Haverford College", 1440, PA, 1307, N
+"Harvey Mudd College", 1530, CA, 854, N
+"Mount Holyoke College", 1390, MA, 2040, N
+"Carleton College", 1430, MN, 1940, N
+"Middlebury College", 1430, VT, 2669, N
+"Rhodes College", 1310, TN, 1875, N
+"Kenyon College", 1370, OH, 1615, N
+"Messiah College", 1200, PA, 3370, N
+"Claremont McKenna College", 1420, CA, 1264, N
+"Colby College", 1450, ME, 2155, N
+"Rensselaer Polytechnic Institute", 1400, NY, 7501, N
+"Virginia Military Institute", 1170, VA, 1698, N
+"Cleveland Institute of Art", 1190, OH, 599, N
+"Rose Hulman Institute", 1360, IN, 1990, N
+"Florida Institute of Technology", 1230, FL, 6775, N
+"Illinois Institute of Technology", 1300, IL, 6325, N
+"Illinois Wesleyan University", 1200, IL, 1636, N
+"Bradley University", 1180, IL, 5855, N
+"Cedarville University", 1230, OH, 4461, N
+"Trine University", 1110, IN, 3573, N
+"Oklahoma Baptist University", 1110, OK, 1763, Y
+"Point Loma Nazarene University", 1200, CA, 4616, Y
+"Malone University", 1090, OH, 1463, Y
+"King College", 1060, TN, 1746, N
+"Kuyper College", 1050, MI, 152, Y
+"Grinnell College", 1450, IA, 1493, N
+"Knox College", 1200, IL, 1154, N
+"Greenville College", 990, IL, 994, Y
+"Dordt College", 1170, IA, 1662, N
+"Trinity Christian College", 1080, IL, 1086, Y
+"Judson College", 1160, AL, 229, Y
+"Judson University", 1000, IL, 1173, Y
+"Cornerstone University", 1050, MI, 1917, Y
+"Knox College", 1200, IL, 1154, N
+"Whitman College", 1330, WA, 1360, N
+"Macalester College", 1370, MN, 2049, N
+"Messiah College", 1200, PA, 3370, N
+"Allegheny College", 1250, PA, 1667, N
+"Ursinus College", 1240, PA, 1493, N
+"Carthage College", 1120, WI, 2763, N
+"Holy Cross College", 1230, IN, 455, N
+"Thomas Aquinas College", 1290, CA, 462, N
+"Aquinas College", 1240, TN, 342, N
+"Sarah Lawrence College", 1320, NY, 1506, N
+"Vassar College", 1440, NY, 2435, N
+"Grace College", 1130, IN, 1901, Y
+"Elmhurst College", 1080, IL, 3421, N
+"Aquinas College", 1120, MI, 1517, N
+"Erskine College", 1010, SC, 943, Y
+"Eastern Nazarene College", 1030, MA, 699, Y
+"San Diego Christian College", 1000, CA, 512, Y
+"Southwest Baptist University", 1050, MO, 3039, Y
+"Trinity International University", 1010, IL, 1454, Y
+"Olivet Nazarene University", 1080, IL, 3764, Y
+"North Central University", 1050, MN, 1062, Y
+"Simpson University", 1070, CA, 855, Y
+"University of Connecticut", 1280, CT, 27215, N
+"University of Akron", 1110, OH, 16094, N
+"University of Wyoming", 1140, WY, 11829, N
+"University of Findlay", 1120, OH, 4829, N
+"Clarkson University", 1250, NY, 4025, N
+"St. Joseph University", 1200, PA, 6779, N
+"Samford University", 1150, AL, 5729, N
+"Marshall University", 1040, WV, 11958, N
+"Kent State University", 1120, OH, 26822, N
+"Ohio Northern University", 1210, OH, 2817, N
+"Oral Roberts University", 1100, OK, 4317, Y
+"Kettering University", 1250, MI, 2030, N
+"South Dakota State University", 1250, SD, 11405, N
+"Wayne State University", 1100, MI, 26241, N
+"Illinois State University", 1120, IL, 20720, N
+"LeTourneau University", 1220, TX, 3122, Y
+"Otterbein University", 1110, OH, 2652, N
+"Lee University", 1090, TN, 5204, Y
+"Huntington University", 1090, IN, 1391, Y
+"Asbury University", 1200, KY, 1741, Y
+"John Brown University", 1200, AR, 2343, Y
+"St. Louis University", 1270, MO, 12229, N
+"St. Lawrence University", 1270, NY, 2319, N
+"Lawrence University", 1300, WI, 1430, N
+"Truman State University", 1210, MO, 4655, N
+"Oklahoma State University", 1140, OK, 24535, N
+"Arcadia University", 1130, PA, 3300, N
+"St. Olaf College", 1270, MN, 2953, N
+"University of Oklahoma", 1200, OK, 27772, N
