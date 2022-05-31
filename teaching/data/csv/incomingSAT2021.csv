@@ -121,6 +121,7 @@ institution,sat,state,enrollment,cccu
 "North Park University",1030,IL,2831,Y
 "Northwood University",1090,MI,2541,N
 "Bethel University",1190,MN,3814,Y
+"Bethel University",1058,IN,1362,Y
 "Seattle University",1230,WA,7050,N
 "Seattle Pacific University",1085,WA,3601,Y
 "Brandeis University",1420,MA,5440,N
@@ -146,6 +147,7 @@ institution,sat,state,enrollment,cccu
 "Northwest University",1110,WA,1184,Y
 "Northwestern University",1490,IL,22603,N
 "Northwestern College",1110,IA,1496,Y
+"Crown College",1140,MN,1485,Y
 "Hanover College",1150,OH,1028,N
 "Northeastern University",1480,MA,22905,N
 "Cornell University",1470,NY,23620,N
@@ -283,6 +285,7 @@ institution,sat,state,enrollment,cccu
 "Oklahoma Baptist University",1110,OK,1763,Y
 "Point Loma Nazarene University",1200,CA,4616,Y
 "Malone University",1090,OH,1463,Y
+"Milligan College",1198,TN,0,Y
 "King College",1060,TN,1746,N
 "Kuyper College",1050,MI,152,Y
 "Grinnell College",1450,IA,1493,N
@@ -293,6 +296,7 @@ institution,sat,state,enrollment,cccu
 "Judson College",1160,AL,229,Y
 "Judson University",1000,IL,1173,Y
 "Cornerstone University",1050,MI,1917,Y
+"Lipscomb University",1190,TN,4884,Y
 "Knox College",1200,IL,1154,N
 "Whitman College",1330,WA,1360,N
 "Macalester College",1370,MN,2049,N
@@ -306,6 +310,7 @@ institution,sat,state,enrollment,cccu
 "Sarah Lawrence College",1320,NY,1506,N
 "Vassar College",1440,NY,2435,N
 "Grace College",1130,IN,1901,Y
+"Houghton College",1180,NY,902,Y
 "Elmhurst College",1080,IL,3421,N
 "Aquinas College",1120,MI,1517,N
 "Erskine College",1010,SC,943,Y
@@ -341,6 +346,7 @@ institution,sat,state,enrollment,cccu
 "St. Lawrence University",1270,NY,2319,N
 "Lawrence University",1300,WI,1430,N
 "Truman State University",1210,MO,4655,N
+"Azusa Pacific University",1110,CA,9006,Y
 "Oklahoma State University",1140,OK,24535,N
 "Arcadia University",1130,PA,3300,N
 "St. Olaf College",1270,MN,2953,N
@@ -356,5 +362,6 @@ institution,sat,state,enrollment,cccu
 "Patrick Henry College",1310,VA,380,N
 "Pensacola Christian College",1000,FL,4500,N
 "Sattler College",0,MA,75,N
+"Geneva College",1127,PA,1349,Y
 "Wyoming Catholic College",1282,WY,171,N
 "University of Oklahoma",1200,OK,27772,N
