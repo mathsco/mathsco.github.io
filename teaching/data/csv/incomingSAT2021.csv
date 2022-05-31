@@ -21,12 +21,11 @@ institution,sat,state,enrollment,cccu
 "Aurora University",1060,IL,6265,N
 "Austin College",1210,TX,1302,N
 "Azusa Pacific University",1110,CA,9006,Y
-
 "Baylor University",1293,TX,19297,N
 "Belhaven University",1070,MS,4999,Y
 "Berea College",1123,KY,1688,N
-"Bethel University",1190,MN,3814,Y
 "Bethel University",1058,IN,1362,Y
+"Bethel University",1190,MN,3814,Y
 "Bethlehem College",1280,MN,200,N
 "Biola University",1180,CA,5815,Y
 "Boise State University",1120,ID,24069,N
@@ -124,12 +123,12 @@ institution,sat,state,enrollment,cccu
 "Houghton College",1180,NY,902,Y
 "Houston Baptist University",1090,TX,3963,Y
 "Huntington University",1090,IN,1391,Y
+"Illinois Institute of Technology",1300,IL,6325,N
 "Illinois State University",1120,IL,20720,N
+"Illinois Wesleyan University",1200,IL,1636,N
 "Indiana Wesleyan University",1110,IN,3108,Y
 "Indiana University",1240,IN,43064,N
 "Iowa State University",1160,IA,31822,N
-"Illinois Institute of Technology",1300,IL,6325,N
-"Illinois Wesleyan University",1200,IL,1636,N
 "James Madison University",1200,VA,21594,N
 "John Brown University",1200,AR,2343,Y
 "John Carroll University",1160,OH,3278,N
@@ -226,18 +225,18 @@ institution,sat,state,enrollment,cccu
 "Rose Hulman Institute",1360,IN,1990,N
 "Rutgers University",1300,NJ,50411,N
 "Saginaw Valley State University",1080,MI,8028,N
-"St. Louis University",1270,MO,12229,N
-"St. Lawrence University",1270,NY,2319,N
-"St. Mary's College",1160,IN,1581,N
 "St. Joseph University",1200,PA,6779,N
+"St. Lawrence University",1270,NY,2319,N
+"St. Louis University",1270,MO,12229,N
+"St. Mary's College",1160,IN,1581,N
 "St. Olaf College",1270,MN,2953,N
 "Samford University",1150,AL,5729,N
 "San Diego Christian College",1000,CA,512,Y
 "San Diego State University",1200,CA,36334,N
 "Sarah Lawrence College",1320,NY,1506,N
 "Sattler College",0,MA,75,N
-"Seattle University",1230,WA,7050,N
 "Seattle Pacific University",1085,WA,3601,Y
+"Seattle University",1230,WA,7050,N
 "Seton Hall University",1230,NJ,9814,N
 "Simpson University",1070,CA,855,Y
 "Skidmore College",1310,NY,2582,N
@@ -266,12 +265,12 @@ institution,sat,state,enrollment,cccu
 "Tufts University",1460,MA,12219,N
 "Tulane University",1420,LA,13927,N
 "US Air Force Academy",1330,CO,4307,N
-"US Naval Academy",1340,MD,4594,N
-"US Military Academy",1330,NY,4536,N
 "US Coast Guard Academy",1310,CT,1056,N
+"US Military Academy",1330,NY,4536,N
+"US Naval Academy",1340,MD,4594,N
+"University of Akron",1110,OH,16094,N
 "University of Alabama",1200,AL,37840,N
 "University of Alabama Tuscaloosa",1200,AL,37840,N
-"University of Akron",1110,OH,16094,N
 "University of Arizona",1220,AZ,45601,N
 "University of Arkansas",1190,AR,27562,N
 "University of California Berkeley",1420,CA,42327,N
@@ -296,9 +295,9 @@ institution,sat,state,enrollment,cccu
 "University of Houston",1220,TX,47090,N
 "University of Idaho",1110,ID,10791,N
 "University of Illinois",1330,IL,52679,N
+"University of Iowa",1210,IA,30318,N
 "University of Kansas",1200,KS,26744,N
 "University of Kentucky",1180,KY,29986,N
-"University of Iowa",1210,IA,30318,N
 "University of Louisville",1160,KY,22211,N
 "University of Maryland",1380,MD,40709,N
 "University of Massachusetts Amherst",1290,MA,31642,N
