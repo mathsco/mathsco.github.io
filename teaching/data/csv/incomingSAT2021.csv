@@ -86,7 +86,7 @@ institution,sat,state,enrollment,cccu
 "Emory University",1460,GA,13997,N
 "Erskine College",1010,SC,943,Y
 "Eureka College",1030,IL,511,N
-"Faith Bible College",0,VA,0,N
+"Faith Bible College",0,ME,0,N
 "Ferris State University",1050,MI,11165,N
 "Florida Atlantic University",1140,FL,30805,N
 "Florida Gulf Coast University",1140,FL,15358,N
@@ -171,7 +171,7 @@ institution,sat,state,enrollment,cccu
 "Michigan State University",1200,MI,49695,N
 "Michigan Tech University",1260,MI,6873,N
 "Middlebury College",1430,VT,2669,N
-"Milligan College",1198,TN,0,Y
+"Milligan College",1198,TN,1335,Y
 "Millikin University",1050,IL,1982,N
 "Montana State University",1210,MT,16218,N
 "Montreat College",1030,NC,950,Y
@@ -215,6 +215,7 @@ institution,sat,state,enrollment,cccu
 "Point Loma Nazarene University",1200,CA,4616,Y
 "Pomona College",1465,CA,1475,N
 "Princeton University",1510,NJ,7853,N
+"Principia College",1151,IL,450,N
 "Purdue University",1300,IN,46655,N
 "Regent University",1080,VA,10483,Y
 "Rensselaer Polytechnic Institute",1400,NY,7501,N
