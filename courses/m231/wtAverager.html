@@ -46,7 +46,7 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
 
 				<div class="row"> 
 					<div class="col-xs-12 form-group">
-						<div class="col-xs-6"><p>All WebWork Homework</p></div>
+						<div class="col-xs-6"><p>Instant-Check Homework</p></div>
 						<div class="col-xs-3">
 							<label class="sr-only" for="grade1">Grade 1</label>
 							<input class="form-control" type="text" id="grade1" value="" placeholder="WebWork gpa" />
@@ -74,7 +74,7 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
 
 				<div class="row"> 
 					<div class="col-xs-12 form-group">
-						<div class="col-xs-6"><p>Exam 1</p></div>
+						<div class="col-xs-6"><p>Midterm 1</p></div>
 						<div class="col-xs-3">
 							<label class="sr-only" for="grade3">Grade 3</label>
 							<input class="form-control" type="text" id="grade3" value="" placeholder="e.g. 3.2" />
@@ -88,7 +88,7 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
 
 				<div class="row"> 
 					<div class="col-xs-12 form-group">
-						<div class="col-xs-6"><p>Exam 2</p></div>
+						<div class="col-xs-6"><p>Midterm 2</p></div>
 						<div class="col-xs-3">
 							<label class="sr-only" for="grade4">Grade 4</label>
 							<input class="form-control" type="text" id="grade4" value="" />
@@ -102,7 +102,7 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
 
 				<div class="row"> 
 					<div class="col-xs-12 form-group">
-						<div class="col-xs-6"><p>Exam 3</p></div>
+						<div class="col-xs-6"><p>Midterm 3</p></div>
 						<div class="col-xs-3">
 							<label class="sr-only" for="grade5">Grade 5</label>
 							<input class="form-control" type="text" id="grade5" value="" />
@@ -220,11 +220,15 @@ reported result includes a pctg. symbol, but it really is a gpa, not a percentag
 <h3>Example Calculation</h3>
 
 <p>Here is an example.
-Let's say the homework assignments you've had to date are worth a total
-of 73 points, and you have earned 61.  That is 61/73 = 0.836, or about
-83.6%.  Assuming a <b>straight scale</b> for homework (which equates 80%
-with a gpa of 2.5, and 90% with a gpa of 3.5), this can be viewed as
-having a gpa of 2.86 on homework.
+Let's say you've got perfect scores on instant-checked homework thus far.
+Since, on a straight scale, 85% would correspond to a gpa of 3.0 and 95\%
+would correspond to a gpa of 4.0, your 100% can be viewed as carrying a
+gpa of 4.5.
+
+Now, perhaps on hand-checked assignments to date you have earned 61 out of
+73 possible points, roughtly 61/73 = 0.836 or 83.6%.  On a <b>straight
+scale</b>, 80% corresponds to a gpa of 2.5, and 90% with a gpa of 3.5,
+and so your 83.6% can be viewed as corresponding to a gpa of 2.86.
 
 <p>
 Let's say, as well, that you have taken two tests, with one test being
@@ -234,10 +238,15 @@ other in the high C range (let's give it a gpa of 2.35).</p>
 <p>To estimate your grade so far, follow these steps:</p>
 
 <ol>
-	<li>Multiply each gpa by its weight. In this example, you currently have a 2.86 on homework, worth 15% of your overall grade.  So multiply 2.86 x 15 = 42.9.  Do the same with the exam gpas, multiplying by the appropriate weights&#151;that is 2.67 x 19 = 50.7, and 2.35 x 19 = 44.7.</li>
-	<li>Add the calculated values from step 1 together. We now have 42.9 + 50.7 + 44.7 = 138.3.</li>
-	<li>Add the weight of all included items together. In this case, the included items have weights 15%, 19% and 19%. That gives us a total (included) weight 15 + 19 + 19 = 53.</li>
-	<li>Finally, divide the value from step 2 by the value from step 3. That gives us 138.3 / 53 = 2.61. Therefore our weighted GPA is 2.61, a B-.</li>
+	<li>Multiply each gpa by its weight. In this example, you currently have a 4.5 on instant-check homework, worth 9% of your overall grade.  So multiply
+4.5 x 9 = 40.5.  Do similarly for the other known/determined components of your
+grade: hand-checked homework yields 2.86 x 8 = 22.9, and Midterms 1 and 2 yield
+2.67 x 19 = 50.7, and 2.35 x 19 = 44.7.</li>
+	<li>Add the calculated values from step 1 together. We now have
+40.5 + 22.9 + 50.7 + 44.7 = 158.8.</li>
+	<li>Add the weight of all included items together. In this case, the included items have weights 9%, 8%, 19% and 19%. That gives us a total (included) weight 9 + 8 + 19 + 19 = 55.</li>
+	<li>Finally, divide the value from step 2 by the value from step 3. That gives us 158.8 / 55 = 2.89. Therefore our weighted GPA is 2.89, just
+above the threshold 2.85 that divides grades of B- from those of B.</li>
 </ol>      </section>
       
   </div>

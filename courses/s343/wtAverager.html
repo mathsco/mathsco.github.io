@@ -46,28 +46,14 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
 
 				<div class="row"> 
 					<div class="col-xs-12 form-group">
-						<div class="col-xs-6"><p>Attendance</p></div>
+						<div class="col-xs-6"><p>Homework</p></div>
 						<div class="col-xs-3">
 							<label class="sr-only" for="grade1">Grade 1</label>
-							<input class="form-control" type="text" id="grade1" value="" placeholder="WebWork gpa" />
+							<input class="form-control" type="text" id="grade1" value="" placeholder="HW gpa" />
 						</div>
 						<div class="col-xs-3">
 							<label class="sr-only" for="weight1">Weight 1</label>
-							<input class="form-control" type="text" id="weight1" value="2" placeholder="2" />
-						</div>
-					</div>
-				</div>
-
-				<div class="row"> 
-					<div class="col-xs-12 form-group">
-						<div class="col-xs-6"><p>All Homework</p></div>
-						<div class="col-xs-3">
-							<label class="sr-only" for="grade2">Grade 2</label>
-							<input class="form-control" type="text" id="grade2" value="" placeholder="Book HW gpa" />
-						</div>
-						<div class="col-xs-3">
-							<label class="sr-only" for="weight2">Weight 2</label>
-							<input class="form-control" type="text" id="weight2" value="25" placeholder="25" />
+							<input class="form-control" type="text" id="weight1" value="25" placeholder="25" />
 						</div>
 					</div>
 				</div>
@@ -76,12 +62,12 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
 					<div class="col-xs-12 form-group">
 						<div class="col-xs-6"><p>Test 1</p></div>
 						<div class="col-xs-3">
-							<label class="sr-only" for="grade3">Grade 3</label>
-							<input class="form-control" type="text" id="grade3" value="" placeholder="e.g. 3.2" />
+							<label class="sr-only" for="grade2">Grade 2</label>
+							<input class="form-control" type="text" id="grade2" value="" placeholder="e.g. 3.2" />
 						</div>
 						<div class="col-xs-3">
-							<label class="sr-only" for="weight3">Weight 3</label>
-							<input class="form-control" type="text" id="weight3" value="16" placeholder="16" />
+							<label class="sr-only" for="weight2">Weight 2</label>
+							<input class="form-control" type="text" id="weight2" value="22" placeholder="22" />
 						</div>
 					</div>
 				</div>
@@ -90,26 +76,12 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
 					<div class="col-xs-12 form-group">
 						<div class="col-xs-6"><p>Test 2</p></div>
 						<div class="col-xs-3">
-							<label class="sr-only" for="grade4">Grade 4</label>
-							<input class="form-control" type="text" id="grade4" value="" />
+							<label class="sr-only" for="grade3">Grade 3</label>
+							<input class="form-control" type="text" id="grade3" value="" placeholder="" />
 						</div>
 						<div class="col-xs-3">
-							<label class="sr-only" for="weight4">Weight 4</label>
-							<input class="form-control" type="text" id="weight4" value="16" placeholder="16" />
-						</div>
-					</div>
-				</div>
-
-				<div class="row"> 
-					<div class="col-xs-12 form-group">
-						<div class="col-xs-6"><p>Test 3</p></div>
-						<div class="col-xs-3">
-							<label class="sr-only" for="grade5">Grade 5</label>
-							<input class="form-control" type="text" id="grade5" value="" />
-						</div>
-						<div class="col-xs-3">
-							<label class="sr-only" for="weight5">Weight 5</label>
-							<input class="form-control" type="text" id="weight5" value="16" placeholder="16" />
+							<label class="sr-only" for="weight3">Weight 3</label>
+							<input class="form-control" type="text" id="weight3" value="22" placeholder="22" />
 						</div>
 					</div>
 				</div>
@@ -118,12 +90,12 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
 					<div class="col-xs-12 form-group">
 						<div class="col-xs-6"><p>Final Exam</p></div>
 						<div class="col-xs-3">
-							<label class="sr-only" for="grade6">Grade 6</label>
-							<input class="form-control" type="text" id="grade6" value="" />
+							<label class="sr-only" for="grade4">Grade 4</label>
+							<input class="form-control" type="text" id="grade4" value="" />
 						</div>
 						<div class="col-xs-3">
-							<label class="sr-only" for="weight6">Weight 6</label>
-							<input class="form-control" type="text" id="weight6" value="25" placeholder="25" />
+							<label class="sr-only" for="weight4">Weight 4</label>
+							<input class="form-control" type="text" id="weight4" value="31" placeholder="31" />
 						</div>
 					</div>
 				</div>
@@ -224,10 +196,10 @@ reported result includes a pctg. symbol, but it really is a gpa, not a percentag
 <p>To calculate your average grade, follow these steps:</p>
 
 <ol>
-	<li>Multiply each grade by its weight. In this example, you currently have earned 89% of all homework points which you translate to a GPA of 3.4 on homework, worth 15% of your overall grade.  So multiply 3.4 x 15 = 51.  You earned an C+ on Test 1, translated as a GPA of 2.3, and as it is worth 19% of the class grade, you multiply 2.3 x 19 = 43.7.</li>
-	<li>Add the calculated values from step 1 together. We now have 51 + 43.7 = 94.7.</li>
-	<li>Add the weight of all included items together. In this case, the included items have weights 15% and 19%. That gives us a total (included) weight 15 + 19 = 34.</li>
-	<li>Finally, divide the value from step 2 by the value from step 3. That gives us 94.7 / 34 = 2.79. Therefore our weighted GPA is 2.79.</li>
+	<li>Multiply each grade by its weight. In this example, you currently have earned 89% of all homework points which you translate to a GPA of 3.4 on homework, worth 25% of your overall grade.  So multiply 3.4 x 25 = 85.  You earned an C+ on Test 1, translated as a GPA of 2.3, and as it is worth 22% of the class grade, you multiply 2.3 x 22 = 50.6.</li>
+	<li>Add the calculated values from step 1 together. We now have 85 + 50.6 = 135.6.</li>
+	<li>Add the weight of all included items together. In this case, the included items have weights 25% and 22%. That gives us a total (included) weight 25 + 22 = 47.</li>
+	<li>Finally, divide the value from step 2 by the value from step 3. That gives us 135.6 / 47 = 2.89. Therefore our weighted GPA is 2.89.</li>
 </ol>      </section>
       
   </div>
