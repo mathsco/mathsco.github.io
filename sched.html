@@ -1,33 +1,4 @@
 
-R version 4.2.1 (2022-06-23) -- "Funny-Looking Kid"
-Copyright (C) 2022 The R Foundation for Statistical Computing
-Platform: x86_64-apple-darwin17.0 (64-bit)
-
-R is free software and comes with ABSOLUTELY NO WARRANTY.
-You are welcome to redistribute it under certain conditions.
-Type 'license()' or 'licence()' for distribution details.
-
-  Natural language support but running in an English locale
-
-R is a collaborative project with many contributors.
-Type 'contributors()' for more information and
-'citation()' on how to cite R or R packages in publications.
-
-Type 'demo()' for some demos, 'help()' for on-line help, or
-'help.start()' for an HTML browser interface to help.
-Type 'q()' to quit R.
-
-> library(daily)
-> library(dplyr)
-> cal <-
-+   daily2cal(
-+     path  = "./daily.txt",
-+     start = lubridate::mdy("02/01/2021"),
-+     end = lubridate::mdy("05/15/2021"),
-+     days  = c(2, 4, 5, 6)
-+   ) 
-> calendar_css() %>% cat()
-
 <style type="text/css">
 span.headerColor {
 	color: #906;
@@ -244,8 +215,7 @@ strong {
 	color: #906;
 	background: #fff;
 }
-</style>> cal %>% html_calendar(show = 2:7) %>% cat()
-<table border=1 width=95%>
+</style><table border=1 width=95%>
 <colgroup>
 <col width = "10%">
 <col width = "10%">
@@ -908,40 +878,40 @@ strong {
 <td class = "even">8/16<br><span class = "Topic"></span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
 <td class = "even">8/17<br><span class = "Topic"><a href=" https://www.google.com/maps/place/2770+Knapp+St+NE,+Grand+Rapids,+MI+49525/@42.9966892,-85.6047692,696m/data=!3m2!1e3!4b1!4m5!3m4!1s0x8819acb4cc4cb187:0x56fecf57e4cb909!8m2!3d42.9966892!4d-85.6025752">GRC at GR Catholic Central, 6:45 pm </a></span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
 <td class = "even">8/18<br><span class = "Topic"></span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
-<td class = "even">8/19<br><span class = "Topic"><a href=" https://www.google.com/maps/place/982+Lee+St+SW,+Wyoming,+MI+49509/@42.9340055,-85.6931495,697m/data=!3m2!1e3!4b1!4m5!3m4!1s0x8819b1fc0b4066c1:0xf6161727ce925a!8m2!3d42.9340055!4d-85.6909555">GRC at Lee HS, 6 pm </a></span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
+<td class = "even">8/19<br><span class = "Topic"><a href=" https://www.google.com/maps/place/982+Lee+St+SW,+Wyoming,+MI+49509/@42.9340055,-85.6931495,697m/data=!3m2!1e3!4b1!4m5!3m4!1s0x8819b1fc0b4066c1:0xf6161727ce925a!8m2!3d42.9340055!4d-85.6909555">GRC at Lee HS, 6 pm </a></span><br><span class = "Note">Win: 3-0</span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
 <td class = "even">8/20<br><span class = "Topic"></span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
 <!--  82 > 81 -->
 </tr><tr>
 <td class = "even">8/22<br><span class = "Topic">Calvin Faculty Conference, 8:15-1:30, with lunch</span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
 <td class = "even">8/23<br><span class = "Topic"></span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
-<td class = "even">8/24<br><span class = "Topic">GRC vs. South Christian (Gainey, 6:15 pm)</span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
+<td class = "even">8/24<br><span class = "Topic">GRC vs. South Christian (Gainey, 6:15 pm)</span><br><span class = "Note">Tie: 0-0</span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
 <td class = "even">8/25<br><span class = "Topic">Benjamin's birthday<br>Alexander dermatology appt</span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
 <td class = "even">8/26<br><span class = "Topic">Opening Convocation, 1:45-2:45<br>Connect with advisees, 4:15-5:00</span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
-<td class = "even">8/27<br><span class = "Topic"><a href=" https://www.google.com/maps/place/7753+N+34th+St,+Richland,+MI+49083/@42.3731036,-85.448908,872m/data=!3m1!1e3!4m5!3m4!1s0x881785f83d2b1dc7:0x57f8e4c39ddacf5b!8m2!3d42.3726013!4d-85.4390081">Gull Lake Invitational (Gull Lake HS, 10 am) </a></span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
+<td class = "even">8/27<br><span class = "Topic"><a href=" https://www.google.com/maps/place/7753+N+34th+St,+Richland,+MI+49083/@42.3731036,-85.448908,872m/data=!3m1!1e3!4m5!3m4!1s0x881785f83d2b1dc7:0x57f8e4c39ddacf5b!8m2!3d42.3726013!4d-85.4390081">Gull Lake Invitational (Gull Lake HS, 10 am) </a></span><br><span class = "Note">loss 0-4 to Gull Lake<br>loss 0-1 to Holland</span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
 <!--  83 > 82 -->
 </tr><tr>
 <td class = "even">8/29<br><span class = "Topic">Calvin University classes begin</span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
-<td class = "even">8/30<br><span class = "Topic">GRC vs. Portage Central (Gainey, 5:30 pm)</span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
+<td class = "even">8/30<br><span class = "Topic">GRC vs. Portage Central (Gainey, 5:30 pm)</span><br><span class = "Note">Tie: 2-2</span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
 <td class = "even">8/31<br><span class = "Topic"></span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
-<td class = "odd">9/1<br><span class = "Topic">GRC vs. East Lansing (TBD, 6 pm)</span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
+<td class = "odd">9/1<br><span class = "Topic">GRC vs. East Lansing (TBD, 6 pm)</span><br><span class = "Note">Win: 2-1</span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
 <td class = "odd">9/2<br><span class = "Topic">Last day to add Calvin course</span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
 <td class = "odd">9/3<br><span class = "Topic"></span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
 <!--  84 > 83 -->
 </tr><tr>
 <td class = "odd">9/5<br><span class = "Topic">Labor Day</span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
-<td class = "odd">9/6<br><span class = "Topic">GRC vs. FH Northern (Gainey, 5:30 pm)</span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
+<td class = "odd">9/6<br><span class = "Topic">GRC vs. FH Northern (Gainey, 5:30 pm)</span><br><span class = "Note">Tie: 1-1</span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
 <td class = "odd">9/7<br><span class = "Topic"></span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
-<td class = "odd">9/8<br><span class = "Topic">GRC vs. Northview (Eagle Stadium, 7:30 pm)</span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
+<td class = "odd">9/8<br><span class = "Topic">GRC vs. Northview (Eagle Stadium, 7:30 pm)</span><br><span class = "Note">Win: 3-0</span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
 <td class = "odd">9/9<br><span class = "Topic"></span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
 <td class = "odd">9/10<br><span class = "Topic"></span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
 <!--  85 > 84 -->
 </tr><tr>
 <td class = "odd">9/12<br><span class = "Topic">Sienna at Bob's Collision</span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
-<td class = "odd">9/13<br><span class = "Topic">GRC vs. EGR (Eagle Stadium, 7:30 pm)<br>Sienna at Bob's Collision</span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
+<td class = "odd">9/13<br><span class = "Topic">GRC vs. EGR (Eagle Stadium, 7:30 pm)<br>Sienna at Bob's Collision</span><br><span class = "Note">Win: 1-0</span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
 <td class = "odd">9/14<br><span class = "Topic">Sienna at Bob's Collision</span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
-<td class = "odd">9/15<br><span class = "Topic">GRC vs. Lansing Sexton (Gainey, 4:30 pm)<br>Sienna at Bob's Collision</span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
+<td class = "odd">9/15<br><span class = "Topic">GRC vs. Potter's House (Gainey, 4:30 pm)<br>Sienna at Bob's Collision</span><br><span class = "Note">Win: 4-0</span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
 <td class = "odd">9/16<br><span class = "Topic">Sienna at Bob's Collision</span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
-<td class = "odd">9/17<br><span class = "Topic"><a href=" https://www.google.com/maps/place/8171+20th+Ave,+Jenison,+MI+49428/@42.9175471,-85.8331814,174m/data=!3m2!1e3!4b1!4m5!3m4!1s0x8819bb6db5533443:0xb9abfb8c8a1e695b!8m2!3d42.9175471!4d-85.8326329">GRC at Jenison (11:45 am) </a></span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
+<td class = "odd">9/17<br><span class = "Topic"><a href=" https://www.google.com/maps/place/8171+20th+Ave,+Jenison,+MI+49428/@42.9175471,-85.8331814,174m/data=!3m2!1e3!4b1!4m5!3m4!1s0x8819bb6db5533443:0xb9abfb8c8a1e695b!8m2!3d42.9175471!4d-85.8326329">GRC at Jenison (11:45 am) </a></span><br><span class = "Note">Win: 2-1</span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
 <!--  86 > 85 -->
 </tr><tr>
 <td class = "odd">9/19<br><span class = "Topic"></span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
@@ -1044,4 +1014,4 @@ strong {
 <td class = "even">12/13<br><span class = "Topic">Final Exams</span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
 <td class = "even">12/14<br><span class = "Topic">Final Exams<br>Stat 343 final exam, 9 am (Tom)</span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
 <td class = "even">12/15<br><span class = "Topic">Final Exams</span><br><span class = "Note"></span><br><span class = "Read"></span><br><span class = "Due"></span><br><br></td>
-</tr></tbody></table>> 
+</tr></tbody></table>
