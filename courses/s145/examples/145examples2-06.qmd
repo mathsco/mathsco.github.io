@@ -1,0 +1,184 @@
+---
+title: "day 2.6 notes"
+author: "T.Scofield"
+format: pdf
+---
+
+```{r}
+#| include: false
+require(mosaic)
+set.seed(4000)
+```
+
+# Sampling distributions for $\hat p$
+
+Let's create a population.  For our purposes, let's make this population
+contain 70% successes and 30% failures:
+```{r}
+population <- c(rep(0,3), rep(1,7))
+population
+```
+This, throughout the section, will be the population I sample from.
+
+Let's also decide on a sample size, say $n=12$.
+
+To draw a single sample of size 12 and compute the proportion of successes
+in that sample, we might use
+```{r}
+x <- resample(population, size=12)
+x
+prop(~ (x==1))
+```
+
+A streamlined (into a single line) version looks like this:
+```{r}
+prop(~ (resample(population, size=12)==1 ))
+```
+
+To simulate the sampling distribution of $\hat p$ (i.e., sample
+proportions when a sample of size 12 is drawn, with replacement,
+from this population), I need to repeat this process many times.
+Here, I use `do(10000) *` to repeat it 10000 times.
+```{r}
+manyPhats <- do(10000) * prop(~ (resample(population, size=12)==1 ))
+head(manyPhats)    # shows the first few results
+```
+
+Let's view all 10000 of the outcomes using a histogram:
+```{r}
+#| fig-width: 5
+#| fig-height: 2
+gf_histogram(~prop_TRUE, data=manyPhats, numbins=13)
+```
+
+#### Same idea, but with a different sample size
+
+Let's again sample from this population, but draw samples of greater
+size, say $n=48$.
+```{r}
+#| fig-width: 5
+#| fig-height: 2
+manyPhats48 <- do(10000) * prop(~ (resample(population, size=48)==1 ))
+head(manyPhats48)
+gf_histogram(~prop_TRUE, data=manyPhats48)
+```
+
+Observe
+
+ * For both simulated distributions of $\hat p$ (the one with $n=12$,
+   the other with $n=48$), the mean appears to be around $0.7 = 70$%,
+   which is the overall proportion of successes in the population.
+ * The simulated distribution is more symmetric and bell-shaped for
+   the $n=48$ case than for the $n=12$ case.  The $n=48$ histogram
+   is less spread out than is the $n=12$ case.
+
+\newpage
+
+# Sampling distributions for $\bar x$
+
+Means require a quantitative variable.  In sports many quantitative
+variables are measured.  In what follows, I will use as my population
+Major League Baseball players in 2018 (ones who batted at least 100
+times).  In the first line of code, I import a data set on these players.
+```{r}
+mlbStats18 <- read.csv("https://scofield.site/teaching/data/csv/mlb18abEligible.csv")
+head(mlbStats18, n=3)
+```
+
+When I use `resample()` on a data frame, it results in the selection
+of cases, but with all variables intact for those cases.  Here, I choose
+$n=10$ players at random, with replacement:
+```{r}
+resample(mlbStats18, size=10)
+```
+
+The variable I've chosen to focus on is `hits`, the column labeled "H".
+I'm demonstrating the sampling distribution for the sample mean ($\bar x$),
+so I need code that draws a random sample of size $n=10$ and computes
+the mean number of hits for the 10 players selected.
+```{r}
+mean(~H, data=resample(mlbStats18, size=10))  # calculates a single mean
+```
+
+To draw 5 samples, calculating the sample mean number of hits for each one.
+```{r}
+do(5) * mean(~H, data=resample(mlbStats18, size=10))
+```
+
+Again, a simulated sampling distribution requires a lot more iterations
+than 5 of them.  So, let's up the number to 10000, this time viewing
+a histogram (simulated sampling distribution) of means:
+```{r}
+#| fig-width: 5
+#| fig-height: 2
+manyXbars <- do(10000) * mean(~H, data=resample(mlbStats18, size=10))
+gf_histogram(~mean, data=manyXbars)
+```
+
+#### Repeating for samples of size $n=50$
+
+Let's go to samples of size 50.
+```{r}
+#| fig-width: 5
+#| fig-height: 2
+manyXbars <- do(10000) * mean(~H, data=resample(mlbStats18, size=50))
+gf_histogram(~mean, data=manyXbars)
+```
+
+Observe
+
+ * For both simulated distributions of $\bar x$ (the one with $n=10$,
+   the other with $n=50$), the mean appears to be around $88$ or so.
+ * The simulated distribution is more symmetric and bell-shaped for
+   the $n=50$ case than for the $n=10$ case.  The $n=50$ histogram
+   is less spread out than is the $n=10$ case.
+
+\newpage
+
+# Sampling distribution for the sample median
+
+When our variable is quantitative, there are lots of sample statistics
+that might be computed.  The mean $\bar x$ was done in the last section
+(and is by far the most popular), but one might produce a sampling
+distribution for the sample median, or for the $0.3$-quantile, or for
+the sample standard deviation, just to name a few.  Here, I'll do it
+for the median, when samples drawn from `mlbStats18` are of size $n=30$.
+Look over the differences in code.
+```{r}
+#| fig-width: 5
+#| fig-height: 2
+manyMedians <- do(10000) * median(~H, data=resample(mlbStats18, size=30))
+gf_histogram(~median, data=manyMedians)
+```
+
+\newpage
+
+# Sampling distribution for the sample correlation
+
+If we are to compute a correlation from a sample, we will need **two**
+variables.  Perhaps we are interested in correlation between homeruns
+(`HR`) and strike-outs (`strike_outs`).  We will draw samples from
+`mlbStats18` as before, this time calculating $r$, the correlation
+coefficient each time.  Code that does so just once, using a sample
+size of $n=20$, follows:
+
+```{r}
+cor(strike_outs ~ HR, data=resample(mlbStats18, size=20))
+```
+
+Again, we obtain a simulated sampling distribution for the sample
+correlation $r$ by carrying this out many times:
+```{r}
+manyCors <- do(10000) *  cor(strike_outs ~ HR, data=resample(mlbStats18, size=20))
+head(manyCors)
+```
+
+I've stored the results in a data frame called `manyCors`.  The column
+where they are stored is called `cor`.  So, a histogram displaying the
+distribution of values of `r`:
+```{r}
+#| fig-width: 5
+#| fig-height: 2
+gf_histogram(~ cor, data=manyCors)
+```
+
