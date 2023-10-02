@@ -1,0 +1,78 @@
+---
+title: "Doing Numerical Integration in RStudio"
+author: "T.Scofield"
+format: pdf
+---
+
+```{r}
+#| include: false
+require(mosaic)
+require(mosaicCalc)
+```
+
+# Definite integrals
+
+For a built-in function like $\sin(x)$, integrating from $0$ to $\pi$
+is as simple as
+```{r}
+integrate(sin, 0, pi)
+```
+
+But, there may not *be* a built-in R function that suits your purposes.
+For instance, the pdf for exponential distributions is
+$$ f(x) \;:=\; \left\{ \begin{array}{ll} 0, & \mbox{if}\; x < 0 \\
+  \lambda e^{-\lambda x}, & \mbox{if}\; x \ge 0
+  \end{array}\right. $$
+implemented in R as `dexp()`.  However, the integral one must calculate
+to find the mean involves the product of $x$ with this function, and
+R does not have a built-in function for that.
+
+When there is no built-in function, you have a couple of options for
+defining it yourself.  One method is to use the native way R has for
+defining complicated user-defined functions:
+```{r}
+#| eval: false
+meanIntegrand = function(x, lam) {
+  return( (x>=0) * x * lam*exp(-lam*x) )
+}
+```
+
+The other method is to use `makeFun()`, suitable when the function
+definition is less-complicated, as it is here, where I set $\lambda=0.2$:
+```{r}
+meanIntegrand <- makeFun( x*dexp(x, 0.2) ~ x )
+```
+
+Once defined, you can use `integrate()` to calculate definite integrals.
+It is even possible to use $(-\infty)$ or $\infty$ as endpoints of
+integration:
+```{r}
+integrate(meanIntegrand, -Inf, Inf)
+```
+
+
+# Indefinite integration (i.e., antidifferentiation)
+
+The `antiD()` command is provided in the **mosaicCalc** package.
+Make sure you have it loaded before trying things such as the following.
+
+The idea is to find an antiderivative for a given function, for purposes
+such as evaluating that antiderivative at various inputs, or displaying
+a graph of the antiderivative.  Let's take $f(x) = \sin x$, a function
+we understand.  We can produce an antiderivative, naming it $F(x)$, via
+
+```{r}
+F <- antiD(sin(x) ~ x)    # There are many, with F(x) = -cos(x) + C
+```
+
+It can be evaluated:
+```{r}
+F(3*pi/2) - F(0)
+```
+
+It can also be plotted:
+```{r}
+#| fig-width: 5
+#| fig-height: 2
+gf_fun( F(x) ~ x, xlim = c(-3*pi/2, 3*pi/2))
+```
