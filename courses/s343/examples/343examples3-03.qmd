@@ -76,3 +76,21 @@ It can also be plotted:
 #| fig-height: 2
 gf_fun( F(x) ~ x, xlim = c(-3*pi/2, 3*pi/2))
 ```
+
+On p. 133, Pruim introduces the function
+$$ f(x) = \left\{ \begin{array}{ll} x^2/9, & 0 \le x \le 3\\
+  0, & \mbox{otherwise} \end{array} \right. $$
+which serves as a pdf because it is nonnegative and the total
+area under the curve is 1.  We can produce its cdf and plot
+the two functions together:
+```{r}
+#| fig-width: 6.5
+#| fig-height: 2.5
+require(gridExtra)     # package provides grid.arrange() for side-by-side plotting
+myf <- makeFun( (x>=0 & x<=3) * x^2/9 ~ x )
+myF <- antiD( myf(x) ~ x )
+p1 <- plotFun(myf(x) ~ x, xlim = c(-1, 4))
+p2 <- plotFun(myF(x) ~ x, xlim = c(-1, 4))
+grid.arrange(p1, p2, nrow=1)
+```
+
