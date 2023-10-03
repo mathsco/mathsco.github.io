@@ -89,8 +89,8 @@ the two functions together:
 require(gridExtra)     # package provides grid.arrange() for side-by-side plotting
 myf <- makeFun( (x>=0 & x<=3) * x^2/9 ~ x )
 myF <- antiD( myf(x) ~ x )
-p1 <- plotFun(myf(x) ~ x, xlim = c(-1, 4))
-p2 <- plotFun(myF(x) ~ x, xlim = c(-1, 4))
+p1 <- gf_fun(myf(x) ~ x, xlim = c(-1, 4)) |> gf_labs(title="pdf")
+p2 <- gf_fun(myF(x) ~ x, xlim = c(-1, 4)) |> gf_labs(title="cdf")
 grid.arrange(p1, p2, nrow=1)
 ```
 
