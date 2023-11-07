@@ -1,0 +1,27 @@
+
+Question 18:
+  There are infinitely many vectors to choose from.  But they are all
+  from null(A), which has basis vector <-1, 2, 1>.  So, it comes down
+  to choose x1 and x2 so they are both nonzero, both rescaled versions
+  of <-1, 2, 1>, but not the same rescaling for both.
+
+Question 19:
+  This statement is True.  For T to be one-to-one (injective), all
+  8 columns of A would need to be pivot columns, impossible since
+  there are only 5 rows in which pivot positions can appear.  Said
+  another way, rank(A) cannot exceed min(5, 8) = 5, which means A
+  has at least 3 free columns, and hence a nontrivial nullspace.
+
+Question 20:
+  f is nonlinear, since
+    f(pi/2) = 1, but f(pi) = 0.
+  (If f were linear, then f(pi) should equal 2 f(pi/2) = 2.)
+
+  As a map into the reals (-inf, inf), f is not surjective, since
+  2 is not in the range of f.  Neither is f injective, since
+  f(0) = f(pi) = 0.
+
+Question 21:
+  It suffices to find a 2-by-3 matrix A which has rank = 1.
+  Take A = [1 1 1; 0 0 0], and define T(x) = Ax.
+
