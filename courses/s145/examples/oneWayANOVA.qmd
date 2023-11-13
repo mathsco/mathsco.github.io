@@ -1,0 +1,291 @@
+---
+title: "One-Way ANOVA"
+author: "T.Scofield"
+format: pdf
+geometry:
+ - top=20mm
+ - left=20mm
+ - heightrounded
+editor: source
+---
+
+```{r}
+#| include: false
+require(mosaic)
+require(gridExtra)
+require(Lock5withR)
+require(triangle)
+require(abd)
+require(knitr)
+ssurv <- read.csv("https://scofield.site/teaching/data/csv/ssurv.csv")
+spruce <- read.csv("https://scofield.site/teaching/data/csv/hesterberg/Spruce.csv")
+wineAndDeath <- read.csv("https://scofield.site/teaching/data/csv/heartDiseaseDeathsAndWine.csv")
+mlb18hitting <- read.csv("https://scofield.site/teaching/data/csv/mlb18abEligible.csv")
+miaa05baskeball <- read.csv("https://scofield.site/teaching/data/csv/stob/miaa05.csv")
+```
+
+You may [click here](https://scofield.site/courses/s145/examples/oneWayANOVA.qmd) to access the .qmd file.
+
+
+# Settings for 1-way ANOVA
+
+One-way ANOVA generally arises when the research question asks, "Is the
+(mean) response different between groups?"  We must primarily be thinking
+about a *quantitative* response variable in such settings, but have a
+categorical group-identifying variable (our explanatory variable).  This
+should sound like 2-sample $t$, where we have independent sample (response)
+values from 2 different groups.  One-way ANOVA was designed for independent
+samples taken from $k$ groups (with $k\ge 2$).
+
+First let's see how raw data for such settings is arranged.  I create a
+data frame with nonsense values to illustrate the typical layout.
+```{r}
+playData <- data.frame(
+  measurementVar = c(15,18,17, 14,11,13, 16,17,19,17),
+  group = c(rep("A",3), rep("B",3), rep("C",4))
+)
+playData
+```
+
+If we wish to see side-by-side boxplots for data such as this, the command
+below can be tailored to the situation.
+
+```{r}
+#| fig-width: 5
+#| fig-height: 2
+#| warning: false
+gf_boxplot(group~measurementVar, data=playData)
+```
+
+# The Sum-of-Squares Calculations of 1-Way ANOVA
+
+There are three sum-of-squares quantities of interest:
+\begin{eqnarray*}
+ \mbox{SSG} &=& \sum_{\mbox{groups j}} n_j(\bar x_j - \bar x)^2,
+   \qquad\mbox{measures across-group variation} \\[8pt]
+ \mbox{SSE}&=&\sum_{\mbox{observations i, groups j}}(x_{ij}-\bar x_i)^2,
+   \qquad\mbox{measures within-group variation} \\[8pt]
+ \mbox{SST} &=& \sum_{\mbox{observations i, groups j}} (x_{ij}-\bar x)^2,
+   \qquad\mbox{measures total variation in data}
+\end{eqnarray*}
+
+To get started on these, we need to know the various means.  The grand mean
+$\bar x$ comes from
+```{r}
+mean(~measurementVar, data=playData)
+```
+The individual group means is a similar command, but conditioned on group:
+```{r}
+mean(~measurementVar | group, data=playData)
+```
+
+Since the individual group sample sizes are $n_A=3$, $n_B=3$, $n_C=4$,
+\begin{eqnarray*}
+ \mbox{SSG} &=& n_A(\bar x_A - \bar x)^2 + n_B(\bar x_B - \bar x)^2
+  + n_C(\bar x_C - \bar x)^2 \\
+  &=& 3(16.667 - 15.7)^2 + 3(12.667 - 15.7)^2 + 4(17.25 - 15.7)^2
+  \;\;=\;\; 40.013.
+\end{eqnarray*}
+
+For SSE, the calculation takes into account squared deviations of each
+observation from its own group mean:
+\begin{eqnarray*}
+ \mbox{SSE} &=& (15-16.667)^2 + (18-16.667)^2 + (17-16.667)^2 + \\
+  & & \; (14-12.667)^2 + (11-12.667)^2 + (13-12.667)^2 + \\
+  & & \; (16-17.25)^2 + (17-17.25)^2 + (19-17.25)^2 + (17-17.25)^2 \\
+  &=& 14.083.
+\end{eqnarray*}
+
+For SST is similar to SSE, but the calculation takes into account squared
+deviations of each observation from the *grand mean* $\bar x$:
+\begin{eqnarray*}
+ \mbox{SST} &=& (15-15.7)^2 + (18-15.7)^2 + (17-15.7)^2 + \\
+  & & \; (14-15.7)^2 + (11-15.7)^2 + (13-15.7)^2 + \\
+  & & \; (16-15.7)^2 + (17-15.7)^2 + (19-15.7)^2 + (17-15.7)^2 \\
+  &=& 54.1.
+\end{eqnarray*}
+
+Note that $\;$SSG + SSE = SST.
+
+To make for a useful comparison of across-group variability to within-group
+variability, we create **mean-square** versions:
+\begin{eqnarray*}
+  \mbox{MSG} &=& \frac{SSG}{df_1}, \qquad\mbox{where}\quad
+     df_1 = \# (\mbox{groups}) - 1, \\[4pt]
+  \mbox{MSE} &=& \frac{SSE}{df_2}, \qquad\mbox{where}\quad
+     df_2 = \# (\mbox{cases}) - \# (\mbox{groups}), \\[4pt]
+\end{eqnarray*}
+
+The test statistic, called an $F$-statistic, is the ratio
+$$ F = \frac{\mbox{MSG}}{\mbox{MSE}}. $$
+
+# 1-Way ANOVA Tables
+
+These calculations are usually displayed together in an ANOVA table.
+The general layout of an ANOVA (though it may be a matter of taste
+whether the `df` column comes before the `SS` column) is as displayed in
+Figure 1 below.  In Figure 2, you see a snapshot of an ANOVA table from
+p. 496 of our textbook.  It displays the layout scheme described in
+Figure 1, but with numbers coming from a specific data set.
+```{r png1, echo=FALSE, fig.cap="ANOVA table layout", out.width = '90%'}
+knitr::include_graphics("./anovaTableLayout.png")
+```
+
+```{r png2, echo=FALSE, fig.cap="ANOVA table from Example 8.3, p. 496", out.width = '45%'}
+knitr::include_graphics("./anovaTablePage496.png")
+```
+
+Not surprisingly,
+R can be used to generate ANOVA tables.  The layout follows the scheme
+of Figure 1 with the one exception that R does not bother displaying a
+"Total" row.  Here is the command and output table when dealing with
+my `playData` above.  You might be surprised that the `lm()` command
+plays a role.  Look over the computer output of this pair of commands
+(it follows Figure 2), and see if you recognize some of the numbers
+from earlier calculations.
+```{r}
+lmModel <- lm(measurementVar ~ group, data=playData)
+anova(lmModel)
+```
+
+# 1-Way ANOVA is an Hypothesis Test
+
+One has a quantitative variable in mind, and wants to compare means
+across various groups or populations.
+
+Note: If the number of groups is only two, then 2-sample $t$ procedures
+allow us to carry out such comparisons.  1-way ANOVA allows us to deal
+with more than 2 groups/populations.  But, like in the case of 2-sample $t$,
+1-way ANOVA relies on having **independent samples** from our populations.
+
+### The hypotheses
+
+Formal statement of our hypotheses: Given $k$ groups/populations, our
+null hypothesis is
+$$ {\mathbf H_0}: \mu_1 = \mu_2 = \cdots = \mu_k, $$
+and the alternative is that at least one of these population means is
+different.
+
+### The test statistic: $F$
+
+The calculations required to build an ANOVA table are routine, but tedious.
+Most of them are intermediate calculations required in order to get the
+test statistic, $F$, which compares (through a ratio) the across-group
+variation to the within-group variation:
+$$ F = \frac{\mbox{MSG}}{\mbox{MSE}} $$
+
+### Obtaining a $P$-value
+
+As in other contexts, we place the test statistic on a reference (**null**)
+distribution, and determine (usually as an area, so employing a cdf function)
+how often test statistics at least as extreme arise in a world where the
+null hypothesis is true.  It has often been the case that some family of
+theoretical distributions serves in this role of null distribution, but
+only if some criteria are met.  That is option 1 described below:
+
+1. We may use, as null distribution, a theoretical $F$-distribution with
+   degrees of freedom $df_1$ and $df_2$ whenever these criteria are met
+ * samples are (near-enough) iid samples drawn independently from their
+   respective groups
+ * the sampling distributions for each sample mean are approximately normal.
+   As with $t$-tests, we can know this to be the case if either
+   - the groups/populations from which we are drawing are normal, or
+   - the sample sizes are at least 30
+ * the standard deviations in each group/population are the same.  (Our rule
+   of thumb here is that the ratio of largest-to-smallest sample standard
+   deviation is no more than 2.)
+
+2. When these criteria are not met, we might turn to constructing an
+   approximate null distribution using simulation.
+
+# Example: Sepal Widths of Iris Plants (uses an $F$-distribution)
+
+`Sepal.Width` is a quantitative variable available in the `iris` data set.
+We investigate summaries, broken down by `Species`:
+```{r}
+favstats(Sepal.Width ~ Species, data=iris)
+```
+
+Here, the 2-to-1 ratio of sample standard deviations is met
+$$ \frac{s_{\max}}{s_{\min}} = \frac{0.379}{0.314} < 2, $$
+and sample sizes are all 50.  The ANOVA table arising from this data
+```{r}
+anova( lm(Sepal.Width ~ Species, data=iris) )
+```
+Not only is the $F$-statistic important, but so are $df_1 = 2$ and $df_2
+= 147$.  We will use, as null distribution, a theoretical $F(df1=2, df2=147)$
+distribution:
+```{r}
+gf_dist("f", params=c(2, 147))
+```
+It appears $F$-statistics as large as 49.16 are relatively rare.  The cdf
+function `pf()` confirms this:
+```{r}
+1-pf(49.16, df1=2, df2=147)
+```
+
+So, we would reject the null hypothesis, concluding that at least one
+of the species of iris plants represented here has a different mean sepal
+width from another.
+   
+# Example: Sandwich Ants (uses simulation)
+
+We look at the first few lines of the data set.
+```{r}
+head(SandwichAnts)
+```
+
+We can check assumptions using `favstats()`:
+```{r}
+favstats(Ants ~ Filling, data = SandwichAnts)
+```
+The 2-to-1 ratio of sample standard deviations is met,
+$$ \frac{s_{\max}}{s_{\min}} = \frac{14.63}{9.25} < 2, $$
+which is good.  But it is anyone's guess whether the number of ants drawn to
+sandwiches of a particular type of filling follow a normal distribution!  And
+sample sizes of 8 for each filling type do not let us off the hook with
+regards to normality.  That is why a simulation may be more appropriate.  The
+steps taken below can be greatly simplified by using the 1-way ANOVA app at
+<https://connect.cs.calvin.edu/content/f0eac06e-6ec0-481e-91a4-d5dab9b6b966/>.
+
+We can obtain an ANOVA table using commands
+```{r}
+myModel <- lm(Ants ~ Filling, data = SandwichAnts)
+anova(myModel)
+```
+
+If we want only the $F$-statistic, we can query that with syntax tailored
+to that aim:
+```{r}
+anova( lm(Ants ~ Filling, data = SandwichAnts) )$F[1]
+```
+So, our data yields $F=5.627$ as test statistic.
+
+To simulate a null distribution, we will `shuffle()` values in the `Filling`
+column.  (Note: It would work just as well to `shuffle()` the `Ants` column.)
+```{r}
+manyFs <- do(5000) * anova( lm(Ants ~ shuffle(Filling), data = SandwichAnts) )$F[1]
+head(manyFs)
+```
+
+Each of the results in `manyFs` is an $F$-statistic from a simulated sample
+for which the null hypothesis---that ants don't pay any attention to
+`Filling`---holds.  A picture of this simulated null distribution, with
+our test statistic thrown in comes from this command:
+```{r}
+#| fig-width: 5
+#| fig-height: 2
+#| warning: false
+gf_histogram(~result, data=manyFs, fill= ~(result > 5.627))
+```
+
+Note that I am shading only values to the right of our test statistic.
+Like chi-square tests, 1-way ANOVA (sometimes called $F$-tests) are
+right-tailed tests.  The proportion of times something as extreme as
+5.627 arises in a world where the null hypothesis is true is approximately
+```{r}
+prop(~ (result > 5.627), data=manyFs)
+```
+At the 5% level, we reject the null hypothesis, in favor of the alternative,
+which is that at least one sandwich filling (among vegemite, ham-and-pickles,
+and peanut butter) draws an average number of ants different from another.
