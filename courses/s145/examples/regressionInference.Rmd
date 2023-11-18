@@ -1,0 +1,549 @@
+---
+title: "Inference for Regression: Test for Linear Association Between Two Quantitative Variables"
+author: "T. Scofield"
+output: 
+  pdf_document:
+    fig_height: 3
+    fig_width: 5
+  html_document:
+    fig_height: 3
+    fig_width: 5
+  word_document:
+    fig_height: 3
+    fig_width: 5
+---
+
+```{r, setup, include=FALSE}
+require(mosaic)   # Load additional packages here 
+require(Lock5withR)
+require(tinyverse)
+require(knitr)
+require(kableExtra)
+knitr::opts_chunk$set(
+  tidy=FALSE,     # display code as typed
+  size="small")   # slightly smaller font for code
+```
+
+You may [click here](https://scofield.site/courses/s145/examples/regressionInference.qmd) to access the .qmd file.
+
+## The Model Utility Test
+There are things you can do whenever you have bivariate quantitative data, such as
+
+ * produce a scatterplot of the data.
+ * calculate the (sample) correlation $r$.
+ * find the slope $b_1$ and intercept $b_0$ (both *sample statistics*) of the
+   least squares regression line.
+
+As we discussed in Chapter 2, the correlation is not always *meaningful*.  But,
+in this chapter, we will assume that it is---that we have variables $X$ and $Y$
+where the average response value $\mu_Y(x)$ at any particular value of $X$ is
+given linearly as
+$$ \mu_Y(X) = \beta_0 + \beta_1 X, $$
+making it meaningful to discuss the true correlation $\rho$.
+
+An association between $X$ and $Y$ exists if the true slope $\beta_1 \ne 0$ or,
+equivalently, if the true correlation $\rho \ne 0$.  Otherwise the variables are
+independent, meaning $X$ has no value in predicting $Y$.  To conduct a test, called
+the **model utility test**, of
+$$ {\mathbf H_0}\colon\;\beta_1 = 0 \qquad\mbox{vs.}\qquad
+   {\mathbf H_a}\colon\;\beta_1 \ne 0, $$
+or equivalent stated as
+$$ {\mathbf H_0}\colon\;\rho = 0 \qquad\mbox{vs.}\qquad
+   {\mathbf H_a}\colon\;\rho \ne 0, $$
+we will need sample data, producing a sample slope $b_1$ or sample correlation $r$.
+
+## Scatterplots; calculating $b_1$, $r$ in R
+The data set found at
+[http://scofield.site/teaching/data/csv/heartDiseaseDeathsAndWine.csv](http://scofield.site/teaching/data/csv/heartDiseaseDeathsAndWine.csv)
+contains a variable `winealc` that measures wine consumption (measured in liters per
+person per year) in various countries and another variable `hddeaths` which measures
+heart disease mortality rates (deaths per thousand). We import this data, view a
+scatterplot, and calculate the sample values.
+```{r}
+hdAndWine <- read.csv("http://scofield.site/teaching/data/csv/heartDiseaseDeathsAndWine.csv")
+head(hdAndWine)
+```
+
+In making a scatterplot, we must decide which variable (between `winealc` and `hddeaths`)
+to consider explanatory, placing it on the horizontal axis.  Either could serve in that
+role, but in most discussions involving these variables, it is the alcohol consumption
+that people generally adopt as explanatory.  So, it appears on the right side of the
+tilde in the command
+```{r}
+gf_point(hddeaths ~ winealc, data=hdAndWine)
+```
+
+We can get the coefficients (intercept $b_0$ and slope $b_1$) of the best-fit line
+for the data via the command
+```{r}
+lm(hddeaths ~ winealc, data=hdAndWine)
+```
+Note that, by adding `$coefficients`, the output is less "wordy",
+```{r}
+lm(hddeaths ~ winealc, data=hdAndWine)$coefficients
+```
+and by altering this to `coefficients[2]` we obtain just the slope.
+```{r}
+lm(hddeaths ~ winealc, data=hdAndWine)$coefficients[2]
+```
+This last version, isolating the response to *slope* only, will be helpful in
+generating randomization distributions for $b_1$.
+
+We can overlay a line by "piping" the scatterplot to the `gf_lm()`
+command with specified slope and intercept:
+```{r}
+gf_point(hddeaths ~ winealc, data=hdAndWine) |>
+  gf_abline(slope = ~-22.97, intercept = ~260.56, color="blue")
+```
+
+With the switches for `gf_abline()`, we can designate any line we
+wish.  Most of the time, we want the line to be the least-squares
+regression line, and would rather not have to specify the slope
+and intercept ourselves.  This can be done by piping to the simpler
+`gf_lm()` command.
+```{r eval=FALSE}
+gf_point(hddeaths ~ winealc, data=hdAndWine) |> gf_lm(color="blue")
+```
+
+To calculate the sample correlation, instead, we change `lm()` to `cor()`:
+```{r}
+cor(hddeaths ~ winealc, data=hdAndWine)
+```
+
+***
+
+**Question**:
+Would we get the same slope and intercept if we exchanged the roles of the variables,
+in this case making `hddeaths` the explanatory variable?  Would we get the same
+correlation?
+
+***
+
+## Randomization
+Randomization distributions are meant to simulate the null distribution---what
+sort of values we expect, and how frequently, out of our sample statistic when
+the null hypothesis (no association between the quantitative variables) holds.
+We simulate it by shuffling one of the variables.
+
+**Randomization distribution for $b_1$**:
+In the context of our *wine-and-heart-disease-deaths* data, one randomization statistic
+$b_1$ arises from
+```{r}
+lm(hddeaths ~ shuffle(winealc), data=hdAndWine)$coefficients[2]
+```
+
+We get an approximate $P$-value when we generate lots of these randomization statistics,
+locate our test statistic (the slope for the original data), and determining how often
+something that extreme (or more so) occurs:
+```{r}
+manyb1s <- do(5000) * lm(hddeaths ~ shuffle(winealc), data=hdAndWine)$coefficients[2]
+head(manyb1s)
+```
+This randomization distribution with the test statistic can be visualized in
+a manner like we have used before:
+```{r}
+gf_histogram(~winealc, data=manyb1s, fill = ~abs(winealc)>22.968) |>
+  gf_vline(xintercept = ~ 22.968) |>
+  gf_vline(xintercept = ~ -22.968)
+```
+
+This graph makes it appear that occurrences of $b_1=22.96877$, or even further
+distant from 0, are extremely rare.  Indeed, if we count how often it happened
+in our 5000 tries, we have
+```{r}
+2 * prop( ~(winealc < -22.968), data=manyb1s )
+```
+
+**Randomization distribution for $r$**:
+Consider another dataset, the **RestaurantTips** data from the `Lock5withR` package.
+The question here is whether there is an association between a bill for the meal at
+a restaurant, and the tip as a percentage-of-the-bill-as-tip (variable name `PctTip`).
+There are other ways to state this question of association.  In the text, the Locks
+state it (roughly) as, "Is `Bill` an effective predictor of the size of the tip as
+a percentage of the bill?"  The null hypothesis says, "no, it isn't", or $\rho=0$.
+
+To generate a randomization distribution for $r$ under this null hypothesis, we
+start with the command that generates the $r$ from the original data:
+```{r}
+cor(PctTip ~ Bill, data=RestaurantTips)
+```
+That is our test statistic.
+
+The generation of a single randomization statistic $r$ comes from shuffling one of
+the variables:
+```{r}
+cor(PctTip ~ shuffle(Bill), data=RestaurantTips)
+```
+
+If we do this often, we get a randomization distribution for $r$.  We locate our
+test statistic on this distribution and use it as a boundary to determine the $P$-value.
+```{r}
+manyCors <- do(5000) * cor(PctTip ~ shuffle(Bill), data=RestaurantTips)
+head(manyCors)
+```
+
+```{r}
+gf_histogram(~cor, data=manyCors, fill= ~abs(cor) >= 0.1353) |>
+  gf_vline(xintercept = ~0.1353) |>
+  gf_vline(xintercept = ~-0.1353)
+prop( ~(abs(cor) >= 0.13529), data=manyCors )
+```
+
+This $P$-value is not smaller than $\alpha = 0.05$, so at that level we fail to
+reject the null hypothesis, that the true correlation $\rho$ (and the true slope
+$\beta_1$) is zero.  That is, if someone tends to think that patrons of restaurants
+tip the same percentage regardless of the overall tab, we have not found here
+evidence sufficient to conclude otherwise.
+
+***
+
+**Exercise**:
+Throughout the discussion above, it has been implied that it didn't matter which
+test statistic you randomized, $r$ or $b_1$.  Convince yourself that this is the
+case by playing with randomization distributions and $P$-values for bivariate
+quantitative data in StatKey.  The confirmation that "it does not matter" would be
+that, when working with a fixed dataset, when you generate a $P$-value corresponding
+to your test statistic $r$, it is roughly the same as the $P$-value corresponding
+to your test $b_1$.
+
+***
+
+\newpage
+
+## Model Utility Test without randomization: Simple Linear Regression model
+People have been conducting the Model Utility Test for a long while, since before
+computers were on every desktop, before it was feasible to generate randomization
+distributions, when only hand calculations were possible.  Upon request, R will
+generate the kind of results those hand calculations produced.  Naturally the
+`lm()` command is used, but so is `summary()`.  In the case of the
+*PctTip-and-Bill* data, the request goes like this:
+```{r}
+summary( lm(PctTip ~ Bill, data=RestaurantTips) )
+```
+Notice the result contains information about both coefficients.  The `(Intercept)`
+row says
+$$ \mbox{Our point estimate $b_0$ for $\beta_0$ is $15.50965$, has SE$_{b_0} = 0.73956$,
+  and standardized $t$-score $t = 20.97$.} $$
+The other row, the one about *slope*, is always of greater interest to us.  It says
+$$ \mbox{Our point estimate $b_1$ for $\beta_1$ is $0.04881$, has SE$_{b_1} = 0.02871$,
+  and standardized $t$-score $t = 1.70$.} $$
+
+We see that the process our forbears devised in lieu of randomization led them to
+deal, again, with $t$-distributions.  Specifically, since in the Model Utility Test
+we hypothesize that $\beta_1 = 0$, standardizing leads to the reported $t$-score:
+$$ t \;=\; \frac{0.04881 - 0}{0.02871} \;=\; 1.700. $$
+To get the resulting $P$-value the way they (and this command) did, we find how
+often a $t$-score is as extreme or more so than this one---i.e., compute the tail
+area and double it.  We get the tail area using a $t$-distribution, but with how many
+degrees of freedom?  If there are $n$ cases in the dataset, regression computes degrees
+of freedom in this way:
+$$ \mbox{df} \;=\; n - 1 - \left(\mbox{number of predictor variables}\right). $$
+What is implied here is that it is possible to consider more than 1 explanatory/predictor
+variable.  When we do, it is called **multiple regression**.
+Since we are considering only 1 predictor variable, the number of
+degrees of freedom is df $=n - 2$.  So, in the case of
+*PctTip-as-predicted-by-Bill* data, which has $n=157$ cases,
+R determined its $P$-value above by doing what the following command does:
+```{r}
+2 * (1 - pt(1.7, df=155))
+```
+
+This standard error SE$_{b_1}$ can be used the way we have used standard errors in
+the past, not only in the calculation of a standardized $t$-statistic above, but
+also in the **construction of a confidence interval for the true slope** $\beta_1$:
+$$ \mbox{(point est.)} \pm t^* \;\mbox{SE}, \qquad\mbox{or}\qquad
+   b_1 \pm t^* \;\mbox{SE}_{b_1}. $$
+You choose the critical value $t^*$ as in Chapter 6, but now using $n-2$ degrees
+of freedom.  So, to get a 92\% CI for $\beta_1$ for the *PctTip-as-predicted-by-bill*
+data, with sample size
+```{r}
+nrow(RestaurantTips)
+```
+we get our critical value
+```{r}
+tstar <- qt(0.96, df=155); tstar
+```
+and our confidence interval
+```{r}
+lm(PctTip ~ Bill, data=RestaurantTips)$coefficients[2] + c(-1,1) * tstar * 0.02871
+```
+As we have seen before, there is a connection between the $P$-value of a Model
+Utility Test and this confidence interval for $\beta_1$.  Since the null value,
+0, is inside a 92\% CI, we would have expected correspondingly that the $P$-value
+of the Model Utility Test to be *larger* than $0.08$, and above we found it to be
+$0.091$, confirming that.
+
+***
+
+**Question**:
+Our forbears also developed the formula for the standardized $t$-statistic of
+the sample correlation $r$ to be
+$$ t = \frac{r\sqrt{n-2}}{\sqrt{1-r^2}}, $$
+which also has $n-2$ degrees of freedom when there is one predictor variable.
+What is the resulting $P$-value, and what hypotheses would we be testing?
+
+***
+
+**Caution about using results based on a theoretical $t$-distribution**:
+As in the previous chapters, beginning with Chapter 5, whenever we have turned
+to a theoretical distribution (a normal distribution, a $t$ distribution, a chi-square
+distribution, or an $F$ distribution) to compute a $P$-value, there have been
+conditions which validate the approach and, in the absence of such, leave us in
+some doubt about the conclusions.  The same is true with the results above.
+               
+***
+
+Conditions for the **Simple Linear Regression Model**.  What has been assumed,
+and validates the approach, may be described as follows. Many different observed
+$Y$-values are possible for any fixed $X$-value, but
+
+ * they are normally distributed with mean $\mu_Y(X) = \beta_0 + \beta_1 X$, and
+ * the standard deviation is $\sigma$, a number that doesn't change with $X$.
+ 
+***
+ 
+The output from `summary( lm( ...) )` above includes an estimate for $\sigma$.
+It is the number reported as `Residual standard error`.  For the
+*PctTip-as-predicted-by-Bill* data, the estimate for $\sigma$ is $4.36$
+
+Some pictures from the textbook:
+
+![Good: conditions appear to be met](figs/slmAssumptionsMet.png)
+
+![Bad: Not a linear association](figs/slmAssumptionsUnmetNotLinear.png)
+
+![Bad: standard deviation changes with $X$](figs/slmAssumptionsUnmetNonunifSpread.png)
+
+![Bad: Outliers/influential points are present](figs/slmAssumptionsUnmetOutliers.png)
+
+
+\newpage
+
+## ANOVA for regression
+
+In Chapter 8, the quantitative response variable was used to
+generate $SSG$, $SSE$, and $SST$.  In regression, we continue
+to have a quantitative response, the $y$-coordinates (known as
+**observed** values) of the data points
+$$ (x_1,y_1), \;\; (x_2,y_2), \;\; (x_3,y_3), \;\;\ldots \;\;
+   (x_n,y_n). $$
+We can, therefore, produce similar sum-of-squares values such as
+$$ SSTotal \;=\; \sum (y_i - \overline y)^2
+  \;=\; (n-1)s_y^2. $$
+Here, $\overline y$ is the mean of observed responses,
+$$ \overline y \;=\; \frac{1}{n}(y_1 + y_2 + \cdots + y_n) \;=\; \frac{1}{n}\,
+  \sum y_i. $$
+As before, this $SSTotal$ breaks into two parts, $SSModel$,
+or $SSM$ (formerly called $SSG$)
+$$ SSModel \;=\; \sum (\widehat y_i - \overline y)^2, $$
+and $SSResid$ (or $SSE$)
+$$ SSE \;=\; \sum (y_i - \widehat y_i)^2. $$
+Here, $\widehat y_i$ refers to a **predicted** or
+**fitted value**; more specifically,
+the subscript $i$ is associated with a point $(x_i,y_i)$ in the
+data, and the $x_i$ from that point is what generates our point
+estimate of the mean response at that $X=x_i$, namely
+$$ \widehat y_i = b_0 + b_1 x_i. $$
+Note, from Chapter 2 we defined a **residuals** to be the
+difference between an observed and predicted value,
+$$ \epsilon_i \;=\; y_i - \widehat y_i, $$
+and $SSResid$ is simply the quantity we sought to make as small
+as possible in order to choose our least squares regression line.
+  
+As when we defined these quantities in Chapter 8, the relationship
+between them is
+$$ SSTotal = SSModel + SSResid, \qquad\mbox{or}\qquad SST = SSM + SSE. $$
+
+When $SSE$ is small in comparison with $SST$, that is indicative of a strong
+linear relationship between the variables; the line does a good job of
+explaining the variation in observed values.  A good measure of how well the
+variability in response values $Y$ is explained by the linear model $b_0+b_1 X$
+is the ratio
+$$ R^2 \;=\; \frac{SSM}{SST} \;=\; \frac{SST - SSE}{SST}, $$
+known as the **coefficient of determination**.  It might have been better to
+use a lower-case $r$, and call it $r^2$, since the coefficient of determination
+is equal to the square of the correlation.
+
+**Example**: `InkjetPrinters`.  In the text, the Locks propose using `PPM`,
+the number of pages a printer can turn out per minute, to explain `Price`.
+The first few rows of the raw data are as follows.
+```{r}
+head(InkjetPrinters)
+```
+A scatterplot makes a linear relationship appear reasonable.  The black points
+represent the data, while the purple points, lying on the line, are the *fits*.
+By storing the result of the `lm()` command, R can be asked to provide the fitted
+values (in the same order as the original data)
+```{r}
+lmRes <- lm(Price ~ PPM, data=InkjetPrinters)
+lmRes$fitted
+```
+as well as the residuals
+```{r}
+lmRes$residuals
+```
+The vertical green line is from the 14th observed value, the observed price of \$189
+for a Dell V715 w inkjet printer, down to its fitted price of \$132.97, a positive
+residual of $189 - 132.97 = 56.03$.  The red vertical line is from the 5th observed
+value, the price of \$70 for an Epson Workforce 520 up to its fitted price of
+\$123.89, a negative residual of $70 - 123.89 = -53.89$.
+```{r echo=FALSE}
+lmRes <- lm(Price ~ PPM, data=InkjetPrinters)
+gf_point(Price ~ PPM, data=InkjetPrinters, color="black") |> gf_lm() |>
+  gf_point(lmRes$fitted ~ PPM, data=InkjetPrinters, color="purple") +
+  geom_segment(aes(x=2.5,y=189,xend=2.5,yend=132.973),color="darkgreen",show.legend=FALSE) +
+  geom_segment(aes(x=2.4, y=70, xend=2.4, yend=123.886), color = "red",show.legend=FALSE)
+```
+
+Take a look at the output from the following commands applied to this data.
+First the summary from `lm()` (recall that `lmResult` stores output from `lm()`).
+```{r}
+summary(lmRes)
+```
+See there is a number reported at the bottom with the label `Multiple R-squared`.
+That is the coefficient of determination, $R^2$, we defined above.  It says about
+55\% of the variability in sampled printer prices is "explained" by the variable
+`PPM` through the linear model
+$$ \widehat{\mbox{Price}} = -94.22 + 90.88(\mbox{PPM}). $$
+
+Next look at the correlation:
+```{r}
+cor(Price ~ PPM, data=InkjetPrinters)
+```
+Squaring this correlation
+$$ (0.7396862)^2 \doteq 0.5471, $$
+yields the same number as `Multiple R-squared` reported above.
+
+Now look at an ANOVA table:
+```{r}
+anova(lmRes)
+```
+The reported sum-of-squares values are $SSM = 74540$ and $SSE = 61697$, which
+means $SST = 74540+61697 = 136237$.  We defined $R^2$ to be the ratio
+$$ \frac{SSM}{SST} = \frac{74540}{136237} = 0.5471, $$
+again matching `Multiple R-squared`.
+
+***
+
+**Question**:
+Consider the command
+```{r}
+sum( lmRes$residuals^2 )
+```
+Can you guess what number this will give and find its value using
+the ANOVA table?  Run the command and check that you are correct.
+
+***
+
+Looking more carefully at this ANOVA table, we see that, out of the $n=20$ cases
+(printers) in the **InkjetPrinters** dataset, $n-2 = 18$ degrees of freedom have
+been "assigned" to the `Residuals`, and 1 degree of freedom to `PPM`, for a total
+of $18 + 1 = 19 = n-1$.  In simple linear regression (i.e., regression with just
+1 predictor variable), the number of degrees of freedom on the residual row is
+always $n-2$.  The calculations of quantities such as $MSM$ (we called it $MSG$
+in Chapter 8), $MSE$ and $F$ which appear in the ANOVA table are done exactly
+as in 1-way ANOVA:
+$$ MSModel = \frac{SSModel}{1}, \qquad MSE = \frac{SSE}{n-2}, \qquad\mbox{and}\qquad
+  F = \frac{MSM}{MSE}, $$
+and the resulting $P$-value, obtained with the command like
+```{r eval=FALSE}
+1 - pf(fstatistic, df1=1, df2=n-2)
+```
+is exactly the same as $P$-value from the Model Utility Test, representing another
+way to compute it.
+
+\newpage
+
+## Prediction and confidence intervals
+If the conditions for the simple linear model are met, and if we have rejected
+the null hypothesis in the Model Utility Test in favor of the alternative, that
+the explanatory variable has some usefulness as a predictor of values of the
+response variable, it is typical to see the model used that way.  There are two
+sorts of *prediction*-type questions we might ask.
+
+ 1. What is the average response $Y$ at a particular $X$?  We denote this
+    number by $\mu_Y(X)$, which is a parameter specific to the subpopulation
+    of response one can see for that particular value of $X$.
+ 2. What is the *next* response $Y$ I expect to see for a particular $X$?
+
+**Example**.  For predicting `Price` of an inkjet printer from its `PPM`,
+we have the coefficients
+```{r}
+lm(Price ~ PPM, data=InkjetPrinters)
+```
+which we express as a linear model
+$$ \widehat{\mbox{Price}} = -94.22 + 90.88(\mbox{PPM}). $$
+The best *single number* to
+
+ 1. estimate the average price for an inkjet printer that prints 3.5 pages
+    per minute is
+    $$ -94.22 + 90.88(3.5) \;=\; 223.86, $$
+    or \$223.86.
+ 2. estimate the price of the next inkjet printer that prints 3.5 pages is,
+    likewise, $-94.22 + 90.88(3.5)=223.86$.
+    
+But this number is most likely wrong, as it merely *estimates* answers to these
+questions.  We would prefer to give an interval of values, along the lines of a
+confidence interval,
+$$ (\mbox{point estimate}) \pm (\mbox{margin of error}). $$
+As one might expect, the margin of error is larger when predicting the *next*
+response value at $X$ than it is for the *average* response.  Formulas are
+available for these two margins of errors, but they are ugly.  (You can find
+them incorporated into the interval formulas in the box on p. 553.)
+
+We will use software to generate these intervals, and the easiest approach I know
+in R is to use the (stored) model to make an *estimator* function:
+```{r}
+lmResult <- lm(Price ~ PPM, data=InkjetPrinters)
+printerPriceEstimator <- makeFun( lmResult )
+```
+The resulting function `printerPriceEstimator()` (it seemed an appropriate name,
+given the situation), can be used to repeat my calculation of a single-number
+estimate above:
+```{r}
+printerPriceEstimator(PPM = 3.5)
+```
+It can also be used to generate a **confidence interval for the mean response**
+when `PPM` equals 3.5, a better answer to Question 1 than any single number can be:
+```{r}
+printerPriceEstimator(PPM = 3.5, interval="confidence")
+```
+Finally, the same estimator function, with switch `interval="prediction"`, gives
+an interval that responds to Question 2, known as a **prediction interval for
+a response value** at a given choice of the explanatory variable.
+```{r}
+printerPriceEstimator(PPM = 3.5, interval="prediction")
+```
+Not surprisingly, both the confidence interval and the prediction interval are
+centered at 223.85 (the single-number estimate), but the prediction interval is
+(much) wider.  For both answers, the level of confidence was 95\%.  Using the `level` switch, we can
+tweak the level of confidence, changing it, say, to 90\%.
+```{r}
+printerPriceEstimator(PPM = 3.5, interval="prediction", level=0.9)
+```
+
+An older way of producing a similar prediction
+interval, now supplanted by using `makeFun()`, is
+found in this unexecuted code
+```{r eval=FALSE}
+lmResult <- lm(Price ~ PPM, data=InkjetPrinters)
+predict(lmResult, newdata=data.frame(PPM=3.5), interval="prediction", level=0.9)
+```
+
+It can be instructive to envision confidence and prediction intervals spread out
+around the regression line.
+```{r}
+gf_point(Price ~ PPM, data=InkjetPrinters) |>
+  gf_lm(interval="confidence", fill="red") |>
+  gf_lm(interval="prediction",fill="blue")
+```
+
+***
+
+**Exercise**:
+Use commands like those above to both a confidence interval for the mean response,
+and a prediction interval when `PPM = 3.0`.  Compare your answers to those given
+in Example 9.19 on p. 554.
+
+***
+
