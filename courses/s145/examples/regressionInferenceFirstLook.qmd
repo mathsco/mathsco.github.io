@@ -1,0 +1,150 @@
+---
+title: "Regression: Some Review, and Confidence Intervals for Slope"
+author: "T.Scofield"
+format: pdf
+geometry:
+ - top=20mm
+ - left=20mm
+ - heightrounded
+editor: source
+---
+
+```{r}
+#| include: false
+require(mosaic)
+require(gridExtra)
+require(Lock5withR)
+require(triangle)
+require(abd)
+require(knitr)
+ssurv <- read.csv("https://scofield.site/teaching/data/csv/ssurv.csv")
+spruce <- read.csv("https://scofield.site/teaching/data/csv/hesterberg/Spruce.csv")
+wineAndDeath <- read.csv("https://scofield.site/teaching/data/csv/heartDiseaseDeathsAndWine.csv")
+mlb18hitting <- read.csv("https://scofield.site/teaching/data/csv/mlb18abEligible.csv")
+miaa05baskeball <- read.csv("https://scofield.site/teaching/data/csv/stob/miaa05.csv")
+```
+
+You may [click here](https://scofield.site/courses/s145/examples/regressionInferenceFirstLook.qmd) to access the .qmd file.
+
+
+# Review of scatterplots, correlation
+
+The **InkjetPrinters** data is available in the `Lock5withR` package, and
+one of the first data sets used in examples in Chapter 9.
+```{r}
+head(InkjetPrinters)
+```
+A scatterplot involves two quantitative variables, one selected to serve
+in the role of explanatory variable, and one as response.  If we wish to
+see how `PPM` might serve in explaining `Price`, this scatterplot helps
+develop the sense that
+
+ * there is an association
+ * the association is *positive* (as `PPM` rises, `Price` does, too)
+ * a line might serve well to describe the relationship
+ 
+```{r}
+#| fig-width: 5
+#| fig-height: 2
+#| warning: false
+gf_point(Price ~ PPM, data=InkjetPrinters)
+```
+
+To visualize the best-fit line passing through the data, we can pipe
+the scatterplot to the `gf_lm()` command:
+```{r}
+#| fig-width: 5
+#| fig-height: 2
+#| warning: false
+gf_point(Price ~ PPM, data=InkjetPrinters) |> gf_lm()
+```
+
+This added line does not perfectly describe the points; the association
+is not so strong as that (and never is).  A measure of the strength of
+the linear relationship is the **correlation coefficient**:
+```{r}
+cor(Price ~ PPM, data=InkjetPrinters)
+```
+The stronger the relationship, the closer this correlation coefficient,
+denoted by $r$, would be 1 or to (-1).
+
+# Coefficients of regression line
+
+The coefficients of the line computed from data are called $b_0$ (the
+intercept) and $b_1$ (the slope).  There are formulas for these:
+$$ b_1 = r\frac{s_y}{s_x} \qquad\mbox{and}\qquad b_0 = \bar y - b_1\bar x. $$
+So, if we use the correlation $r=0.7397$ we computed above, and determine
+the sample mean and sample standard deviations for `PPM` and `Price`, these
+formulas will give us the slope and intercept.
+```{r}
+xbar = mean(~PPM, data=InkjetPrinters)
+s.x = sd(~PPM, data=InkjetPrinters)
+ybar = mean(~Price, data=InkjetPrinters)
+s.y = sd(~Price, data=InkjetPrinters)
+r = cor(Price ~ PPM, data=InkjetPrinters)
+
+b1 = r * s.y / s.x;  b1
+b0 = ybar - b1 * xbar;  b0
+```
+
+The more streamlined way to obtain slope and intercept is by using `lm()`.
+```{r}
+myModel <- lm(Price ~ PPM, data=InkjetPrinters)
+coef(myModel)
+```
+
+# Building a confidence interval for $\beta_1$
+
+The idea is that there is some true slope $\beta_1$ (also a true intercept
+$\beta_0$).  These are population parameters, unknown to us.  We have sampled
+data, and have used it to obtain estimates of slope and intercept, called
+$b_1$ and $b_0$.  Slope is particularly important.  It speaks to how quickly
+the response variable changes when the explanatory changes by 1 unit.  It
+would be nice if we could produce an interval of values $\beta_1$ is likely
+to be, not merely a single estimate $b_1$.
+
+Confidence interval construction is a type of statistical inference, and the
+conclusions we draw about population values require models that behave a
+certain way.  To draw reliable conclusions about $\beta_1$---in this case,
+to develop a method for 95% confidence interval construction that is
+successful in enclosing $\beta_1$ 95% of the time---requires assumptions
+we refer to as the **simple linear model assumptions**.  (The word "simple"
+is used for cases like ours where there is just *one* predictor variable.)
+I will have more to say about the **simple linear model**, and about how
+to investigate whether it holds plausibly, in a future class session.  For
+now, I'll say the model is usually summarized by the mathematical expression
+$$ Y = \beta_0 + \beta_1 x + \epsilon \qquad\mbox{where}\qquad
+  \epsilon \sim \mbox{Norm}(0, \sigma), $$
+and can be visualized as corresponding to this picture:
+
+```{r}
+#| echo: false
+knitr::include_graphics("./slrModelPic.png")
+```
+
+Assuming the model assumptions hold, `summary( lm( ...) )` can be used in
+tandem with `qt()` to produce a confidence interval for $\beta_1$ in the
+usual way:
+$$ \mbox{(point estimate)} \pm \mbox{(critical value)(standard error)}. $$
+Our point estimate and standard error are $b_1 = 90.88$ and SE$_{b_1}
+= 19.49$, appearing in the output below:
+```{r}
+summary(lm(Price ~ PPM, data=InkjetPrinters))
+```
+
+The critical value is a $t^\ast$ value, tailored to the desired level
+of confidence, and degrees of freedom $df = n-2$.  (Later, when we are
+using $k$ predictor variables instead of the *one* that is assumed in
+the simple linear model, the degrees of freedom will be modified to
+$df = n - 1 - k$.)
+
+For 95% confidence,
+```{r}
+tstar = qt(0.975, df=18)     # because InkjetPrinters is a sample of size n=20
+```
+and our 95% CI for $\beta_1$ is
+```{r}
+90.88 + c(-1,1) * tstar * 19.49
+```
+or $(49.93, 131.83)$.  That is, we believe the true slope, with 95%
+confidence, lies in this interval of numbers.
