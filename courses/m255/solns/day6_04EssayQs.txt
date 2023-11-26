@@ -1,0 +1,20 @@
+Q18:
+  Everyone should realize that for a triangular matrix, the eigenvals
+  are the diagonal entries: 4, 7, and 5.  That dictates, up to
+  choice of sequencing, the entries of the diagonal matrix.  The
+  columns of the matrix P are not unique, but must be eigenvecs of A.
+
+Q19:
+  This is false.  Though a square, but not diagonalizable, matrix
+  has to have a repeated eigenvalue, it is possible to have a repeated
+  eigenval and still be diagonalizable.  Example 7.19 on p. 365 of the
+  textbook provides an example.
+
+Q20:
+  The answer is "yes", every diagonal matrix is diagonalizable.  We
+  simply take P and P^{-1} both to be the identity matrix.
+
+Q21:
+  This is true.  If P and D are the matrices, with D diagonal, for
+  which  D = P^{-1} AP, then D^k is diagonal as well, and
+  D^k = P^{-1} A^k P.

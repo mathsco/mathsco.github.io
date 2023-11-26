@@ -1,0 +1,53 @@
+Q6:
+  This if false.  A vector in the nullspace of
+       | 1  0  0 |
+   A = | 0  1 -1 |
+       | 0  1 -1 |
+  is x = <0, 1, 1>.  It is a nontrivial solution to
+  T(x) = Ax = <0,0,0>, but has a nonzero entry.
+
+Q7:
+  This is true.  Since Ax = b is consistent, there is a solution.
+  And we know all solutions differ from each other by an element
+  of the nullspace of A.  Now, if A has the trivial null space, then
+  this difference between solutions of Ax=b collapses to 0 (the
+  zero vector), meaning there is only solution of Ax=b.
+
+  Conversely, if there is exactly one solution of Ax=b, then the
+  null space must be trivial.  For, if it were not, we could add
+  a nonzero element of null(A) with this, supposed, unique solution
+  of Ax=b, could be added with our one solution to produce a second
+  solution of Ax=b.
+
+Q8:
+  The solution set is all of R^4.  That is, the columns of A are
+  all copies of the zero vector, and any linear combination of
+  them is also the zero vector.
+
+Q9:
+  The vector v is not an eigenvector of A.  This is because there
+  is no scalar by which you can rescale v = <1, -1, 2> in order
+  to produce  Av = <14, -9, -4>.
+
+Q27:
+  Since  Au = (lam) u,  it follows that  (cA)u = c (lam) u, implying
+  that u is also an eigenvector of (cA), with eigenevalue  (c lam).
+  Note, too, that  A(cu) = (cA)u.
+
+Q28:
+  The way our matrix A acts on the basis i = <1,0> and j = <0,1> is
+  Ai = i  and  Aj = -j.  Following what we learned in Section 5.2,
+  the matrix is
+
+       | 1  0 |
+   A = |      |
+       | 0 -1 |
+
+Q29:
+  The way our matrix A acts on the basis {i, j, k} with i = <1,0,0>,
+  j = <0,1,0>, and j = <0,0,1>, is Ai = i, Aj = j, and Ak = -k.
+  Following what we learned in Section 5.2, the matrix is
+
+       | 1  0  0 |
+   A = | 0  1  0 |
+       | 0  0 -1 |
