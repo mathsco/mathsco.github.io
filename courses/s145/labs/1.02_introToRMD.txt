@@ -1,243 +1,142 @@
 ---
-title: "Introduction to R Markdown (hw02: Lab 1)"
-author: "Your names here"
-date: "Jan. 22 or 23, 2024"
-
-fontsize: 11pt
-geometry: margin=1in
-
-output:
-  pdf_document:
-    includes:
-      in_header: ../../header.tex
-    fig_width: 5
-    fig_height: 3.5
-classoption: usenames,dvipsnames
+title: "Lab 0: Introduction to R Markdown"
+author: "OpenIntro Biostatistics"
+date: "January 2020"
+output: pdf_document
 ---
 
-\begin{small}
-	
-	\textbf{Topics}
-	\begin{itemize}
-	  \item Dataset manipulation in \textsf{R}
-	  \item Numerical summaries: mean, SD, median, IQR
-	  \item Graphical summaries: boxplots, histograms, scatterplots
-	\end{itemize}
-	
-\end{small}
+### Orientation
 
-The first two sections of this lab introduce basic tools for working with data matrices, as well as the commands for producing numerical and graphical summaries. The last section focuses on data interpretation and reinforces the statistical concepts presented in the text. The material in this lab corresponds to Sections 1.1 - 1.2 and 1.4 - 1.6 of \textit{OpenIntro Biostatistics}.
+This is an R Markdown (Rmd) document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. It was designed to simplify creating HTML documents, but the labs for this text are written to generate PDF documents. Before continuing, be sure to install a TeX distribution; one easy option is the TinyTex distribution that can be installed via R (\url{https://yihui.org/tinytex/}).\footnote{Alternatively, a full TeX distribution can be downloaded from \url{https://www.latex-project.org/get/}.}
 
+To install the TinyTex distribution, run the following commands. The commands appear in a grey box; click the green play button in the upper right hand corner to run both lines:
 
-
-
-### Section 1: BRFSS. 
-
-The Behavioral Risk Factor Surveillance System (BRFSS) is an annual telephone survey of 350,000 people in the United States. The BRFSS is designed to identify risk factors in the adult population and report emerging health trends. For example, respondents are asked about their diet, weekly exercise, possible tobacco use, and healthcare coverage. 
-
-1. Use the following command to download the dataset \texttt{cdc} from a URL. This dataset is a sample of 20,000 people from the survey conducted in 2000, and contains responses from a subset of the questions asked on the survey.
-
-    ```{r, eval = FALSE}
-source("http://www.openintro.org/stat/data/cdc.R")
+```{r, eval = FALSE}
+install.packages('tinytex')
+tinytex::install_tinytex()
 ```
 
-2. Take a look at the Environment tab, where \texttt{cdc} should now be visible. Click the blue button next to the dataset name to view a summary of the 9 variables contained in the data matrix. To view the dataset itself, click on the name of the dataset; alternatively, enter the command
+To install the *oibiostat* data package, run the code in the following chunk. The package only needs to be installed once. 
 
-    ```{r, eval = FALSE}
-View(cdc)
+```{r, eval = FALSE}
+install.packages("devtools")
+devtools::install_github("OI-Biostat/oi_biostat_data")
 ```
 
+The content of an R Markdown document is created in the R Studio script editor. Formatting commands in the text are converted to a PDF document when you click on the *Knit* button, located on the toolbar at the top of the script editor.
 
-    Each row of the data matrix represents a case and each column represents a variable. Each variable corresponds to a question that was asked in the survey. For \texttt{genhlth}, respondents were asked to evaluate their general health as either "excellent", "very good", "good", "fair", or "poor". The variables \texttt{exerany}, \texttt{hlthplan}, and \texttt{smoke100} are binary variables, with responses recorded as either 0 for "no" and 1 for "yes": whether the respondent exercised in the past month, has health coverage, or has smoked at least 100 cigarettes in their lifetime. The other variables record the respondents' height in inches, weight in pounds, their desired weight (\texttt{wtdesire}), age in years, and gender.
+In R Studio, the menu item *File > New File > R Markdown...* choice produces a dialog box for output type. To create a new document, select *Document* from the left side of the dialog box, enter a name and title, choose PDF, and select OK. A template will open in the script editor, with file extension .Rmd. Templates will be provided for all the lab exercises, and you will start by simply opening the template files, so there will almost never be a need to start a new file `from scratch' while working on these labs.
 
-3. The \$ operator in \textsf{R} is used to access variables within a dataset; for example, \texttt{cdc\$height} tells \textsf{R} to look in the \texttt{cdc} dataframe for the \texttt{height} variable. Make a scatterplot of \texttt{height} and \texttt{weight} using the \texttt{plot( )} command:
+### Getting Started
 
-    ```{r, eval = FALSE}
-plot(cdc$weight ~ cdc$height)
-```
+The first six lines of this file are referred to as the **header**. R Markdown is very fussy about the form of the header---the three dashed lines above and below lines 2-5 must appear exactly as in this document, and there must be a blank space between the colon and the descriptive text. Also, the title, author, and date fields must be kept within double quotes. The output line specifies the output format as PDF. 
 
-    Do \texttt{height} and \texttt{weight} appear to be associated?
+1. First, rename this file to include your first initial and last name -- e.g., 01_intro_to_Rmd_j_vu.Rmd. (Use *File > Save As...*)
 
+2. In this document, edit the header to include your name and today's date. Click *Knit PDF*. This should produce a PDF file located in the same folder as the Rmd file, with a name like 01_intro_to_Rmd_j_vu.pdf. Note that the file name for a PDF created from an Rmd document will be the same, except with a different file extension. The file name and title of the document, however, can be different.
 
-4. The conversion from inches to meters is 1 in = .0254 m. Create a new variable \texttt{height.m} that records height in meters. Similarly, the conversion from pounds to kilograms is 1 lb = .454 kg. Create a new variable \texttt{weight.kg} that records weight in kilograms.
+Plain text is prepared in paragraphs, as in the first part of this document. *Text* enclosed in asterisks is *italicized* in the PDF output. **Text** enclosed in double asterisks appears in **bold font**.  There must be no space between the asterisks and the enclosed text.
 
-5. BMI is calculated as weight in kilograms divided by height squared. Create a new variable \texttt{bmi} and make a scatterplot of \texttt{height} and \texttt{BMI}. Do \texttt{height} and \texttt{BMI} seem to be associated?
+3. Write a brief paragraph describing previous coursework in statistics (if any) and share your motivation for learning statistics with R. *Knit* the document. Note that each time you *knit* the document, the output overwrites the previous version.
 
-	
-    A BMI of 30 or above is considered obese. Why might health agencies choose to use BMI as a measure of obesity, rather than weight?
-
+Your paragraph...
 
 
-6. Row-and-column notation in combination with square brackets can be used to access a subset of the data. For example, to access the sixth variable (\texttt{weight}) of the 567th respondent, use the command:
+Bulleted lists are produced using the formatting syntax: 
 
-    ```{r, eval = F}
-cdc[567, 6]
-```
+- Item 1 
+- Item 2 
+    + Item 2a
+    + Item 2b
 
-    To see the weight for the first ten respondents, use:
+The list must be preceded by a blank line, and 4 spaces should be used before sub-items.
 
-    ```{r, eval = F}
-cdc[1:10, 6]
-```
+4. Write a bulleted list giving your year of graduation, your field of study, and the country you are from.  Under the entry for your country, prepare subitems with the name of your state and city. *Knit* the document and inspect it to make sure the PDF is correctly produced.
 
-    If the column number is omitted, then all the columns will be returned for rows 1 through 10: 
-	
-    ```{r, eval = F}
-cdc[1:10, ]
-```
+Your bulleted list...
 
-    Likewise, omit the range for the rows to access all observations for column 6. The following will return the weight for all 20,000 respondents:
-	
-    ```{r, eval = F}
-cdc[ ,6]
-```
+Additional formatting commands will be introduced gradually throughout the rest of the labs.
 
+<!---
+To make a "comment" in an R Markdown document, use the syntax on the lines preceding and following this message. All the text within the 'arrows' does not appear in the knitted PDF, similar to how lines preceded with a # in R are not executed as code.
+--->
 
-7. Use bracket notation to make a scatterplot of \texttt{height} and \texttt{weight} for the first 100 respondents. There are multiple ways to do this\textemdash find one that works!
+5. To start a new page in the PDF document, enter the text 'newpage' preceded by a backslash, as in...(new page coming in the PDF!)
 
 \newpage
 
-### Section 2: Gene Transcript Lengths.
+### Using R with R Markdown
 
-Before genes can be translated into proteins, DNA must first be transcribed into RNA. The dataset \texttt{coding.mrna} contains the length of known protein-coding transcripts (measured in base pairs). Load the dataset from the \texttt{oibiostat} package.
+The real power of R Markdown is that it allows for R programs to be included in the Rmd file, with both the program and its output automatically being produced in the PDF document.
 
-1. How many transcripts are represented in this dataset? Use the \texttt{nrow()} command to return the number of rows in the dataset.
+R programs in an Rmd file are located in **code chunks**, which appear as grey-shaded blocks as shown below starting on line 60. You can embed an R code chunk by either typing the three backticks (`) followed by an "r" enclosed in braces, then the additional three backticks to close the chunk, or simply press the *Insert Chunk* button from the *Chunks* menu on the far right of the toolbar on top of the script editor. 
 
-    ```{r, eval = F}
-nrow(coding.mrna)
+6. Datasets for the labs are contained within the *oibiostat* package. To view which datasets are included in the package, go to the "Packages" tab and scroll down to *oibiostat*; clicking the blue hyperlink opens the documentation page that lists the datasets included in the package.
+
+7. The following code chunks use data included in the package. To load the package, use the \texttt{library} command. This command only needs to be used once in a document, in the first R chunk that requires data from the package. The \texttt{data()} command can be used to load a particular dataset from the package; once the command is run, the name of the dataset will appear in the Environment tab.
+
+```{r}
+library(oibiostat)   #loads the package
+data(frog)           #loads the frog dataset
+mean(frog$egg.size)
 ```
 
+8. It is also possible to view the output of a code chunk without having to *Knit* the entire document. 
 
-
-2. Calculate the 5-number summary for the transcript lengths using the \texttt{summary()} command. What striking feature do you notice in the summary?
-
-
-3. Draw a histogram and a boxplot of the distribution of transcript lengths. When you see them, you will notice that the plots are not particularly informative. Explain why you think that is the case.
-
-
-4. For a data item \texttt{x}, the notation \texttt{x < a} is used to reference the subset of values of \texttt{x} that are less than the value \texttt{a}. Pick a reasonable length \texttt{a} and use the \texttt{subset()} command to create a trimmed version of \texttt{coding.mrna} called \texttt{lengths.subset} that only contains data for transcripts with length less than \texttt{a}. This is one simple strategy for making the structure of the data easier to view in the plot.
-
-    ```{r, eval = F}
-lengths.subset = subset(coding.mrna, coding.mrna$transcript_length < a)
-```
-
-    With the trimmed data, draw a histogram and boxplot, and calculate summary statistics. Now describe the shape of the data. Explain your choice of where to trim the data.
-		
-
-
-5. Use \textsf{R} to find out how many transcripts you have trimmed from the dataset. Hint: this might involve notation used in Questions 1 and 4.
-
-
-6. One way of manipulating a large dataset is to take a random sample and construct numerical and graphical summaries of the sample. Use the following code to construct a random sample that consists of 10\% of the original number of transcripts; the sampling is done without replacement, such that a single transcript cannot be chosen more than once.
-		
-    Using the \texttt{set.seed()} function allows for pseudo-random sampling; that is, a random sample that is reproducible. Replace \texttt{xxxx} in the function with four numbers of your choice, then run the code to create \texttt{transcript.sample}, a vector of transcript lengths. 
-	
-    ```{r, eval = F}
-set.seed(xxxx)
-sample.size = 0.1 * nrow(coding.mrna)
-transcript.sample = sample(coding.mrna$transcript_length, size = sample.size,
-                           replace = FALSE)
-```
-
-    Now with \texttt{transcript.sample}, calculate the number of transcripts in the dataset, the five-number summary, and draw a histogram and boxplot. Does the sample data more closely resemble the complete version of the data or the trimmed version from Question 4?
-		
-
-7. Make side-by-side boxplots of transcript lengths by chromosome. Use the command: 
-
-    ```{r, eval = F}
-boxplot(coding.mrna$transcript_length ~ coding.mrna$chromosome_name)
-```
-
-    Select "Show in New Window" above the plot and expand the window to be able to see all the chromosome numbers displayed. Where are the longest transcripts located?
-		
-
-8. Subset \texttt{coding.mrna} to only include values from chromosome 2. Repeat for the Y chromosome. Hint: the notation is similar to that used in Question 4. 
-		
-    Use \texttt{nrow()} to compare the number of transcripts on chromosome 2 and the Y chromosome. Are the results what you might expect, based on what you know about the inheritance of human sex chromosomes? Why or why not?
-
-
-\newpage
-
-### Section 3: NHANES.
-
-The National Health and Nutrition Examination Survey (NHANES) is a survey conducted annually by the US National Center for Health Statistics (NCHS). While the original data uses a survey design that oversamples certain subpopulations, the data have been reweighted to undo oversampling effects and can be treated as if it were a simple random sample from the American population.
-
-The following questions will be explored with the NHANES data:
-
-  1. At what age do Americans seem to reach full adult height?
-   
-  2. What proportion of Americans age 25 or older have a college degree?
-   
-  3. What is the relationship between education level and income?
-   
-  4. How much more likely is it that someone \textit{not} physically active has diabetes, compared to someone who is active?
-
-The reweighted NHANES data are available from the NHANES package. To view the complete list of study variables and their descriptions, access the NHANES documentation page with \texttt{?NHANES}.
-
-For convenience, descriptions of the variables used in this lab exercise are included below.
-  
-  - \texttt{Age}: age in years at screening. Subjects 80 years or older were recorded as 80 years of age.
-  
-  - \texttt{Education}: highest educational level of study participant, reported for participants aged 20 years or older. Recorded as either \texttt{8th Grade}, \texttt{9 - 11th Grade}, \texttt{High School}, \texttt{Some College}, or \texttt{College Grad}.
-  
-  - \texttt{Poverty}: a ratio of family income to poverty guidelines. Smaller numbers indicate more poverty; i.e., a number below 1 indicates income below the poverty level.
-  
-  - \texttt{Weight}: weight, measured in kilograms.
-  
-  - \texttt{Height}: standing height, measured in centimeters.
-  
-  - \texttt{Diabetes}: \texttt{Yes} if the participant was told by a health professional that they have diabetes, \texttt{No} otherwise.
-  
-  - \texttt{PhysActive}: coded \texttt{Yes} if the participant does moderate or vigorous-intensity sports, fitness, or recreational activities; \texttt{No} otherwise. Reported for participants 12 years or older.
-
-\newpage  
-
-
-#### Question 1. 
-
-  a) Describe in words the distribution of ages for the study participants.
-  
-  
-  b) Using numerical and graphical summaries, describe the distribution of heights among study participants in terms of inches.  Note that 1 centimeter is approximately 0.39 inches.   
-
-
-  c) Use the following code to draw a random sample of 200 participants from the entire dataset. Using the random sample, \texttt{nhanes.samp}, investigate at which age people generally reach their adult height. Is it possible to do the same for weight; why or why not?
-
-    ```{r, eval = FALSE}
-#draw a random sample
-set.seed(5011)
-row.num = sample(1:nrow(NHANES), 200, replace = FALSE)
-nhanes.samp = NHANES[row.num, ]  
-```  
-
-
-
-#### Question 2.
-
-  a) What proportion of Americans at least 25 years of age are college graduates?
-  
-  b) What proportion of Americans at least 25 years of age with a high school degree are college graduates?
-  
-   
-   
-### Question 3.
-
-  a) Calculate the median and interquartile range of the distribution of the variable \texttt{Poverty}. Write a sentence explaining the median in the context of these data.
-
-
-  b) Compare the distribution of \texttt{Poverty} across each group in \texttt{Education} among adults (defined as individuals 25 years of age or older). Describe any trends or interesting observations.
-
+   - To run a single line, place your cursor on the line you want to run and press Ctrl/Cmd + Enter. Try this out with the lines in the following chunk. The output appears directly below the code. To clear the output, press the X in the upper right hand corner of the preview.
  
+   - To run an entire chunk, place your cursor within the chunk and press Ctrl/Cmd + Shift + Enter. Try this out in the following chunk. The output is now accessible between the two panes.
  
-#### Question 4.
- 
- a) Construct a two-way table, with \texttt{PhysActive} as the row variable and \texttt{Diabetes} as the column variable. Among participants who are not physically active, what proportion have diabetes? What proportion of physically active participants have diabetes?
+   - The Run drop-down menu in the upper right hand corner of the script editor provides other options for running chunks, such as running all chunks above or below a certain point. The gear drop-down menu, next to the *Knit* button, provides options for expanding or collapsing all output in a document.
 
-    ```{r, eval = FALSE}
-addmargins(table(PhysActive=NHANES$PhysActive, Diabetes=NHANES$Diabetes))
+```{r, fig.height = 3.0}
+hist(frog$egg.size)
+median(frog$egg.size)
 ```
 
+### Loading Datasets
 
-b) In this context, relative risk is the ratio of the proportion of participants who have diabetes among those who are not physically active to the proportion of participants with diabetes among those physically active. Relative risks greater than 1 indicate that people who are not physically active seem to be at a higher risk for diabetes than physically active people. Calculate the relative risk of diabetes for the participants.
+9. Datasets are not always in R packages; in most cases, datasets are downloaded to the local computer from alternate sources or generated from R. The following code creates a small dataset called *sample.data* that consists of the numbers 1:9, arranged in a matrix with three rows and three columns and saves it as a file called *sample_data.Rdata*. Run the following code chunk and confirm that the dataset appears in the same folder as where this Rmd document is saved.
 
-    From these calculations, is it possible to conclude that being physically active reduces one's chance of becoming diabetic?
+```{r}
+sample.data = matrix(1:9, nrow = 3, byrow = T)  #create sample dataset
+save(sample.data, file = "sample_data.Rdata")   #save the file
+rm(list = ls()) #clears the environment, equivalent to clicking the broom icon
+```
+
+10. To download the dataset, use the \texttt{load()} command. Note how the command uses the file name, with the .Rdata extension. In the Environment pane, the dataset appears as *sample.data*, the name that the matrix was given in the previous code chunk.
+
+```{r}
+load("sample_data.Rdata")
+```
+
+11. The following code will produce a side-by-side boxplot (one for each column of \texttt{sample.data}). To run the code, change eval=FALSE to eval=TRUE. *Knit* the document. The plot should now be visible in the PDF output. Any new R chunks you create default to the eval = TRUE option.
+
+```{r, eval = FALSE}
+#produce a side-by-side boxplot
+boxplot(sample.data)
+```
+
+12. When you run a code chunk in an R Markdown file, the commands get sent to the console to be executed. For example, running the command to load \texttt{sample\_data.Rdata} results in \texttt{sample.data} appearing in the Environment pane.
+
+    There is another way to load datasets: clicking the name of an \texttt{.Rdata} file in the Files pane also loads data into the global environment.\footnote{A dialog box will appear asking for confirmation; choose Yes to load the dataset into \textit{RStudio}.} However, the important thing to remember is that while this will allow you to work with the data by running code chunks within an R Markdown file, it does *not* load the data during the knitting process.
+    
+13. Let's test that out. On the Environment pane, clikc the broom icon next to the Import Dataset button, then choose Yes from the confirmation pop-up; this clears objects such as variables and datasets from the workspace. Place a # symbol in front of the line in the Step 10 code chunk to turn it into a comment that R will not evaluate.
+
+    Load \texttt{sample.data} by clicking the name of the file in the Files pane; confirm that the dataset name appears in the Environment pane and that running the chunk from Step 11 still produces a plot.
+    
+    Try to *Knit* the document. This should return an error message reporting that the object 'sample.data' is not found.
+    
+14. Remove the # symbol from the Step 10 code chunk. *Knit* the document. During the knitting process, the document is being compiled line-by-line. If there is no command to load a dataset within the R Markdown file, any commands that require the dataset will not be able to run.
+
+    Additionally, the document is compiled in order; i.e., from top to bottom. If, for example, the command to load \texttt{sample.data} appeared *after* the histogram command, the same error message would appear. Once the error is detected, the compiler does not "read further" into the document.
+    
+    Thus, when working with data files, be sure to check that they are loaded within the R Markdown file itself. There are different functions for loading data depending on whether the data are in \texttt{.Rdata} versus \texttt{.csv} format, and whether the data are stored in a package like \texttt{oibiostat}.
+
+### R Script versus R Markdown
+
+An R Script file can be thought of as one large code chunk; R script files are only meant to contain R commands with short plain-text comments. R Markdown files consist of both code, output, and plain text.
+
+R script files are useful when the primary goal is to explore a dataset or test short R programs. R Markdown files are ideal for preparing documents that need to contain both explanatory text and statistical output, such as a lab report. 
+
+Congratulations! You have reached the end of Lab 0. 
