@@ -1,9 +1,16 @@
+
 ---
 title: "Lab 0: Introduction to R Markdown"
 author: "OpenIntro Biostatistics; revised T.Scofield"
 date: "January 2020 (rev. Jan. 2024)"
 output: pdf_document
 ---
+
+```{r include=FALSE}
+require(mosaic)
+library(knitr)       #library() = require()
+library(png)
+```
 
 ### Orientation
 
@@ -110,7 +117,17 @@ median(~egg.size, data=frog)
 
 ### Loading Datasets
 
-\centerline{\includegraphics[width=0.8\textwidth]{smallData}}
+```{r echo=FALSE, out.width = "75%", fig.align="center"}
+# knitr and png packages were loaded earlier for this
+x = "https://media.geeksforgeeks.org/wp-content/uploads/20210427145234/ScreenShot19430207at25121PM-660x234.png"
+download.file(x, 'mytable.png')
+knitr::include_graphics("mytable.png")
+```
+
+<!--
+This would also have worked
+\centerline{\includegraphics[width=0.75\textwidth]{mytable}}
+-->
 
 9. Datasets are not always in R packages; in most cases, datasets are entered/imported to R from alternate sources.  [This website](https://www.geeksforgeeks.org/how-to-create-multiple-csv-files-from-existing-csv-file-using-pandas/) contains the small data set pictured above.  One way to *build* a data frame containing this data is in the following code:
 
@@ -174,4 +191,5 @@ An R Script file can be thought of as one large code chunk; R script files are o
 
 R script files are useful when the primary goal is to explore a dataset or test short R programs. R Markdown files are ideal for preparing documents that need to contain both explanatory text and statistical output, such as a lab report. 
 
-Congratulations! You have reached the end of Lab 0. 
+Congratulations! You have reached the end of this lab.
+
