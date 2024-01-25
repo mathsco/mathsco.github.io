@@ -1,0 +1,91 @@
+
+---
+title: "Assignment: Personal Log of Commands"
+author: "(your name here)"
+output: pdf_document
+---
+
+```{r include=FALSE}
+require(mosaic)
+require(oibiostat)    # for Stat 145 students
+require(Lock5withR)    # for Stat 243 students
+```
+
+# TASK: Your own personal log of commands
+Give yourself examples of commands you've seen, ones which perform
+various tasks.  I have included several examples discussed in
+class---those for making a two-way table (between two
+variables, usually categorical, in a data frame), and how to compute
+means/averages.  The empty sections that follow have
+headings indicating commands you are expected to know.  Give
+explanations and examples as appropriate---as if **the audience is
+yourself** several weeks or months from now.
+
+The product of this work is the document itself, produced using
+R Markdown, which you can refer to as needed later, and expand as you
+learn more commands in the weeks to follow.  But you must also
+submit a PDF built when you "Knit".  That document will be a PDF
+so long as you specify pdf format in the YAML (see Line 4 in the
+source .Rmd file).  But, upon rendering it, the file will be in
+your file space on the server.  You'll need to download it to a
+local computer, and then upload it to MOM as your homework submission.
+
+### Make a two-way table: `tally()`
+
+This is how I make a two-way table from the variables sex and substance found in the data frame HELPrct, supplied when you load the mosaic package.
+
+```{r}
+tally(~ substance | sex, data=HELPrct)
+```
+
+### Compute a mean/average: `mean()`
+
+Working with the iris data set, I may want to know the mean petal
+length (variable is named `Petal.Length`).  To obtain one average
+for all plants in the data frame:
+
+```{r}
+mean(~ Petal.Length, data=iris)
+```
+
+If what I really want is average petal lengths broken down by
+species, that becomes a bivariate issue.  I'm investigating
+whether there is an association between `Species` and `Petal.Length`.
+Do different `Species` seem to have different means?
+
+```{r}
+mean(~ Petal.Length | Species, data=iris)
+```
+
+### Compute a median for univariate quantitative data: `median()`
+
+### Compute quantiles for univariate quantitative data: `qdata()`
+
+### Construct a frequency table, univariate data: `tally()`
+
+### Get extra information about a data set or command: `help()`
+
+### Display several lines of a data frame: `head()`
+
+### Display the column headings of a data frame: `names()`
+
+### Display the data sets provided by a package: `data()`
+
+### Display a frequency bar chart of univariate/bivariate categorical data: `gf_bar()`
+
+### Display a relative frequency bar chart: `gf_props()`
+
+### Display a dotplot of univariate quantitative data: `gf_dotplot()`
+
+### Display a histogram of univariate quantitative data: `gf_histogram()`
+
+### Compare histograms across different groups: `gf_histogram()`
+
+### Create a container with specified contents: `c()`
+
+### Count cases in a data frame: `nrow()`
+
+### Select out cases from a data frame based on a selection criterion: `filter()` or `subset()`
+
+### Read a .csv file from a specified url and storing it as a data frame: `read.csv()`
+
