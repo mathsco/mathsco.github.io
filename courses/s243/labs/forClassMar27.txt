@@ -1,0 +1,48 @@
+
+---
+title: "Including mathematical symbols in R Markdown"
+author: "TLS"
+date: "2024-03-27"
+output: pdf_document
+---
+
+```{r include=FALSE}
+require(mosaic)
+require(Lock5withR)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Making math symbols
+
+I might want to refer to a greek letter, such as
+$\alpha$, $\mu$, $\sigma$, etc.  There are other symbols common
+enough you would want to know, such as $\ne$, $\ge$, $\le$, $\pm$,
+$\bar x$, $\hat p$, and the like.  If the symbol can be produced in
+\LaTeX, then it (most often) can be produced in R Markdown in much
+the same way.
+
+
+## More complicated formulas
+
+Here is the quadratic formula:
+$x = -\frac b {2a} \pm \frac{ \sqrt{b^2-4ac}} {2a}$
+
+The same formula is more impressive when set apart from other text.
+$$x = -\frac b {2a} \pm \frac{ \sqrt{b^2-4ac}} {2a}$$
+
+The formula for sample standard deviation
+$$ s = \sqrt{\frac 1 {n-1} \sum^n_{i=1} (x_i-\bar x)^2} $$
+
+## Stating Hypotheses
+
+hypotheses: 2-sample $t$
+$$ H_0: \mu_1-\mu_2 = 0$$
+$$ H_a: \mu_1 - \mu_2 \ne 0 $$
+or this fancier(?) version
+
+$$ {\mathbf H_0}: \mu_1-\mu_2 = 0 \qquad\mbox{vs.}\qquad H_a: \mu_1 - \mu_2 \ne 0 $$
+
+For 1-way ANOVA:
+$$ {\mathbf H_0}: \mu_1 = \mu_2 = \cdots = \mu_k
+ \qquad\mbox{vs.}\qquad {\mathbf H_a}:
+ \mbox{at least two group means are different} $$
