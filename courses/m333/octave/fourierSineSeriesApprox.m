@@ -1,5 +1,5 @@
-function y = fourierSineSeriesApprox(f, N, alpha, xvals, tval=0, ell=pi)
-% function y = fourierSineSeriesApprox(f, N, alpha, xvals, tval=0, ell=pi)
+function y = fourierSineSeriesApprox(f, N, xvals, ell=pi)
+% function y = fourierSineSeriesApprox(f, N, xvals, ell=pi)
 % 
 % Evaluates at xvals the truncated Fourier sine series on [0, ell]
 %
