@@ -1,14 +1,16 @@
 alph = 1;
 bet = -1;
-N = 20;
-dx = pi/(N + 1);
+N = 50;
+xs = linspace(0, pi, N);
+dx = xs(2)-xs(1);
 
-%A = diag(ones(N-1,1), -1) + diag(ones(N-1,1), 1) + (-2 + dx^2)*diag(ones(N,1));
-v = ones(N,1);
-A = spdiags([v (-2 + dx^2)*v v], [-1 0 1], N, N);
+A = diag([ones(N-2,1); 0], -1);
+A += diag([1; (dx^2-2)*ones(N-2,1); 1]);
+A += diag([0; ones(N-2,1)], 1);
 
-u = A \ [-alph; zeros(N-2, 1); -bet];
-plot(pi*(0:N+1)'/(N+1), [alph; u; bet])
+b = [alph; zeros(N-2, 1); bet];    
+u = A \ b;      %  solves the matrix equation Au = b for u
+plot(xs, u, 'k.')
 set(gca, 'FontSize', 20)
 title('Numeric soln with N = 20')
 
