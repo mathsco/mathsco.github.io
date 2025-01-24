@@ -1,0 +1,86 @@
+---
+title: "R Tutorial-02"
+author: "T. Scofield"
+format: pdf
+editor: source
+---
+
+In this "issue":
+
+ * Loading packages in quarto
+ * Simulation of the sum of two dice
+ * Tutorial on making (small) data frames
+
+# Loading packages in quarto
+
+First up, separate from the other things I want to do in this document, I load all the packages I think I'll need.  In fact, it is
+completely irrelevant, so far as the rendering/compilation process goes, whether you have loaded the package into the console.  Since I intend to use commands (`resample()` and `tally()`) the way they are implemented in **mosaic**, I am loading it now.
+
+```{r}
+# One must include desired packages in a quarto document separately
+# regardless of whether the package is loaded for use in the console.
+require(mosaic)
+require(gridExtra)
+require(Lock5withR)
+require(fosdata)
+```
+
+Loading these packages caused a lot of *junk* messages I really don't want in my .pdf.  They can be suppressed (and I will do so in the future) by adding this line at the top of the relevant code block.
+
+`#| include: false`
+
+# Simulation of the sum of two dice:
+
+```{r}
+numTrials = 10000
+die = c(1:6)
+manyRolls = resample(die, size = numTrials) + resample(die, size=numTrials)
+tally(~ manyRolls)
+```
+
+The `tally()` command above tells us
+
+ * what values (sum of two dice) occurred (in the simulation), and
+ * how often
+ 
+Said another way, `tally()` shows us the (approximate) **distribution** of the variable `X` = sum of two dice.  There are other ways display a distribution; this one gives the **frequencies** (or counts) of the various rolls, so is called a **frequency table**.  You can choose, instead, to produce a relative frequency table, merly adding a switch to the above command:
+
+```{r}
+tally(~ manyRolls, format="proportion")
+```
+
+I've touted simulation (such as that above using `resample()`) as a way to discover the probabilities of various events.  Recall that, in class, we found theoretical probabilities for the rolls `X = 2, 3, 4, ..., 12`.  Let's see if the fractions `1/36, 2/36, ...` are close to the simulated relative frequencies:
+
+```{r}
+theoreticalProbabilities = c(1:6,5:1)/36
+theoreticalProbabilities
+```
+
+They are a *near* match.  Keep in mind that every simulation (i.e., every new run of 10000 trials) will produce different relative frequencies than the time before unless we control the seed of the random number generator.  So the best we can expect is for simulation to closely match the theoretical values (in cases where have those theoretical values).
+
+# Tutorial on making (small) data frames
+
+You might have occasion to build a data frame with R commands.  The basic command structure goes this way:
+
+`data.frame(colName1 = vector1, colName2 = vector2, ...)`
+
+Say you're a fan of Calvin men's soccer team, and month into the season you want to make a data frame containing game results.  Including only results up through Sept. 15, the rubric above suggest this method:
+
+```{r}
+cms24 = data.frame(
+  date = c("08/30", "08/31", "09/06", "09/07", "09/13", "09/14"),
+  opponent = c("LeTourneau Univ", "Lake Forest College", "Ohio Wesleyan Univ", "Ohio Northern Univ", "Pacific Lutheran Univ", "Willamette Univ"),
+  gameSite = c(rep(c("home","away"), times=c(2,4))),
+  us = c(4,2,1,1,1,1),
+  them=c(0,1,2,5,2,0),
+  result=c("win","win","loss","loss","loss","win")
+)
+```
+
+This data frame, I called it `cms24`, behaves just like other data frames like `iris`.
+```{r}
+nrow(cms24)
+names(cms24)
+cms24
+```
+
