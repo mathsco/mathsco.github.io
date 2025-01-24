@@ -11,6 +11,8 @@ In this "issue":
  * Simulation of the sum of two dice
  * Tutorial on making (small) data frames
 
+You may [click here](https://scofield.site/courses/s243/Rtutorials/Rtutorial-02.qmd) to access the .qmd file.
+
 # Loading packages in quarto
 
 First up, separate from the other things I want to do in this document, I load all the packages I think I'll need.  In fact, it is
