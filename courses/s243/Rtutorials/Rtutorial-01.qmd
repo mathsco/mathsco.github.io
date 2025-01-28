@@ -1,0 +1,119 @@
+---
+title: "R Tutorial-01"
+author: "T.Scofield"
+format: pdf
+---
+
+## R is
+
+ * a programming language
+ * equipped to do large-scale scientific computing, particularly statistical
+ * interpreted, not compiled
+ * readily supplemented by packages
+ 
+## Built-in functions for mathematical computations
+
+ * usual binary arithmetic operations
+```{r}
+r = 2
+volume = 4/3 * pi * r^3
+volume
+```
+ 
+ * absolute value
+```{r}
+abs(-3)
+```
+
+ * square roots
+```{r}
+sqrt(2)
+```
+
+ * exponentials and logarithms
+```{r}
+exp(2)
+log( exp(2) )   # log() is the natural logarithm
+```
+ * counting functions: `factorial()`, `choose()`
+```{r}
+factorial(0)
+factorial(6)
+choose(5,2)
+```
+
+## Vectors in R
+
+The `c()` command is a convenient constructor of
+a vector.
+```{r}
+visitors = c(211, 172, 194, 318, 325)
+visitors
+sort(visitors)   # shows entries sorted lowest-to-highest
+```
+
+Vectors, or arrays, in R, are one-indexed, but
+can be accessed by a criterion:
+```{r}
+visitors[1]
+visitors[c(3,2,5)]
+visitors[visitors > 300]
+```
+
+As to what the criterion does, specifically:
+```{r}
+visitors > 300
+which(visitors > 300)
+which(visitors == 194)
+```
+
+
+There are some other convenient ways to create
+vectors.  Here are some examples:
+```{r}
+seq(2,3,.1)
+5:2
+rep(6.5, 4)
+```
+
+and one can combine these methods:
+```{r}
+c(2:7, 6:2)
+c(rep("red",2), rep("black",3), rep("red",3))
+```
+
+## Data frames (like 2D arrays)
+
+ * many are supplied through loaded packages
+ * to learn the layout of a data frame one can use `names()`, `dim()`, `nrow()`, `head()`, `help()`, `glimpse()`, `inspect()`
+ 
+```{r}
+names(iris)  # shows column/variable names
+nrow(iris)   # tells the number of cases/rows
+head(iris)   # shows, by default, first 6 cases/rows
+```
+
+ * `data()` displays data sets currently available
+ * each row is a case/subject/unit
+ 
+```{r}
+iris[61, 3]   # the entry on row 61, column 3
+iris[61,]     # all measurements taken on case 61
+iris[, 3]     # vector of all values in column 3
+iris$Petal.Length   # same result as last command
+iris$Petal.Length[61]   # like iris[61, 3]
+```
+
+## Loading already-installed packages
+
+ * Can use the Packages tab and check desired library
+ * Can use `require()` or `library()`
+ 
+```{r}
+require(fosdata)
+data(package="fosdata")
+```
+
+ * packages to load regularly include **fosdata** and **mosaic**
+ 
+
