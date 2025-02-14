@@ -72,7 +72,7 @@ require(ggplot2)
 housesOneZip |> ggplot(aes(x = log(sqft_lot), y = price / sqft_living)) + geom_point()
 ```
 
-This syntax may not be any more taxing to some than the one using **base** tools, particularly if it makes intuitive sense to some of you.  Personally, I find it unintuitive to the point that, each of the several dozen times I have directly used **ggplot2** functions, I have spent time looking up examples on the internet to guide me through.
+This syntax may not be any more taxing to some than the one using **base** tools, particularly if it makes intuitive sense to some of you.  Personally, I find it unintuitive to the point that, each of the several dozen times I have directly used **ggplot2** functions, I have spent time looking up examples on the internet to guide me through.  But if you want evidence that some effort to learn the use of commands in **ggplot2** pays off, check out the variety of graphics/visualizations at <http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html>
 
 # A compromise: the ggformula package
 
