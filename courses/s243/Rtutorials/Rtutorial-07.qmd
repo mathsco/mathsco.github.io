@@ -1,0 +1,82 @@
+---
+title: "R Tutorial-07"
+author: "T. Scofield"
+format: pdf
+geometry:
+  - top=25mm
+  - left=25mm
+  - right=25mm
+  - bottom=25mm
+editor: source
+---
+
+You may [click here](https://scofield.site/courses/s243/Rtutorials/Rtutorial-07.qmd) to access the .qmd file.
+
+```{r}
+#| include: false
+require(mosaic)
+require(mosaicCalc)
+require(fosdata)
+require(gridExtra)
+require(latex2exp)
+set.seed(4591)
+```
+
+In this issue, we demonstrate the Central Limit Theorem at work.  As in class, I will take my population to be 2019 professional baseball players (as reflected in the data set), and the variable $X$ to be `Salary`.  This data needed to be drawn from an external source, <https://www.lock5stat.com/datapage3e.html>.
+
+```{r}
+mlb19 = read.csv("https://www.lock5stat.com/datasets3e/BaseballSalaries2019.csv")
+head(mlb19)
+nrow(mlb19)
+```
+
+The salaries in this population are decidedly non-normal:
+
+```{r}
+#| fig-height: 2.5
+gf_density(~Salary, data=mlb19) |>
+  gf_labs(title="MLB 2019 salary population distribution")
+mean(~Salary, data=mlb19)    # this is mu
+sd(~Salary, data=mlb19)    # this is sigma
+```
+
+The Central Limit Theorem addresses the behavior of sums and means calculated from iid random samples.
+
+## iid samples of size 5
+I will use `resample()` (iid is like sampling with replacement) to draw one sample of size 5, and use it to calculate the mean of those 5 players.
+```{r}
+oneSampleOfFive = resample(mlb19, size=5)
+oneSampleOfFive   # shows the players involved
+mean(~Salary, data=oneSampleOfFive)
+```
+
+The point with the CLT is that the **sampling distribution** of means such as these---those calculated from iid samples of size 5 using this population---is increasingly normal, but less spread-out, as $n$ grows.  We only get a sense of this sampling distribution by repeating the process of the previous code block many times.  Below I do so 10000 times.
+
+```{r}
+#| fig-height: 2.5
+manyMeans5 = replicate(10000, mean(~Salary, data=resample(mlb19, size=5)))
+gf_density(~manyMeans5) |>
+  gf_labs(title="Sampling dist. of sample mean, n=5", x=TeX(r"( $\bar{X}$ )"))
+mean(manyMeans5)
+sd(manyMeans5)
+```
+
+While this (approximate) sampling distribution is still non-normal, it isn't as starkly skewed as the population distribution (displayed above).  It is still centered on the same value $\mu$ as the population, but its **standard error** (the standard deviation of $\bar X$-values) is less than $\sigma$: specifically, it is approximate $\sigma / \sqrt{5}$.
+
+## iid samples of size 20
+Upping the sample size, now to $n=20$ (4 times larger) should cut the standard error by half, while producing an approximate sampling distribution that looks even more *normal*:
+```{r}
+#| fig-height: 2.5
+manyMeans20 = replicate(10000, mean(~Salary, data=resample(mlb19, size=20)))
+gf_density(~manyMeans20) |>
+  gf_labs(title="Sampling dist. of sample mean, n=20", x=TeX(r"( $\bar{X}$ )"))
+mean(~manyMeans20)   # approximate mu = 4.51
+sd(~manyMeans20)     # approximately 6.334/sqrt(20)
+```
+
+As it becomes more normal, it should have about the same shape as the Norm($\mu$,$\sigma/\sqrt{n}$) distribution.  At $n=20$, there is still some discrepancy, but you see it is happening when overlaying the one with the other:
+```{r}
+#| fig-height: 2.5
+gf_density(~manyMeans20) |> gf_dist("norm", mean=4.51, sd=6.334/sqrt(20), color="red")
+```
+
