@@ -1,0 +1,230 @@
+---
+title: "R Tutorial-09"
+author: "T. Scofield"
+format: pdf
+geometry:
+  - top=25mm
+  - left=25mm
+  - right=25mm
+  - bottom=25mm
+editor: source
+---
+
+You may [click here](https://scofield.site/courses/s243/Rtutorials/Rtutorial-09.qmd) to access the .qmd file.
+
+```{r}
+#| include: false
+require(mosaic)
+require(mosaicCalc)
+require(fosdata)
+require(gridExtra)
+set.seed(4591)
+```
+
+In this issue, we investigate applying operations involving one variable of a data frame in a manner that slices data based on the value of another variable.  Specifically, we
+
+ * review some basic operations (calculating statistics, producing graphs, etc.)
+ * achieve similar results via techniques that slice the data
+ 
+# Univariate operations with mosaic and ggformula packages
+
+#### frequency table
+
+If you want a frequency table:
+```{r}
+ssurv = read.csv("http://scofield.site/teaching/data/csv/ssurv.csv")     # some survey data
+tally(~Species, data=iris)
+```
+
+#### mean
+
+If you want a mean/average:
+```{r}
+mean(~cds, data=ssurv)
+```
+
+The reason this produced `NA` is that there were missing values in the `cds` column of the data frame.  An additional instruction (see below) removes those entries and produces the desired result.
+```{r}
+mean(~cds, data=ssurv, na.rm=TRUE)
+```
+
+#### median
+
+Computing the median:
+```{r}
+median(~cds, data=ssurv, na.rm=TRUE)
+```
+
+#### variance
+
+A (sample) variance
+```{r}
+var(~cds, data=ssurv, na.rm=TRUE)
+```
+
+#### Five-number summary
+
+A five-number summary, provides the minimum, the 25th percentile, the median, the 75th percentile, and the maximum:
+```{r}
+qdata(~Petal.Length, data=iris)
+```
+
+#### Specific quantiles/percentiles in the data
+```{r}
+qdata(~Petal.Width, data=iris, p=seq(.1,.9,.1))
+```
+
+#### A boxplot
+
+A boxplot, or box-and-whisker plot, is a visual representation of the 5-number summary:
+```{r}
+#| fig-height: 2
+gf_boxplot(~Petal.Length, data=iris)
+```
+
+or the same, but oriented vertically
+```{r}
+#| fig-height: 3
+gf_boxplot(Petal.Length ~ ., data=iris)
+```
+
+Note that, in each case, one axis contains value which are essentially meaningless.
+
+#### A histogram
+
+For some commands, you can pipe the data frame to the command, eliminating the need for `data=`.  This seems to work with graph-producing commands, as I illustrate here with `gf_histogram()`:
+```{r}
+#| fig-height: 2
+gf_histogram(~Petal.Width, data=iris)
+```
+
+# Applying values of another variable to get sliced results
+
+#### frequency table for region by sex
+
+The `ssurv` data frame contains information about the `region` where students live as well as their `sex`.  We might want a two-way table for `region`, with frequencies contingent on this latter variable:
+```{r}
+tally(~region | sex, data=ssurv)
+```
+
+You might try out these modifications which also produce two-way tables:
+```{r}
+#| eval: false
+tally(region ~ sex, data=ssurv)
+tally(sex ~ region, data=ssurv)
+```
+
+#### mean computed individually for groups
+
+There are 150 plants from 3 different species in the `iris` data frame.  We might want mean `Petal.Length` calculated individually by species:
+```{r}
+mean(~Petal.Length | Species, data=iris)
+# mean(Petal.Length ~ Species, data=iris)  alternate syntax, does the same thing
+# mean(Species ~ Petal.Length, data=iris)  Note: This one behaves quite differently!
+```
+
+#### quantiles grouped by values of another variable
+
+Similarly, you may want the 0.3-quantile for each of the species:
+```{r}
+qdata(Petal.Length ~ Species, data=iris, p=0.3)
+```
+
+---
+
+#### side-by-side boxplots
+
+Graphics are, by nature, a little more interesting.  Say you want a boxplot for each value of a grouping variable.  The easiest side-by-side boxplots, in terms of syntax, might be these:
+```{r}
+#| fig-height: 3
+iris |> gf_boxplot(Sepal.Length ~ Species)
+```
+
+The presence of the grouping variable has made labels on the 2nd axis meaningful.  Other variants work.  This one is probably not as useful/appealing:
+```{r}
+#| fig-height: 2
+gf_boxplot(~Sepal.Length | Species, data=iris)
+```
+
+Two other variants which produce different takes on the slicing idea are these, one that reverses the role of the axes, and the other introducing color:
+```{r}
+#| fig-height: 3
+gf_boxplot(Species ~ Sepal.Length, data=iris)
+gf_boxplot(~Sepal.Length, color=~Species, data=iris)
+```
+
+#### histograms by slices
+
+The view the same quantitative variable, `Sepal.Length`, compared across `Species` using histograms:
+```{r}
+#| fig-height: 2
+iris |> gf_histogram(~ Sepal.Length | Species, color=~Species)
+```
+
+One complaint might be that it would be easier to compare differences if the histograms were stacked.  That's possible using this variant:
+
+```{r}
+#| fig-height: 4
+iris |> gf_histogram(~ Sepal.Length | Species ~ ., color=~Species)
+```
+
+#### bar charts without and with slicing
+
+The `region` variable from the `ssurv` data (see above) can be visualized using a bar chart:
+```{r}
+#| fig-height: 2.5
+ssurv |> gf_bar(~region)
+# gf_props(~region, data=ssurv)   # this version gives relative frequency
+```
+
+No slicing was done for this graph using values of a second variable.  Before implementing slicing, let's filter out the one survey respondent who left `region` blank.  In addition, I have specified to have the different regions colored in with different colors:
+```{r}
+#| fig-height: 2.5
+ssurv |> filter(region != "") |>
+  gf_bar(~region, fill=~region)
+```
+
+We can change the `fill` variable to obtain slices by, say, `sex`:
+```{r}
+#| fig-height: 2.5
+ssurv |> filter(region != "") |>
+  gf_bar(~region, fill=~sex)
+```
+
+You might try out this variant, not executed here, to see if you prefer the bars unstacked:
+```{r}
+#| eval: false
+ssurv |> filter(region != "") |>
+  gf_bar(~region, fill=~sex, position="dodge")
+```
+
+#### boxplots in Figure 8.2
+
+The data frame, `brake`, from the `fosdata` package, has 20 variables measured on 80 cases.  These variables include
+
+\mbox{} \hspace{0.1in} `latency_p1`, `latency_p2`, `latency_p3`, all of which are quantitative
+
+\mbox{} \hspace{0.1in} `age_group`, a binary categorical variable
+
+The opening to Chapter 8 contains side-by-side boxplots of these three variables, broken down by `age_group`.  To get this plot, the authors do some pre-processing---namely, they stack the values of `latency_p1, latency_p2,` and `latency_p3` into a single column (which means a data frame with 240 rows) called `time`, and creates a new column called `type` that says which of the three columns the value came from.  The relevant command which achieves this stacking, `pivot_longer()`, is in the `tidyr` package:
+```{r}
+nrow(fosdata::brake)
+fosdata::brake |>
+  tidyr::pivot_longer(
+    cols=matches("^lat"),
+    names_to = "type",
+    values_to = "time"
+  ) -> reorganizedBrake
+nrow(reorganizedBrake)
+```
+This sort of pre-processing of data is facilitated by packages such as `tidyr` and `dplyr`.  Chapter 6 is devoted in its entirety to discussing tricks using these packages, but would take us a bit away from the business of statistics.  Nevertheless, it is worth a careful read, at some point *in the future*, by those who want to make a living mining data.
+
+Figure 8.2 is the result of slicing up values in the newly-created `time` variable, but using values in two separate columns, `type` and `age_group`.
+```{r}
+#| fig-height: 2.5
+#| fig-width: 6.5
+reorganizedBrake |> gf_boxplot(time ~ type, color=~age_group)
+```
+The resulting plot looks identical to Figure 8.2, and shows how the plotting functions we use (taken from `ggformula` package) offer `ggplot2`-style graphics.
+
+
