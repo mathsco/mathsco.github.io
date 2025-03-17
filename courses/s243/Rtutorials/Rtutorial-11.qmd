@@ -1,0 +1,116 @@
+---
+title: "R Tutorial-11"
+author: "T. Scofield"
+format: pdf
+geometry:
+  - top=25mm
+  - left=25mm
+  - right=25mm
+  - bottom=25mm
+editor: source
+---
+
+You may [click here](https://scofield.site/courses/s243/Rtutorials/Rtutorial-11.qmd) to access the .qmd file.
+
+```{r}
+#| include: false
+require(mosaic)
+require(mosaicCalc)
+require(fosdata)
+require(gridExtra)
+set.seed(4591)
+```
+
+In this issue, we
+
+ * investigate whether a $t$-test appears justified, and
+ * use the **sign test**
+ 
+As best I can ascertain from the opening to [Chapter 9](https://probstatsdata.com/RBT.html#onesamplewilcoxon), the research question will be this: Do surgical masks reduce the number of copies of influenza virus in fine particle droplets?
+
+The data, taken from a 2013 study and found in `fosdata::masks`, contains virus counts when subjects exhaled into a collection device over a 30-minute period.  Each subject had two runs (so this is matched-pairs data), one wearing a surgical mask, and the other without.  The relevant columns are named `mask_fine` and `no_mask_fine`.
+
+# Testing normality
+
+As the data is matched pairs, we are interested in the difference
+
+\mbox{} \hspace{0.5in} `no_mask_fine - mask_fine`
+
+We use a normal quantile plot as an indicator of whether these values follow a normal distribution:
+```{r}
+#| fig-height: 2
+gf_qq(~(mask_fine - no_mask_fine), data=masks)
+```
+
+The data does not fall along a straight line well enough to consider them as having a *normal* distribution.
+
+# Is the sample size large enough?
+
+Of course, 1-sample $t$-tests are **robust** in the sense that they work reasonably well even when the sample is drawn from a non-normal population, so long as the sample size is large enough?  Our sample is of size
+```{r}
+nrow(masks)
+```
+
+Perhaps that is large enough.  We might produce a bootstrap distribution of sample mean differences and see if it appears to be normal.  If it were, that would give us some reason to think the sample size $n=37$ is large enough.
+```{r}
+#| fig-height: 2
+manyMeans = replicate(10000, 
+                      mean(~(no_mask_fine-mask_fine), data=resample(masks))
+                      )
+gf_histogram(~manyMeans)
+gf_qq(~manyMeans)
+```
+
+The lack of normality for the sampling distribution of bootstrap means raises the concern that $n=37$ is not large enough.  We can run a 1-sample $t$-test, even so, but the values it produces may be meaningless.
+
+# The Sign Test
+
+[Note: This is not the test discussed in the textbook when treating this data.  It is somewhat simpler than the methods of Chapter 9 (a chapter we are skipping).]  The idea of a **sign test**: If there were really no difference in virus counts under the two treatments, then the **sign** of the difference should be something like a coin toss, having a negative about half the time, a positive one the other half.  Ties can and do happen, and sometimes it seems justified eliminating those cases before proceeding with a sign test.
+
+```{r}
+subset(masks, select=c(no_mask_fine, mask_fine))
+```
+
+Note that Subjects 16 and 21 contributed virus counts of 0 under both treatments.  They must have been completely free of influenza virus, and the difference $0 - 0 = 0$ for such a subject is not germain to the research question.  We make a new data frame from the old, leaving out these cases (as well as variables we do not use).
+
+```{r}
+modifiedMasks = subset(masks[c(-16, -21), ], select=c(no_mask_fine, mask_fine))
+modifiedMasks$diff = modifiedMasks$no_mask_fine - modifiedMasks$mask_fine
+
+modifiedMasks
+```
+The new data frame keeps the 35 subjects from the other rows.
+
+To conduct the sign test, we
+
+ * count the number of positive (or, equivalently, the number of negative) results
+ * we take as our null hypothesis the belief that the proportion of positive results, under the assumption that masks do not reduce the exhalation of virus particles, is $p = 0.5$
+ * we use `pbinom()` to obtain a $P$-value
+
+```{r}
+sum(modifiedMasks$diff < 0)
+```
+
+Under the null hypothesis, the count of negative results should be binomial with probability $p=0.5$.  How extreme is a count of 7?  In 35 trials, we would look for an expected count of
+
+$$ np = (35)(0.5) = 17.5. $$
+
+Things at least as exreme as 7, when the null hypothesis is true, consist of counts 7 and below, as well as counts above 28 and above.
+```{r}
+pbinom(7, 35, 0.5) + 1-pbinom(27, 35, 0.5)
+```
+
+Knowing the numbers---7 failures out of 35 tries, with a supposed probability of $0.5$---one can use `binom.test()` to produce the same $P$-value:
+```{r}
+binom.test(7, 35, 0.5)
+```
+
+Notes:
+
+ * The sign test ignores the size of the differences, paying attention only to whether a result is a success or not (as measured by whether it has a positive or negative sign)
+ * For the research question, one might argue that if masks make a difference, then virus counts are going to be, on average, *smaller* while wearing a mask.  This would imply having a 1-sided alternative, thereby taking as our $P$-value only the cumulative probability in the left tail: `pbinom(7, 35, 0.5)`
+ * When journalist Alex Berenson wrote his treatise, in November of 2020, "Unreported Truths About Covid-19 and Lockdowns: Part 3: Masks", he cited this [Study from 2020](https://wwwnc.cdc.gov/eid/article/26/5/19-0994_article) that conducted meta-analysis on all of the *clinical trials* that could be found in the world at that time (there were only 10, dating back to 1946) testing whether wearers of masks outside hospital settings offered protection against transmission of the flu.  That is a different research question than the one addressed above.  The discussion section of the 2020 study states, "We did not find evidence that surgical-type face masks are effective in reducing laboratory-confirmed influenza transmission, either when worn by infected persons (source control) or by persons in the general community to reduce their susceptibility."
+ 
+# Lobsters (Your opportunity to try the sign test)
+
+The package **abd** contains a data set called `Lobsters`.  Lobsters were captured and moved to a new location.  After settling in, the angle between the axial ray drawn from tail through eyes of a lobster, and the ray from the lobster's current location back to its "home" site was measured.  These angles, measured in degrees, are found in the `orientation` column of the data frame.  An angle between (-89$^\circ$) and 89$^\circ$ might be an indication that the lobster has an innate sense of where its home lies.  State null and alternative hypotheses, then use a binomial test to assess the evidence against the null hypothesis.  Draw a conclusion based on a significance level $\alpha = 0.05$.  A lobster at 90$^\circ$ or (-90$^\circ$) might be considered a throw-away data point, much as the "tie" cases above.
