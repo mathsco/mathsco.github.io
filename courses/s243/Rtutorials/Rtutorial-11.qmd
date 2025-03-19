@@ -65,7 +65,7 @@ The lack of normality for the sampling distribution of bootstrap means raises th
 
 # The Sign Test
 
-[Note: This is not the test discussed in the textbook when treating this data.  It is somewhat simpler than the methods of Chapter 9 (a chapter we are skipping).]  The idea of a **sign test**: If there were really no difference in virus counts under the two treatments, then the **sign** of the difference should be something like a coin toss, having a negative about half the time, a positive one the other half.  Ties can and do happen, and sometimes it seems justified eliminating those cases before proceeding with a sign test.
+[Note: This is not the test discussed in the textbook when treating this data.  It is somewhat simpler than the methods of Chapter 9 (a chapter we are skipping).]  The idea of a **sign test**: If there were really no difference in virus counts under the two treatments, then the **sign** of the difference should be something like a coin toss, having a negative sign about half the time, a positive one the other half.  Ties can and do happen, and sometimes it seems justified eliminating those cases before proceeding with a sign test.
 
 ```{r}
 subset(masks, select=c(no_mask_fine, mask_fine))
@@ -95,7 +95,7 @@ Under the null hypothesis, the count of negative results should be binomial with
 
 $$ np = (35)(0.5) = 17.5. $$
 
-Things at least as exreme as 7, when the null hypothesis is true, consist of counts 7 and below, as well as counts above 28 and above.
+Things at least as extreme as 7, when the null hypothesis is true, consist of counts 7 and below, as well as counts 28 and above.
 ```{r}
 pbinom(7, 35, 0.5) + 1-pbinom(27, 35, 0.5)
 ```
