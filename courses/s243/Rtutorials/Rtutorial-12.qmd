@@ -116,7 +116,7 @@ As for examples of generating bar graphs using `gf_bar()`, I recommend my R Tuto
 
 Any population proportion $p$ represents a binary focus:
 
- * "What proportion of American citizens are octegenarians?" focuses on American citizens and not so much their ages as whether that age is $\ge 80$ (yes/no).
+ * "What proportion of American citizens are octogenarians?" focuses on American citizens and not so much their ages as whether that age is $\ge 80$ and $< 90$ (yes/no).
  * "What proportion of people have blood type A-positive?" glosses over that there are other blood types, reducing to a yes/no-answer (binary) about being A-pos.
 
 #### Some facts about proportions
