@@ -46,14 +46,14 @@ $(function () {
 var('x y z')
 @interact( layout=[['myG','cVals'],['x_min','y_min','z_min'],['x_max','y_max','z_max']])
 def parametric_al( myG = input_box(default= x^2 + 4*y^2 + 9*z^2,label="G(x,y,z)=",width=40), 
-        cVals = input_box( default = "1,2,3", label = "levels ($C$)",
+        cVals = input_box( default = "1,5,10", label = "levels ($C$)",
                             width = 20 ),
         x_min = input_box( default = -4, label = "$x_{min}$", width = 5 ), 
         x_max = input_box( default = 4, label = "$x_{max}$", width = 5 ), 
         y_min = input_box( default = -4, label = "$y_{min}$", width = 5 ), 
         y_max = input_box( default = 4, label = "$y_{max}$", width = 5 ),
-        z_min = input_box( default = -4, label = "$y_{min}$", width = 5 ), 
-        z_max = input_box( default = 4, label = "$y_{max}$", width = 5 ),
+        z_min = input_box( default = -4, label = "$z_{min}$", width = 5 ), 
+        z_max = input_box( default = 4, label = "$z_{max}$", width = 5 ),
         auto_update=False):
 
   Cs = eval(str(cVals))
