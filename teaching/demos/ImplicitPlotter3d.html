@@ -45,7 +45,7 @@ $(function () {
 <script type="text/x-sage">
 var('x y')
 @interact( layout=[['myG','cVals'],['x_min','y_min','z_min'],['x_max','y_max','z_max']])
-def parametric_al( myG = input_box(default= x^2 + 2y^2 + 3*z^2,label="G(x,y,z)=",width=40), 
+def parametric_al( myG = input_box(default= x^2 + 2*y^2 + 3*z^2,label="G(x,y,z)=",width=40), 
         cVals = input_box( default = "1,2,3", label = "levels ($C$)",
                             width = 20 ),
         x_min = input_box( default = -4, label = "$x_{min}$", width = 5 ), 
