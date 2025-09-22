@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Space Curve with Tangent</title>
+    <script src="https://sagecell.sagemath.org/static/.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>sagecell.makeSagecell({inputLocation: ".sage"});</script>
+    <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Space Curve with Tangent</h1>
+<p>(By Thomas Scofield)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+    \textrm{This app displays the trajectory in space of a vector function}\\
+    {\mathbf r}(t)=x(t)\,{\mathbf i} + y(t)\,{\mathbf j} + z(t)\,{\mathbf k},
+    \textrm{ along with its velocity vector.}
+</div>
+
+<hr>
+
+<div class="sage">
+<script type="text/x-sage">
+# Don't edit this line
+var('x y z')
+
+# Set the function z = f(x,y) defining the surface and where to slice
+f(x,y) = sin(x)*cos(y)
+xslices = [-pi/4, 0, pi/4]
+
+# Viewing window settings
+xmin=-pi; xmax=pi;     # viewing window settings
+ymin=-pi; ymax=pi;
+zmin=-1; zmax=1;
+
+# This code produces the plot
+p1=plot3d(f(x,y), (x,xmin,xmax), (y,ymin,ymax))
+p2=Graphics()
+p3=Graphics()
+for x0 in xslices:
+  p2 += implicit_plot3d(x-x0,(x,xmin,xmax),(y,ymin,ymax),(z,zmin,zmax),color="pink")
+  p3 += parametric_plot3d((x0,y,sin(x0)*cos(y)), (y,ymin,ymax), color="red")
+show(p1+p2+p3)
+
+</script>
+</div>
+
+<hr>
+Last modified on Sept. 21, 2025.
+</body>
+</html>
