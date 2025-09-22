@@ -53,7 +53,7 @@ T = v/v.norm()
 N = diff(T,t) / (diff(T,t).norm())
 B = T.cross_product(N)
 kappa = v.cross_product(diff(v,t)).norm() / v.norm()^3
-oscCenter = r(t)+N(t)/kappa(t)
+oscCenter = r+N/kappa
 
 end_ts = srange(framestep, tend+framestep, framestep)
 if includeOsculatingCircle:
