@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Implicit plotter for equations in 3 variables</title>
+    <script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+    <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
+    <script>
+$(function () {
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+    						template:       sagecell.templates.minimal,
+                           evalButtonText: 'Launch the Interactive Applet Now'});
+});
+    </script>
+  </head>
+  <body style="width: 1000px;">
+
+  <h1>Level Surface Plotter</h1>
+
+<p>An Interactive Applet powered by Sage and MathJax.</p>
+<p>(By Thomas Scofield)</p>
+
+<hr>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="jquery.jslatex.js"></script>
+
+<script>
+$(function () {
+    $(".latex").latex();
+});
+</script>
+
+<div class="latex">
+ \textrm{Use this app to view, in 3D, graphs for the family of equations } \newline
+ G(x,y,z) = C \;
+ \textrm{ at user-specified levels } C.
+</div>
+
+<hr>
+
+<div class="compute">
+<script type="text/x-sage">
+var('x y')
+@interact( layout=[['myG','cVals'],['x_min','y_min','z_min'],['x_max','y_max','z_max']])
+def parametric_al( myG = input_box(default= x^2 + 2y^2 + 3*z^2,label="G(x,y,z)=",width=40), 
+        cVals = input_box( default = "1,2,3", label = "levels ($C$)",
+                            width = 20 ),
+        x_min = input_box( default = -4, label = "$x_{min}$", width = 5 ), 
+        x_max = input_box( default = 4, label = "$x_{max}$", width = 5 ), 
+        y_min = input_box( default = -4, label = "$y_{min}$", width = 5 ), 
+        y_max = input_box( default = 4, label = "$y_{max}$", width = 5 ),
+        z_min = input_box( default = -4, label = "$y_{min}$", width = 5 ), 
+        z_max = input_box( default = 4, label = "$y_{max}$", width = 5 ),
+        auto_update=False):
+
+  Cs = eval(str(cVals))
+  if isinstance(Cs, float) or isinstance(Cs, int):
+    c_s = [Cs]
+  else:
+    c_s = Cs
+
+  myGraph = Graphics()
+  for C in c_s:
+    myGraph += implicit_plot3d(myG==C, (x,x_min,x_max), (y,y_min,y_max), (z,z_min,z_max), color="green")
+
+  show(myGraph)
+    
+</script>
+</div>
+
+<hr>
+Last modified on Sep. 21, 2025.
+</body>
+</html>
