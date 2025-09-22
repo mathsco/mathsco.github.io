@@ -62,7 +62,7 @@ def parametric_al( myG = input_box(default= x^2 + 4*y^2 + 9*z^2,label="G(x,y,z)=
   else:
     c_s = Cs
 
-  cmsel = [matplotlib.cm.get_cmap('autumn')(_) for _ in sxrange(0,1,0.05)]
+  cmsel = [colormaps['autumn'](i) for i in sxrange(0,1,0.05)]
   myGraph = Graphics()
   for C in c_s:
     myGraph += implicit_plot3d(myG==C, (x,x_min,x_max), (y,y_min,y_max), (z,z_min,z_max), color=cmsel, alpha=0.6)
