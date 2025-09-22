@@ -52,7 +52,7 @@ p1=plot3d(f(x,y), (x,xmin,xmax), (y,ymin,ymax))
 p2=Graphics()
 p3=Graphics()
 for x0 in xslices:
-  p2 += implicit_plot3d(x-x0,(x,xmin,xmax),(y,ymin,ymax),(z,zmin,zmax),color="pink")
+  p2 += implicit_plot3d(x-x0,(x,xmin,xmax),(y,ymin,ymax),(z,zmin,zmax),color="pink",opacity=0.3)
   p3 += parametric_plot3d((x0,y,sin(x0)*cos(y)), (y,ymin,ymax), color="red")
 show(p1+p2+p3)
 
