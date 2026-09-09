@@ -1,4 +1,4 @@
-"age","anysubstatus","anysub","cesd","d1","daysanysub","dayslink","drugrisk","e2b","female" "sex" "g1b" "homeless" "i1" "i2" "id" "indtot" "linkstatus" "link" "mcs" "pcs" "pss_fr" "racegrp" "satreat" "sexrisk" "substance" "treat" "avg_drinks" "max_drinks" "hospitalizations"
+"age","anysubstatus","anysub","cesd","d1","daysanysub","dayslink","drugrisk","e2b","female","sex","g1b","homeless","i1","i2","id","indtot","linkstatus","link","mcs","pcs","pss_fr","racegrp","satreat","sexrisk","substance","treat","avg_drinks","max_drinks","hospitalizations"
 37,1,"yes",49,3,177,225,0,NA,0,"male","yes","housed",13,26,1,39,1,"yes",25.1119899749756,58.413688659668,0,"black","no",4,"cocaine","yes",13,26,3
 37,1,"yes",30,22,2,NA,0,NA,0,"male","yes","homeless",56,62,2,43,NA,NA,26.6703071594238,36.0369415283203,1,"white","no",7,"alcohol","yes",56,62,22
 26,1,"yes",39,0,3,365,20,NA,0,"male","no","housed",0,0,3,41,0,"no",6.76292324066162,74.8063278198242,13,"black","no",2,"heroin","no",0,0,0
