@@ -1,0 +1,102 @@
+---
+title: "Sampling Distributions and Unbiased Estimators"
+author: "T.Scofield"
+format: pdf
+geometry:
+  - top=25mm
+  - left=20mm
+  - right=20mm
+  - bottom=20mm
+  - heightrounded
+---
+
+```{r}
+#| include: false
+require(mosaic)
+```
+
+# Method-of-Moment estimation
+
+The program here will be comprised of sampling
+from a known distribution, using the Method of
+Moments to obtain an estimate $\hat\theta$ of
+parameter $\theta$, and generating a simulated
+sampling distribution for $\hat\theta$.
+
+## Normal population, with $mu=20, \sigma=2$
+
+First, we note that $\bar X$ is $\hat\mu$.
+```{r}
+#| fig-height: 2
+#| warning: false
+manyXbars = replicate(10000, {xvals = rnorm(50,20,2); mean(~xvals)})
+gf_dhistogram(~manyXbars) |>
+  gf_vline(xintercept=20)
+mean(~manyXbars)   # note the nearness to 20
+```
+This histogram gives the **sampling distribution
+of the sample mean** (or a simulation thereof),
+where
+
+ * iid random samples are drawn from Norm$(20,2)$
+ * all samples are of size $n=50$
+ 
+The mean of the sampling distribution of $\bar
+X$---that is, $E(\bar X)$---is computed as
+`{r} mean(~manyXbars)`
+which is very close to the mean $\mu=20$ of the
+population, confirming that $\bar X$ is an
+unbiased estimator of the population mean $\mu$.
+
+**Q:** Is this true merely because our population,
+in the last go, was *normal*?  Let's try a
+non-normal population.
+
+## An exponential population with rate parameter
+$\lambda=0.5$
+
+The mean $\mu = \frac{1}{\lambda} = 2$.  We
+determined the method-of-moments estimator of
+$\lambda$ is $\hat\lambda = \frac{1}{\bar X}$.
+
+```{r}
+#| fig-height: 2
+#| warning: false
+manyXbars = replicate(10000, mean(~rexp(50,0.5)))
+gf_dhistogram(~manyXbars) |>
+  gf_vline(xintercept=2)
+mean(~manyXbars)   # note the nearness to 2
+```
+
+Again, the sample mean appears to be an unbiased
+estimator of $\mu = \frac{1}{\lambda}$.
+ 
+## Exploring if $\hat\mu_2'$ is an unbiased of variance $\sigma^2$
+
+Recall that $v = \frac{1}{n}\sum (X_i-\bar X)$
+is a the method-of-moment estimator of $\sigma^2$.
+Below, I return to sampling from a normal
+population.
+```{r}
+#| fig-height: 2
+#| warning: false
+manyVs = replicate(100000, 49/50 * var(~rnorm(50, 20, 2)))
+gf_dhistogram(~manyVs) |>
+  gf_vline(xintercept=4, color="blue") |>
+  gf_vline(xintercept=mean(~manyVs), color="red")
+mean(~manyVs)
+```
+
+The value of the variance, $\sigma^2=4$, is
+highlighted with the blue vertical line.
+It is a bit to the right of the mean of the
+simulated sampling distribution of $v$ (at the
+red vertical line), the value `{r} mean(~manyVs)`,
+suggesting that $v$ is *not* an unbiased estimator
+of $\sigma^2$. Verification of this can be done
+through direct calculation, but some details
+are technical.  The result, however, is
+$$ \mbox{E}(v) \;=\; \mbox{E}\left[\frac{1}{n}
+ \sum_i (X_i-\bar X)^2\right] \;=\;
+ \cdots \;=\; \frac{n-1}{n} \sigma^2, $$
+not $\sigma^2$.
