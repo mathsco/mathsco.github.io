@@ -1,0 +1,168 @@
+---
+title: "Central Limit Theorem and normal distributions"
+author: "T.Scofield"
+format: pdf
+geometry:
+  - top=25mm
+  - left=20mm
+  - right=20mm
+  - bottom=20mm
+  - heightrounded
+---
+
+```{r}
+#| include: false
+require(mosaic)
+require(gridExtra)
+```
+
+# CLT and $\bar X$
+
+We know $\bar X$ has a normal sampling
+distribution if we draw iid samples from a normal
+population.  The CLT indicates this is true, when
+the sample size $n$ is large enough, even when
+drawing from non-normal populations.
+
+### Drawing from a uniform distribution
+
+Let us draw samples of size 10 from Unif$(2,6)$.
+```{r}
+#| fig-height: 2
+#| fig-width: 6
+#| warning: false
+manyXbars = replicate(10000, mean(~ runif(10,2,6)))
+p1 = gf_qq(~manyXbars)
+p2 = gf_dhistogram(~manyXbars) |> gf_dist("norm", mean=4, sd=sqrt(4/30), color="red")
+grid.arrange(p1, p2, ncol=2)
+```
+
+### Drawing from an exponential distribution
+
+Let us draw samples of size 10 from Exp$(8)$.
+```{r}
+#| fig-height: 2
+#| fig-width: 6
+#| warning: false
+n=30
+manyXbars = replicate(10000, mean(~ rexp(n,8)))
+p1 = gf_qq(~manyXbars)
+p2 = gf_dhistogram(~manyXbars) |> gf_dist("norm", mean=1/8, sd=1/(8*sqrt(n)), color="red")
+grid.arrange(p1, p2, ncol=2)
+```
+
+A long-accepted rule has been that $n\ge 30$
+is sufficiently large to conclude $\bar X$
+has a normal distribution, though examples
+like this one call into question whether
+this is true when drawing from a highly
+skewed population.
+
+# CLT and $\hat p$
+
+### iid draws from Binom$(1,\pi)$
+
+First, I drawn $n=10$ times and calculate the
+mean, which corresponds to the sample proportion
+$\hat p$:
+```{r}
+#| fig-height: 2
+#| fig-width: 6
+#| warning: false
+n=10
+manyPhats = replicate(100000, mean(~rbinom(n, 1, 0.3)))
+p1 = gf_histogram(~manyPhats, binwidth=0.1, color="black")
+p2 = gf_qq(~manyPhats)
+grid.arrange(p1,p2,ncol=2)
+```
+
+The sampling distribution of $\hat p$ does not
+appear to be especially normal.
+Note that I used the value $\pi=0.3$, and so
+$$ n\pi = 3 \qquad\mbox{and}\qquad n(1-\pi) = 7. $$
+
+If I replace the `mean()` command by `sum()` in
+the code above, I'll be producing a simulated
+sampling distribution of $X$, the *count* (instead
+of the *proportion*) of successes.  The last run
+illustrates the sampling distribution does *not*
+need to be normal.  Nevertheless, this rule
+regarding the interplay between sample size
+and $\pi$, namely
+$$ n\pi \ge 10 \qquad\mbox{and}\qquad
+  n(1-\pi)\ge 10, $$ 
+is widely accepted as sufficient to consider
+the sampling distributions approximately normal
+for both $\hat p$ and $X\sim$ Binom$(n,\pi)$:
+
+ * $\hat p = \frac{1}{n}(X_1 + \cdots + X_n)$
+   has an approximate normal distribution
+   Norm$(\pi, \sqrt{\frac{\pi(1-pi)}{n}})$, and
+ * $X = n\hat p$ is approximately distributed as
+   Norm$(n\pi, \sqrt{n\pi(1-pi)})$,
+   
+when $n\pi \ge 10$ and $n(1-\pi)\ge 10$, assuming
+that the $X_i\sim$ Binom$(1,\pi)$ are independent.
+
+# Continuity correction
+
+The rule, $n\pi\ge 10$ and $n(1-\pi)\ge 10$ is
+met when $n=50$ and $\pi=0.3$.  This should, by
+the statements above, make it viable to obtain
+probabilities for $X\sim$ Binom$(50,0.3)$ from
+`pnorm()` where the normal distribution
+Norm$(50,0.3)$ is assumed.  See the figure,
+which overlays the two distributions.
+
+```{r}
+#| fig-height: 2.5
+#| warning: false
+gf_dist("binom", size=50, prob=0.3, kind="histogram", binwidth=1, color="black",
+        fill="#6B8ED6") |>
+  gf_dist("norm", mean=15, sd=sqrt(15*.7), color="red")
+```
+
+Note that the binomial cdf function for values
+up to and including 10 disagrees with the normal
+cdf function.
+```{r}
+pbinom(10,50,.3)
+pnorm(10, 15, sqrt(50*.3*.7))
+```
+The picture, itself, suggests that replacing the
+discrete probabilities (blue rectangles) with
+continuous ones (area under the red curve) will
+lead to errors, much as calculus students learn
+to have discrepancies between true areas under
+curves and the approximations obtained using
+Riemann sums.  That we might undertake some sort
+of *continuity correction* seems natural.
+
+Just imagine, for the moment, computing the
+probability of the value $X=10$.  An error-free
+way, using the binomial cdf, is
+```{r}
+pbinom(10,50,0.3) - pbinom(9,50,0.3)
+```
+Attempting to approximate this value using the
+normal cdf, you can see that
+```{r}
+#| eval: false
+pnorm(10, 15, sqrt(50*0.3*0.7))- pnorm(10, 15, sqrt(50*0.3*0.7))
+```
+is a feeble effort giving zero, and
+```{r}
+#| eval: false
+pnorm(10, 15, sqrt(50*0.3*0.7))- pnorm(9, 15, sqrt(50*0.3*0.7))
+```
+though an improvement, seems to be the wrong
+width-one section of area under the red curve.
+It would be better to get the area between $9.5$
+and $10.5$.  Similarly, `pbinom(10, 50, 0.3)`
+should be better-approximated using the normal
+probability up to 10.5 instead of 10:
+```{r}
+pnorm(10.5, 15, sqrt(50*0.3*0.7))
+```
+Indeed, $0.082$ is closer to $0.079$ than
+$0.061$.
