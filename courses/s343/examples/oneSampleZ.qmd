@@ -1,0 +1,160 @@
+---
+title: "Inference on a single mean, standard deviaton known"
+author: "T.Scofield"
+format: pdf
+geometry:
+  - top=25mm
+  - left=20mm
+  - right=20mm
+  - bottom=20mm
+  - heightrounded
+---
+
+```{r}
+#| include: false
+require(mosaic)
+require(gridExtra)
+```
+
+# Estimating an unknown mean $\mu$, assuming $\sigma$ is known
+
+Suppose we have a population of values for some
+quantitative variable $X$, and we know $\sigma
+= \sigma_X$ but not $\mu$.  We may
+
+ * know that our population is normal.
+ * be able to take an iid sample of size $n\ge 30$.
+ 
+In either case, the Central Limit Theorem and the
+general experience of statisticians tells us we
+will have a sampling distribution for $\bar X$
+that is approximately normal:
+$$ \bar X \sim \mbox{Norm}\left(\mu,
+  \frac{\sigma}{\sqrt n}\right)
+  \qquad\Rightarrow\qquad
+  Z = \frac{\bar X-\mu}{\sigma/\sqrt n} \sim
+  \mbox{Norm}(0,1). $$
+
+Note: There are two standard deviations involved,
+here.  There is $\sigma$, the population standard
+deviation, and $\sigma/\sqrt n$, the standard
+deviation of the sampling distribution of $\bar X$.
+Convention is that we give that of the sampling
+distribution another name, calling it the
+**standard error**.  In this case, we are dealing
+with the sampling distribution of $\bar X$, so
+we call this second standard deviation the
+**standard error of the mean**, or
+$$ \mbox{SE}_{\bar X} = \frac{\sigma}{\sqrt n}. $$
+
+The command
+```{r}
+#| fig-height: 2
+xqnorm(c(0.025,0.975))
+```
+displays that 95% of values in the standard
+normal distribution lie between $Z=-1.96$ and
+$Z=1.96$.  The Empirical Rule for normal
+distributions says, among other things,
+"approximately 95% of values lie within 2 standard
+deviations of the mean."  Now we see the more
+accurate statement is that "95% of values lie
+within 1.96 standard deviations of the mean."
+
+The natural implication is that 95% of values
+of $\bar X$ satisfy
+$$ -1.96 < \frac{\bar X-\mu}{\sigma/\sqrt n}
+  < 1.96 \qquad\Rightarrow\qquad
+  \bar X - (1.96)\frac{\sigma}{\sqrt n}
+  < \mu <  \bar X + (1.96)\frac{\sigma}{\sqrt n}.$$
+
+We call the interval
+$$  (\bar X - (1.96)\frac{\sigma}{\sqrt n},
+   \bar X + (1.96)\frac{\sigma}{\sqrt n}) $$
+a 95% confidence interval for $\mu$.
+
+### How to interpret this confidence
+
+We are doing inference in constructing this
+interval.  It involves drawing an iid sample,
+computing both the mean $\bar X$ and a
+**margin of error**
+$$ 1.96 \mbox{SE}_{\bar X}
+ = 1.96 \frac{\sigma}{\sqrt n}. $$
+This margin of error is added and subtracted
+from a value, $\bar X$, that is sample-specific,
+in order to obtain lower and upper bounds on the
+interval.  Thus, the generation of lower/upper
+bounds is the result of a random process.  While
+$\mu$ is unknown, it is a fixed quantity which
+may or may not be contained between lower and
+upper bounds randomly generated.
+
+In this context, what we are 95% confident about
+is the method of construction.  We will gather
+just one sample (where randomness plays a role),
+and follow a deterministic method to obtain
+lower/upper bounds to an interval, and $\mu$
+may or may not be inside that interval.  We
+will not know for certain.  We simply know this
+construction method is going to successfully
+"capture" $\mu$ in 95% of instances.
+
+### Other levels of confidence.
+
+One can use `qnorm()` to capture different
+"interior areas".  The nearest 80% of values
+(nearest to the mean) are represented as those
+between the 10th and 90th percentiles---those
+with Z-scores displayed here:
+```{r}
+#| fig-height: 2
+xqnorm(c(0.1,0.9))
+```
+
+If we use $z^\ast=1.2816$ in place of
+$z^\ast=1.96$ in the calculation of the margin
+of error
+$$ 1.2816 \mbox{SE}_{\bar X} = 1.2816
+ \frac{\sigma}{\sqrt n}, $$
+this change of method of construction changes
+the success rate to 80%.  We can choose $z^\ast$
+to an desired level of success.
+
+# Hypothesis testing, $\sigma$ known
+
+In hypothesis testing, we ground things with
+the null hypothesis
+$$ {\mathbf H_0}\colon \mu = \mu_0. $$
+That is, we say something like, "$\mu$ is this
+value $\mu_0$.  Prove me wrong!"  We may,
+actually, walk into the problem with prior
+experience that suggests $\mu > \mu_0$, and we
+wish to show this alternative is true:
+$$ {\mathbf H_a}\colon \mu > \mu_0. $$
+We set the level of significance $\alpha$, which
+dictates the probability
+$$ \alpha = \mbox{P}(\mbox{rejection of}
+  \;{\mathbf H_0}
+  \,\mid\, {\mathbf H_0}\;\mbox{is true}), $$
+and obtain evidence in the form of an iid
+random sample.  The particular random sample
+generates an instance of a sample mean $\bar X
+= \bar x$.  The $p$-value, as before, is 
+$$ \mbox{P}(\bar X > \bar x \,\mid\,
+  {\mathbf H_0}\;\mbox{is true}) \;=\;
+  \mbox{P}\left(Z > \frac{\bar x - \mu_0}
+  {\sigma / \sqrt{n}}\right). $$
+  
+For 2-sided alternative hypotheses, this
+expression becomes$p$-value
+$$  \mbox{P}\left(|Z|>\left|\frac{\bar x-\mu_0}
+  {\sigma / \sqrt{n}}\right|\right) \;=\;
+  2 \times \mbox{P}\left(Z>\left|\frac{\bar x-
+  \mu_0} {\sigma / \sqrt{n}}\right|\right). $$
+If $\alpha = 0.05$, the **rejection region**
+corresponds to $\bar X$-values
+$$ z = \frac{\bar x-\mu_0}{\sigma/\sqrt n} < -1.96
+  \qquad\mbox{or}\qquad z =
+  \frac{\bar x-\mu_0}{\sigma/\sqrt n} > 1.96. $$
+   
