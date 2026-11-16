@@ -61,17 +61,14 @@ the standard normal distribution, but $s$ is
 used in place of $\sigma$.
 
 ```{r}
-enn = 8
-mu = 50
-sigma = 6
-targetSuccessRate = 0.95
+enn = 8    # sample size
+mu = 50; sigma = 6; targetSuccessRate = 0.95
 recordOfSuccess = replicate(10000, {
  mySample = rnorm(enn, mu, sigma);
  xbar = mean(~mySample);
  s = sd(~mySample);   # compute sample sd
- zstar = qnorm(mean(c(0.95,1)));
- (mu > xbar - zstar * s/sqrt(enn)) &
-  (mu < xbar + zstar * s/sqrt(enn))
+ zstar = qnorm(mean(c(targetSuccessRate,1)));
+ (mu > xbar - zstar * s/sqrt(enn)) & (mu < xbar + zstar * s/sqrt(enn))
 })
 manifestedSuccessRate = sum(recordOfSuccess)/10000
 ```
@@ -84,17 +81,14 @@ the 95% rate advertised.
 Let us repeat the simulation using $t^\ast$,
 chosen from a $t$-distribution with $df=n-1$.
 ```{r}
-enn = 8
-mu = 50
-sigma = 6
-targetSuccessRate = 0.95
+enn = 8    # sample size
+mu = 50; sigma = 6; targetSuccessRate = 0.95
 recordOfSuccess = replicate(10000, {
  mySample = rnorm(enn, mu, sigma);
  xbar = mean(~mySample);
  s = sd(~mySample);   # compute sample sd
- tstar = qt(mean(c(0.95,1)), df=enn-1);  # obtain critical value
- (mu > xbar - tstar * s/sqrt(enn)) &
-  (mu < xbar + tstar * s/sqrt(enn))
+ tstar = qt(mean(c(targetSuccessRate,1)), df=enn-1);  # obtain critical value
+ (mu > xbar - tstar * s/sqrt(enn)) & (mu < xbar + tstar * s/sqrt(enn))
 })
 manifestedSuccessRate = sum(recordOfSuccess)/10000
 ```
@@ -120,9 +114,8 @@ recordOfSuccess = replicate(10000, {
  mySample = rbeta(enn, shape1=alpha, shape2=beta)
  xbar = mean(~mySample);
  s = sd(~mySample);   # compute sample sd
- tstar = qt(mean(c(0.95,1)), df=enn-1);  # obtain critical value
- (mu > xbar - tstar * s/sqrt(enn)) &
-  (mu < xbar + tstar * s/sqrt(enn))
+ tstar = qt(mean(c(targetSuccessRate,1)), df=enn-1);  # obtain critical value
+ (mu > xbar - tstar * s/sqrt(enn)) & (mu < xbar + tstar * s/sqrt(enn))
 })
 manifestedSuccessRate = sum(recordOfSuccess)/10000
 ```
@@ -140,9 +133,8 @@ recordOfSuccess = replicate(10000, {
  mySample = rbeta(enn, shape1=alpha, shape2=beta)
  xbar = mean(~mySample);
  s = sd(~mySample);   # compute sample sd
- tstar = qt(mean(c(0.95,1)), df=enn-1);  # obtain critical value
- (mu > xbar - tstar * s/sqrt(enn)) &
-  (mu < xbar + tstar * s/sqrt(enn))
+ tstar = qt(mean(c(targetSuccessRate,1)), df=enn-1);  # obtain critical value
+ (mu > xbar - tstar * s/sqrt(enn)) & (mu < xbar + tstar * s/sqrt(enn))
 })
 manifestedSuccessRate = sum(recordOfSuccess)/10000
 ```
