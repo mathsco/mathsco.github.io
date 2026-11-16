@@ -1,0 +1,151 @@
+---
+title: "Inference on a single mean, standard deviaton unknown"
+author: "T.Scofield"
+format: pdf
+geometry:
+  - top=25mm
+  - left=20mm
+  - right=20mm
+  - bottom=20mm
+  - heightrounded
+---
+
+```{r}
+#| include: false
+require(mosaic)
+require(gridExtra)
+```
+
+# Drawing from a normal population
+
+We draw iid samples from a normal population,
+but now look at the effect of using $s$ the sample
+standard deviation, in place of $\sigma$.
+Under this scenario, $\bar X_n$ has a normal
+distribution for all samples sizes
+$n$---specifically,
+$$\bar X \sim \mbox{Norm}(\mu, \sigma/\sqrt n)
+ \qquad\mbox{or}\qquad \frac{\bar X-\mu}{\sigma/\sqrt n} \sim \mbox{Norm}(0,1).$$
+
+We use simulation to look, instead, at a simulated
+sampling distribution of
+$$ \frac{\bar X-\mu}{s/\sqrt{n}}. $$
+```{r}
+#| warning: false
+#| fig-height: 2.5
+enn = 4
+mu = 50
+sigma = 6
+runs = replicate(10000, {
+ mySample = rnorm(enn, mu, sigma);
+ xbar = mean(~mySample);
+ s = sd(~mySample);   # compute sample sd
+ (xbar - mu)/(s/sqrt(enn))   # I use s, not sigma
+})
+gf_dhistogram(~runs) |> gf_dist("norm") |>
+  gf_dist("t", df=enn-1, color="red") + xlim(-5,5)
+```
+Note how the (red) $t$-distribution fits the
+sampling distribution of $(\bar X-\mu)/
+(s/\sqrt n)$ better than the normal curve does.
+
+### Success in confidence intervals
+
+When $\sigma$ was known, we chose $z^\ast$ for
+a specific level of confidence and computed
+endpoints of our interval as
+$$ \bar x \pm z^\ast \frac{\sigma}{\sqrt n}. $$
+Now, we propose simulating this to see how often
+we are successful when $z^\ast$ is chosen from
+the standard normal distribution, but $s$ is
+used in place of $\sigma$.
+
+```{r}
+enn = 8
+mu = 50
+sigma = 6
+targetSuccessRate = 0.95
+recordOfSuccess = replicate(10000, {
+ mySample = rnorm(enn, mu, sigma);
+ xbar = mean(~mySample);
+ s = sd(~mySample);   # compute sample sd
+ zstar = qnorm(mean(c(0.95,1)));
+ (mu > xbar - zstar * s/sqrt(enn)) &
+  (mu < xbar + zstar * s/sqrt(enn))
+})
+manifestedSuccessRate = sum(recordOfSuccess)/10000
+```
+On this go, the rate of success, using critical
+value 95% confidence level $z^\ast$ taken from
+the standard normal distribution, is
+`{r} manifestedSuccessRate`, a bit different from
+the 95% rate advertised.
+
+Let us repeat the simulation using $t^\ast$,
+chosen from a $t$-distribution with $df=n-1$.
+```{r}
+enn = 8
+mu = 50
+sigma = 6
+targetSuccessRate = 0.95
+recordOfSuccess = replicate(10000, {
+ mySample = rnorm(enn, mu, sigma);
+ xbar = mean(~mySample);
+ s = sd(~mySample);   # compute sample sd
+ tstar = qt(mean(c(0.95,1)), df=enn-1);  # obtain critical value
+ (mu > xbar - tstar * s/sqrt(enn)) &
+  (mu < xbar + tstar * s/sqrt(enn))
+})
+manifestedSuccessRate = sum(recordOfSuccess)/10000
+```
+The success rate in 10000 runs using $t^\ast$,
+not $z^\ast$,  is `{r} manifestedSuccessRate`,
+more like the 95% rate advertised.
+
+# Drawing from a non-normal population
+
+If we change to a non-normal population, we
+no longer have in place one of the tenets under
+which the $T$-distributions were derived.  Still,
+we might expect the coverage rate to be near
+the advertised rate of 90% if we use a sample
+size high enough to believe $\bar X$ has a
+normal sampling distribution.
+```{r}
+enn = 8    # First we keep a small-ish sample size
+alpha = 2; beta=8;
+mu = alpha / (alpha + beta)
+targetSuccessRate = 0.95
+recordOfSuccess = replicate(10000, {
+ mySample = rbeta(enn, shape1=alpha, shape2=beta)
+ xbar = mean(~mySample);
+ s = sd(~mySample);   # compute sample sd
+ tstar = qt(mean(c(0.95,1)), df=enn-1);  # obtain critical value
+ (mu > xbar - tstar * s/sqrt(enn)) &
+  (mu < xbar + tstar * s/sqrt(enn))
+})
+manifestedSuccessRate = sum(recordOfSuccess)/10000
+```
+The success rate in 10000 runs using $t^\ast$
+on samples of size 8 drawn from a somewhat-skewed
+beta distribution is `{r} manifestedSuccessRate`.
+
+Next, we up the sample size to 30.
+```{r}
+enn = 30    # up our sample size
+alpha = 2; beta=8;
+mu = alpha / (alpha + beta)
+targetSuccessRate = 0.95
+recordOfSuccess = replicate(10000, {
+ mySample = rbeta(enn, shape1=alpha, shape2=beta)
+ xbar = mean(~mySample);
+ s = sd(~mySample);   # compute sample sd
+ tstar = qt(mean(c(0.95,1)), df=enn-1);  # obtain critical value
+ (mu > xbar - tstar * s/sqrt(enn)) &
+  (mu < xbar + tstar * s/sqrt(enn))
+})
+manifestedSuccessRate = sum(recordOfSuccess)/10000
+```
+The success rate in 10000 runs using $t^\ast$
+on samples of size 30 drawn from the same
+beta distribution is `{r} manifestedSuccessRate`.
