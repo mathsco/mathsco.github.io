@@ -1,0 +1,138 @@
+---
+title: "Inference on a single mean, standard deviaton unknown"
+author: "T.Scofield"
+format: pdf
+geometry:
+  - top=25mm
+  - left=20mm
+  - right=20mm
+  - bottom=20mm
+  - heightrounded
+---
+
+```{r}
+#| include: false
+require(mosaic)
+require(gridExtra)
+require(abd)
+require(Lock5withR)
+myxs = rexp(20, 0.2)
+```
+
+# Some quantitative data from an unknown source
+
+```{r}
+myxs
+```
+
+I wish to make inferences about $\mu$, the
+mean of the population from which this sample
+was drawn, using these values.  The size of
+the sample:
+
+```{r}
+length(myxs)
+```
+
+The sample size is smaller than 30, and a
+normal quantile plot does not reassure us that
+the population is normal
+```{r}
+#| warning: false
+#| fig-height: 2.5
+gf_qq(~myxs)
+```
+
+A histogram of the data values shows a distinct
+right-skew.
+```{r}
+#| warning: false
+#| fig-height: 2.5
+gf_histogram(~myxs, bins=10)
+```
+
+# Transforming data
+
+Data that is right skewed and positive-valued
+might be "compacted", becoming more symmetric,
+using transformations such as
+
+$$ y = x^r, \qquad\mbox{where}\qquad 0 < r < 1, $$
+or by
+$$ y = \log(x). $$
+Using log(), our data looks reasonably normal
+```{r}
+#| warning: false
+#| fig-height: 2.5
+gf_histogram(~log(myxs), bins=10)
+```
+
+How to use to estimate $\mu$?
+```{r}
+sampleLogMean = mean(~log(myxs))
+s = sd(~log(myxs))
+tstar = qt(.975, df=19)     # for 95% confidence
+marginOfError = tstar*s/sqrt(20)
+sampleLogMean + c(-1,1)*marginOfError
+```
+
+This is a 95% confidence interval for $\log(\mu)$,
+not for $\mu$ itself.  We use these bounds, but
+reverse the log transformation to obtain bounds
+for $\mu$:
+```{r}
+exp(c(1.125, 1.971))
+```
+
+# Matched-pairs data
+
+In the Lock5withR package there is a data set
+called `Wetsuits`.  Each swimmer is a case
+providing matched pairs data, a maximum velocity
+swimming 1500 m in a Wetsuit, and a maximum
+velocity swimming the event in on non wetsuit.
+We build a 1-sample $t$ CI on the differences
+$$ \mbox{Wetsuit} - \mbox{NoWetsuit}, $$
+```{r}
+xbar = mean(~(Wetsuit - NoWetsuit), data=Wetsuits)
+sampleSD = sd(~(Wetsuit - NoWetsuit), data=Wetsuits)
+tstar = qt(0.975, df = length(Wetsuits) - 1)
+xbar + c(-1,1)*tstar*sampleSD
+```
+
+I have neglected verifying that the sampling
+distribution of $\bar X$ is plausibly normal.
+There is inadequate sample size to rubber-stamp
+this.  And a normal quantile plot falls quite
+short of convincing us that the population is
+normal:
+```{r}
+#| warning: false
+#| fig-height: 2.5
+gf_qq(~(Wetsuit - NoWetsuit), data=Wetsuits)
+```
+
+# Sign Test
+
+We might change our goal, giving up on estimating
+the mean difference.  Instead, we might simply
+look at each instance where the difference is
+positive as a "success", and each instance where
+the difference is negative as a "failure".
+We use the `sign()` function to determine how
+many successes/failures there are.
+```{r}
+sign(Wetsuits$Wetsuit - Wetsuits$NoWetsuit)
+```
+These can be viewed as binomial counts.  We test
+how likely it is to see 12 successes out of 12
+in a world where this difference has equal chance
+of being positive or negative:
+```{r}
+binom.test(12, 12)
+```
+
+This "sign test" is an hypothesis test.  The
+$p$-value of $0.00048$ leads to our rejecting
+that the chance of swimming faster in a wetsuit
+is merely 50%.
